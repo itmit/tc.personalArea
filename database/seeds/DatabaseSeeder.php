@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         $adminRole->attachPermission(
             Permission::create([
-                'name' => 'create-dispatcher',
+                'name' => 'create-manager',
                 'display_name' => 'Создовать диспетчеров',
                 'description' => 'Разрешает пользователю создовать диспетчеров.'
             ])
@@ -45,8 +45,8 @@ class DatabaseSeeder extends Seeder
 //        $admin->attchRole($adminRole);
 
         Role::create([
-            'name' => 'dispatcher',
-            'display_name' => 'Диспетчер',
+            'name' => 'manager',
+            'display_name' => 'Менеджер',
             'description' => 'Пользователь, который ответственен за принятие заявок.'
         ])->attachPermission(
             Permission::create([

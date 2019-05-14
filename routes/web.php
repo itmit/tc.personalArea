@@ -11,10 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
+    Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
+        Route::get('/', ['as' => 'adminHome', 'uses' => 'HomeAdminController@index']);
+        Route::get('/manager-list', ['as' => 'managerList', 'uses' => 'ManagerListController@index']);
+        Route::get('/create-manager', ['as' => 'createManager', 'uses' => 'CreateManagerController@index']);
+
+        Route::post('/create-manager', ['as' => 'createManagerHandler', 'uses' => 'CreateManagerController@createManager']);
+    });
+
+    Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin|manager']], function () {
+
+    });
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
