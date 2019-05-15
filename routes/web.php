@@ -28,7 +28,9 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
         Route::get('/place-list', ['as' => 'placeList', 'uses' => 'PlaceListController@index']);
+        Route::get('/create-place', ['as' => 'createPlace', 'uses' => 'CreatePlaceController@index']);
 
+        Route::post('/create-place', ['as' => 'createPlaceHandler', 'uses' => 'CreatePlaceController@createPlace']);
     });
 });
 

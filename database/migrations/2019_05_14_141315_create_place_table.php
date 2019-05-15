@@ -18,7 +18,7 @@ class CreatePlaceTable extends Migration
             $table->string('block');
             $table->integer('floor');
             $table->integer('row');
-            $table->string('place-number');
+            $table->string('place_number');
             $table->string('status');
             $table->integer('price');
             $table->timestamps();
