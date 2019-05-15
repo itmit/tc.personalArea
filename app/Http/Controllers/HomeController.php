@@ -2,27 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
+/**
+ * Class HomeController
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * @return Factory|RedirectResponse|Redirector|View
      */
     public function index()
     {
-        return view('home');
+        if (Auth::user()->hasRole('super-admin')) {
+            return view("admin.home", [
+                'title' => 'Главная'
+            ]);
+        } elseif (Auth::user()->hasRole('manager')) {
+            return view("manager.home", [
+                'title' => 'Главная'
+            ]);
+        } else {
+            return redirect('/login');
+        }
     }
 }

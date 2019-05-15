@@ -78,9 +78,16 @@
         <div class="row">
             <div class="col-sm-3">
                 <ul class="nav">
-                    <li class="nav-header">Главные ссылки</li>
-                    <li class="active"><a href="{{ route('auth.admin.adminHome') }}">Главная</a></li>
+
+                    <li class="active"><a href="{{ route('auth.home') }}">Главная</a></li>
+
+                    @ability('super-admin', 'show-manager-list')
                     <li><a href="{{ route('auth.admin.managerList') }}">Список менеджеров</a></li>
+                    @endability
+
+                    @ability('super-admin,manager', 'show-place-list')
+                    <li><a href="{{ route('auth.manager.placeList') }}">Места</a></li>
+                    @endability
                 </ul>
             </div>
             <div class="col-sm-9">
