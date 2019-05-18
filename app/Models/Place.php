@@ -5,18 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Place
+ * Представляет сущность место, которое представляет конкретное помещение в блоке.
+ *
  * @package App\Models
  */
 class Place extends Model
 {
     /**
+     * The table associated with the model.
+     *
      * @var string
      */
     protected $table = 'place';
 
     /**
-     * @var
+     * The attributes that are mass assignable.
+     *
+     * @var array
      */
     protected $fillable = [
         'block',

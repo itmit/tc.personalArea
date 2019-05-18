@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Collection;
 use Zizaco\Entrust\EntrustRole;
 
 /**
- * Class Role
+ * Представляет сущность роль для разграничения прав полоьзователей.
  * @package App\Models
  */
 class Role extends EntrustRole
 {
     /**
-     * Возвращает пользователей, по нозванию роли к которой они пренадлежат.
+     * Возвращает пользователей, по нозванию роли, к которой они пренадлежат.
      *
      * @param string $roleName
      * @return Collection
      */
-    public static function getUsersByRoleName(string $roleName) : Collection
+    public static function getUsersByRoleName(string $roleName): Collection
     {
         return self::where('name', '=', $roleName)->first()->users()->get();
     }

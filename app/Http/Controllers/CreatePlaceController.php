@@ -3,17 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Place;
-use App\Models\Role;
-use App\Models\User;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
+/**
+ * Представляет контроля для создания мест.
+ *
+ * @package App\Http\Controllers
+ */
 class CreatePlaceController extends Controller
 {
 
+    /**
+     * Показывает форму создания места.
+     *
+     * @return Factory|RedirectResponse|Redirector|View
+     */
     public function index()
     {
         $user = Auth::user();
@@ -26,16 +36,16 @@ class CreatePlaceController extends Controller
         return redirect('/login');
     }
 
-
     /**
+     * Обрабатывает запрос на создание места.
+     *
      * @param Request $request
      * @return RedirectResponse|Redirector
      */
     public function createPlace(Request $request)
     {
         $user = Auth::user();
-        if ($user->can('create-place') || $user->hasRole(['super-admin', 'manager']))
-        {
+        if ($user->can('create-place') || $user->hasRole(['super-admin', 'manager'])) {
             $validator = Validator::make($request->all(), [
                 'block' => 'required|string|max:255',
                 'floor' => 'required|integer',

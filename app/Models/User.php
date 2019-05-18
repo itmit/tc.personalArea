@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
+/**
+ * Представляет сущность пользователя системы.
+ *
+ * @package App\Models
+ */
 class User extends Authenticatable
 {
     use EntrustUserTrait;

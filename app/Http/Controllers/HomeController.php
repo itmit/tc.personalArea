@@ -9,12 +9,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 /**
- * Class HomeController
+ * Представляет контроллер для домашней страницы.
+ *
  * @package App\Http\Controllers
  */
 class HomeController extends Controller
 {
     /**
+     * Показывает домашнюю страницу для админа и менеджера.
+     *
      * @return Factory|RedirectResponse|Redirector|View
      */
     public function index()
