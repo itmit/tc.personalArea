@@ -3,17 +3,40 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Place;
+use Illuminate\Http\JsonResponse;
 
 /**
- * Class PlaceApiController
+ * Представляет контпроллеп для обработки api запросов, связаных с сущностью место.
+ *
  * @package App\Http\Controllers\Api
  */
 class PlaceApiController extends ApiBaseController
 {
-    public function index()
+    /**
+     * Обрабатывает запрос на получение всех мест.
+     *
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
     {
-        $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')->get();
+        return $this->sendResponse(
+            Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
+                ->get()->toArray(),
+            'Places retrieved successfully.'
+        );
+    }
 
-        return $this->sendResponse($places->toArray(), 'Places retrieved successfully.');
+    /**
+     * Обрабатывает запрос на получение всех мест в блоке.
+     *
+     * @param string $block
+     * @return JsonResponse
+     */
+    public function show(string $block): JsonResponse
+    {
+        return $this->sendResponse(
+            Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
+                ->where('block', '=', $block)->get()->toArray(),
+            "Places in block \"$block\" retrieved successfully.");
     }
 }

@@ -14,13 +14,13 @@ abstract class ApiBaseController extends Controller
 {
 
     /**
+     * Отправляет ответ на успешный запрос к api.
      *
-     *
-     * @param $result
-     * @param $message
+     * @param array $result
+     * @param string $message
      * @return JsonResponseAlias
      */
-    public function sendResponse($result, $message)
+    public function sendResponse(array $result, string $message): JsonResponseAlias
     {
         return response()->json([
             'success' => true,
@@ -30,23 +30,20 @@ abstract class ApiBaseController extends Controller
     }
 
     /**
+     * Отправляет ответ на запрос к api в случае ошибки.
      *
-     *
-     * @param $error
+     * @param array $error
      * @param array $errorMessages
      * @param int $code
      * @return JsonResponseAlias
      */
-    public function sendError($error, $errorMessages = [], $code = 404)
+    public function sendError(array $error, $errorMessages = [], int $code = 404): JsonResponseAlias
     {
         $response = [
             'success' => false,
+            'data' => $errorMessages,
             'message' => $error,
         ];
-
-        if (!empty($errorMessages)) {
-            $response['data'] = $errorMessages;
-        }
 
         return response()->json($response, $code);
     }

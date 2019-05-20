@@ -82,11 +82,11 @@
                     <li class="active"><a href="{{ route('auth.home') }}">Главная</a></li>
 
                     @ability('super-admin', 'show-manager-list')
-                    <li><a href="{{ route('auth.admin.managerList') }}">Список менеджеров</a></li>
+                    <li><a href="{{ route('auth.admin.managers.index') }}">Список менеджеров</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-place-list')
-                    <li><a href="{{ route('auth.manager.placeList') }}">Места</a></li>
+                    <li><a href="{{ route('auth.manager.places.index') }}">Места</a></li>
                     @endability
                 </ul>
             </div>

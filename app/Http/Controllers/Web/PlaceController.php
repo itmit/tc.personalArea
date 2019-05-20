@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Place;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -11,20 +12,28 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
-/**
- * Представляет контроля для создания мест.
- *
- * @package App\Http\Controllers
- */
-class CreatePlaceController extends Controller
+class PlaceController extends Controller
 {
+
+    /**
+     * Показывает список мест.
+     *
+     * @return Factory|View
+     */
+    public function index()
+    {
+        return view('manager.placeList', [
+            'title' => 'Список мест',
+            'places' => Place::all()
+        ]);
+    }
 
     /**
      * Показывает форму создания места.
      *
      * @return Factory|RedirectResponse|Redirector|View
      */
-    public function index()
+    public function create()
     {
         $user = Auth::user();
         if ($user->can('create-place') || $user->hasRole(['super-admin', 'manager'])) {
@@ -42,7 +51,7 @@ class CreatePlaceController extends Controller
      * @param Request $request
      * @return RedirectResponse|Redirector
      */
-    public function createPlace(Request $request)
+    public function store(Request $request)
     {
         $user = Auth::user();
         if ($user->can('create-place') || $user->hasRole(['super-admin', 'manager'])) {
@@ -51,13 +60,13 @@ class CreatePlaceController extends Controller
                 'floor' => 'required|integer',
                 'row' => 'required|integer',
                 'price' => 'required|integer',
-                'place_number' => 'required|string|max:255|min:2',
+                'place_number' => 'required|string|max:255',
                 'status' => 'required|string|max:255',
             ]);
 
             if ($validator->fails()) {
                 return redirect()
-                    ->route('auth.manager.createPlace')
+                    ->route('auth.manager.places.create')
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -71,7 +80,7 @@ class CreatePlaceController extends Controller
                 'status' => $request->input('status'),
             ]);
 
-            return redirect()->route('auth.manager.placeList');
+            return redirect()->route('auth.manager.places.index');
         }
 
         return redirect('/login');

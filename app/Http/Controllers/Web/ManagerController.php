@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
@@ -12,19 +13,27 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
-/**
- * Предсавляет контроллер для формы создания менеджера.
- *
- * @package App\Http\Controllers
- */
-class CreateManagerController extends Controller
+class ManagerController extends Controller
 {
+    /**
+     * Показывает страницу списка менеджеров.
+     *
+     * @return Factory|View
+     */
+    public function index()
+    {
+        return view('admin.managerList', [
+            'managers' => Role::getUsersByRoleName('manager'),
+            'title' => 'Список менеджеров'
+        ]);
+    }
+
     /**
      * Показывает форму для создания мэнеджера.
      *
      * @return Factory|RedirectResponse|Redirector|View
      */
-    public function index()
+    public function create()
     {
         $user = Auth::user();
         if ($user->can('create-manager') || $user->hasRole('super-admin')) {
@@ -42,7 +51,7 @@ class CreateManagerController extends Controller
      * @param Request $request
      * @return RedirectResponse|Redirector
      */
-    public function createManager(Request $request)
+    public function store(Request $request)
     {
         $user = Auth::user();
         if ($user->can('create-manager') || $user->hasRole('super-admin')) {
@@ -54,7 +63,7 @@ class CreateManagerController extends Controller
 
             if ($validator->fails()) {
                 return redirect()
-                    ->route('auth.admin.createManager')
+                    ->route('auth.admin.managers.create')
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -65,7 +74,7 @@ class CreateManagerController extends Controller
                 'password' => bcrypt($request->input('password')),
             ])->attachRole(Role::where('name', '=', 'manager')->first());
 
-            return redirect()->route('auth.admin.managerList');
+            return redirect()->route('auth.admin.managers.index');
         }
 
         return redirect('/login');

@@ -1,7 +1,7 @@
 @extends('layouts.adminApp')
 
 @section('content')
-    <form class="form-horizontal" method="POST" action="{{ route('auth.manager.createPlace') }}">
+    <form class="form-horizontal" method="POST" action="{{ route('auth.manager.places.store') }}">
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('block') ? ' has-error' : '' }}">

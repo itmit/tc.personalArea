@@ -1,7 +1,7 @@
 @extends('layouts.adminApp')
 
 @section('content')
-    <form class="form-horizontal" method="POST" action="{{ route('auth.admin.createManager') }}">
+    <form class="form-horizontal" method="POST" action="{{ route('auth.admin.managers.store') }}">
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

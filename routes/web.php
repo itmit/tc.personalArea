@@ -20,17 +20,15 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
     Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
-        Route::get('/manager-list', ['as' => 'managerList', 'uses' => 'ManagerListController@index']);
-        Route::get('/create-manager', ['as' => 'createManager', 'uses' => 'CreateManagerController@index']);
-
-        Route::post('/create-manager', ['as' => 'createManagerHandler', 'uses' => 'CreateManagerController@createManager']);
+        Route::resource('managers', 'Web\ManagerController', [
+            'only' => ['index', 'create', 'store']
+        ]);
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
-        Route::get('/place-list', ['as' => 'placeList', 'uses' => 'PlaceListController@index']);
-        Route::get('/create-place', ['as' => 'createPlace', 'uses' => 'CreatePlaceController@index']);
-
-        Route::post('/create-place', ['as' => 'createPlaceHandler', 'uses' => 'CreatePlaceController@createPlace']);
+        Route::resource('places', 'Web\PlaceController', [
+            'only' => ['index', 'create', 'store']
+        ]);
     });
 });
 

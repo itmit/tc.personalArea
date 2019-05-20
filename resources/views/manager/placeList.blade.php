@@ -3,7 +3,7 @@
 @section('content')
 
     @ability('super-admin,manager', 'create-place')
-    <a href="{{ route('auth.manager.createPlace') }}">Создать место</a>
+    <a href="{{ route('auth.manager.places.create') }}">Создать место</a>
     @endability
     <table class="table table-bordered">
         <thead>
