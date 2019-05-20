@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('places', 'Api\PlaceApiController', [
     'only' => ['index', 'show']
 ]);
+
+Route::get('places/{block}/{status}', 'Api\PlaceApiController@showPlacesInBlockWithStatus');

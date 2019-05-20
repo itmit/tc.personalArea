@@ -39,4 +39,13 @@ class PlaceApiController extends ApiBaseController
                 ->where('block', '=', $block)->get()->toArray(),
             "Places in block \"$block\" retrieved successfully.");
     }
+
+    public function showPlacesInBlockWithStatus(string $block, string $status)
+    {
+        return $this->sendResponse(
+            Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
+                ->where('block', '=', $block)
+                ->where('status', '=', $status)->get()->toArray(),
+            "Places in block \"$block\", with status $status retrieved successfully.");
+    }
 }
