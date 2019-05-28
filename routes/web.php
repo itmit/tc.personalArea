@@ -28,6 +28,10 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('places', 'Web\PlaceController', [
             'only' => ['index', 'create', 'store']
         ]);
+
+        Route::resource('bid-for-sale', 'Web\BidForSaleController', [
+            'only' => ['index']
+        ]);
     });
 });
 

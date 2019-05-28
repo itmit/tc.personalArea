@@ -36,7 +36,7 @@ class ManagerController extends Controller
     public function create()
     {
         $user = Auth::user();
-        if ($user->can('create-manager') || $user->hasRole('super-admin')) {
+        if ($user->ability(['super-admin'], ['create-manager'])) {
             return view('admin.createManager', [
                 'title' => 'Создание менеджера'
             ]);
@@ -54,7 +54,7 @@ class ManagerController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        if ($user->can('create-manager') || $user->hasRole('super-admin')) {
+        if ($user->ability(['super-admin'], ['create-manager'])) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',

@@ -15,9 +15,8 @@ class CreateBidForSaleTable extends Migration
     {
         Schema::create('bid_for_sale', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('number');
+            $table->string('place_number');
             $table->string('seller_name');
-            $table->string('place');
             $table->string('phone_number', 18);
             $table->integer('price')->unsigned();
 

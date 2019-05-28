@@ -88,6 +88,10 @@
                     @ability('super-admin,manager', 'show-place-list')
                     <li><a href="{{ route('auth.manager.places.index') }}">Места</a></li>
                     @endability
+
+                    @ability('super-admin,manager', 'show-bid-for-sale-list')
+                    <li><a href="{{ route('auth.manager.bid-for-sale.index') }}">Заявки на продажу</a></li>
+                    @endability
                 </ul>
             </div>
             <div class="col-sm-9">
