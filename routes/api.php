@@ -22,4 +22,6 @@ Route::resource('places', 'Api\PlaceApiController', [
     'only' => ['index', 'show']
 ]);
 
+Route::resource('bid-for-sale', 'Api\BidForSaleApiController');
+
 Route::get('places/{block}/{status}', 'Api\PlaceApiController@showPlacesInBlockWithStatus');

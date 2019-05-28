@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Validator;
 
 class BidForSaleApiController extends ApiBaseController
 {
+    /**
+     * Обрабатывает запрос на получение всех мест.
+     *
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
+    {
+        return $this->sendResponse(
+            BidForSale::all()->toArray(),
+            'Bid for sale retrieved successfully.'
+        );
+    }
 
     /**
      * Обрабатывает запрос на создание места.
@@ -22,11 +34,11 @@ class BidForSaleApiController extends ApiBaseController
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'place_number' => 'required|string|max:255',
-            'seller_name' => 'required|string|max:30',
-            'phone_number' => 'required|string|max:18',
-            'price' => 'required|integer',
+        $data = json_decode($request->input('data'), true);
+        $validator = Validator::make($data, [
+            'PlaceNumber' => 'required|string|max:255',
+            'Name' => 'required|string|max:30',
+            'PhoneNumber' => 'required|string|max:18'
         ]);
 
         if ($validator->fails()) {
@@ -34,10 +46,10 @@ class BidForSaleApiController extends ApiBaseController
         }
 
         $r = BidForSale::create([
-            'place_number' => $request->input('place_number'),
-            'seller_name' => $request->input('seller_name'),
-            'phone_number' => $request->input('phone_number'),
-            'price' => $request->input('price'),
+            'place_number' => $data['PlaceNumber'],
+            'seller_name' => $data['Name'],
+            'phone_number' => $data['PhoneNumber'],
+            'price' => 0
         ]);
 
         return $this->sendResponse($r,'success');

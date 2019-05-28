@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\models\BidForSale;
+use App\Models\BidForSale;
 use App\Models\Place;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
