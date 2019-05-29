@@ -19,5 +19,5 @@ class PurchaseRequisition extends Model
     /**
      * @var string
      */
-    protected $table = 'bid_for_sale';
+    protected $table = 'purchase_requisition';
 }
