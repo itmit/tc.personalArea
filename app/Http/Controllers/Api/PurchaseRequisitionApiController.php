@@ -36,12 +36,13 @@ class PurchaseRequisitionApiController extends ApiBaseController
         $data = json_decode($request->input('data'), true);
         $validator = Validator::make($data, [
             'PlaceNumber' => 'required|string|max:255',
+            'Block' => 'required|string|max:255',
             'Name' => 'required|string|max:30',
             'PhoneNumber' => 'required|string|max:18'
         ]);
 
-        $this->place = Place::where('place_number', '=', $this->placeNumber)
-            ->where('block', '=', $this->block)->first();
+        $this->place = Place::where('place_number', '=', $data["PlaceNumber"])
+            ->where('block', '=', $data["Block"])->first();
 
         $validator->after(function ($validator) {
             if ($this->place == null) {
