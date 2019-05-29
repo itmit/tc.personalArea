@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePlaceTable extends Migration
 {
@@ -13,6 +13,7 @@ class CreatePlaceTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('place');
         Schema::create('place', function (Blueprint $table) {
             $table->increments('id');
             $table->string('block');
@@ -22,6 +23,8 @@ class CreatePlaceTable extends Migration
             $table->string('status');
             $table->integer('price');
             $table->timestamps();
+
+            $table->unique(['block', 'place_number']);
         });
     }
 

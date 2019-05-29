@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\BidForSale;
+use App\Models\PurchaseRequisition;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
-class BidForSaleController extends Controller
+class PurchaseRequisitionWebController extends Controller
 {
 
     /**
@@ -17,9 +17,9 @@ class BidForSaleController extends Controller
      */
     public function index()
     {
-        return view('manager.bidForSaleList', [
-            'title' => 'Заявки на продажу места',
-            'bids' => BidForSale::all()
+        return view('manager.purchaseRequisitionList', [
+            'title' => 'Заявки на покупку места',
+            'purchaseRequisitions' => PurchaseRequisition::all()
         ]);
     }
 }

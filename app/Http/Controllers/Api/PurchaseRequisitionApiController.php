@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\BidForSale;
+use App\Models\PurchaseRequisition;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class BidForSaleApiController extends ApiBaseController
+class PurchaseRequisitionApiController extends ApiBaseController
 {
+
     private $place;
 
     /**
@@ -19,22 +20,9 @@ class BidForSaleApiController extends ApiBaseController
     public function index(): JsonResponse
     {
         return $this->sendResponse(
-            BidForSale::all()->toArray(),
+            PurchaseRequisition::all()->toArray(),
             'Bid for sale retrieved successfully.'
         );
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @return boolean
-     */
-    private function checkValidPlaceNumber(): bool
-    {
-        $place = Place::where('place_number', '=', $this->placeNumber)
-            ->where('block', '=', $this->block)->first();
-
-        return $place == null;
     }
 
     /**
@@ -66,13 +54,13 @@ class BidForSaleApiController extends ApiBaseController
             return $this->sendError('Validation error.', $validator->errors()->all());
         }
 
-        $r = BidForSale::create([
+        $r = PurchaseRequisition::create([
             'place_number' => $this->place,
             'seller_name' => $data['Name'],
             'phone_number' => $data['PhoneNumber'],
             'price' => 0
         ]);
 
-        return $this->sendResponse($r,'success');
+        return $this->sendResponse($r, 'success');
     }
 }

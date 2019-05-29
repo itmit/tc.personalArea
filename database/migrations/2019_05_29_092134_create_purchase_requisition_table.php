@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBidForSaleTable extends Migration
+class CreatePurchaseRequisitionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,8 @@ class CreateBidForSaleTable extends Migration
      */
     public function up()
     {
-        Schema::create('bid_for_sale', function (Blueprint $table) {
+        Schema::dropIfExists('purchase_requisition');
+        Schema::create('purchase_requisition', function (Blueprint $table) {
             $table->increments('id');
             $table->string('seller_name');
             $table->string('phone_number', 18);
@@ -33,6 +34,6 @@ class CreateBidForSaleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bid_for_sale');
+        Schema::dropIfExists('purchase_requisition');
     }
 }

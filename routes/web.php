@@ -32,6 +32,10 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('bid-for-sale', 'Web\BidForSaleController', [
             'only' => ['index']
         ]);
+
+        Route::resource('purchase-requisition', 'Web\PurchaseRequisitionWebController', [
+            'only' => ['index']
+        ]);
     });
 });
 

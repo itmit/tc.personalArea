@@ -32,12 +32,12 @@ abstract class ApiBaseController extends Controller
     /**
      * Отправляет ответ на запрос к api в случае ошибки.
      *
-     * @param array $error
+     * @param string $error
      * @param array $errorMessages
      * @param int $code
      * @return JsonResponseAlias
      */
-    public function sendError(array $error, $errorMessages = [], int $code = 404): JsonResponseAlias
+    public function sendError(string $error, $errorMessages = [], int $code = 404): JsonResponseAlias
     {
         $response = [
             'success' => false,

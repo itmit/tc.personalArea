@@ -12,11 +12,11 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($bids as $bid)
+        @foreach($purchaseRequisitions as $purchaseRequisition)
             <tr>
-                <td>{{ $bid->place->place_number }}</td>
-                <td>{{ $bid->seller_name }}</td>
-                <td>{{ $bid->phone_number }}</td>
+                <td>{{ $purchaseRequisition->place->place_number }}</td>
+                <td>{{ $purchaseRequisition->seller_name }}</td>
+                <td>{{ $purchaseRequisition->phone_number }}</td>
             </tr>
         @endforeach
         </tbody>
