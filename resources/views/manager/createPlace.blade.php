@@ -27,7 +27,7 @@
             <label for="floor" class="col-md-4 control-label">Этаж</label>
 
             <div class="col-md-6">
-                <input id="floor" type="number" class="form-control" name="floor" value="{{ old('floor') }}" required>
+                <input id="floor" type="number" class="form-control" name="floor" value="{{ old('floor') }}">
 
                 @if ($errors->has('floor'))
                     <span class="help-block">
@@ -86,7 +86,7 @@
             <label for="price" class="col-md-4 control-label">Цена</label>
 
             <div class="col-md-6">
-                <input id="price" type="text" class="form-control" name="price" value="{{ old('price') }}" required>
+                <input id="price" type="text" class="form-control" name="price" value="{{ old('price') }}">
 
                 @if ($errors->has('price'))
                     <span class="help-block">

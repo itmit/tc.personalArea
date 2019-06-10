@@ -4,9 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd2bee418fa566e69c6000cf2fc5708a",
+  "content-hash": "cad7fe77d14f887db5ca9cc82626422f",
     "packages": [
         {
+          "name": "asan/phpexcel",
+          "version": "v2.0.1",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/Janson-Leung/PHPExcel.git",
+            "reference": "07ddc15b44c1f3ee967ded35cffeab5fec49a215"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Janson-Leung/PHPExcel/zipball/07ddc15b44c1f3ee967ded35cffeab5fec49a215",
+            "reference": "07ddc15b44c1f3ee967ded35cffeab5fec49a215",
+            "shasum": ""
+          },
+          "require": {
+            "php": ">=7.0"
+          },
+          "type": "library",
+          "autoload": {
+            "psr-4": {
+              "Asan\\PHPExcel\\": "src/"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Janson Leung",
+              "homepage": "https://github.com/Janson-Leung"
+            }
+          ],
+          "description": "A lightweight PHP library for reading spreadsheet files",
+          "homepage": "https://github.com/Janson-Leung/PHPExcel",
+          "time": "2018-07-23T01:42:26+00:00"
+        },
+      {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
             "source": {
@@ -3204,6 +3241,69 @@
             "time": "2017-07-14T14:27:02+00:00"
         },
         {
+          "name": "phpoffice/phpexcel",
+          "version": "1.8.2",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/PHPOffice/PHPExcel.git",
+            "reference": "1441011fb7ecdd8cc689878f54f8b58a6805f870"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/1441011fb7ecdd8cc689878f54f8b58a6805f870",
+            "reference": "1441011fb7ecdd8cc689878f54f8b58a6805f870",
+            "shasum": ""
+          },
+          "require": {
+            "ext-mbstring": "*",
+            "ext-xml": "*",
+            "ext-xmlwriter": "*",
+            "php": "^5.2|^7.0"
+          },
+          "require-dev": {
+            "squizlabs/php_codesniffer": "2.*"
+          },
+          "type": "library",
+          "autoload": {
+            "psr-0": {
+              "PHPExcel": "Classes/"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "LGPL-2.1"
+          ],
+          "authors": [
+            {
+              "name": "Maarten Balliauw",
+              "homepage": "http://blog.maartenballiauw.be"
+            },
+            {
+              "name": "Erik Tilt"
+            },
+            {
+              "name": "Franck Lefevre",
+              "homepage": "http://rootslabs.net"
+            },
+            {
+              "name": "Mark Baker",
+              "homepage": "http://markbakeruk.net"
+            }
+          ],
+          "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+          "homepage": "https://github.com/PHPOffice/PHPExcel",
+          "keywords": [
+            "OpenXML",
+            "excel",
+            "php",
+            "spreadsheet",
+            "xls",
+            "xlsx"
+          ],
+          "abandoned": "phpoffice/phpspreadsheet",
+          "time": "2018-11-22T23:07:24+00:00"
+        },
+      {
             "name": "phpspec/prophecy",
             "version": "1.8.0",
             "source": {
@@ -4361,7 +4461,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+      "php": ">=7.0.0",
+      "ext-json": "*"
     },
     "platform-dev": []
 }

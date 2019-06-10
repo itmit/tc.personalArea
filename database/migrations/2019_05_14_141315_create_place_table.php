@@ -17,14 +17,14 @@ class CreatePlaceTable extends Migration
         Schema::create('place', function (Blueprint $table) {
             $table->increments('id');
             $table->string('block');
-            $table->integer('floor');
-            $table->integer('row');
+            $table->integer('floor')->nullable();
+            $table->string('row');
             $table->string('place_number');
             $table->string('status');
-            $table->integer('price');
+            $table->integer('price')->nullable();
             $table->timestamps();
 
-            $table->unique(['block', 'place_number']);
+            $table->unique(['block', 'place_number', 'row', 'floor']);
         });
     }
 
