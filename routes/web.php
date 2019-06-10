@@ -28,6 +28,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('places', 'Web\PlaceController', [
             'only' => ['index', 'create', 'store']
         ]);
+        Route::post('places/import', 'Web\PlaceController@importFromExcel')->name('places.import');
 
         Route::resource('bid-for-sale', 'Web\BidForSaleController', [
             'only' => ['index']
