@@ -22,6 +22,10 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('managers', 'Web\ManagerController', [
             'only' => ['index', 'create', 'store']
         ]);
+
+        Route::resource('news', 'News\NewsController', [
+            'only' => ['index', 'create', 'store']
+        ]);
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
