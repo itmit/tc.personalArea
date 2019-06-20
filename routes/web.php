@@ -22,10 +22,6 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('managers', 'Web\ManagerController', [
             'only' => ['index', 'create', 'store']
         ]);
-
-        Route::resource('news', 'News\NewsController', [
-            'only' => ['index', 'create', 'store']
-        ]);
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
@@ -33,6 +29,10 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
             'only' => ['index', 'create', 'store']
         ]);
         Route::post('places/import', 'Web\PlaceController@importFromExcel')->name('places.import');
+
+        Route::resource('news', 'Web\NewsController', [
+            'only' => ['index', 'create', 'store']
+        ]);
 
         Route::resource('bid-for-sale', 'Web\BidForSaleController', [
             'only' => ['index']

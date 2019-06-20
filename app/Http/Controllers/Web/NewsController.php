@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,7 +50,7 @@ class NewsController extends Controller
 
             if ($validator->fails()) {
                 return redirect()
-                    ->route('auth.admin.news.create')
+                    ->route('auth.manager.news.create')
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -65,7 +64,7 @@ class NewsController extends Controller
                 'picture' => $url,
             ]);
 
-            return redirect()->route('auth.admin.news.index');
+            return redirect()->route('auth.manager.news.index');
         }
 
         return redirect('/login');
@@ -125,7 +124,7 @@ class NewsController extends Controller
         return Validator::make($data, [
             'head' => 'required|max:255',
             'body' => 'required',
-            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
     }
 }

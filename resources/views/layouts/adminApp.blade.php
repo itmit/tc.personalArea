@@ -98,7 +98,7 @@
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
-                    <li><a href="{{ route('auth.admin.news.index') }}">Новости</a></li>
+                    <li><a href="{{ route('auth.manager.news.index') }}">Новости</a></li>
                     @endability
                 </ul>
             </div>

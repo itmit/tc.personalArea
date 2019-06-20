@@ -2,7 +2,7 @@
 
 @section('content')
     
-<form class="form-horizontal" method="POST" action="{{ route('auth.admin.news.store') }}" enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action="{{ route('auth.manager.news.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     <div class="form-group{{ $errors->has('head') ? ' has-error' : '' }}">
@@ -37,7 +37,7 @@
         <label for="picture" class="col-md-1 control-label">Картинка</label>
     
         <div class="col-md-6">
-            <input type="file" name="picture" id="picture" class="form-control-file" accept="image/*">
+            <input type="file" name="picture" id="picture" class="form-control-file" accept="image/*" required>
 
             @if ($errors->has('picture'))
                 <span class="help-block">

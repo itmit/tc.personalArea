@@ -3,7 +3,7 @@
 @section('content')
     
     @ability('super-admin,manager', 'show-purchase-requisition-list')
-    <span><a href="{{ route('auth.admin.news.create') }}">Добавить</a></span>
+    <span><a href="{{ route('auth.manager.news.create') }}">Добавить</a></span>
     @endability
 
     <br>
