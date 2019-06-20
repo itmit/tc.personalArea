@@ -30,6 +30,10 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         ]);
         Route::post('places/import', 'Web\PlaceController@importFromExcel')->name('places.import');
 
+        Route::resource('news', 'Web\NewsController', [
+            'only' => ['index', 'create', 'store']
+        ]);
+
         Route::resource('bid-for-sale', 'Web\BidForSaleController', [
             'only' => ['index']
         ]);

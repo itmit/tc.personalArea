@@ -96,6 +96,10 @@
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
                     <li><a href="{{ route('auth.manager.purchase-requisition.index') }}">Заявки на покупку</a></li>
                     @endability
+
+                    @ability('super-admin,manager', 'show-purchase-requisition-list')
+                    <li><a href="{{ route('auth.manager.news.index') }}">Новости</a></li>
+                    @endability
                 </ul>
             </div>
             <div class="col-sm-9">
