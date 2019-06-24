@@ -23,6 +23,7 @@ Route::resource('places', 'Api\PlaceApiController', [
 ]);
 
 Route::resource('bid-for-sale', 'Api\BidForSaleApiController');
+Route::resource('news-api', 'Api\NewsApiController'); // новости
 Route::resource('purchase-requisition', 'Api\PurchaseRequisitionApiController');
 
 Route::get('places/{block}/{status}', 'Api\PlaceApiController@showPlacesInBlockWithStatus');

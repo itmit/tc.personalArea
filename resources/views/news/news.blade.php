@@ -17,7 +17,7 @@
                 <img src="{{ $newsItem->picture }}" alt="{{ $newsItem->head }}" width="100%" height="100%">
             </div>
             <div class="col-4 col-sm-6">
-                {{ $newsItem->body }}
+                {!! htmlspecialchars_decode($newsItem->body) !!}
             </div>
             </div>
         </div>
