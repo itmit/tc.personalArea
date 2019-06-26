@@ -2,34 +2,32 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\BidForSale;
+use App\Models\BidForBuy;
 use App\Models\Place;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class BidForSaleApiController extends ApiBaseController
+class BidForBuyApiController extends ApiBaseController
 {
-    private $place;
-
     /**
-     * Обрабатывает запрос на получение всех мест.
+     * Display a listing of the resource.
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function index(): JsonResponse
     {
         return $this->sendResponse(
-            BidForSale::all()->toArray(),
-            'Bid for sale retrieved successfully.'
+            BidForBuy::all()->toArray(),
+            'Bid for buy retrieved successfully.'
         );
     }
 
     /**
-     * Обрабатывает запрос на создание места.
+     * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return JsonResponse
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -41,7 +39,6 @@ class BidForSaleApiController extends ApiBaseController
             'Floor' => 'required|string|max:255'
         ]);
 
-        // $this->place = Place::whereRaw('place_number = "'.$request->input('PlaceNumber').'" and block = "'.$request->input('Block').'" and floor = "'.$request->input('Floor').'"')->first();
         $this->place = Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
 
         $validator->after(function ($validator) {
@@ -50,20 +47,22 @@ class BidForSaleApiController extends ApiBaseController
             }
         });
 
+
         if ($validator->fails()) {
             return $this->sendError('Validation error.', $validator->errors()->all());
         }    
         
-        $newBidForSale = BidForSale::create([
+        $newBidForBuy = BidForBuy::create([
             'place' => $this->place->id,
             'seller_name' => $request->Name,
             'phone_number' => $request->PhoneNumber
         ]);
 
         return $this->sendResponse([
-            'place' => $newBidForSale->place,
-            'seller_name' => $newBidForSale->seller_name,
-            'phone_number' => $newBidForSale->phone_number
+            'place' => $newBidForBuy->place,
+            'seller_name' => $newBidForBuy->seller_name,
+            'phone_number' => $newBidForBuy->phone_number
         ],'success');
     }
+
 }

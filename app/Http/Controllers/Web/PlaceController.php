@@ -140,6 +140,7 @@ class PlaceController extends Controller
                             'place_number' => $data['place_number'],
                             'status' => $request->input('status'),
                         ]);
+
                     }
                 }
                 unlink($path);

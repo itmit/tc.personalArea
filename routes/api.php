@@ -22,8 +22,16 @@ Route::resource('places', 'Api\PlaceApiController', [
     'only' => ['index', 'show']
 ]);
 
-Route::resource('bid-for-sale', 'Api\BidForSaleApiController');
-Route::resource('news-api', 'Api\NewsApiController'); // новости
-Route::resource('purchase-requisition', 'Api\PurchaseRequisitionApiController');
+Route::resource('bidForBuy', 'Api\BidForBuyApiController', [
+    'only' => ['index', 'create', 'store']
+]);
+
+Route::resource('bidForSale', 'Api\BidForSaleApiController', [
+    'only' => ['index', 'create', 'store']
+]);
+
+Route::resource('news', 'Api\NewsApiController'); // новости
 
 Route::get('places/{block}/{status}', 'Api\PlaceApiController@showPlacesInBlockWithStatus');
+
+Route::post('place/check-valid-place-number', 'Api\PlaceApiController@checkValidPlaceNumber');

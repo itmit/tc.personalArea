@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BidForSale extends Model
+class BidForBuy extends Model
 {
     /**
      * @var array
@@ -13,15 +13,17 @@ class BidForSale extends Model
         'place',
         'seller_name',
         'phone_number',
+        'price',
     ];
 
     /**
      * @var string
      */
-    protected $table = 'bid_for_sale';
+    protected $table = 'bid_for_buys';
 
     public function place()
     {
-        return $this->belongsTo('App\Models\Place');
+        return $this->belongsTo(Place::class);
     }
 }
+

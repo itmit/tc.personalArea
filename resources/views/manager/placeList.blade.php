@@ -25,14 +25,14 @@
             </div>
         </div>
 
-        <div class="row form-group{{ $errors->has('excel') ? ' has-error' : '' }}">
+        <div class="row form-group{{ $errors->has('block') ? ' has-error' : '' }}">
             <label for="excel" class="col-md-4 control-label">.xlsx файл для импорта</label>
 
             <div class="col-md-6">
                 <input type="file" name="excel" id="excel" accept=".xlsx">
             </div>
 
-            @if ($errors->has('excel'))
+            @if ($errors->has('block'))
                 <span class="help-block">
                     <strong>{{ $errors->first('status') }}</strong>
                 </span>
