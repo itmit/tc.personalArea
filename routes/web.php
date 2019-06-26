@@ -35,11 +35,11 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         ]);
 
         Route::resource('bid-for-sale', 'Web\BidForSaleController', [
-            'only' => ['index']
+            'only' => ['index', 'create', 'store']
         ]);
 
-        Route::resource('purchase-requisition', 'Web\PurchaseRequisitionWebController', [
-            'only' => ['index']
+        Route::resource('bid-for-buy', 'Web\BidForBuyWebController', [
+            'only' => ['index', 'create', 'store']
         ]);
     });
 });

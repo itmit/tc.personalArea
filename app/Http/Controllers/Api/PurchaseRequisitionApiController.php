@@ -37,6 +37,7 @@ class PurchaseRequisitionApiController extends ApiBaseController
         $validator = Validator::make($data, [
             'PlaceNumber' => 'required|string|max:255',
             'Block' => 'required|string|max:255',
+            'Floor' => 'required|integer',
             'Name' => 'required|string|max:30',
             'PhoneNumber' => 'required|string|max:18'
         ]);

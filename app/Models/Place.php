@@ -31,4 +31,9 @@ class Place extends Model
         'place_number',
         'status',
     ];
+
+    public static function checkValidPlaceNumber(string $block, string $floor, string $number) : ?Place
+    {
+        return Place::whereRaw("place_number = \"$number\" and block = \"$block\" and floor = \"$floor\"")->first();
+    }
 }
