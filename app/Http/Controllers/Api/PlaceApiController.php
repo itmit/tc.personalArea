@@ -48,4 +48,9 @@ class PlaceApiController extends ApiBaseController
                 ->where('status', '=', $status)->get()->toArray(),
             "Places in block \"$block\", with status $status retrieved successfully.");
     }
+
+    public function checkValidPlaceNumber(Requset $request)
+    {
+        return Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
+    }
 }
