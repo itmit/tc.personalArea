@@ -90,11 +90,11 @@
                     @endability
 
                     @ability('super-admin,manager', 'show-bid-for-sale-list')
-                    <li><a href="{{ route('auth.manager.bid-for-sale.index') }}">Заявки на продажу</a></li>
+                    <li><a href="{{ route('auth.manager.bidForSale.index') }}">Заявки на продажу</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
-                    <li><a href="{{ route('auth.manager.bid-for-buy.index') }}">Заявки на покупку</a></li>
+                    <li><a href="{{ route('auth.manager.bidForBuy.index') }}">Заявки на покупку</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')

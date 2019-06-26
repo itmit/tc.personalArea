@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form class="form-horizontal" method="POST" action="{{ route('auth.manager.bid-for-buy.store') }}" enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action="{{ route('auth.manager.bidForBuy.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     <div class="form-group{{ $errors->has('Block') ? ' has-error' : '' }}">
