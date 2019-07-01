@@ -13,7 +13,6 @@ class BidForBuy extends Model
         'place',
         'seller_name',
         'phone_number',
-        'price',
     ];
 
     /**

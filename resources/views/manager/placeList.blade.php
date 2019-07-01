@@ -49,10 +49,11 @@
     @endability
 
     @ability('super-admin,manager', 'create-place')
+    <form class="form-horizontal" method="GET" action="{{ route('auth.manager.places.create') }}">
     <div class="col-sm-12">
-        <button type="submit" class="btn btn-tc-manager"><a href="{{ route('auth.manager.places.create') }}">Создать место</a></button>
-        
+        <button type="submit" class="btn btn-tc-manager">Создать место</button>
     </div>
+    </form>
     @endability
     <table class="table table-bordered">
         <thead>

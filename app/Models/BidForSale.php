@@ -18,10 +18,10 @@ class BidForSale extends Model
     /**
      * @var string
      */
-    protected $table = 'bid_for_sale';
+    protected $table = 'bid_for_sales';
 
     public function place()
     {
-        return $this->belongsTo('App\Models\Place');
+        return $this->belongsTo(Place::class, 'place');
     }
 }

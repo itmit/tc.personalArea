@@ -41,8 +41,7 @@ class BidForSaleApiController extends ApiBaseController
             'Floor' => 'required|string|max:255'
         ]);
 
-        // $this->place = Place::whereRaw('place_number = "'.$request->input('PlaceNumber').'" and block = "'.$request->input('Block').'" and floor = "'.$request->input('Floor').'"')->first();
-        $this->place = Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
+        $this->place = Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));  
 
         $validator->after(function ($validator) {
             if ($this->place == null) {
@@ -52,7 +51,7 @@ class BidForSaleApiController extends ApiBaseController
 
         if ($validator->fails()) {
             return $this->sendError('Validation error.', $validator->errors()->all());
-        }    
+        }       
         
         $newBidForSale = BidForSale::create([
             'place' => $this->place->id,

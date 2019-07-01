@@ -21,7 +21,7 @@ class CreateBidForBuysTable extends Migration
             $table->integer('place')->unsigned();
             $table->timestamps();
 
-            $table->foreign('place')->references('id')->on('place')
+            $table->foreign('place')->references('id')->on('places')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }

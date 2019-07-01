@@ -16,7 +16,7 @@ class Place extends Model
      *
      * @var string
      */
-    protected $table = 'place';
+    protected $table = 'places';
 
     /**
      * The attributes that are mass assignable.

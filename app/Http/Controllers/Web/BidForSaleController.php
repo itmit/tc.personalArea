@@ -22,8 +22,8 @@ class BidForSaleController extends Controller
     public function index()
     {
         return view('manager.bidForSaleList', [
-            'title' => 'Заявки на продажу места',
-            'bids' => BidForSale::with('place')->get()
+            'title' => 'Заявки на аренду помещения',
+            'bids' => BidForSale::all()
         ]);
     }
 

@@ -13,7 +13,7 @@ class CreateBidForSaleTable extends Migration
      */
     public function up()
     {
-        Schema::create('bid_for_sale', function (Blueprint $table) {
+        Schema::create('bid_for_sales', function (Blueprint $table) {
             $table->increments('id');
             $table->string('seller_name');
             $table->string('phone_number', 18);
@@ -21,7 +21,7 @@ class CreateBidForSaleTable extends Migration
 
             $table->integer('place')->unsigned();
 
-            $table->foreign('place')->references('id')->on('place')
+            $table->foreign('place')->references('id')->on('places')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -33,6 +33,6 @@ class CreateBidForSaleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bid_for_sale');
+        Schema::dropIfExists('bid_for_sales');
     }
 }

@@ -19,7 +19,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('news.news', [
-            'title' => 'Новости',
+            'title' => 'Новости рынка',
             'news' => News::all()
         ]);
     }

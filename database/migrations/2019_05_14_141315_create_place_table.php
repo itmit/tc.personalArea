@@ -13,8 +13,8 @@ class CreatePlaceTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('place');
-        Schema::create('place', function (Blueprint $table) {
+        Schema::dropIfExists('places');
+        Schema::create('places', function (Blueprint $table) {
             $table->increments('id');
             $table->string('block');
             $table->integer('floor')->nullable();
@@ -35,6 +35,6 @@ class CreatePlaceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('place');
+        Schema::dropIfExists('places');
     }
 }
