@@ -3,7 +3,8 @@
 @section('content')
 
     @ability('super-admin', 'create-manager')
-    <a href="{{ route('auth.admin.managers.create') }}">Создать менеджера</a>
+
+    <button type="submit" class="btn btn-tc-manager"><a href="{{ route('auth.admin.managers.create') }}">Создать менеджера</a></button>
     @endability
     <table class="table table-bordered">
         <thead>

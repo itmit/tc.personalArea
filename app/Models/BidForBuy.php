@@ -20,10 +20,10 @@ class BidForBuy extends Model
      * @var string
      */
     protected $table = 'bid_for_buys';
-
+    
     public function place()
     {
-        return $this->belongsTo(Place::class);
+        return $this->belongsTo(Place::class, 'place');
     }
 }
 

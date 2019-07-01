@@ -3,7 +3,8 @@
 @section('content')
     
     @ability('super-admin,manager', 'show-purchase-requisition-list')
-    <span><a href="{{ route('auth.manager.news.create') }}">Добавить</a></span>
+<button type="submit" class="btn btn-tc-manager"><a href="{{ route('auth.manager.news.create') }}">Добавить</a></button>
+    
     @endability
 
     <br>
@@ -11,7 +12,7 @@
 
     <div class="row">
         <div class="col-sm-9">
-                {{ $newsItem->head }}
+                <h1>{{ $newsItem->head }}</h1>
             <div class="row">
             <div class="col-8 col-sm-6">
                 <img src="{{ $newsItem->picture }}" alt="{{ $newsItem->head }}" width="100%" height="100%">

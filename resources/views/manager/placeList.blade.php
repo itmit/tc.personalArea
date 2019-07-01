@@ -1,15 +1,15 @@
 @extends('layouts.adminApp')
 
 @section('content')
-
-    <span>Импорт</span>
+<div class="import-tc">
+    <p class="text-tc-h">Импорт</p>
     @ability('super-admin,manager', 'import-place')
     <form action="{{ route('auth.manager.places.import') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
 
         <div class="row form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-            <label for="status" class="col-md-4 control-label">Статус</label>
+            <label for="status" class="col-md-4 control-label text-tc">Статус</label>
 
             <div class="col-md-6">
                 <select name="status" id="status" required autofocus>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="row form-group{{ $errors->has('block') ? ' has-error' : '' }}">
-            <label for="excel" class="col-md-4 control-label">.xlsx файл для импорта</label>
+            <label for="excel" class="col-md-4 control-label text-tc">.xlsx файл для импорта</label>
 
             <div class="col-md-6">
                 <input type="file" name="excel" id="excel" accept=".xlsx">
@@ -40,16 +40,18 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-tc-ct">
                 Импорт
             </button>
         </div>
     </form>
+</div>
     @endability
 
     @ability('super-admin,manager', 'create-place')
     <div class="col-sm-12">
-        <a href="{{ route('auth.manager.places.create') }}">Создать место</a>
+        <button type="submit" class="btn btn-tc-manager"><a href="{{ route('auth.manager.places.create') }}">Создать место</a></button>
+        
     </div>
     @endability
     <table class="table table-bordered">

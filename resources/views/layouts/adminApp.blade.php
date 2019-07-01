@@ -12,10 +12,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
+   
+    <nav class="navbar navbar-tc navbar-static-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -31,6 +39,7 @@
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
+<!--                    <img src="/tc.itmit-studio.ru/resources/views/layouts/img/mLogo.png" alt="TC" title="Садовод">-->
                 </a>
             </div>
 
@@ -48,17 +57,31 @@
                         <li><a href="{{ route('register') }}">Register</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            <button type="button" class="btn btn-tc dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false" aria-haspopup="true" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                            </button>
 
-                            <ul class="dropdown-menu">
+<!-- Single button -->
+<!--
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Действие <span class="caret"></span></button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Действие</a></li>
+    <li><a href="#">Другое действие</a></li>
+    <li><a href="#">Что-то иное</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Отдельная ссылка</a></li>
+  </ul>
+</div>
+-->
+
+                            <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
+                                        Выход
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -70,13 +93,15 @@
                         </li>
                     @endguest
                 </ul>
+                
             </div>
         </div>
     </nav>
+    
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-xs-12 col-sm-3 tc-left-menu">
                 <ul class="nav">
 
                     <li class="active"><a href="{{ route('auth.home') }}">Главная</a></li>
@@ -102,7 +127,7 @@
                     @endability
                 </ul>
             </div>
-            <div class="col-sm-9">
+            <div class="col-xs-12 col-sm-9 tc-main-content">
                 <h1>{{ $title }}</h1>
                 @yield('content')
             </div>
@@ -111,6 +136,8 @@
 </div>
 
 <!-- Scripts -->
+        <!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/nicEdit.js') }}" type="text/javascript"></script>
 {{-- <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script> --}}
