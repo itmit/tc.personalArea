@@ -43,7 +43,7 @@ class BidForBuyApiController extends ApiBaseController
 
         $validator->after(function ($validator) {
             if ($this->place == null) {
-                $validator->errors()->add('PlaceNumber', 'In this block there is no place with this number.');
+                $validator->errors()->add('PlaceNumber', 'В этом блоке нет места с указанным номером.');
             }
         });
 
