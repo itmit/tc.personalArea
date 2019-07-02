@@ -20,7 +20,7 @@ class PlaceApiController extends ApiBaseController
     public function index(): JsonResponse
     {
         return $this->sendResponse(
-            Place::select('place_id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
+            Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
                 ->get()->toArray(),
             'Places retrieved successfully.'
         );
@@ -35,7 +35,7 @@ class PlaceApiController extends ApiBaseController
     public function show(string $block): JsonResponse
     {
         return $this->sendResponse(
-            Place::select('place_id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
+            Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
                 ->where('block', '=', $block)->get()->toArray(),
             "Places in block \"$block\" retrieved successfully.");
     }
@@ -43,7 +43,7 @@ class PlaceApiController extends ApiBaseController
     public function showPlacesInBlockWithStatus(string $block, string $status)
     {
         return $this->sendResponse(
-            Place::select('place_id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
+            Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
                 ->where('block', '=', $block)
                 ->where('status', '=', $status)->get()->toArray(),
             "Places in block \"$block\", with status $status retrieved successfully.");

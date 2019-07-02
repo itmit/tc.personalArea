@@ -122,8 +122,8 @@ class NewsController extends Controller
     private function getValidator(array $data)
     {
         return Validator::make($data, [
-            'head' => 'required|max:255',
-            'body' => 'required',
+            'head' => 'required|max:50',
+            'body' => 'required|max:20000',
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
     }

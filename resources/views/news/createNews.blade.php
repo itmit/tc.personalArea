@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-10">
-            <input id="head" type="text" class="form-control" name="head" value="{{ old('head') }}" required autofocus>
+            <input id="head" type="text" class="form-control" name="head" value="{{ old('head') }}" required maxlength="50">
 
             @if ($errors->has('head'))
                 <span class="help-block">
@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-10">
-            <textarea id="body" type="text" class="md-textarea form-control" name="body" cols="30" rows="10">{{ old('body') }}</textarea>
+            <textarea id="body" type="text" class="md-textarea form-control" name="body" cols="30" rows="10" maxlength="2000">{{ old('body') }}</textarea>
 
             @if ($errors->has('body'))
                 <span class="help-block">
