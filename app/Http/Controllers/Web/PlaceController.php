@@ -27,7 +27,7 @@ class PlaceController extends Controller
     {
         return view('manager.placeList', [
             'title' => 'Список мест',
-            'places' => Place::all()
+            'places' => Place::select('*')->orderBy('created_at', 'desc')->get()
         ]);
     }
 
