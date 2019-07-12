@@ -82,6 +82,13 @@ class PlaceController extends Controller
         return redirect('/login');
     }
 
+    public function destroy(Request $request)
+    {
+    Place::destroy($request->input('ids'));
+
+    return response()->json(['Places destroyet']);
+    }
+
     public function importFromExcel(Request $request)
     {
         if ($request->hasFile('excel')) {

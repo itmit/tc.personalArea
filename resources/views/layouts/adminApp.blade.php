@@ -142,5 +142,35 @@
 <script src="{{ asset('js/nicEdit.js') }}" type="text/javascript"></script>
 {{-- <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script> --}}
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.js-destroy-button', function() {
+            let ids = [];
+
+            $(".js-destroy:checked").each(function(){
+                ids.push($(this).data('placeId'));
+            });
+            
+            console.log(ids);
+
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { ids: ids },
+                url     : '/places/delete',
+                type    : 'delete',
+                success: function (respuesta) {
+                    console.log(respuesta);
+                    $(".js-destroy:checked").closest('tr').remove();
+                },
+                error: function (xhr, err) { 
+                    console.log("Error");
+                }
+            });
+
+        });
+    });    
+    </script>
 </body>
 </html>

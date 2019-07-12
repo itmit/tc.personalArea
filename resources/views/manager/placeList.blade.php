@@ -55,9 +55,15 @@
     </div>
     </form>
     @endability
+
+    <div class="col-sm-12">
+        <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченные места</button>
+    </div>
+
     <table class="table table-bordered">
         <thead>
         <tr>
+            <th></th>
             <th>Блок</th>
             <th>Этаж</th>
             <th>Ряд</th>
@@ -69,6 +75,7 @@
         <tbody>
         @foreach($places as $place)
             <tr>
+                <td><input type="checkbox" data-place-id="{{ $place->id }}" name="destoy-place-{{ $place->id }}" class="js-destroy"/></td>
                 <td>{{ $place->block }}</td>
                 <td>{{ $place->floor }}</td>
                 <td>{{ $place->row }}</td>
