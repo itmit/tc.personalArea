@@ -140,6 +140,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/nicEdit.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
 {{-- <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script> --}}
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 
@@ -158,19 +159,58 @@
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
                 data    : { ids: ids },
-                url     : '/places/delete',
-                type    : 'delete',
-                success: function (respuesta) {
-                    console.log(respuesta);
+                url     : 'places/delete',
+                method    : 'delete',
+                success: function (response) {
+                    console.log(response);
                     $(".js-destroy:checked").closest('tr').remove();
+                    $(".js-destroy").prop("checked", "");
                 },
                 error: function (xhr, err) { 
-                    console.log("Error");
+                    console.log("Error: " + xhr + " " + err);
                 }
             });
 
         });
+
+        $(document).on('change', '#getPlacesByBlock', function() {
+            let block = $('#getPlacesByBlock').val();
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { block: block },
+                url     : 'places/getPlacesByBlock',
+                method    : 'post',
+                success: function (data) {
+                let result = '';
+                if(data[0].length === 0)
+                {
+                    result += '<tr><td colspan="7">В выбранном разделе ничего нет</td></tr>'
+                }
+                else
+                {
+                    for(var i = 0; i < data[0].length; i++) {
+                        result += '<tr>';
+                        result += '<td><input type="checkbox" data-place-id="' + data[0][i]['id'] + '" name="destoy-place-' + data[0][i]['id'] + '" class="js-destroy"/></td>';
+                        result += '<td>' + data[0][i]['block'] + '</td>';
+                        result += '<td>' + data[0][i]['floor'] + '</td>';
+                        result += '<td>' + data[0][i]['row'] + '</td>';
+                        result += '<td>' + data[0][i]['place_number'] + '</td>';
+                        result += '<td>' + data[0][i]['status'] + '</td>';
+                        result += '<td>' + data[0][i]['price'] + '</td>';
+                        result += '</tr>';
+                    }
+                }   
+                $('tbody').html(result);
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
+        });
+
+
     });    
-    </script>
+</script>
 </body>
 </html>

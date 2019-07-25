@@ -60,10 +60,22 @@
         <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченные места</button>
     </div>
 
+    <div class="col-sm-12">
+        <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control">
+            <option value="По-умолчанию">По-умолчанию</option>
+            <option value="Вещевые ряды">Вещевые ряды</option>
+            <option value="Меха и кожа">Меха и кожа</option>
+            <option value="ТЦ 'Садовод'">ТЦ 'Садовод'</option>
+            <option value="Свадебная галерея 'САЛЮТ'">Свадебная галерея 'САЛЮТ'</option>
+            <option value="Ковры и текстиль">Ковры и текстиль</option>
+            <option value="Новый ТЦ" disabled>Новый ТЦ</option>
+        </select>
+    </div>
+
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th></th>
+            <th><input type="checkbox" name="destroy-all-places" class="js-destroy-all"/></th>
             <th>Блок</th>
             <th>Этаж</th>
             <th>Ряд</th>

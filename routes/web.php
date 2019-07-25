@@ -25,10 +25,15 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
+
         Route::resource('places', 'Web\PlaceController', [
-            'only' => ['index', 'create', 'store', 'destroy']
+            'only' => ['index', 'create', 'store', 'destroy', 'getPlacesByBlock']
         ]);
-        Route::delete('places/delete', 'RadicadoController@destroy');
+
+        Route::post('places/getPlacesByBlock', 'Web\PlaceController@getPlacesByBlock');
+        
+        Route::delete('places/delete', 'Web\PlaceController@destroy');
+
         Route::post('places/import', 'Web\PlaceController@importFromExcel')->name('places.import');
 
         Route::resource('news', 'Web\NewsController', [

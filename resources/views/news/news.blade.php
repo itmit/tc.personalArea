@@ -3,8 +3,9 @@
 @section('content')
     
     @ability('super-admin,manager', 'show-purchase-requisition-list')
-<button type="submit" class="btn btn-tc-manager"><a href="{{ route('auth.manager.news.create') }}">Добавить</a></button>
-    
+    <form class="form-horizontal" method="GET" action="{{ route('auth.manager.news.create') }}">
+    <button type="submit" class="btn btn-tc-manager">Добавить</button>
+    </form>
     @endability
 
     <br>

@@ -84,9 +84,25 @@ class PlaceController extends Controller
 
     public function destroy(Request $request)
     {
-    Place::destroy($request->input('ids'));
+        Place::destroy($request->input('ids'));
 
-    return response()->json(['Places destroyet']);
+        return response()->json(['Places destroyed']);
+    }
+
+    public function getPlacesByBlock(Request $request)
+    {
+        if($request->input('block') == "По-умолчанию")
+        {
+            return response()->json([Place::select('*')->orderBy('created_at', 'desc')->get()]);
+        }
+        else
+        {
+            return response()->json([Place::select('*')->where('block', $request->input('block'))->orderBy('created_at', 'desc')->get()]);
+        }
+        
+        
+
+        // echo $request->input('block');
     }
 
     public function importFromExcel(Request $request)
