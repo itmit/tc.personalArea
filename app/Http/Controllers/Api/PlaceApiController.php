@@ -53,4 +53,25 @@ class PlaceApiController extends ApiBaseController
     {
         return Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
     }
+
+    public function MakeReservation(Requset $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'block' => 'required',
+            'floor' => 'required',
+            // 'row' => 'required',
+            'place_number' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors(), "Validation error", 401);
+        }
+
+        return checkValidPlaceNumber($request);
+
+        return Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
+    }
 }
