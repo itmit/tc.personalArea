@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Place;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 /**
  * Представляет контпроллеп для обработки api запросов, связаных с сущностью место.
