@@ -50,12 +50,12 @@ class PlaceApiController extends ApiBaseController
             "Places in block \"$block\", with status $status retrieved successfully.");
     }
 
-    public function checkValidPlaceNumber(Requset $request)
+    public function checkValidPlaceNumber(Request $request)
     {
         return Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
     }
 
-    public function makeReservation(Requset $request)
+    public function makeReservation(Request $request)
     {
         return 'aaa';
         // $validator = Validator::make($request->all(), [
