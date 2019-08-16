@@ -71,7 +71,7 @@ class PlaceApiController extends ApiBaseController
             return $this->sendError($validator->errors(), "Validation error", 401);
         }
 
-        return checkValidPlaceNumber($request);
+        return Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('placeNumber'));
 
         // return Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
     }
