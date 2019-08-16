@@ -85,7 +85,7 @@ class PlaceApiController extends ApiBaseController
         $isReserved = Reservation::latest()->where('place_id', '=', $this->place->id)->first();
         if($isReserved)
         {
-            return $this->sendError($validator->errors(), "Место уже забронировано", 401);
+            return $this->SendError('Reservation error', 'Место уже забронировано', 401);
         }
         else
         {
@@ -95,6 +95,14 @@ class PlaceApiController extends ApiBaseController
                 'phone' => $request->input('phone'),
                 'place_id' => $this->place->id
             ]);
+
+            return $newReserved;
+
+            // if()
+            // {
+            //     $place = Client::where('id', '=', auth('api')->user()->id)
+            //         ->update(['user_picture' => 'storage/avatars/' . auth('api')->user()->id . '.jpg']);
+            // }
         }
         
     }
