@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Place;
+use App\Models\Reservation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -73,8 +74,28 @@ class PlaceApiController extends ApiBaseController
             return $this->sendError($validator->errors(), "Validation error", 401);
         }
 
-        return Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'));
+        $this->place = Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'));
 
-        // return Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
+        $validator->after(function ($validator) {
+            if ($this->place == null) {
+                $validator->errors()->add('PlaceNumber', 'В этом блоке нет места с указанным номером.');
+            }
+        });
+
+        $isReserved = Reservation::latest()->where('place_id', '=', $this->place->id)->first();
+        if($isReserved)
+        {
+            return $this->sendError($validator->errors(), "Место уже забронировано", 401);
+        }
+        else
+        {
+            $newReserved = Reservation::create([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'phone' => $request->input('phone'),
+                'place_id' => $this->place->id
+            ]);
+        }
+        
     }
 }
