@@ -96,13 +96,17 @@ class PlaceApiController extends ApiBaseController
                 'place_id' => $this->place->id
             ]);
 
-            return $newReserved;
-
-            // if()
-            // {
-            //     $place = Client::where('id', '=', auth('api')->user()->id)
-            //         ->update(['user_picture' => 'storage/avatars/' . auth('api')->user()->id . '.jpg']);
-            // }
+            $place = Place::where('id', '=', $this->place->id)
+                ->update(['status' => 'Забронировано']);
+            
+            if($place > 0)
+            {
+                return $this->sendResponse([
+                    $newReserved
+                ],
+                    'Reserved');
+            }
+            
         }
         
     }
