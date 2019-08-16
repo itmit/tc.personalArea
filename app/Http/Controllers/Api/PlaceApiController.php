@@ -57,7 +57,6 @@ class PlaceApiController extends ApiBaseController
 
     public function makeReservation(Request $request)
     {
-        return 'aaa';
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
