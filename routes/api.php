@@ -35,3 +35,5 @@ Route::resource('news', 'Api\NewsApiController'); // новости
 Route::get('places/{block}/{status}', 'Api\PlaceApiController@showPlacesInBlockWithStatus');
 
 Route::post('place/check-valid-place-number', 'Api\PlaceApiController@checkValidPlaceNumber');
+
+Route::post('place/makeReservation', 'Api\PlaceApiController@makeReservation');
