@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Reservation extends Model
 {
@@ -23,5 +25,14 @@ class Reservation extends Model
         'last_name',
         'phone',
         'place_id',
+        'accepted',
     ];
+
+    /**
+     * @return User
+     */
+    public function place()
+    {
+        return $this->belongsTo(Place::class, 'place_id')->get()->first();
+    }
 }

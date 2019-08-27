@@ -19,6 +19,7 @@ class CreateReservationTable extends Migration
             $table->string('last_name');
             $table->string('phone');
             $table->integer('place_id');
+            $table->boolean('accepted');
             $table->timestamps();
         });
     }

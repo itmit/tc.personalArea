@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Представляет сущность место, которое представляет конкретное помещение в блоке.
@@ -35,5 +37,10 @@ class Place extends Model
     public static function checkValidPlaceNumber(string $block, string $floor, string $number) : ?Place
     {
         return Place::whereRaw("place_number = \"$number\" and block = \"$block\" and floor = \"$floor\"")->first();
+    }
+
+    public function reservation()
+    {
+        return $this->hasOne(Reservation::class);
     }
 }
