@@ -47,6 +47,10 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('bidForBuy', 'Web\BidForBuyWebController', [
             'only' => ['index', 'create', 'store']
         ]);
+
+        Route::resource('reservation', 'Web\ReservationWebController', [
+            'only' => ['index', 'create', 'store']
+        ]);
     });
 });
 
