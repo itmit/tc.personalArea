@@ -16,7 +16,7 @@ class ReservationWebController extends Controller
      */
     public function index()
     {
-        $places = Reservation::orderBy('created_at', 'desc')->get();
+        $places = Reservation::where('accepted', '<>', '1')->orderBy('created_at', 'desc')->get();
 
         return view('manager.reservationList', [
             'title' => 'Заявки на бронь',
