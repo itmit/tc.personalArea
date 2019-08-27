@@ -17,7 +17,7 @@
         <tbody>
         @foreach($places as $place)
             <tr>
-                <td>{{ $place->id }}</td>
+                <td>{{ $place->reservation()->id }}</td>
             </tr>
         @endforeach
         </tbody>
