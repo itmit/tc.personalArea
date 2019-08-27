@@ -122,6 +122,10 @@
                     <li><a href="{{ route('auth.manager.bidForBuy.index') }}">Заявки на сдачу в аренду помещения</a></li>
                     @endability
 
+                    @ability('super-admin,manager', 'show-reservation-places-list')
+                    <li><a href="{{ route('auth.manager.reservation.index') }}">Заявки на бронь</a></li>
+                    @endability
+
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
                     <li><a href="{{ route('auth.manager.news.index') }}">Новости</a></li>
                     @endability
