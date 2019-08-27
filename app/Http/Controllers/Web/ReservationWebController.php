@@ -20,7 +20,7 @@ class ReservationWebController extends Controller
 
         return view('manager.reservationList', [
             'title' => 'Заявки на бронь',
-            'places' => Place::where('*')->orderBy('created_at', 'desc')->get()
+            'places' => $places
         ]);
     }
 }
