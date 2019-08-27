@@ -17,7 +17,14 @@
         <tbody>
         @foreach($places as $place)
             <tr>
-                <td>{{ $place->place()->id }}</td>
+                <td>{{ $place->first_name }}</td>
+                <td>{{ $place->last_name }}</td>
+                <td>{{ $place->phone }}</td>
+                <td>{{ $place->place()->block }}</td>
+                <td>{{ $place->place()->floor }}</td>
+                <td>{{ $place->place()->row }}</td>
+                <td>{{ $place->place()->place_number }}</td>
+                <td></td>
             </tr>
         @endforeach
         </tbody>
