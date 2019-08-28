@@ -72,10 +72,10 @@
                             result += '<td>' + response[i]['last_name'] + '</td>';
                             result += '<td>' + response[i]['phone'] + '</td>';
                             result += '<td>' + response[i]['place'] + '</td>';
-                            result += '<td>' + response[i]['place']['floor'] + '</td>';
-                            result += '<td>' + response[i]['place']['row'] + '</td>';
-                            result += '<td>' + response[i]['place']['place_number'] + '</td>';
-                            result += '<td>' + response[i]['place']['id'] + '</td>';
+                            result += '<td>' + response[i]['place'] + '</td>';
+                            result += '<td>' + response[i]['place'] + '</td>';
+                            result += '<td>' + response[i]['place'] + '</td>';
+                            result += '<td>' + response[i]['place'] + '</td>';
                             result += '</tr>';
                         }
                         $('tbody').html(result);
