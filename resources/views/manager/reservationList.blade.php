@@ -21,7 +21,7 @@
         </thead>
         <tbody>
         @foreach($places as $place)
-            <tr data-userid="{{ $place->id }}">
+            <tr>
                 <td>{{ $place->first_name }}</td>
                 <td>{{ $place->last_name }}</td>
                 <td>{{ $place->phone }}</td>
@@ -29,7 +29,7 @@
                 <td>{{ $place->place()->floor }}</td>
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
-            <td><button class="makeReservation" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->place_id }}">Отказать</button></td>
+            <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->place_id }}">Отказать</button></td>
             </tr>
         @endforeach
         </tbody>
