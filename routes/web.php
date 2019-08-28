@@ -56,6 +56,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::post('reservation/confirmReservation', 'Web\ReservationWebController@confirmReservation');
         Route::post('reservation/selectByAccept', 'Web\ReservationWebController@selectByAccept');
         Route::post('reservation/deleteReservation', 'Web\ReservationWebController@deleteReservation');
+        Route::post('reservation/cancelReservation', 'Web\ReservationWebController@cancelReservation');
     });
 });
 

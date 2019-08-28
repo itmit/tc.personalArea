@@ -112,6 +112,24 @@
                     }
                 });
             });
+
+            $(document).on('click', '.cancelReservation', function() {
+                let place_id = $(this).data('placeid');
+                // console.log(place_id + ' ' + user_id);
+                $.ajax({
+                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    dataType: "json",
+                    data: {place_id: place_id},
+                    url     : 'reservation/cancelReservation',
+                    method    : 'post',
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, err) { 
+                        console.log(err + " " + xhr);
+                    }
+                });
+            });
         });
     </script>
 @endsection

@@ -73,7 +73,7 @@ class ReservationWebController extends Controller
                 return response()->json($response);
                 break;
             case 'active':
-                $reservations = Reservation::where('accepted', '<>', '1')->orderBy('created_at', 'desc')->get();
+                $reservations = Reservation::where('accepted', '=', '0')->orderBy('created_at', 'desc')->get();
                 foreach ($reservations as $reservation) {
                     $response[] = [
                         'id'   => $reservation->id,
@@ -93,7 +93,7 @@ class ReservationWebController extends Controller
                 return response()->json($response);
                 break;
             case 'accepted':
-                $reservations = Reservation::where('accepted', '=', '1')->orderBy('created_at', 'desc')->get();
+                $reservations = Reservation::where('accepted', '<>', '0')->orderBy('created_at', 'desc')->get();
                 foreach ($reservations as $reservation) {
                     $response[] = [
                         'id'   => $reservation->id,
@@ -128,6 +128,19 @@ class ReservationWebController extends Controller
     {
         $place = Place::where('id', '=', $request->place_id)
             ->update(['status' => 'Свободен']);
+
+        return response()->json(['Status updated']);
+    }
+
+    /**
+     * Откланяет заявку на бронирование.
+     *
+     * @return Factory|View
+     */
+    public function cancelReservation(Request $request)
+    {
+        $reservation = Reservation::where('id', '=', $request->place_id)
+            ->update(['accepted' => 2]);
 
         return response()->json(['Status updated']);
     }
