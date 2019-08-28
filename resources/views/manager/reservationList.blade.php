@@ -29,7 +29,7 @@
                 <td>{{ $place->place()->floor }}</td>
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
-                <td></td>
+                <td><button>Забронировать</button></td>
             </tr>
         @endforeach
         </tbody>
