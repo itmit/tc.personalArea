@@ -42,4 +42,28 @@ class ReservationWebController extends Controller
 
         return response()->json(['Reservated']);
     }
+
+    /**
+     * Отображает места с разными статусами.
+     *
+     * @return Factory|View
+     */
+    public function selectByAccept(Request $request)
+    {
+        switch ($request->selectByAccept) {
+            case 'all':
+                return response()->json([Reservation::orderBy('created_at', 'desc')->get()]);
+                break;
+            case 'active':
+                return response()->json([Reservation::where('accepted', '<>', '1')->orderBy('created_at', 'desc')->get()]);
+                break;
+            case 'accepted':
+                return response()->json([Reservation::where('accepted', '=', '1')->orderBy('created_at', 'desc')->get()]);
+                break;
+            default:
+                return response()->json(['Error']);
+        }
+
+        return response()->json(['Reservated']);
+    }
 }
