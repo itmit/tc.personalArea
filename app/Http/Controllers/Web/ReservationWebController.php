@@ -23,4 +23,19 @@ class ReservationWebController extends Controller
             'places' => $places
         ]);
     }
+
+    /**
+     * Меняет статус на забронировано.
+     *
+     * @return Factory|View
+     */
+    public function confirmReservation()
+    {
+        $places = Reservation::where('accepted', '<>', '1')->orderBy('created_at', 'desc')->get();
+
+        return view('manager.reservationList', [
+            'title' => 'Заявки на бронь',
+            'places' => $places
+        ]);
+    }
 }

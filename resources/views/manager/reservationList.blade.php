@@ -16,7 +16,7 @@
             <th>Этаж</th>
             <th>Ряд</th>
             <th>Место</th>
-            <th>Забронировать</th>
+            <th>Сменить статус</th>
         </tr>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
                 <td>{{ $place->place()->floor }}</td>
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
-            <td><button class="makeReservation" data-placeid="{{ $place->place_id }}">Забронировать</button></td>
+            <td><button class="makeReservation" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->place_id }}">Отказать</button></td>
             </tr>
         @endforeach
         </tbody>
