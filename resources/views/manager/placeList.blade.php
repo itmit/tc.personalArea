@@ -93,7 +93,7 @@
                 <td>{{ $place->row }}</td>
                 <td>{{ $place->place_number }}</td>
                 <td>
-                    <select name="changePlaceStatus" id="changePlaceStatus">
+                    <select name="changePlaceStatus" id="changePlaceStatus" class='form-control'>
                         <option value="Свободен" @if($place->status == 'Свободен') selected @endif >Свободен</option>
                         <option value="Арендован" @if($place->status == 'Арендован') selected @endif >Арендован</option>
                         <option value="Забронировано" @if($place->status == 'Забронировано') selected @endif >Забронировано</option>
