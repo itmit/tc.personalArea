@@ -6,6 +6,7 @@ use App\Models\Place;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ReservationWebController extends Controller
 {
