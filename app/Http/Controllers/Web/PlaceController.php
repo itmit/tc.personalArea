@@ -207,6 +207,14 @@ class PlaceController extends Controller
      */
     public function changePlaceStatus(Request $request)
     {
+        if($request->selectByAccept != 'Свободен' || $request->selectByAccept != 'Арендован' || $request->selectByAccept != 'Забронировано')
+        {
+            return response()->json(['Invalid status']);
+        }
+        
+        $place = Place::where('id', '=', $request->place_id)
+            ->update(['status' => $request->selectByAccept]);
+
         return response()->json(['Status updated']);
     }
 }
