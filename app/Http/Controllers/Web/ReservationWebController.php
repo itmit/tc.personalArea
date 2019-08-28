@@ -139,9 +139,9 @@ class ReservationWebController extends Controller
      */
     public function cancelReservation(Request $request)
     {
-        return $request->user_id;
+        return $request->place_id;
 
-        $reservation = Reservation::where('id', '=', $request->user_id)
+        $reservation = Reservation::where('id', '=', $request->place_id)
             ->update(['accepted' => 2]);
 
         return response()->json(['Status reservation updated']);
