@@ -81,7 +81,7 @@
                             }
                             else
                             {
-                                result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['place']['id'] + '">Снять бронь</button></td>';
+                                result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">Снять бронь</button></td>';
                             }
                             
                             result += '</tr>';
