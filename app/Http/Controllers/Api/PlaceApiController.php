@@ -96,18 +96,9 @@ class PlaceApiController extends ApiBaseController
                 'place_id' => $this->place->id
             ]);
 
-            $place = Place::where('id', '=', $this->place->id)
-                ->update(['status' => 'Забронировано']);
-            
-            if($place > 0)
-            {
-                return $this->sendResponse([
-                    $newReserved
-                ],
-                    'Reserved');
-            }
-            
+            return $this->sendResponse(
+                $newReserved,
+                "Place reserved"); 
         }
-        
     }
 }
