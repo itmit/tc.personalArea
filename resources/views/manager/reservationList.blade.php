@@ -65,19 +65,20 @@
                     url     : 'reservation/selectByAccept',
                     method    : 'post',
                     success: function (response) {
-                        // let result = '';
-                        // for(var i = 0; i < response.length; i++) {
-                        //     result += '<tr>';
-                        //     result += '<td><a href="bid/' + response[i]['id'] + '">' + response[i]['status'] + '</a></td>';
-                        //     result += '<td>' + response[i]['client']['email'] + '</td>';
-                        //     result += '<td>' + response[i]['location']['latitude'] + ' | ' + response[i]['location']['longitude'] + '</td>';
-                        //     result += '<td>' + response[i]['type'] + '</td>';
-                        //     result += '<td>' + response[i]['created_at'] + '</td>';
-                        //     result += '<td>' + response[i]['updated_at'] + '</td>';
-                        //     result += '</tr>';
-                        // }
-                        // $('tbody').html(result);
-                        console.log(response)
+                        let result = '';
+                        for(var i = 0; i < response.length; i++) {
+                            result += '<tr id="' + response[i]['id'] + '">';
+                            result += '<td>' + response[i]['first_name'] + '</td>';
+                            result += '<td>' + response[i]['last_name'] + '</td>';
+                            result += '<td>' + response[i]['phone'] + '</td>';
+                            result += '<td>' + response[i]['place']['block'] + '</td>';
+                            result += '<td>' + response[i]['place']['floor'] + '</td>';
+                            result += '<td>' + response[i]['place']['row'] + '</td>';
+                            result += '<td>' + response[i]['place']['place_number'] + '</td>';
+                            result += '</tr>';
+                        }
+                        $('tbody').html(result);
+                        // console.log(response)
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
