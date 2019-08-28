@@ -200,4 +200,13 @@ class PlaceController extends Controller
             'status' => 'required|string|max:255',
         ]);
     }
+
+    /**
+     * @param array $data
+     * @return Validator
+     */
+    private function changePlaceStatus(Request $request)
+    {
+        return response()->json(['Status updated']);
+    }
 }

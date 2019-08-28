@@ -93,7 +93,7 @@
                 <td>{{ $place->row }}</td>
                 <td>{{ $place->place_number }}</td>
                 <td>
-                    <select name="changePlaceStatus" id="changePlaceStatus" class='form-control'>
+                    <select name="changePlaceStatus" id="changePlaceStatus" class='form-control' data-placeid="{{ $place->id }}">
                         <option value="Свободен" @if($place->status == 'Свободен') selected @endif >Свободен</option>
                         <option value="Арендован" @if($place->status == 'Арендован') selected @endif >Арендован</option>
                         <option value="Забронировано" @if($place->status == 'Забронировано') selected @endif >Забронировано</option>
@@ -104,5 +104,28 @@
         @endforeach
         </tbody>
     </table>
+
+    <script>
+            $(document).ready(function()
+            {    
+                $(document).on('change', '#changePlaceStatus', function() {
+                    let selectByAccept = $(this).val();
+                    let place_id = $(this).data('placeid');
+                    $.ajax({
+                        headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                        dataType: "json",
+                        data: {selectByAccept: selectByAccept},
+                        url     : 'places/changePlaceStatus',
+                        method    : 'post',
+                        success: function (response) {
+                            console.log(response)
+                        },
+                        error: function (xhr, err) { 
+                            console.log(err + " " + xhr);
+                        }
+                    });
+                });
+            });
+        </script>
 
 @endsection
