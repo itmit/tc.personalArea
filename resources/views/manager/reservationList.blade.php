@@ -1,7 +1,7 @@
 @extends('layouts.adminApp')
 
 @section('content')
-<select name="" id="">
+<select name="selectByAccept" id="selectByAccept">
     <option value="all">Все</option>
     <option value="active" selected>Активные</option>
     <option value="accepted">Обработанные</option>
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
         @foreach($places as $place)
-            <tr>
+            <tr id="{{ $place->id }}">
                 <td>{{ $place->first_name }}</td>
                 <td>{{ $place->last_name }}</td>
                 <td>{{ $place->phone }}</td>
@@ -41,7 +41,6 @@
             $(document).on('click', '.makeReservation', function() {
                 let place_id = $(this).data('placeid');
                 let user_id = $(this).data('userid');
-                console.log(user_id);
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
@@ -49,7 +48,7 @@
                     url     : 'reservation/confirmReservation',
                     method    : 'post',
                     success: function (response) {
-                        console.log(response);
+                        $('#' + user_id).html('');
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
