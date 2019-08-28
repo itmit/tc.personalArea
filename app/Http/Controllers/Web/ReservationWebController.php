@@ -29,13 +29,14 @@ class ReservationWebController extends Controller
      *
      * @return Factory|View
      */
-    public function confirmReservation()
+    public function confirmReservation(Request $request)
     {
-        $places = Reservation::where('accepted', '<>', '1')->orderBy('created_at', 'desc')->get();
+        $place = Place::where('id', '=', $request->place_id)
+            ->update(['status' => 'Забронировано']);
 
-        return view('manager.reservationList', [
-            'title' => 'Заявки на бронь',
-            'places' => $places
-        ]);
+        $reservation = Reservation::where('id', '=', $request->user_id)
+            ->update(['accepted' => 1]);
+
+        return response()->json(['Reservated']);
     }
 }

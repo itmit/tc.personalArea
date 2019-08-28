@@ -96,9 +96,17 @@ class PlaceApiController extends ApiBaseController
                 'place_id' => $this->place->id
             ]);
 
-            return $this->sendResponse(
-                $newReserved,
-                "Place reserved"); 
+            
+            
+            if($place > 0)
+            {
+                return $this->sendResponse([
+                    $newReserved
+                ],
+                    'Reserved');
+            }
+            
         }
+        
     }
 }
