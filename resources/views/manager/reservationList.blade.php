@@ -41,6 +41,7 @@
             $(document).on('click', '.makeReservation', function() {
                 let place_id = $(this).data('placeid');
                 let user_id = $(this).data('userid');
+                console.log($('#' + user_id).html())
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
@@ -48,7 +49,7 @@
                     url     : 'reservation/confirmReservation',
                     method    : 'post',
                     success: function (response) {
-                        $('#' + user_id).html('');
+                        // $('#' + user_id).html('');
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
