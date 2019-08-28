@@ -92,7 +92,13 @@
                 <td>{{ $place->floor }}</td>
                 <td>{{ $place->row }}</td>
                 <td>{{ $place->place_number }}</td>
-                <td>{{ $place->status }}</td>
+                <td>
+                    <select name="changePlaceStatus" id="changePlaceStatus">
+                        <option value="Свободен" @if({{ $place->status }}) selected @endif>Свободен</option>
+                        <option value="Арендован" @if({{ $place->status }}) selected @endif>Арендован</option>
+                        <option value="Забронировано" @if({{ $place->status }}) selected @endif>Забронировано</option>
+                    </select>
+                </td>
                 <td>{{ $place->price }}</td>
             </tr>
         @endforeach
