@@ -142,6 +142,6 @@ class ReservationWebController extends Controller
         $reservation = Reservation::where('id', '=', $request->place_id)
             ->update(['accepted' => 2]);
 
-        return response()->json(['Status updated']);
+        return response()->json(['Status reservation updated']);
     }
 }
