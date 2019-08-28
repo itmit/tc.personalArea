@@ -51,6 +51,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('reservation', 'Web\ReservationWebController', [
             'only' => ['index', 'create', 'store']
         ]);
+
+        Route::post('reservation/confirmReservation', 'Web\ReservationWebController@confirmReservation');
     });
 });
 
