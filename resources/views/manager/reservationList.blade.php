@@ -1,6 +1,11 @@
 @extends('layouts.adminApp')
 
 @section('content')
+<select name="" id="">
+    <option value="all">Все</option>
+    <option value="active" selected>Активные</option>
+    <option value="accepted">Обработанные</option>
+</select>
     <table class="table table-bordered">
         <thead>
         <tr>
