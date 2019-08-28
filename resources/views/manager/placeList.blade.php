@@ -111,10 +111,11 @@
                 $(document).on('change', '#changePlaceStatus', function() {
                     let selectByAccept = $(this).val();
                     let place_id = $(this).data('placeid');
+                    console.log(place_id + ' ' + selectByAccept)
                     $.ajax({
                         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                         dataType: "json",
-                        data: {selectByAccept: selectByAccept},
+                        data: {selectByAccept: selectByAccept, place_id: place_id},
                         url     : 'places/changePlaceStatus',
                         method    : 'post',
                         success: function (response) {
