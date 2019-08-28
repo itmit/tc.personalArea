@@ -29,7 +29,7 @@
                 <td>{{ $place->place()->floor }}</td>
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
-            <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->place_id }}">Отказать</button></td>
+                <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->place_id }}">Отказать</button></td>
             </tr>
         @endforeach
         </tbody>
@@ -75,10 +75,11 @@
                             result += '<td>' + response[i]['place']['floor'] + '</td>';
                             result += '<td>' + response[i]['place']['row'] + '</td>';
                             result += '<td>' + response[i]['place']['place_number'] + '</td>';
+                            result += '<td>' + response[i]['place']['id'] + '</td>';
                             result += '</tr>';
                         }
                         $('tbody').html(result);
-                        // console.log(response)
+                        console.log(response)
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
