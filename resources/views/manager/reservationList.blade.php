@@ -75,7 +75,15 @@
                             result += '<td>' + response[i]['place']['floor'] + '</td>';
                             result += '<td>' + response[i]['place']['row'] + '</td>';
                             result += '<td>' + response[i]['place']['place_number'] + '</td>';
-                            result += '<td><button class="makeReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['place']['id'] + '">Забронировать</button> / <button class="cancelReservation" data-placeid="' + response[i]['place']['id'] + '">Отказать</button></td>';
+                            if(response[i]['accepted'] == 0)
+                            {
+                                result += '<td><button class="makeReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['place']['id'] + '">Забронировать</button> / <button class="cancelReservation" data-placeid="' + response[i]['place']['id'] + '">Отказать</button></td>';
+                            }
+                            else
+                            {
+                                result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['place']['id'] + '">Удалить</button></td>';
+                            }
+                            
                             result += '</tr>';
                         }
                         $('tbody').html(result);

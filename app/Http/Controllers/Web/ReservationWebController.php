@@ -60,6 +60,7 @@ class ReservationWebController extends Controller
                         'first_name' => $reservation->first_name,
                         'last_name' => $reservation->last_name,
                         'phone' => $reservation->phone,
+                        'accepted' => $reservation->accepted,
                         'place' => [
                             'id' => $reservation->place()->id,
                             'block' => $reservation->place()->block,
@@ -79,6 +80,7 @@ class ReservationWebController extends Controller
                         'first_name' => $reservation->first_name,
                         'last_name' => $reservation->last_name,
                         'phone' => $reservation->phone,
+                        'accepted' => $reservation->accepted,
                         'place' => [
                             'id' => $reservation->place()->id,
                             'block' => $reservation->place()->block,
@@ -98,6 +100,7 @@ class ReservationWebController extends Controller
                         'first_name' => $reservation->first_name,
                         'last_name' => $reservation->last_name,
                         'phone' => $reservation->phone,
+                        'accepted' => $reservation->accepted,
                         'place' => [
                             'id' => $reservation->place()->id,
                             'block' => $reservation->place()->block,
