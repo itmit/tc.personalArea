@@ -18,6 +18,15 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
+<!-- Scripts -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/nicEdit.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
+{{-- <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script> --}}
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+
 
 </head>
 <body>
@@ -138,15 +147,6 @@
         </div>
     </div>
 </div>
-
-<!-- Scripts -->
-        <!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/nicEdit.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
-{{-- <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script> --}}
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 
 <script>
     $(document).ready(function() {
