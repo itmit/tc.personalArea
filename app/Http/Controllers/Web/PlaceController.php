@@ -205,7 +205,7 @@ class PlaceController extends Controller
      * @param array $data
      * @return Validator
      */
-    private function changePlaceStatus(Request $request)
+    public function changePlaceStatus(Request $request)
     {
         return response()->json(['Status updated']);
     }
