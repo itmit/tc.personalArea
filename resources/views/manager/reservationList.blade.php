@@ -55,6 +55,24 @@
                     }
                 });
             });
+
+            $(document).on('change', '#selectByAccept', function() {
+                let selectByAccept = $('#selectByAccept').val();
+                console.log(selectByAccept);
+                // $.ajax({
+                //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                //     dataType: "json",
+                //     data: {place_id: place_id, user_id: user_id},
+                //     url     : 'reservation/confirmReservation',
+                //     method    : 'post',
+                //     success: function (response) {
+                //         $('#' + user_id).html('');
+                //     },
+                //     error: function (xhr, err) { 
+                //         console.log(err + " " + xhr);
+                //     }
+                // });
+            });
         });
     </script>
 @endsection
