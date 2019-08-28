@@ -69,7 +69,7 @@ class ReservationWebController extends Controller
                         ]
                     ];
                 }
-                return response()->json([$response]);
+                return response()->json($response);
                 break;
             case 'active':
                 $reservations = Reservation::where('accepted', '<>', '1')->orderBy('created_at', 'desc')->get();
@@ -88,7 +88,7 @@ class ReservationWebController extends Controller
                         ]
                     ];
                 }
-                return response()->json([$response]);
+                return response()->json($response);
                 break;
             case 'accepted':
                 $reservations = Reservation::where('accepted', '=', '1')->orderBy('created_at', 'desc')->get();
@@ -107,7 +107,7 @@ class ReservationWebController extends Controller
                         ]
                     ];
                 }
-                return response()->json([$response]);
+                return response()->json($response);
                 break;
             default:
                 return response()->json(['Error']);
