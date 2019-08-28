@@ -41,7 +41,7 @@
             $(document).on('click', '.makeReservation', function() {
                 let place_id = $(this).data('placeid');
                 let user_id = $(this).data('userid');
-                console.log(place_id);
+                console.log(user_id);
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
