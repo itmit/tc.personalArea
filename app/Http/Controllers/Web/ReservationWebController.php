@@ -31,11 +31,13 @@ class ReservationWebController extends Controller
      */
     public function confirmReservation(Request $request)
     {
-        $place = Place::where('id', '=', $request->place_id)
-            ->update(['status' => 'Забронировано']);
+        DB::beginTransaction();
+            $place = Place::where('id', '=', $request->place_id)
+                ->update(['status' => 'Забронировано']);
 
-        $reservation = Reservation::where('id', '=', $request->user_id)
-            ->update(['accepted' => 1]);
+            $reservation = Reservation::where('id', '=', $request->user_id)
+                ->update(['accepted' => 1]);
+        DB::commit();
 
         return response()->json(['Reservated']);
     }
