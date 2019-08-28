@@ -118,4 +118,17 @@ class ReservationWebController extends Controller
 
         return response()->json(['Reservated']);
     }
+
+    /**
+     * Изменяет статус места с забронировано на свободно.
+     *
+     * @return Factory|View
+     */
+    public function deleteReservation(Request $request)
+    {
+        $place = Place::where('id', '=', $request->place_id)
+            ->update(['status' => 'Свободен']);
+
+        return response()->json(['Status updated']);
+    }
 }
