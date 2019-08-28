@@ -114,7 +114,7 @@
             });
 
             $(document).on('click', '.cancelReservation', function() {
-                let place_id = $(this).data('userid');
+                let place_id = $(this).data('placeid');
                 console.log(place_id);
                 // console.log(place_id + ' ' + user_id);
                 $.ajax({
