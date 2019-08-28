@@ -65,7 +65,19 @@
                     url     : 'reservation/selectByAccept',
                     method    : 'post',
                     success: function (response) {
-                        response;
+                        // let result = '';
+                        // for(var i = 0; i < response.length; i++) {
+                        //     result += '<tr>';
+                        //     result += '<td><a href="bid/' + response[i]['id'] + '">' + response[i]['status'] + '</a></td>';
+                        //     result += '<td>' + response[i]['client']['email'] + '</td>';
+                        //     result += '<td>' + response[i]['location']['latitude'] + ' | ' + response[i]['location']['longitude'] + '</td>';
+                        //     result += '<td>' + response[i]['type'] + '</td>';
+                        //     result += '<td>' + response[i]['created_at'] + '</td>';
+                        //     result += '<td>' + response[i]['updated_at'] + '</td>';
+                        //     result += '</tr>';
+                        // }
+                        // $('tbody').html(result);
+                        console.log(response)
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);

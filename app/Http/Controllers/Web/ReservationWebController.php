@@ -50,15 +50,64 @@ class ReservationWebController extends Controller
      */
     public function selectByAccept(Request $request)
     {
+        $response = [];
         switch ($request->selectByAccept) {
             case 'all':
-                return response()->json([Reservation::orderBy('created_at', 'desc')->get()]);
+                $reservations = Reservation::orderBy('created_at', 'desc')->get();
+                foreach ($reservations as $reservation) {
+                    $response[] = [
+                        'id'   => $reservation->id,
+                        'first_name' => $reservation->first_name,
+                        'last_name' => $reservation->last_name,
+                        'phone' => $reservation->phone,
+                        'place' => [
+                            'id' => $reservation->place()->id,
+                            'block' => $reservation->place()->block,
+                            'floor' => $reservation->place()->floor,
+                            'row' => $reservation->place()->row,
+                            'place_number' => $reservation->place()->place_number
+                        ]
+                    ];
+                }
+                return response()->json([$response]);
                 break;
             case 'active':
-                return response()->json([Reservation::where('accepted', '<>', '1')->orderBy('created_at', 'desc')->get()]);
+                $reservations = Reservation::where('accepted', '<>', '1')->orderBy('created_at', 'desc')->get();
+                foreach ($reservations as $reservation) {
+                    $response[] = [
+                        'id'   => $reservation->id,
+                        'first_name' => $reservation->first_name,
+                        'last_name' => $reservation->last_name,
+                        'phone' => $reservation->phone,
+                        'place' => [
+                            'id' => $reservation->place()->id,
+                            'block' => $reservation->place()->block,
+                            'floor' => $reservation->place()->floor,
+                            'row' => $reservation->place()->row,
+                            'place_number' => $reservation->place()->place_number
+                        ]
+                    ];
+                }
+                return response()->json([$response]);
                 break;
             case 'accepted':
-                return response()->json([Reservation::where('accepted', '=', '1')->orderBy('created_at', 'desc')->get()]);
+                $reservations = Reservation::where('accepted', '=', '1')->orderBy('created_at', 'desc')->get();
+                foreach ($reservations as $reservation) {
+                    $response[] = [
+                        'id'   => $reservation->id,
+                        'first_name' => $reservation->first_name,
+                        'last_name' => $reservation->last_name,
+                        'phone' => $reservation->phone,
+                        'place' => [
+                            'id' => $reservation->place()->id,
+                            'block' => $reservation->place()->block,
+                            'floor' => $reservation->place()->floor,
+                            'row' => $reservation->place()->row,
+                            'place_number' => $reservation->place()->place_number
+                        ]
+                    ];
+                }
+                return response()->json([$response]);
                 break;
             default:
                 return response()->json(['Error']);
