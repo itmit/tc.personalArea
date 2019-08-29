@@ -101,6 +101,8 @@ class ReservationWebController extends Controller
                         'last_name' => $reservation->last_name,
                         'phone' => $reservation->phone,
                         'accepted' => $reservation->accepted,
+                        'accepted' => $reservation->created_at,
+                        'accepted' => $reservation->updated_at,
                         'place' => [
                             'id' => $reservation->place()->id,
                             'block' => $reservation->place()->block,

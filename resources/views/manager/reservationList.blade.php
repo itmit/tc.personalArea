@@ -17,6 +17,8 @@
             <th>Ряд</th>
             <th>Место</th>
             <th>Сменить статус</th>
+            <th>Создано</th>
+            <th>Обновлено</th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +32,8 @@
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
                 <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->id }}">Отказать</button></td>
+                <td>{{ $place->created_at }}</td>
+                <td>{{ $place->updated_at }}</td>
             </tr>
         @endforeach
         </tbody>
@@ -83,7 +87,8 @@
                             {
                                 result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">Снять бронь</button></td>';
                             }
-                            
+                            result += '<td>' + response[i]['created_at'] + '</td>';
+                            result += '<td>' + response[i]['updated_at'] + '</td>';
                             result += '</tr>';
                         }
                         $('tbody').html(result);
