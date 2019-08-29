@@ -101,8 +101,8 @@ class ReservationWebController extends Controller
                         'last_name' => $reservation->last_name,
                         'phone' => $reservation->phone,
                         'accepted' => $reservation->accepted,
-                        'accepted' => $reservation->created_at,
-                        'accepted' => $reservation->updated_at,
+                        'accepted' => $reservation->substr($bid->created_at->timezone('Europe/Moscow'), 0),
+                        'accepted' => $reservation->substr($bid->updated_at->timezone('Europe/Moscow'), 0),
                         'place' => [
                             'id' => $reservation->place()->id,
                             'block' => $reservation->place()->block,
