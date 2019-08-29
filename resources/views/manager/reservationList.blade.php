@@ -83,9 +83,13 @@
                             {
                                 result += '<td><button class="makeReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['place']['id'] + '">Забронировать</button> / <button class="cancelReservation" data-placeid="' + response[i]['place']['id'] + '">Отказать</button></td>';
                             }
-                            else
+                            if(response[i]['accepted'] == 1)
                             {
                                 result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">Снять бронь</button></td>';
+                            }
+                            if(response[i]['accepted'] == 2)
+                            {
+                                result += '<td>Бронь была отменена</td>';
                             }
                             result += '<td>' + response[i]['created_at'] + '</td>';
                             result += '<td>' + response[i]['updated_at'] + '</td>';
