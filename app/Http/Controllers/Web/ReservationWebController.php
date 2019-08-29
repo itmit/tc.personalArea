@@ -61,6 +61,8 @@ class ReservationWebController extends Controller
                         'last_name' => $reservation->last_name,
                         'phone' => $reservation->phone,
                         'accepted' => $reservation->accepted,
+                        'created_at' => $reservation->substr($bid->created_at->timezone('Europe/Moscow'), 0),
+                        'updated_at' => $reservation->substr($bid->updated_at->timezone('Europe/Moscow'), 0),
                         'place' => [
                             'id' => $reservation->place()->id,
                             'block' => $reservation->place()->block,
@@ -81,6 +83,8 @@ class ReservationWebController extends Controller
                         'last_name' => $reservation->last_name,
                         'phone' => $reservation->phone,
                         'accepted' => $reservation->accepted,
+                        'created_at' => $reservation->substr($bid->created_at->timezone('Europe/Moscow'), 0),
+                        'updated_at' => $reservation->substr($bid->updated_at->timezone('Europe/Moscow'), 0),
                         'place' => [
                             'id' => $reservation->place()->id,
                             'block' => $reservation->place()->block,
@@ -101,8 +105,8 @@ class ReservationWebController extends Controller
                         'last_name' => $reservation->last_name,
                         'phone' => $reservation->phone,
                         'accepted' => $reservation->accepted,
-                        'accepted' => $reservation->substr($bid->created_at->timezone('Europe/Moscow'), 0),
-                        'accepted' => $reservation->substr($bid->updated_at->timezone('Europe/Moscow'), 0),
+                        'created_at' => $reservation->substr($bid->created_at->timezone('Europe/Moscow'), 0),
+                        'updated_at' => $reservation->substr($bid->updated_at->timezone('Europe/Moscow'), 0),
                         'place' => [
                             'id' => $reservation->place()->id,
                             'block' => $reservation->place()->block,
