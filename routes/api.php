@@ -30,7 +30,10 @@ Route::resource('bidForSale', 'Api\BidForSaleApiController', [
     'only' => ['index', 'create', 'store']
 ]);
 
-Route::resource('news', 'Api\NewsApiController'); // новости
+Route::resource('news', 'Api\NewsApiController', [
+    'only' => 'index'
+]); // новости
+Route::get('news/hourlyNews', 'Api\NewsApiController@getHourlyNews');
 
 Route::get('places/{block}/{status}', 'Api\PlaceApiController@showPlacesInBlockWithStatus');
 

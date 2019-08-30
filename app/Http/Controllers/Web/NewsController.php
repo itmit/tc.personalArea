@@ -8,6 +8,7 @@ use App\Models\News;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Webpatser\Uuid\Uuid;
 
 class NewsController extends Controller
 {
@@ -59,6 +60,7 @@ class NewsController extends Controller
             $url = Storage::url($path);
 
             News::create([
+                'uuid' => Uuid::generate()->string,
                 'head' => $request->input('head'),
                 'body' => $request->input('body'),
                 'picture' => $url,

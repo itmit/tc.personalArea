@@ -13,6 +13,7 @@ class News extends Model
         'head',
         'body',
         'picture',
+        'uuid'
     ];
 
     /**

@@ -16,6 +16,7 @@ class CreateNewsTable extends Migration
         Schema::dropIfExists('news');
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid');
             $table->string('head')->unique();
             $table->text('body');
             $table->string('picture');

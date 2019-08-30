@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\News;
-
+use Carbon\Carbon;
 
 class NewsApiController extends ApiBaseController
 {
@@ -20,6 +20,14 @@ class NewsApiController extends ApiBaseController
             return $this->sendResponse(
                 News::all()->toArray(),
                 'News retrieved successfully.'
+        );
+    }
+
+    public function getHourlyNews()
+    {
+        return $this->sendResponse(
+            News::where('created_at', '>=', Carbon::now()->subHour())->get()->toArray(),
+            'Hourly news retrieved successfully.'
         );
     }
 }
