@@ -135,7 +135,12 @@ class ReservationWebController extends Controller
         $place = Place::where('id', '=', $request->place_id)
             ->update(['status' => 'Свободен']);
 
-        return response()->json(['Status updated']);
+        if($place != 0)
+        {
+            return response()->json(['Status updated']);
+        }
+
+        return response()->json(['Error']);
     }
 
     /**
