@@ -114,7 +114,7 @@
                     url     : 'reservation/deleteReservation',
                     method    : 'post',
                     success: function (response) {
-                        button.remove('');
+                        $(this).parent().remove();
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
