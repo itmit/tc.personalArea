@@ -135,12 +135,8 @@ class ReservationWebController extends Controller
         $reservation = Reservation::where('id', '=', $request->place_id)
             ->first(['place_id']);
 
-        return $reservation;
-
-        $place = Place::where('id', '=', $request->place_id)
+        $place = Place::where('id', '=', $reservation->place_id)
             ->update(['status' => 'Свободен']);
-
-        return $request->place_id;
 
         if($place != 0)
         {
