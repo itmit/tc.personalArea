@@ -106,7 +106,7 @@
 
             $(document).on('click', '.deleteReservation', function() {
                 let place_id = $(this).data('placeid');
-                let button = $(this).html;
+                let button = $(this).html();
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
