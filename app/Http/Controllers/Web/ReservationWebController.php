@@ -150,17 +150,22 @@ class ReservationWebController extends Controller
     }
 
     /**
-     * Откланяет заявку на бронирование.
+     * Отклоняет заявку на бронирование.
      *
      * @return Factory|View
      */
     public function cancelReservation(Request $request)
     {
-        // return $request->place_id;
+        return $request->place_id;
 
         $reservation = Reservation::where('id', '=', $request->place_id)
             ->update(['accepted' => 2]);
 
-        return response()->json(['Status reservation updated']);
+        if($reservation != 0)
+        {
+            return response()->json(['Status reservation updated']);
+        }
+
+        return response()->json(['Error']);
     }
 }
