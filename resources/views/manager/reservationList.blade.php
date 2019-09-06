@@ -113,7 +113,7 @@
                     url     : 'reservation/deleteReservation',
                     method    : 'post',
                     success: function (response) {
-                        console.log($(this).html());
+                        console.log($(this).parent());
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
