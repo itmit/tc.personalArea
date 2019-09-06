@@ -132,6 +132,8 @@ class ReservationWebController extends Controller
      */
     public function deleteReservation(Request $request)
     {
+        return response()->json(['Status updated']);
+        
         $reservation = Reservation::where('id', '=', $request->place_id)
             ->first(['place_id']);
 
