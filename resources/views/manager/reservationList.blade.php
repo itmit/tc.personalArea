@@ -1,7 +1,7 @@
 @extends('layouts.adminApp')
 
 @section('content')
-<select name="selectByAccept" id="selectByAccept">
+<select name="selectByAccept" id="selectByAccept" class="form-control">
     <option value="all">Все</option>
     <option value="active" selected>Активные</option>
     <option value="accepted">Обработанные</option>
@@ -124,7 +124,6 @@
 
             $(document).on('click', '.cancelReservation', function() {
                 let place_id = $(this).data('placeid');
-                console.log(place_id);
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
