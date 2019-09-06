@@ -96,7 +96,7 @@
                             result += '</tr>';
                         }
                         $('tbody').html(result);
-                        // console.log(response)
+
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
@@ -132,7 +132,7 @@
                     url     : 'reservation/cancelReservation',
                     method    : 'post',
                     success: function (response) {
-                        $('#' + user_id).html('');
+                        $('#' + place_id).html('');
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
