@@ -1,7 +1,7 @@
 @extends('layouts.adminApp')
 
 @section('content')
-<select name="selectByAccept" id="selectByAccept" class="form-control">
+<select name="selectByAccept" id="selectByAccept" class="form-control" style="margin-bottom: 10px">
     <option value="all">Все</option>
     <option value="active" selected>Активные</option>
     <option value="accepted">Обработанные</option>
