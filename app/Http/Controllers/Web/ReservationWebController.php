@@ -132,6 +132,11 @@ class ReservationWebController extends Controller
      */
     public function deleteReservation(Request $request)
     {
+        $reservation = Reservation::where('id', '=', $request->place_id)
+            ->first(['place_id']);
+
+        return $reservation;
+
         $place = Place::where('id', '=', $request->place_id)
             ->update(['status' => 'Свободен']);
 
