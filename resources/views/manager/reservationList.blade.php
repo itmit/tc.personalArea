@@ -132,7 +132,7 @@
                     url     : 'reservation/cancelReservation',
                     method    : 'post',
                     success: function (response) {
-                        console.log(response);
+                        $('#' + user_id).html('');
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
