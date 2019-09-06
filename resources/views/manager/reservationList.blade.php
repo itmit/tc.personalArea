@@ -85,7 +85,7 @@
                             }
                             if(response[i]['accepted'] == 1)
                             {
-                                result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">Снять бронь</button></td>';
+                                result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">1Снять бронь</button></td>';
                             }
                             if(response[i]['accepted'] == 2)
                             {
@@ -113,7 +113,7 @@
                     url     : 'reservation/deleteReservation',
                     method    : 'post',
                     success: function (response) {
-                        $(this).parent().remove();
+                        console.log($(this).parent());
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
