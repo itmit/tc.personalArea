@@ -52,7 +52,7 @@
                     url     : 'reservation/confirmReservation',
                     method    : 'post',
                     success: function (response) {
-                        $('#' + user_id).html('');
+                        $('#' + user_id).remove();
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
@@ -114,7 +114,7 @@
                     url     : 'reservation/deleteReservation',
                     method    : 'post',
                     success: function (response) {
-                        $(this).html('');
+                        button.remove('');
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
@@ -131,7 +131,7 @@
                     url     : 'reservation/cancelReservation',
                     method    : 'post',
                     success: function (response) {
-                        $('#' + place_id).html('');
+                        $('#' + place_id).remove();
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
