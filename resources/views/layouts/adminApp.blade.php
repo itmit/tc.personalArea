@@ -194,7 +194,15 @@
                 else
                 {
                     for(var i = 0; i < data[0].length; i++) {
-                        result += '<tr>';
+                        
+                        if(data[0][i]['status'] == 'Арендован' || data[0][i]['status'] == 'Забронировано')
+                        {
+                            result += '<tr style="background-color: #f7ecdd!important;">';
+                        }
+                        else
+                        {
+                            result += '<tr>';
+                        }
                         result += '<td><input type="checkbox" data-place-id="' + data[0][i]['id'] + '" name="destoy-place-' + data[0][i]['id'] + '" class="js-destroy"/></td>';
                         result += '<td>' + data[0][i]['block'] + '</td>';
                         result += '<td>' + data[0][i]['floor'] + '</td>';
