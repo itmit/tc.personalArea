@@ -64,11 +64,12 @@
         <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control">
             <option value="По-умолчанию">По-умолчанию</option>
             <option value="Вещевые ряды">Вещевые ряды</option>
+            <option value="ТЦ Садовод">ТЦ Садовод</option>
+            <option value="Новый ТЦ">Новый ТЦ</option>
             <option value="Меха и кожа">Меха и кожа</option>
-            <option value="ТЦ 'Садовод'">ТЦ 'Садовод'</option>
             <option value="Свадебная галерея 'САЛЮТ'">Свадебная галерея 'САЛЮТ'</option>
             <option value="Ковры и текстиль">Ковры и текстиль</option>
-            <option value="Новый ТЦ" disabled>Новый ТЦ</option>
+            
         </select>
     </div>
 

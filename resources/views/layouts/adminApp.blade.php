@@ -200,6 +200,35 @@
                         result += '<td>' + data[0][i]['floor'] + '</td>';
                         result += '<td>' + data[0][i]['row'] + '</td>';
                         result += '<td>' + data[0][i]['place_number'] + '</td>';
+                        result += '<td>';
+                        result += '<select name="changePlaceStatus" id="changePlaceStatus" class="form-control" data-placeid="'+data[0][i]['id']+'">';
+                        
+                        if(data[0][i]['status'] == 'Свободен')
+                        {
+                            result += '<option value="Свободен" selected>Свободен</option>';
+                        }
+                        else
+                        {
+                            result += '<option value="Свободен">Свободен</option>';
+                        }
+                        if(data[0][i]['status'] == 'Арендован')
+                        {
+                            result += '<option value="Арендован" selected>Арендован</option>';
+                        }
+                        else
+                        {
+                            result += '<option value="Арендован">Арендован</option>';
+                        }
+                        if(data[0][i]['status'] == 'Забронировано')
+                        {
+                            result += '<option value="Забронировано" selected>Забронировано</option>';
+                        }
+                        else
+                        {
+                            result += '<option value="Забронировано">Забронировано</option>';
+                        }
+                        result += '</select>';
+                        result += '</td>';
                         result += '<td>' + data[0][i]['status'] + '</td>';
                         result += '<td>' + data[0][i]['price'] + '</td>';
                         result += '</tr>';
