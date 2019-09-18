@@ -229,7 +229,6 @@
                         }
                         result += '</select>';
                         result += '</td>';
-                        result += '<td>' + data[0][i]['status'] + '</td>';
                         result += '<td>' + data[0][i]['price'] + '</td>';
                         result += '</tr>';
                     }
