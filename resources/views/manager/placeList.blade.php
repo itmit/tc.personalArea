@@ -87,7 +87,7 @@
         </thead>
         <tbody>
         @foreach($places as $place)
-            <tr>
+            <tr @if($place->status == 'Арендован' || $place->status == 'Забронировано') style="background-color: black;" @endif>
                 <td><input type="checkbox" data-place-id="{{ $place->id }}" name="destoy-place-{{ $place->id }}" class="js-destroy"/></td>
                 <td>{{ $place->block }}</td>
                 <td>{{ $place->floor }}</td>
