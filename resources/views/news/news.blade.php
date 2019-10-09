@@ -12,7 +12,7 @@
     @foreach($news as $newsItem)
 
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-12">
                 <h1>{{ $newsItem->head }}</h1>
             <div class="row">
             {{-- <div class="col-8 col-sm-6"> --}}
