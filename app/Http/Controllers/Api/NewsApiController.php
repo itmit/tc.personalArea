@@ -18,7 +18,7 @@ class NewsApiController extends ApiBaseController
     public function index(): JsonResponse
     {
             return $this->sendResponse(
-                News::all()->toArray(),
+                News::all()->toArray()->sortByDesc('created_at'),
                 'News retrieved successfully.'
         );
     }
