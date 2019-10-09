@@ -195,7 +195,7 @@ class PlaceController extends Controller
             'block' => 'required|string|max:255',
             'floor' => 'integer',
             'row' => 'required|string',
-            'price' => 'integer',
+            // 'price' => 'integer',
             'place_number' => 'required|string|max:255',
             'status' => 'required|string|max:255',
         ]);
