@@ -18,8 +18,8 @@
             {{-- <div class="col-8 col-sm-6"> --}}
                 {{-- <img src="{{ $newsItem->picture }}" alt="{{ $newsItem->head }}" width="25%" style="float:left; margin: 7px 7px 7px 0;"> --}}
             {{-- </div> --}}
-            <div class="col-4 col-sm-10">
-                <img src="{{ $newsItem->picture }}" alt="{{ $newsItem->head }}" width="25%" style="float:left; margin: 7px 7px 7px 0;">
+            <div class="col-4 col-sm-12">
+                <img src="{{ $newsItem->picture }}" alt="{{ $newsItem->head }}" width="35%" style="float:left; margin: 7px 7px 7px 0;">
                 {!! htmlspecialchars_decode($newsItem->body) !!}
             </div>
             </div>
