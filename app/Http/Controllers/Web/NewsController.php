@@ -21,7 +21,7 @@ class NewsController extends Controller
     {
         return view('news.news', [
             'title' => 'Новости рынка',
-            'news' => News::all()->sortByDesc('created_at')
+            'news' => News::all()->sortBy('created_at')
         ]);
     }
 
