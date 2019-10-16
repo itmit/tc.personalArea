@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class QuestionsWebController extends Controller
+class QuestionWebController extends Controller
 {
     /**
      * Показывает список заявок на бронирование.
