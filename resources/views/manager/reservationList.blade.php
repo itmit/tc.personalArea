@@ -85,7 +85,7 @@
                             }
                             if(response[i]['accepted'] == 1)
                             {
-                                result += '<td>1<button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">Снять бронь</button></td>';
+                                result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">Снять бронь</button></td>';
                             }
                             if(response[i]['accepted'] == 2)
                             {
@@ -106,7 +106,7 @@
 
             $(document).on('click', '.deleteReservation', function() {
                 let place_id = $(this).data('placeid');
-                console.log(place_id);
+                // console.log(place_id);
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
@@ -114,7 +114,8 @@
                     url     : 'reservation/deleteReservation',
                     method    : 'post',
                     success: function (response) {
-                        console.log('suc');
+                        $(this).remove();
+                        // console.log('suc');
                         // console.log($(this).parent().html());
                     },
                     error: function (xhr, err) { 
