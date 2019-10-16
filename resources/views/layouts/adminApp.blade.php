@@ -135,6 +135,10 @@
                     <li><a href="{{ route('auth.manager.reservation.index') }}">Заявки на бронь</a></li>
                     @endability
 
+                    @ability('super-admin', 'show-questions-list')
+                    <li><a href="{{ route('auth.manager.questions.index') }}">Заявки по другим вопросам</a></li>
+                    @endability
+
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
                     <li><a href="{{ route('auth.manager.news.index') }}">Новости</a></li>
                     @endability

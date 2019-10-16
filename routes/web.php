@@ -53,6 +53,10 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
             'only' => ['index', 'create', 'store']
         ]);
 
+        Route::resource('questions', 'Web\QuestionWebController', [
+            'only' => ['index', 'create', 'store']
+        ]);
+
         Route::post('reservation/confirmReservation', 'Web\ReservationWebController@confirmReservation');
         Route::post('reservation/selectByAccept', 'Web\ReservationWebController@selectByAccept');
         Route::post('reservation/deleteReservation', 'Web\ReservationWebController@deleteReservation');
