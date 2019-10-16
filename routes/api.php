@@ -40,3 +40,5 @@ Route::get('places/{block}/{status}', 'Api\PlaceApiController@showPlacesInBlockW
 Route::post('place/check-valid-place-number', 'Api\PlaceApiController@checkValidPlaceNumber');
 
 Route::post('place/makeReservation', 'Api\PlaceApiController@makeReservation');
+
+Route::post('question/store', 'Api\QuestionApiController@store');
