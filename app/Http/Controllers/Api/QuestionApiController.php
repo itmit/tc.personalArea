@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class QuestionApiController extends ApiBaseController
 {
-    public function store()
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
