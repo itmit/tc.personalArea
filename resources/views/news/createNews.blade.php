@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-xs-12 col-sm-10">
-            <input id="head" type="text" class="form-control" name="head" value="{{ old('head') }}" required maxlength="50">
+            <input id="head" type="text" class="form-control" name="head" value="{{ old('head') }}" required maxlength="191">
 
             @if ($errors->has('head'))
                 <span class="help-block">
