@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class QuestionApiController extends ApiBaseController
 {
