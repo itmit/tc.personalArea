@@ -54,8 +54,6 @@
             $(".js-destroy-bidForBuy:checked").each(function(){
                 ids.push($(this).data('placeId'));
             });
-            
-            console.log(ids);
 
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
