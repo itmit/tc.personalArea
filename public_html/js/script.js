@@ -10,3 +10,16 @@ $(function(){
 
     });
 });
+
+$(function(){
+    $(".destroy-all-bidsForBuy").on("click", function() {
+
+        if($(".destroy-all-bidsForBuy").prop("checked")){
+            $(".js-destroy-bidForBuy").prop("checked", "checked");
+        }
+        else{
+            $(".js-destroy-bidForBuy").prop("checked", "");
+        }
+
+    });
+});
