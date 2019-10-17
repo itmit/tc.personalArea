@@ -132,9 +132,9 @@ class PlaceController extends Controller
                     $row[3] = $row[3] ? $row[3] : 1;
 
                     if (Place::where('block', '=', $row[0])
-                        ->where('row', '=', (string)$row[1])
-                        ->where('place_number', '=', (string)$row[2])
-                        ->where('floor', '=', $row[3])
+                        ->where('row', '=', (string)$row[2])
+                        ->where('place_number', '=', (string)$row[3])
+                        ->where('floor', '=', $row[1])
                         ->get()->first() !== null
                         ) {
                             continue;
@@ -142,9 +142,9 @@ class PlaceController extends Controller
 
                     $data = [
                         'block' => $row[0],
-                        'row' => (string)$row[1],
-                        'place_number' => (string)$row[2],
-                        'floor' => $row[3],
+                        'row' => (string)$row[2],
+                        'place_number' => (string)$row[3],
+                        'floor' => $row[1],
                         'status' => $request->input('status')
                     ];
 
