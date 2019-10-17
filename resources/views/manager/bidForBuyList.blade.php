@@ -32,22 +32,25 @@
         @endforeach
         </tbody>
     </table>
-@endsection
 
-<script>
-$(document).ready(function()
-    {
-        $(function(){
-            $(".destroy-all-bidsForBuy").on("click", function() {
-                console.log('s');
-                if($(".destroy-all-bidsForBuy").prop("checked")){
-                    $(".js-destroy-bidForBuy").prop("checked", "checked");
-                }
-                else{
-                    $(".js-destroy-bidForBuy").prop("checked", "");
-                }
-
+    <script>
+    $(document).ready(function()
+        {
+            $(function(){
+                $(".destroy-all-bidsForBuy").on("click", function() {
+                    console.log('s');
+                    if($(".destroy-all-bidsForBuy").prop("checked")){
+                        $(".js-destroy-bidForBuy").prop("checked", "checked");
+                    }
+                    else{
+                        $(".js-destroy-bidForBuy").prop("checked", "");
+                    }
+    
+                });
             });
         });
-    });
-</script>
+    </script>
+
+@endsection
+
+
