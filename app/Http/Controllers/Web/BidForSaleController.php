@@ -23,7 +23,7 @@ class BidForSaleController extends Controller
     {
         return view('manager.bidForSaleList', [
             'title' => 'Заявки на аренду помещения',
-            'bids' => BidForSale::all()
+            'bids' => BidForSale::with('place')->orderBy('created_at', 'desc')->get()
         ]);
     }
 
