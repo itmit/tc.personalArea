@@ -199,11 +199,15 @@
                 {
                     for(var i = 0; i < data[0].length; i++) {
                         
-                        if(data[0][i]['status'] == 'Арендован' || data[0][i]['status'] == 'Забронировано')
+                        if(data[0][i]['status'] == 'Арендован')
                         {
                             result += '<tr style="background-color: #f7ecdd!important;">';
                         }
-                        else
+                        if(data[0][i]['status'] == 'Забронировано')
+                        {
+                            result += '<tr style="background-color: #ff8c00!important;">';
+                        }
+                        if(data[0][i]['status'] == 'Свободен')
                         {
                             result += '<tr>';
                         }
