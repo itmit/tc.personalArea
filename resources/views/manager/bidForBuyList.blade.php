@@ -9,6 +9,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
+            <th><input type="checkbox" name="destroy-all-bidsForBuy" class="js-destroy-all"/></th>
             <th>Блок</th>
             <th>Этаж</th>
             <th>Ряд</th>
@@ -20,6 +21,7 @@
         <tbody>
         @foreach($bids as $bid)
             <tr>
+                <td><input type="checkbox" data-place-id="{{ $bid->place()->get()->first()->id }}" name="destoy-place-{{ $bid->place()->get()->first()->id }}" class="js-destroy"/></td>
                 <td>{{ $bid->place()->get()->first()->block }}</td>
                 <td>{{ $bid->place()->get()->first()->floor }}</td>
                 <td>{{ $bid->place()->get()->first()->row }}</td>
