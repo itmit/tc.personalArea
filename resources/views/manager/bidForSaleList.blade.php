@@ -38,12 +38,12 @@
     $(document).ready(function()
         {
             $(function(){
-                $(".destroy-all-bidsForBuy").on("click", function() {
-                    if($(".destroy-all-bidsForBuy").prop("checked")){
-                        $(".js-destroy-bidForBuy").prop("checked", "checked");
+                $(".destroy-all-bidsForSale").on("click", function() {
+                    if($(".destroy-all-bidsForSale").prop("checked")){
+                        $(".js-destroy-bidForSale").prop("checked", "checked");
                     }
                     else{
-                        $(".js-destroy-bidForBuy").prop("checked", "");
+                        $(".js-destroy-bidForSale").prop("checked", "");
                     }
     
                 });
