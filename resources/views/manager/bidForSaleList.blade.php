@@ -49,10 +49,10 @@
                 });
             });
 
-            $(document).on('click', '.js-destroy-bidsForBuy-button', function() {
+            $(document).on('click', '.js-destroy-bidsForSale-button', function() {
             let ids = [];
 
-            $(".js-destroy-bidForBuy:checked").each(function(){
+            $(".js-destroy-bidForSale:checked").each(function(){
                 ids.push($(this).data('placeId'));
             });
 
@@ -60,12 +60,12 @@
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
                 data    : { ids: ids },
-                url     : 'bidForBuy/delete',
+                url     : 'bidForSale/delete',
                 method    : 'delete',
                 success: function (response) {
                     console.log(response);
-                    $(".js-destroy-bidForBuy:checked").closest('tr').remove();
-                    $(".js-destroy-bidForBuy").prop("checked", "");
+                    $(".js-destroy-bidForSale:checked").closest('tr').remove();
+                    $(".js-destroy-bidForSale").prop("checked", "");
                 },
                 error: function (xhr, err) { 
                     console.log("Error: " + xhr + " " + err);

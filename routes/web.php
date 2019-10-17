@@ -45,6 +45,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
             'only' => ['index', 'create', 'store']
         ]);
 
+        Route::delete('bidForSale/delete', 'Web\BidForSaleController@destroy');
+
         Route::resource('bidForBuy', 'Web\BidForBuyWebController', [
             'only' => ['index', 'create', 'store']
         ]);

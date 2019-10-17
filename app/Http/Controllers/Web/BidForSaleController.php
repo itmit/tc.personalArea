@@ -50,4 +50,11 @@ class BidForSaleController extends Controller
         $apiController = new BidForSaleApiController;
         return $apiController->store($request);
     }
+
+    public function destroy(Request $request)
+    {
+        BidForSale::destroy($request->input('ids'));
+
+        return response()->json(['Bids destroyed']);
+    }
 }
