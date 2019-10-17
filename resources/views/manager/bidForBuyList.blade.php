@@ -21,7 +21,7 @@
         <tbody>
         @foreach($bids as $bid)
             <tr>
-                <td><input type="checkbox" data-place-id="{{ $bid->place()->get()->first()->id }}" name="destoy-place-{{ $bid->place()->get()->first()->id }}" class="js-destroy-bidForBuy"/></td>
+                <td><input type="checkbox" data-place-id="{{ $bid->id }}" name="destoy-place-{{ $bid->id }}" class="js-destroy-bidForBuy"/></td>
                 <td>{{ $bid->place()->get()->first()->block }}</td>
                 <td>{{ $bid->place()->get()->first()->floor }}</td>
                 <td>{{ $bid->place()->get()->first()->row }}</td>
