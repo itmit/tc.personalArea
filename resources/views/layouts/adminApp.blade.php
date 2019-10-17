@@ -241,7 +241,15 @@
                         }
                         result += '</select>';
                         result += '</td>';
-                        result += '<td>' + data[0][i]['price'] + '</td>';
+                        if(data[0][i]['price'] == null)
+                        {
+                            result += '<td></td>';
+                        }
+                        else
+                        {
+                            result += '<td>' + data[0][i]['price'] + '</td>';
+                        }
+                        
                         result += '</tr>';
                     }
                 }   
