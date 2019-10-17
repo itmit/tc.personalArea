@@ -49,4 +49,11 @@ class BidForBuyWebController extends Controller
         $apiController = new BidForBuyApiController;
         return $apiController->store($request);
     }
+
+    public function destroy(Request $request)
+    {
+        BidForBuy::destroy($request->input('ids'));
+
+        return response()->json(['Bids destroyed']);
+    }
 }

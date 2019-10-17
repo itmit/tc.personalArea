@@ -3,7 +3,7 @@
 @section('content')
     @ability('super-admin', 'delete-bidForBuy')
     <div class="col-sm-12">
-        <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченные заявки</button>
+        <button type="button" class="btn btn-tc-manager js-destroy-bidsForBuy-button">Удалить отмеченные заявки</button>
     </div>
     @endability
     <table class="table table-bordered">
@@ -38,7 +38,6 @@
         {
             $(function(){
                 $(".destroy-all-bidsForBuy").on("click", function() {
-                    console.log('s');
                     if($(".destroy-all-bidsForBuy").prop("checked")){
                         $(".js-destroy-bidForBuy").prop("checked", "checked");
                     }
@@ -48,7 +47,35 @@
     
                 });
             });
+
+            $(document).on('click', '.js-destroy-bidsForBuy-button', function() {
+            let ids = [];
+
+            $(".js-destroy-bidForBuy:checked").each(function(){
+                ids.push($(this).data('placeId'));
+            });
+            
+            console.log(ids);
+
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { ids: ids },
+                url     : 'bidForBuy/delete',
+                method    : 'delete',
+                success: function (response) {
+                    console.log(response);
+                    $(".js-destroy-bidForBuy:checked").closest('tr').remove();
+                    $(".js-destroy-bidForBuy").prop("checked", "");
+                },
+                error: function (xhr, err) { 
+                    console.log("Error: " + xhr + " " + err);
+                }
+            });
+
         });
+
+    });
     </script>
 
 @endsection
