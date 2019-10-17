@@ -1,6 +1,11 @@
 @extends('layouts.adminApp')
 
 @section('content')
+    @ability('super-admin', 'delete-bidForBuy')
+    <div class="col-sm-12">
+        <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченные заявки</button>
+    </div>
+    @endability
     <table class="table table-bordered">
         <thead>
         <tr>
