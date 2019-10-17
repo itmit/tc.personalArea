@@ -22,7 +22,7 @@ class BidForBuyWebController extends Controller
     {
         return view('manager.bidForBuyList', [
             'title' => 'Заявки на сдачу в аренду помещения',
-            'bids' => BidForBuy::with('place')->get()
+            'bids' => BidForBuy::with('place')->orderBy('created_at', 'desc')->get()
         ]);
     }
 
