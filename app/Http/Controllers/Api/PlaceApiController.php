@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Place;
+use App\Models\Client;
 use App\Models\Reservation;
+use App\Models\ReservationHistory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -82,6 +84,21 @@ class PlaceApiController extends ApiBaseController
             }
         });
 
+        $client = Client::where('phone', '=', $request->input('phone'))->first();
+        if($client == NULL)
+        {
+            $newClient = Client::create([
+                'phone' => $request->input('phone'),
+                'rating' => 10
+            ]);
+
+            $clientId = $newClient->id;
+        }
+        else
+        {
+            $clientId = $client->id;
+        }
+
         $isReserved = Reservation::latest()->where('place_id', '=', $this->place->id)->where('accepted', '<>', '2')->first();
         if($isReserved)
         {
@@ -92,21 +109,26 @@ class PlaceApiController extends ApiBaseController
             $newReserved = Reservation::create([
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
-                'phone' => $request->input('phone'),
+                'client' => $clientId,
                 'place_id' => $this->place->id
             ]);
 
-            
-            
-            if($place > 0)
+            if($newReserved > 0)
             {
-                return $this->sendResponse([
-                    $newReserved
-                ],
-                    'Reserved');
+
+                $newReservetionHistory = ReservetionHistory::create([
+                    'bid' => $newReserved->id,
+                    'action' => 'создание'
+                ]);
+
+                if($newReservetionHistory > 0)
+                {
+                    return $this->sendResponse([
+                        $newReserved
+                    ],
+                        'Reserved');
+                }
             }
-            
         }
-        
     }
 }

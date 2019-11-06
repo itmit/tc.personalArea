@@ -17,10 +17,12 @@ class CreateReservationTable extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('phone');
+            $table->integer('client')->unsigned();
             $table->integer('place_id');
             $table->boolean('accepted');
             $table->timestamps();
+
+            $table->foreign('client')->references('id')->on('clients');
         });
     }
 
