@@ -113,7 +113,7 @@ class PlaceApiController extends ApiBaseController
                 'place_id' => $this->place->id
             ]);
 
-            if($newReserved > 0)
+            if($newReserved)
             {
 
                 $newReservetionHistory = ReservetionHistory::create([
@@ -121,7 +121,7 @@ class PlaceApiController extends ApiBaseController
                     'action' => 'создание'
                 ]);
 
-                if($newReservetionHistory > 0)
+                if($newReservetionHistory)
                 {
                     return $this->sendResponse([
                         $newReserved
