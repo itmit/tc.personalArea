@@ -13,5 +13,5 @@ class ReservationHistory extends Model
      */
     protected $table = 'reservation_histories';
 
-    protected $hidden = ['id'];
+    protected $guarded = ['id'];
 }
