@@ -20,13 +20,7 @@ class Reservation extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'phone',
-        'place_id',
-        'accepted',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * @return User
