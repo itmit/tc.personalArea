@@ -16,7 +16,7 @@
             <th>Этаж</th>
             <th>Ряд</th>
             <th>Место</th>
-            <th>Сменить статус</th>
+            <th>Просмотреть заявку</th>
             <th>Создано</th>
             <th>Обновлено</th>
         </tr>
@@ -31,7 +31,8 @@
                 <td>{{ $place->place()->floor }}</td>
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
-                <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->id }}">Отказать</button></td>
+                {{-- <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->id }}">Отказать</button></td> --}}
+                <td><a href="reservation/{{ $poll->id }}">Просмотреть заявку</a></td>
                 <td>{{ $place->created_at->timezone('Europe/Moscow') }}</td>
                 <td>{{ $place->updated_at->timezone('Europe/Moscow') }}</td>
             </tr>

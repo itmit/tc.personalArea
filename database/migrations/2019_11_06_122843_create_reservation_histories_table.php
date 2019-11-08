@@ -16,7 +16,7 @@ class CreateReservationHistoriesTable extends Migration
         Schema::create('reservation_histories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('bid')->unsigned();
-            $table->enum('action', ['создание', 'бронирование', 'отмена клиентом', 'отмена менеджером', 'завершено']);
+            $table->enum('action', ['создание', 'бронирование', 'отмена клиентом до бронирования', 'отмена менеджером до бронирования', 'отмена клиентом после бронирования', 'отмена менеджером после бронирования', 'завершено']);
             $table->integer('timer')->nullable();
             $table->timestamps();
 
