@@ -116,7 +116,7 @@ class PlaceApiController extends ApiBaseController
             if($newReserved)
             {
 
-                $newReservetionHistory = ReservetionHistory::create([
+                $newReservetionHistory = ReservationHistory::create([
                     'bid' => $newReserved->id,
                     'action' => 'создание'
                 ]);
