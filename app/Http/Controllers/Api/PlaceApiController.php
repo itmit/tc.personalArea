@@ -89,7 +89,7 @@ class PlaceApiController extends ApiBaseController
         {
             $newClient = Client::create([
                 'phone' => $request->input('phone'),
-                'rating' => 10
+                'rating' => 0
             ]);
 
             $clientId = $newClient->id;
