@@ -166,4 +166,18 @@ class ReservationWebController extends Controller
 
         return response()->json(['Error']);
     }
+
+    /**
+     * Показать страницу заявочки.
+     *
+     * @return Factory|View
+     */
+    public function show($id)
+    {
+        $reservation = Reservation::where('id', '=', $id)->first();
+
+        return view("manager.reservationDetail", [
+            'reservation' => $reservation,
+        ]);
+    }
 }
