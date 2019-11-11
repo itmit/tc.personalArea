@@ -29,4 +29,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(Place::class, 'place_id')->get()->first();
     }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'client')->get()->first();
+    }
 }
