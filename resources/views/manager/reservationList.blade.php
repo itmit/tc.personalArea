@@ -26,7 +26,7 @@
             <tr id="{{ $place->id }}">
                 <td>{{ $place->first_name }}</td>
                 <td>{{ $place->last_name }}</td>
-                <td>{{ $place->place()->phone }}</td>
+                <td>{{ $place->client()->phone }}</td>
                 <td>{{ $place->place()->block }}</td>
                 <td>{{ $place->place()->floor }}</td>
                 <td>{{ $place->place()->row }}</td>
