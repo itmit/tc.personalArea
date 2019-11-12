@@ -23,6 +23,7 @@
                     <option value="{{ $action->id }}">{{ $action->action }}</option>
                 @endforeach
             </select>
+            <br>
             <input type="button" value="Обновить статус">
         </div>
         <div>
