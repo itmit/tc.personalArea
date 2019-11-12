@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Place;
 use App\Models\Reservation;
+use App\Models\ReservationHistory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
