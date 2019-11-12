@@ -12,6 +12,11 @@
         </div>
         <div>
             <h2>Текущий статус заявки: {{ $lastAction->action()->action }}</h2>
+            <select name="" id="">
+                @foreach ($actions as $action)
+                    <option value="{{ $action->id }}">{{ $action->action }}</option>
+                @endforeach
+            </select>
         </div>
         <div>
             История заявки

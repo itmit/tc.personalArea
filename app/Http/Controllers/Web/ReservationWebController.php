@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Models\Place;
 use App\Models\Reservation;
 use App\Models\ReservationHistory;
+use App\Models\Actions;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -178,11 +179,13 @@ class ReservationWebController extends Controller
         $reservation = Reservation::where('id', '=', $id)->first();
         $history = ReservationHistory::where('bid', '=', $id)->get();
         $lastAction = ReservationHistory::where('bid', '=', $id)->latest()->first();
+        $actions = Actions::all();
 
         return view("manager.reservationDetail", [
             'reservation' => $reservation,
             'history' => $history,
             'lastAction' => $lastAction,
+            'actions' => $actions,
         ]);
     }
 }
