@@ -177,10 +177,12 @@ class ReservationWebController extends Controller
     {
         $reservation = Reservation::where('id', '=', $id)->first();
         $history = ReservationHistory::where('bid', '=', $id)->get();
+        $lastAction = ReservationHistory::where('bid', '=', $id)->latest()->first();
 
         return view("manager.reservationDetail", [
             'reservation' => $reservation,
             'history' => $history,
+            'lastAction' => $lastAction,
         ]);
     }
 }

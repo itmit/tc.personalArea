@@ -19,9 +19,4 @@ class ReservationHistory extends Model
     {
         return $this->belongsTo(Actions::class, 'action')->get()->first();
     }
-
-    public function lastAction()
-    {
-        return $this->belongsTo(Actions::class, 'action')->latest()->first();
-    }
 }
