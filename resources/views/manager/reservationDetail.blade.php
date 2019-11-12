@@ -14,7 +14,7 @@
             История заявки
             <ul>
                 @foreach ($history as $item)
-                    <li>{{$item->action()->action}}</li>
+                    <li>{{$item->action()->action}} (изменение рейтинга: {{ $item->action()->points }})</li>
                 @endforeach
             </ul>
         </div>
