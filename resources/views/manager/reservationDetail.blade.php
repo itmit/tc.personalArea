@@ -8,7 +8,10 @@
     </div>
     <div class="col-sm-12">
         <div>
-            Заявку создал <a href="../client/{{ $reservation->client()->id }}">{{ $reservation->first_name }} {{ $reservation->last_name }}</a> <i>{{ $reservation->client()->phone }}</i> в {{ date('H:i:s d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))) }}
+            Заявку создал <a href="../client/{{ $reservation->client()->id }}">{{ $reservation->first_name }} {{ $reservation->last_name }}</a> тел. <i>{{ $reservation->client()->phone }}</i> в {{ date('H:i d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))) }}
+        </div>
+        <div>
+            Место {{ $reservation->place()->place_number }} ряд {{ $reservation->place()->row }} этаж {{ $reservation->place()->floor }} блок {{ $reservation->place()->block }}
         </div>
         <div>
             <h2>Текущий статус заявки: {{ $lastAction->action()->action }}</h2>
