@@ -14,7 +14,7 @@
             История заявки
             <ul>
                 @foreach ($history as $item)
-                    <li>{{$item->action}}</li>
+                    <li>{{$item->action()->action}}</li>
                 @endforeach
             </ul>
         </div>

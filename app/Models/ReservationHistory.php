@@ -14,4 +14,9 @@ class ReservationHistory extends Model
     protected $table = 'reservation_histories';
 
     protected $guarded = ['id'];
+
+    public function action()
+    {
+        return $this->belongsTo(Actions::class, 'action')->get()->first();
+    }
 }
