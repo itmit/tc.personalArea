@@ -2,6 +2,12 @@
 
 @section('content')
 
-    {{$reservation->first_name}}
+    <h1 data-reservation-id="{{ $reservation->id }}">Заявка на бронирование</h1>
+    <div class="col-sm-12">
+        <a href="/reservation">Назад</a>
+    </div>
+    <div class="col-sm-12">
+
+    </div>
 
 @endsection
