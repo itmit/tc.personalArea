@@ -8,7 +8,7 @@
     </div>
     <div class="col-sm-12">
         <div>
-            Заявку создал {{ $reservation->first_name $reservation->last_name}} ({{ $reservation->client()->phone }}) в {{ $reservation->created_at }}
+            Заявку создал {{ $reservation->first_name }} {{ $reservation->last_name }} ({{ $reservation->client()->phone }}) в {{ $reservation->created_at }}
         </div>
     </div>
 
