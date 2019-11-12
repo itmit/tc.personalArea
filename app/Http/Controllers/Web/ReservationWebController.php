@@ -175,9 +175,11 @@ class ReservationWebController extends Controller
     public function show($id)
     {
         $reservation = Reservation::where('id', '=', $id)->first();
+        $history = ReservationHistory::where('bid', '=', $id)->get();
 
         return view("manager.reservationDetail", [
             'reservation' => $reservation,
+            'history' => $history,
         ]);
     }
 }

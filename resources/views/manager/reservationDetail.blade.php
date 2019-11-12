@@ -8,7 +8,15 @@
     </div>
     <div class="col-sm-12">
         <div>
-            Заявку создал {{ $reservation->first_name }} {{ $reservation->last_name }} ({{ $reservation->client()->phone }}) в {{ $reservation->created_at }}
+            Заявку создал {{ $reservation->first_name }} {{ $reservation->last_name }} ({{ $reservation->client()->phone }}) в {{ date('H:i:s d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))) }}
+        </div>
+        <div>
+            История заявки
+            <ul>
+                @foreach ($history as $item)
+                    <li>{{$item->action}}</li>
+                @endforeach
+            </ul>
         </div>
     </div>
 
