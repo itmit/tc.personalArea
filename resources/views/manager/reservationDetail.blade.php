@@ -8,7 +8,7 @@
     </div>
     <div class="col-sm-12">
         <div>
-            Заявку создал <a href="../client/{{ $reservation->client()->id }}">{{ $reservation->first_name }} {{ $reservation->last_name }}</a> ({{ $reservation->client()->phone }}) в {{ date('H:i:s d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))) }}
+            Заявку создал <a href="../client/{{ $reservation->client()->id }}">{{ $reservation->first_name }} {{ $reservation->last_name }}</a> <i>{{ $reservation->client()->phone }}</i> в {{ date('H:i:s d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))) }}
         </div>
         <div>
             История заявки
