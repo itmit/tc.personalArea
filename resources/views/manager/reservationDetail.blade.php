@@ -11,6 +11,9 @@
             Заявку создал <a href="../client/{{ $reservation->client()->id }}">{{ $reservation->first_name }} {{ $reservation->last_name }}</a> <i>{{ $reservation->client()->phone }}</i> в {{ date('H:i:s d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))) }}
         </div>
         <div>
+            <h2>Текущий статус заявки: {{ $item->lastAction()->action }}</h2>
+        </div>
+        <div>
             История заявки
             <ul>
                 @foreach ($history as $item)
