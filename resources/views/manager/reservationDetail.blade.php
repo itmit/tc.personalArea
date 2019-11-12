@@ -17,9 +17,13 @@
             <h2>Текущий статус заявки: {{ $lastAction->action()->action }}</h2>
             <select name="" id="">
                 @foreach ($actions as $action)
+                    @if($action->id == $lastAction->action()->id)
+                        @continue
+                    @endif
                     <option value="{{ $action->id }}">{{ $action->action }}</option>
                 @endforeach
             </select>
+            <input type="button" value="Обновить статус">
         </div>
         <div>
             История заявки
