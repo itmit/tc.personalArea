@@ -203,6 +203,8 @@ class ReservationWebController extends Controller
         try {
             if($action->type == 'cancel')
             {
+                $rating = Client::where('id', '=', Auth::id())->first('rating');
+                return response()->json($rating);
                 Reservation::where('id', '=', $request->reservation_id)->update([
                     'accepted' => 2
                 ]);
@@ -210,6 +212,7 @@ class ReservationWebController extends Controller
                     'bid' => $request->reservation_id,
                     'action' => $action->id
                 ]);
+                $rating = Client::where('id', '=', Auth::id())->first('rating');
                 Client::where('id', '=', Auth::id())->update([
                     'rating' => 'rating' + $action->points
                 ]);
