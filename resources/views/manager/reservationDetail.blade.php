@@ -30,7 +30,7 @@
             <br>
             <input type="button" value="Обновить статус" class="changeReservationStatus" data-reservation-id="{{ $reservation->id }}" data-client-id="{{ $reservation->client()->id }}"
             @if($reservation->accepted == 2)
-                disabled
+                disabled title="Заявка закрыта и не может быть изменена"
             @endif>
         </div>
         <div>
