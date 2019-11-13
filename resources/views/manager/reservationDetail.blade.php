@@ -18,7 +18,8 @@
             <select name="new-status" 
             @if($reservation->accepted == 2)
                 disabled
-            @endif>
+            @endif
+            class="form-control">
                 @foreach ($actions as $action)
                     @if($action->id == $lastAction->action()->id)
                         @continue
@@ -27,7 +28,10 @@
                 @endforeach
             </select>
             <br>
-            <input type="button" value="Обновить статус" class="changeReservationStatus" data-reservation-id="{{ $reservation->id }}">
+            <input type="button" value="Обновить статус" class="changeReservationStatus" data-reservation-id="{{ $reservation->id }}"
+            @if($reservation->accepted == 2)
+                disabled
+            @endif>
         </div>
         <div>
             История заявки
