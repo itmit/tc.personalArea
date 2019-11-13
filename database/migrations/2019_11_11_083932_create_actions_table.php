@@ -16,6 +16,7 @@ class CreateActionsTable extends Migration
         Schema::create('actions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('action');
+            $table->enum('type', ['create', 'cancel', 'reservation', 'success']);
             $table->integer('points');
             $table->timestamps();
         });
