@@ -197,6 +197,27 @@ class ReservationWebController extends Controller
     public function changeReservationStatus(Request $request)
     {
         $action = Actions::where('id', '=', $request->new_status)->first();
-        return response()->json([$action->action]);
+        DB::beginTransaction();
+        try {
+            if($action->type == 'cancel')
+            {
+                Reservation::where('id', '=', $request->reservation_id)->update([
+                    'accepted' => 2
+                ]);
+                ReservationHistory::create([
+                    'bid' => $request->reservation_id,
+                    'action' => $action->id
+                ]);
+                Client::where('id', '=', Auth::id())->update([
+                    'rating' => 'rating' + $action->points
+                ]);
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $this->sendError(0, 'Transaction error');
+        }
+
+        return response()->json([$action->type]);
     }
 }
