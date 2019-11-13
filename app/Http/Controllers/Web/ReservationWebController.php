@@ -201,9 +201,9 @@ class ReservationWebController extends Controller
         $action = Actions::where('id', '=', $request->new_status)->first();
 
         $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
-        $newRating = $rating + $action->points;
+        $newRating = $rating->rating + $action->points;
         return response()->json($newRating);
-        
+
         DB::beginTransaction();
         try {
             if($action->type == 'cancel')
