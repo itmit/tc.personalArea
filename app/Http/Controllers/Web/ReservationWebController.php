@@ -207,10 +207,10 @@ class ReservationWebController extends Controller
                 Reservation::where('id', '=', $request->reservation_id)->update([
                     'accepted' => 2
                 ]);
-                // ReservationHistory::create([
-                //     'bid' => $request->reservation_id,
-                //     'action' => $action->id
-                // ]);
+                ReservationHistory::create([
+                    'bid' => $request->reservation_id,
+                    'action' => $action->id
+                ]);
                 // $newRating = $rating + $action->points;
                 // Client::where('id', '=', Auth::id())->update([
                 //     'rating' => 'rating' + $newRating
