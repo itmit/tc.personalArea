@@ -56,34 +56,5 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Разрешает пользователю принимать заявки, поступающие от клиентов.'
             ])
         );
-
-        Place::create([
-            'block' => 'Вещевые ряды',
-            'floor' => 1,
-            'row' => 1,
-            'place_number' => 1,
-            'status' => 'Свободен',
-            'price' => 100
-        ]);
-
-        Place::create(
-        [
-            'block' => 'Вещевые ряды',
-            'floor' => 2,
-            'row' => 2,
-            'place_number' => 1,
-            'status' => 'Свободен',
-            'price' => 120,
-        ]);
-
-        Place::create(
-            [
-                'block' => 'Ковры и текстиль',
-                'floor' => 2,
-                'row' => 2,
-                'place_number' => 24,
-                'status' => 'Свободен',
-                'price' => 150,
-            ]);
     }
 }

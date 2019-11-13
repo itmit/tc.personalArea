@@ -188,4 +188,14 @@ class ReservationWebController extends Controller
             'actions' => $actions,
         ]);
     }
+
+    /**
+     * Изменить статус заявки.
+     *
+     * @return Factory|View
+     */
+    public function changeReservationStatus(Request $request)
+    {
+        
+    }
 }

@@ -72,7 +72,7 @@
                         for(var i = 0; i < response.length; i++) {
                             result += '<tr id="' + response[i]['id'] + '">';
                             result += '<td><i class="material-icons"><a href="reservation/' + response[i]['id'] + '">slideshow</a></i></td>';
-                            result += '<td>' + response[i]['first_name'] + response[i]['last_name'] + '</td>';
+                            result += '<td>' + response[i]['first_name'] + ' ' + response[i]['last_name'] + '</td>';
                             result += '<td>' + response[i]['rating'] + '</td>';
                             result += '<td>' + response[i]['phone'] + '</td>';
                             result += '<td>' + response[i]['place']['block'] + '</td>';

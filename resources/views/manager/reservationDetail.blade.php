@@ -24,7 +24,7 @@
                 @endforeach
             </select>
             <br>
-            <input type="button" value="Обновить статус">
+            <input type="button" value="Обновить статус" class="changeReservationStatus">
         </div>
         <div>
             История заявки
@@ -39,7 +39,9 @@
     <script>
         $(document).ready(function()
         {
-
+            $(document).on('click', '.changeReservationStatus', function() {
+                console.log('changeReservationStatus');
+            })
         })
     </script>
 
