@@ -17,7 +17,7 @@
             <h2>Текущий статус заявки: <i>{{ $lastAction->action()->action }}</i></h2>
             <select name="new-status" 
             @if($reservation->accepted == 2)
-                disabled
+                disabled title="Заявка закрыта и не может быть изменена"
             @endif
             class="form-control">
                 @foreach ($actions as $action)
