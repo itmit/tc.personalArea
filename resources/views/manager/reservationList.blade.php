@@ -10,6 +10,7 @@
         <thead>
         <tr>
             <th>Имя</th>
+            <th>Рейтинг</th>
             <th>Телефон</th>
             <th>Блок</th>
             <th>Этаж</th>
@@ -24,6 +25,7 @@
         @foreach($places as $place)
             <tr id="{{ $place->id }}">
                 <td><a href="../client/{{ $place->client()->id }}">{{ $place->first_name }} {{ $place->last_name }}</a></td>
+                <td>{{ $place->client()->rating }}</td>
                 <td>{{ $place->client()->phone }}</td>
                 <td>{{ $place->place()->block }}</td>
                 <td>{{ $place->place()->floor }}</td>
