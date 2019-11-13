@@ -46,7 +46,7 @@
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
                     data: {new_status: new_status, reservation_id: reservation_id},
-                    url     : 'reservation/changeReservationStatus',
+                    url     : 'changeReservationStatus',
                     method    : 'post',
                     success: function (response) {
                         // location.reload();
