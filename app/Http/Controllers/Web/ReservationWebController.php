@@ -199,7 +199,6 @@ class ReservationWebController extends Controller
     public function changeReservationStatus(Request $request)
     {
         $action = Actions::where('id', '=', $request->new_status)->first();
-        return response()->json(Auth::id());
         DB::beginTransaction();
         try {
             if($action->type == 'cancel')
@@ -208,14 +207,14 @@ class ReservationWebController extends Controller
                 Reservation::where('id', '=', $request->reservation_id)->update([
                     'accepted' => 2
                 ]);
-                ReservationHistory::create([
-                    'bid' => $request->reservation_id,
-                    'action' => $action->id
-                ]);
-                $newRating = $rating + $action->points;
-                Client::where('id', '=', Auth::id())->update([
-                    'rating' => 'rating' + $newRating
-                ]);
+                // ReservationHistory::create([
+                //     'bid' => $request->reservation_id,
+                //     'action' => $action->id
+                // ]);
+                // $newRating = $rating + $action->points;
+                // Client::where('id', '=', Auth::id())->update([
+                //     'rating' => 'rating' + $newRating
+                // ]);
             }
             DB::commit();
         } catch (\Exception $e) {
