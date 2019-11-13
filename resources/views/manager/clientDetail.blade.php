@@ -10,6 +10,9 @@
         <div>
             Рейтинг клиента: {{ $client->rating }}
         </div>
+        <div>
+            Телефон клиента: {{ $client->phone }}
+        </div>
     </div>
 
 @endsection
