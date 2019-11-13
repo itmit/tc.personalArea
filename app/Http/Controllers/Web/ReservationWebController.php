@@ -219,7 +219,7 @@ class ReservationWebController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            return response()->json($e);
+            return response()->json(false);
         }
 
         return response()->json(true);
