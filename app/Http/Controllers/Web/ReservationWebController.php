@@ -6,6 +6,7 @@ use App\Models\Place;
 use App\Models\Reservation;
 use App\Models\ReservationHistory;
 use App\Models\Actions;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
