@@ -196,6 +196,7 @@ class ReservationWebController extends Controller
      */
     public function changeReservationStatus(Request $request)
     {
-        
+        $action = Actions::where('id', '=', $request->new_status)->first();
+        return response()->json([$action->action]);
     }
 }

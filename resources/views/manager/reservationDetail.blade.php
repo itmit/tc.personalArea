@@ -42,20 +42,21 @@
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
                 let reservation_id = $(this).data('reservationId');
-                console.log(reservation_id);
-                // $.ajax({
-                //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                //     dataType: "json",
-                //     data: {new_status: new_status, reservation_id: reservation_id},
-                //     url     : 'reservation/confirmReservation',
-                //     method    : 'post',
-                //     success: function (response) {
-                //         $('#' + user_id).remove();
-                //     },
-                //     error: function (xhr, err) { 
-                //         console.log(err + " " + xhr);
-                //     }
-                // });
+                $.ajax({
+                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    dataType: "json",
+                    data: {new_status: new_status, reservation_id: reservation_id},
+                    url     : 'reservation/changeReservationStatus',
+                    method    : 'post',
+                    success: function (response) {
+                        // location.reload();
+                        console.log(response);
+                        // $('#' + user_id).remove();
+                    },
+                    error: function (xhr, err) { 
+                        console.log(err + " " + xhr);
+                    }
+                });
             })
         })
     </script>
