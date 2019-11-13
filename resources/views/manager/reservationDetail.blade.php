@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1 data-reservation-id="{{ $reservation->id }}">Заявка на бронирование места</h1>
+    <h1>Заявка на бронирование места</h1>
     <div class="col-sm-12">
         <a href="/reservation">Назад</a>
     </div>
@@ -24,7 +24,7 @@
                 @endforeach
             </select>
             <br>
-            <input type="button" value="Обновить статус" class="changeReservationStatus">
+            <input type="button" value="Обновить статус" class="changeReservationStatus" data-reservation-id="{{ $reservation->id }}">
         </div>
         <div>
             История заявки
@@ -40,7 +40,22 @@
         $(document).ready(function()
         {
             $(document).on('click', '.changeReservationStatus', function() {
-                console.log($("[name='new-status']").val());
+                let new_status = $("[name='new-status']").val();
+                let reservation_id = $(this).data('reservationId');
+                console.log(reservation_id);
+                // $.ajax({
+                //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                //     dataType: "json",
+                //     data: {new_status: new_status, reservation_id: reservation_id},
+                //     url     : 'reservation/confirmReservation',
+                //     method    : 'post',
+                //     success: function (response) {
+                //         $('#' + user_id).remove();
+                //     },
+                //     error: function (xhr, err) { 
+                //         console.log(err + " " + xhr);
+                //     }
+                // });
             })
         })
     </script>
