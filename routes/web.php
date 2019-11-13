@@ -67,6 +67,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::post('reservation/cancelReservation', 'Web\ReservationWebController@cancelReservation');
 
         Route::post('reservation/changeReservationStatus', 'Web\ReservationWebController@changeReservationStatus');
+
+        Route::resource('client', 'Web\ClientWebController');
     });
 });
 
