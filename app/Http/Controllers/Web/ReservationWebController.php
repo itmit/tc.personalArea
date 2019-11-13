@@ -200,9 +200,9 @@ class ReservationWebController extends Controller
     {
         $action = Actions::where('id', '=', $request->new_status)->first();
 
-        $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
-        $newRating = $rating->rating + $action->points;
-        return response()->json($newRating);
+        // $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
+        // $newRating = $rating->rating + $action->points;
+        // return response()->json($newRating);
 
         DB::beginTransaction();
         try {
@@ -216,7 +216,7 @@ class ReservationWebController extends Controller
                     'bid' => $request->reservation_id,
                     'action' => $action->id
                 ]);
-                $newRating = $rating + $action->points;
+                $newRating = $rating->rating + $action->points;
                 // return response()->json($newRating);
                 Client::where('id', '=', $request->client_id)->update([
                     'rating' => $newRating
