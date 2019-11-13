@@ -28,7 +28,7 @@
                 @endforeach
             </select>
             <br>
-            <input type="button" value="Обновить статус" class="changeReservationStatus" data-reservation-id="{{ $reservation->id }}"
+            <input type="button" value="Обновить статус" class="changeReservationStatus" data-reservation-id="{{ $reservation->id }}" data-client-id="{{ $reservation->client()->id }}"
             @if($reservation->accepted == 2)
                 disabled
             @endif>
@@ -49,10 +49,11 @@
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
                 let reservation_id = $(this).data('reservationId');
+                let client_id = $(this).data('clientId');
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
-                    data: {new_status: new_status, reservation_id: reservation_id},
+                    data: {new_status: new_status, reservation_id: reservation_id, client_id: client_id},
                     url     : 'changeReservationStatus',
                     method    : 'post',
                     success: function (response) {

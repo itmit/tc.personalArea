@@ -212,7 +212,7 @@ class ReservationWebController extends Controller
                     'action' => $action->id
                 ]);
                 $newRating = $rating + $action->points;
-                Client::where('id', '=', Auth::id())->update([
+                Client::where('id', '=', $request->client_id)->update([
                     'rating' => $newRating
                 ]);
             }
