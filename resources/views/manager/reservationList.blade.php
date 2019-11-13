@@ -16,14 +16,13 @@
             <th>Этаж</th>
             <th>Ряд</th>
             <th>Место</th>
-            <th>Просмотреть заявку</th>
             <th>Создано</th>
-            <th>Обновлено</th>
         </tr>
         </thead>
         <tbody>
         @foreach($places as $place)
             <tr id="{{ $place->id }}">
+                <td><i class="material-icons"><a href="reservation/{{ $place->id }}">slideshow</a></i></td>
                 <td><a href="../client/{{ $place->client()->id }}">{{ $place->first_name }} {{ $place->last_name }}</a></td>
                 <td>{{ $place->client()->rating }}</td>
                 <td>{{ $place->client()->phone }}</td>
@@ -32,9 +31,7 @@
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
                 {{-- <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->id }}">Отказать</button></td> --}}
-                <td><a href="reservation/{{ $place->id }}">Просмотреть заявку</a></td>
                 <td>{{ $place->created_at->timezone('Europe/Moscow') }}</td>
-                <td>{{ $place->updated_at->timezone('Europe/Moscow') }}</td>
             </tr>
         @endforeach
         </tbody>
