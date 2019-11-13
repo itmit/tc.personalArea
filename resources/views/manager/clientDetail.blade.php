@@ -8,7 +8,7 @@
     </div>
     <div class="col-sm-12">
         <div>
-            
+            Рейтинг клиента: {{ $client->rating }}
         </div>
     </div>
 

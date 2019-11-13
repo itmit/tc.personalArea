@@ -16,6 +16,9 @@ class ClientWebController extends Controller
 {
     public function show($id)
     {
-        return view("manager.clientDetail");
+        return view("manager.clientDetail",
+    [
+        'client' => Client::where('id', '=', $id)-first()
+    ]);
     }
 }
