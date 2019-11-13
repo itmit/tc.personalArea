@@ -211,10 +211,10 @@ class ReservationWebController extends Controller
                     'bid' => $request->reservation_id,
                     'action' => $action->id
                 ]);
-                // $newRating = $rating + $action->points;
-                // Client::where('id', '=', Auth::id())->update([
-                //     'rating' => 'rating' + $newRating
-                // ]);
+                $newRating = $rating + $action->points;
+                Client::where('id', '=', Auth::id())->update([
+                    'rating' => $newRating
+                ]);
             }
             DB::commit();
         } catch (\Exception $e) {

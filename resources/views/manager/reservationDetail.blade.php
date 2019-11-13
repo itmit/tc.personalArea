@@ -14,7 +14,7 @@
             Место {{ $reservation->place()->place_number }} ряд {{ $reservation->place()->row }} этаж {{ $reservation->place()->floor }} блок {{ $reservation->place()->block }}
         </div>
         <div>
-            <h2>Текущий статус заявки: {{ $lastAction->action()->action }}</h2>
+            <h2>Текущий статус заявки: <i>{{ $lastAction->action()->action }}</i></h2>
             <select name="new-status">
                 @foreach ($actions as $action)
                     @if($action->id == $lastAction->action()->id)
