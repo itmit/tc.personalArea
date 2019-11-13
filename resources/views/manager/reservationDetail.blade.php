@@ -15,7 +15,7 @@
         </div>
         <div>
             <h2>Текущий статус заявки: {{ $lastAction->action()->action }}</h2>
-            <select name="" id="">
+            <select name="new-status">
                 @foreach ($actions as $action)
                     @if($action->id == $lastAction->action()->id)
                         @continue
@@ -40,7 +40,7 @@
         $(document).ready(function()
         {
             $(document).on('click', '.changeReservationStatus', function() {
-                console.log('changeReservationStatus');
+                console.log($("[name='new-status']").val());
             })
         })
     </script>
