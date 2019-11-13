@@ -16,6 +16,6 @@ class ClientWebController extends Controller
 {
     public function show($id)
     {
-        return 'client';
+        return view("manager.clientDetail");
     }
 }
