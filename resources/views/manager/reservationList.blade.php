@@ -9,7 +9,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th style="border: none"></th>
+            <th></th>
             <th>Имя</th>
             <th>Рейтинг</th>
             <th>Телефон</th>
@@ -71,27 +71,27 @@
                         let result = '';
                         for(var i = 0; i < response.length; i++) {
                             result += '<tr id="' + response[i]['id'] + '">';
-                            result += '<td>' + response[i]['first_name'] + '</td>';
-                            result += '<td>' + response[i]['last_name'] + '</td>';
+                            result += '<td><i class="material-icons"><a href="reservation/' + response[i]['id'] + '">slideshow</a></i></td>':
+                            result += '<td>' + response[i]['first_name'] + response[i]['last_name'] + '</td>';
                             result += '<td>' + response[i]['phone'] + '</td>';
                             result += '<td>' + response[i]['place']['block'] + '</td>';
                             result += '<td>' + response[i]['place']['floor'] + '</td>';
                             result += '<td>' + response[i]['place']['row'] + '</td>';
                             result += '<td>' + response[i]['place']['place_number'] + '</td>';
-                            if(response[i]['accepted'] == 0)
-                            {
-                                result += '<td><button class="makeReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['place']['id'] + '">Забронировать</button> / <button class="cancelReservation" data-placeid="' + response[i]['place']['id'] + '">Отказать</button></td>';
-                            }
-                            if(response[i]['accepted'] == 1)
-                            {
-                                result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">Снять бронь</button></td>';
-                            }
-                            if(response[i]['accepted'] == 2)
-                            {
-                                result += '<td>Бронь была отменена</td>';
-                            }
+                            // if(response[i]['accepted'] == 0)
+                            // {
+                            //     result += '<td><button class="makeReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['place']['id'] + '">Забронировать</button> / <button class="cancelReservation" data-placeid="' + response[i]['place']['id'] + '">Отказать</button></td>';
+                            // }
+                            // if(response[i]['accepted'] == 1)
+                            // {
+                            //     result += '<td><button class="deleteReservation" data-userid="' + response[i]['id'] + '" data-placeid="' + response[i]['id'] + '">Снять бронь</button></td>';
+                            // }
+                            // if(response[i]['accepted'] == 2)
+                            // {
+                            //     result += '<td>Бронь была отменена</td>';
+                            // }
                             result += '<td>' + response[i]['created_at'] + '</td>';
-                            result += '<td>' + response[i]['updated_at'] + '</td>';
+                            // result += '<td>' + response[i]['updated_at'] + '</td>';
                             result += '</tr>';
                         }
                         $('tbody').html(result);
@@ -141,4 +141,20 @@
             });
         });
     </script>
+
+    {{-- <template id="item-of-reservations">
+        <tr id="{{ $place->id }}">
+            <td><i class="material-icons"><a href="reservation/{{ $place->id }}">slideshow</a></i></td>
+            <td><a href="../client/{{ $place->client()->id }}">{{ $place->first_name }} {{ $place->last_name }}</a></td>
+            <td>{{ $place->client()->rating }}</td>
+            <td>{{ $place->client()->phone }}</td>
+            <td>{{ $place->place()->block }}</td>
+            <td>{{ $place->place()->floor }}</td>
+            <td>{{ $place->place()->row }}</td>
+            <td>{{ $place->place()->place_number }}</td>
+            {{-- <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->id }}">Отказать</button></td> --}}
+            {{-- <td>{{ $place->created_at->timezone('Europe/Moscow') }}</td> --}}
+        {{-- </tr> --}}
+    {{-- </template> --}}
+
 @endsection
