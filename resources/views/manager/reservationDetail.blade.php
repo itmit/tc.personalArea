@@ -57,9 +57,7 @@
                     url     : 'changeReservationStatus',
                     method    : 'post',
                     success: function (response) {
-                        // location.reload();
-                        console.log(response);
-                        // $('#' + user_id).remove();
+                        location.reload();
                     },
                     error: function (xhr, err) { 
                         console.log(err + " " + xhr);
