@@ -24,11 +24,14 @@
                     @if($action->id == $lastAction->action()->id)
                         @continue
                     @endif
+                    @if($action->action == 'создание')
+                        @continue
+                    @endif
                     <option value="{{ $action->id }}">{{ $action->action }}</option>
                 @endforeach
             </select>
             <br>
-            <input type="button" value="Обновить статус" class="changeReservationStatus" data-reservation-id="{{ $reservation->id }}" data-client-id="{{ $reservation->client()->id }}"
+            <input type="button" value="Обновить статус" class="changeReservationStatus" data-place-id="{{ $reservation->place()->id }}" data-reservation-id="{{ $reservation->id }}" data-client-id="{{ $reservation->client()->id }}"
             @if($reservation->accepted == 2)
                 disabled title="Заявка закрыта и не может быть изменена"
             @endif>
@@ -50,10 +53,11 @@
                 let new_status = $("[name='new-status']").val();
                 let reservation_id = $(this).data('reservationId');
                 let client_id = $(this).data('clientId');
+                let place_id = $(this).data('placeId');
                 $.ajax({
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
-                    data: {new_status: new_status, reservation_id: reservation_id, client_id: client_id},
+                    data: {new_status: new_status, reservation_id: reservation_id, client_id: client_id, place_id: place_id},
                     url     : 'changeReservationStatus',
                     method    : 'post',
                     success: function (response) {

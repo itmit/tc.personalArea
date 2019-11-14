@@ -217,7 +217,24 @@ class ReservationWebController extends Controller
                     'action' => $action->id
                 ]);
                 $newRating = $rating->rating + $action->points;
-                // return response()->json($newRating);
+                Client::where('id', '=', $request->client_id)->update([
+                    'rating' => $newRating
+                ]);
+            }
+            if($action->type == 'reservation')
+            {
+                $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
+                Reservation::where('id', '=', $request->reservation_id)->update([
+                    'accepted' => 1
+                ]);
+                ReservationHistory::create([
+                    'bid' => $request->reservation_id,
+                    'action' => $action->id
+                ]);
+                Place::where('id', '=', $request->place_id)->update([
+                    'status' => 'Забронировано'
+                ]);
+                $newRating = $rating->rating + $action->points;
                 Client::where('id', '=', $request->client_id)->update([
                     'rating' => $newRating
                 ]);
