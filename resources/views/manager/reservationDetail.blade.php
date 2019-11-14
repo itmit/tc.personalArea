@@ -30,12 +30,14 @@
                     <option value="{{ $action->id }}">{{ $action->action }}</option>
                 @endforeach
             </select>
+            <input type="time" name="" id="" class="form-control">
             <br>
             <input type="button" value="Обновить статус" class="changeReservationStatus" data-place-id="{{ $reservation->place()->id }}" data-reservation-id="{{ $reservation->id }}" data-client-id="{{ $reservation->client()->id }}"
             @if($reservation->accepted == 2)
                 disabled title="Заявка закрыта и не может быть изменена"
             @endif>
         </div>
+        <br>
         <div>
             История заявки
             <ul>
