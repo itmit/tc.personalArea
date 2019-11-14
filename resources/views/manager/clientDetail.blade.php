@@ -13,6 +13,14 @@
         <div>
             Телефон клиента: {{ $client->phone }}
         </div>
+        <div>
+            Заявки на бронирование:
+            <ul>
+                @foreach ($reservation as $item)
+                    <li>Заявка на бронирование места {{ $reservation->place_id }}</li>
+                @endforeach
+            </ul>
+        </div>
     </div>
 
 @endsection
