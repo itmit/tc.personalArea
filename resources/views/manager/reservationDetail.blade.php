@@ -15,11 +15,11 @@
         </div>
         <div>
             <h2>Текущий статус заявки: <i>{{ $lastAction->action()->action }}</i></h2>
-            <select name="new-status" class="new-status"
+            <select name="new-status"
             @if($reservation->accepted == 2)
                 disabled title="Заявка закрыта и не может быть изменена"
             @endif
-            class="form-control">
+            class="form-control new-status">
                 @foreach ($actions as $action)
                     @if($action->id == $lastAction->action()->id)
                         @continue
