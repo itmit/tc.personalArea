@@ -15,7 +15,7 @@
         </div>
         <div>
             <h2>Текущий статус заявки: <i>{{ $lastAction->action()->action }}</i></h2>
-            <select name="new-status" 
+            <select name="new-status" class="new-status"
             @if($reservation->accepted == 2)
                 disabled title="Заявка закрыта и не может быть изменена"
             @endif
@@ -73,6 +73,11 @@
                         console.log(err + " " + xhr);
                     }
                 });
+            })
+
+            $(document).on('change', '.new-status', function() {
+                let new_status = $(this).val();
+                console.log(new_status);
             })
         })
     </script>
