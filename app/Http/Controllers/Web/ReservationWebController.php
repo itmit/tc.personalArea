@@ -251,7 +251,7 @@ class ReservationWebController extends Controller
                     'action' => $action->id,
                 ]);
                 Place::where('id', '=', $request->place_id)->update([
-                    'status' => 'Арендовано'
+                    'status' => 'Арендован'
                 ]);
                 $newRating = $rating->rating + $action->points;
                 Client::where('id', '=', $request->client_id)->update([
