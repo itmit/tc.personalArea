@@ -6,6 +6,7 @@ use App\Models\Place;
 use App\Models\Client;
 use App\Models\Reservation;
 use App\Models\ReservationHistory;
+use App\Models\Actions;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -116,9 +117,11 @@ class PlaceApiController extends ApiBaseController
             if($newReserved)
             {
 
+                $create = Actions::where('type', '=', 'create')->first();
+
                 $newReservetionHistory = ReservationHistory::create([
                     'bid' => $newReserved->id,
-                    'action' => 'создание'
+                    'action' => $create->id
                 ]);
 
                 if($newReservetionHistory)
