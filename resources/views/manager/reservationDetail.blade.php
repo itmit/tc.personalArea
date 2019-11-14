@@ -27,7 +27,7 @@
                     @if($action->action == 'создание')
                         @continue
                     @endif
-                    <option value="{{ $action->id }}">{{ $action->action }}</option>
+                    <option value="{{ $action->id }}" data-action={{ $action->type }}>{{ $action->action }}</option>
                 @endforeach
             </select>
             <div class="reservation-time">
@@ -76,7 +76,7 @@
             })
 
             $(document).on('change', '.new-status', function() {
-                let new_status = $(this).val();
+                let new_status = $(this).data('action');
                 console.log(new_status);
             })
         })
