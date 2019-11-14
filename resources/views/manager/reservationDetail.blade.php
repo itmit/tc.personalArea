@@ -32,7 +32,7 @@
             </select>
             <div class="reservation-time" style="display: none">
                 Забронировать на
-                <input type="number" min="1" max="72" name="" class="form-control" value="1">
+                <input type="number" min="1" max="72" name="timer" class="form-control timer" value="1">
                 часов
             </div>
             <br>
@@ -60,19 +60,21 @@
                 let reservation_id = $(this).data('reservationId');
                 let client_id = $(this).data('clientId');
                 let place_id = $(this).data('placeId');
-                $.ajax({
-                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                    dataType: "json",
-                    data: {new_status: new_status, reservation_id: reservation_id, client_id: client_id, place_id: place_id},
-                    url     : 'changeReservationStatus',
-                    method    : 'post',
-                    success: function (response) {
-                        location.reload();
-                    },
-                    error: function (xhr, err) { 
-                        console.log(err + " " + xhr);
-                    }
-                });
+                let timer = $('.timer').val();
+                console.log(timer);
+                // $.ajax({
+                //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                //     dataType: "json",
+                //     data: {new_status: new_status, reservation_id: reservation_id, client_id: client_id, place_id: place_id, timer: timer},
+                //     url     : 'changeReservationStatus',
+                //     method    : 'post',
+                //     success: function (response) {
+                //         location.reload();
+                //     },
+                //     error: function (xhr, err) { 
+                //         console.log(err + " " + xhr);
+                //     }
+                // });
             })
 
             $(document).on('change', '.new-status', function() {
