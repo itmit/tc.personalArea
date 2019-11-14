@@ -77,7 +77,6 @@
 
             $(document).on('change', '.new-status', function() {
                 let v = $('.new-status').val();
-                let v = $('.new-status option[value='+v+']');
                 let new_status = $('.new-status option[value='+v+']').data('action');
                 console.log(new_status);
             })
