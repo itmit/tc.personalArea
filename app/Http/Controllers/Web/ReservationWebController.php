@@ -229,7 +229,8 @@ class ReservationWebController extends Controller
                 ]);
                 ReservationHistory::create([
                     'bid' => $request->reservation_id,
-                    'action' => $action->id
+                    'action' => $action->id,
+                    'timer' => $request->timer
                 ]);
                 Place::where('id', '=', $request->place_id)->update([
                     'status' => 'Забронировано'

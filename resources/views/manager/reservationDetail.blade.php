@@ -14,7 +14,13 @@
             Место <b>{{ $reservation->place()->place_number }}</b> ряд <b>{{ $reservation->place()->row }}</b> этаж <b>{{ $reservation->place()->floor }}</b> блок <b>{{ $reservation->place()->block }}</b>
         </div>
         <div>
-            <h2>Текущий статус заявки: <i>{{ $lastAction->action()->action }}</i></h2>
+            <h2>Текущий статус заявки: <i>
+                @if($lastAction->action()->type == "reservation")
+                {{ $lastAction->action()->action }} на {{ $lastAction->timer }} ч.
+                @else
+                {{ $lastAction->action()->action }}
+                @endif
+            </i></h2>
             <select name="new-status"
             @if($reservation->accepted == 2)
                 disabled title="Заявка закрыта и не может быть изменена"
@@ -46,7 +52,7 @@
             История заявки
             <ul>
                 @foreach ($history as $item)
-                    <li>{{$item->action()->action}} (изменение рейтинга: {{ $item->action()->points }})</li>
+                    <li>{{$item->action()->action}} (изменение рейтинга: {{ $item->action()->points }}) в {{ $item->created_at->timezone('Europe/Moscow') }}</li>
                 @endforeach
             </ul>
         </div>
@@ -61,20 +67,19 @@
                 let client_id = $(this).data('clientId');
                 let place_id = $(this).data('placeId');
                 let timer = $('.timer').val();
-                console.log(timer);
-                // $.ajax({
-                //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                //     dataType: "json",
-                //     data: {new_status: new_status, reservation_id: reservation_id, client_id: client_id, place_id: place_id, timer: timer},
-                //     url     : 'changeReservationStatus',
-                //     method    : 'post',
-                //     success: function (response) {
-                //         location.reload();
-                //     },
-                //     error: function (xhr, err) { 
-                //         console.log(err + " " + xhr);
-                //     }
-                // });
+                $.ajax({
+                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    dataType: "json",
+                    data: {new_status: new_status, reservation_id: reservation_id, client_id: client_id, place_id: place_id, timer: timer},
+                    url     : 'changeReservationStatus',
+                    method    : 'post',
+                    success: function (response) {
+                        location.reload();
+                    },
+                    error: function (xhr, err) { 
+                        console.log(err + " " + xhr);
+                    }
+                });
             })
 
             $(document).on('change', '.new-status', function() {
@@ -88,7 +93,6 @@
                 {
                     $('.reservation-time').hide();
                 }
-                console.log(new_status);
             })
         })
     </script>
