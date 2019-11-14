@@ -240,6 +240,24 @@ class ReservationWebController extends Controller
                     'rating' => $newRating
                 ]);
             }
+            if($action->type == 'success')
+            {
+                $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
+                Reservation::where('id', '=', $request->reservation_id)->update([
+                    'accepted' => 3
+                ]);
+                ReservationHistory::create([
+                    'bid' => $request->reservation_id,
+                    'action' => $action->id,
+                ]);
+                Place::where('id', '=', $request->place_id)->update([
+                    'status' => 'Арендовано'
+                ]);
+                $newRating = $rating->rating + $action->points;
+                Client::where('id', '=', $request->client_id)->update([
+                    'rating' => $newRating
+                ]);
+            }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();

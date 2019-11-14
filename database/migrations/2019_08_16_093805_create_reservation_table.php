@@ -19,7 +19,7 @@ class CreateReservationTable extends Migration
             $table->string('last_name');
             $table->integer('client')->unsigned();
             $table->integer('place_id');
-            $table->boolean('accepted');
+            $table->integer('accepted')->unsigned();
             $table->timestamps();
 
             $table->foreign('client')->references('id')->on('clients');

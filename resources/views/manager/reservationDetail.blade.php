@@ -22,7 +22,7 @@
                 @endif
             </i></h2>
             <select name="new-status"
-            @if($reservation->accepted == 2)
+            @if($reservation->accepted == 2 || $reservation->accepted == 3)
                 disabled title="Заявка закрыта и не может быть изменена"
             @endif
             class="form-control new-status">
@@ -43,7 +43,7 @@
             </div>
             <br>
             <input type="button" value="Обновить статус" class="changeReservationStatus" data-place-id="{{ $reservation->place()->id }}" data-reservation-id="{{ $reservation->id }}" data-client-id="{{ $reservation->client()->id }}"
-            @if($reservation->accepted == 2)
+            @if($reservation->accepted == 2 || $reservation->accepted == 3)
                 disabled title="Заявка закрыта и не может быть изменена"
             @endif>
         </div>
