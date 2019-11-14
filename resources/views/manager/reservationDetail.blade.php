@@ -30,7 +30,7 @@
                     <option value="{{ $action->id }}" data-action="{{ $action->type }}">{{ $action->action }}</option>
                 @endforeach
             </select>
-            <div class="reservation-time">
+            <div class="reservation-time" style="display: none">
                 Забронировать на
                 <input type="number" min="1" max="72" name="" id="" class="form-control">
                 часов
@@ -78,6 +78,14 @@
             $(document).on('change', '.new-status', function() {
                 let v = $('.new-status').val();
                 let new_status = $('.new-status option[value='+v+']').data('action');
+                if(new_status == 'reservation')
+                {
+                    $('.reservation-time').show();
+                }
+                else
+                {
+                    $('.reservation-time').hide();
+                }
                 console.log(new_status);
             })
         })
