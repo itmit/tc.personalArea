@@ -11,7 +11,7 @@
             Заявку создал <a href="../client/{{ $reservation->client()->id }}">{{ $reservation->first_name }} {{ $reservation->last_name }}</a> тел. <i>{{ $reservation->client()->phone }}</i> в {{ date('H:i d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))) }}
         </div>
         <div>
-            Место {{ $reservation->place()->place_number }} ряд {{ $reservation->place()->row }} этаж {{ $reservation->place()->floor }} блок {{ $reservation->place()->block }}
+            Место <b>{{ $reservation->place()->place_number }}</b> ряд <b>{{ $reservation->place()->row }}</b> этаж <b>{{ $reservation->place()->floor }}</b> блок <b>{{ $reservation->place()->block }}</b>
         </div>
         <div>
             <h2>Текущий статус заявки: <i>{{ $lastAction->action()->action }}</i></h2>
