@@ -30,7 +30,11 @@
                     <option value="{{ $action->id }}">{{ $action->action }}</option>
                 @endforeach
             </select>
-            <input type="time" name="" id="" class="form-control">
+            <div class="reservation-time">
+                Забронировать на
+                <input type="range" min="1" max="72" name="" id="" class="form-control">
+                часов
+            </div>
             <br>
             <input type="button" value="Обновить статус" class="changeReservationStatus" data-place-id="{{ $reservation->place()->id }}" data-reservation-id="{{ $reservation->id }}" data-client-id="{{ $reservation->client()->id }}"
             @if($reservation->accepted == 2)
