@@ -32,7 +32,7 @@
             </select>
             <div class="reservation-time">
                 Забронировать на
-                <input type="range" min="1" max="72" name="" id="" class="form-control">
+                <input type="number" min="1" max="72" name="" id="" class="form-control">
                 часов
             </div>
             <br>
