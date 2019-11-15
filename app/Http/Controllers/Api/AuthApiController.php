@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class AuthApiController extends ApiBaseController
 {
