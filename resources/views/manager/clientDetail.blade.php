@@ -26,6 +26,13 @@
                             <div>
                                 Место <b>{{ $item->place()->place_number }}</b> ряд <b>{{ $item->place()->row }}</b> этаж <b>{{ $item->place()->floor }}</b> блок <b>{{ $item->place()->block }}</b>
                             </div>
+                            <div>
+                                Статус заявки: @if($lastAction->action()->type == "reservation")
+                                {{ $lastAction->action()->action }} на {{ $lastAction->timer }} ч.
+                                @else
+                                {{ $lastAction->action()->action }}
+                                @endif
+                            </div>
                         </div>
                     </li>
                 @endforeach
