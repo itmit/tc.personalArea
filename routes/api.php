@@ -42,3 +42,5 @@ Route::post('place/check-valid-place-number', 'Api\PlaceApiController@checkValid
 Route::post('place/makeReservation', 'Api\PlaceApiController@makeReservation');
 
 Route::post('question/store', 'Api\QuestionApiController@store');
+
+Route::post('admin/login', 'Api\AuthApiController@login');
