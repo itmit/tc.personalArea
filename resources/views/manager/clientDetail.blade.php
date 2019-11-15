@@ -17,7 +17,7 @@
             Заявки на бронирование:
             <ul>
                 @foreach ($reservation as $item)
-                    <li>Заявка на бронирование места {{ $item->place_id }}</li>
+                    <li>Заявка на бронирование места {{ $item->place_id }} ({{ $item->first_name }} {{ $item->last_name }})</li>
                 @endforeach
             </ul>
         </div>
