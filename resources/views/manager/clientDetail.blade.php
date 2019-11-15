@@ -31,6 +31,7 @@
         $(document).ready(function()
         {
             $(document).on('click', '.reservation-item', function() {
+                console.log('click');
                 $('.reservation-detail').closest().show();
             })
         })
