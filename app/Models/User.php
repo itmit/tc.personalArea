@@ -13,7 +13,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  */
 class User extends Authenticatable
 {
-    use EntrustUserTrait, Notifiable;
+    use EntrustUserTrait, HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
