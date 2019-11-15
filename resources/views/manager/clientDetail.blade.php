@@ -31,8 +31,7 @@
         $(document).ready(function()
         {
             $(document).on('click', '.reservation-item', function() {
-                console.log('click');
-                $('.reservation-detail').show();
+                $(this).find('.reservation-detail').show();
             })
         })
     </script>
