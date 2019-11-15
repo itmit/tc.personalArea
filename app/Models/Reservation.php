@@ -37,6 +37,6 @@ class Reservation extends Model
 
     public function history()
     {
-        return $this->belongsTo(ReservationHistory::class, 'id')->latest()->first();
+        return $this->hasOne(ReservationHistory::class, 'id')->latest()->first();
     }
 }
