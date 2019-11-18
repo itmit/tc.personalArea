@@ -4,7 +4,7 @@
 
     <h1>Место id {{ $place->id }}</h1>
     <div class="col-sm-12">
-        <a href="{{ url()->previous() }}">Назад</a>
+        <a href="/places">Назад</a>
     </div>
     <div class="col-sm-12">
         <form class="form-horizontal" method="POST" action="{{ route('auth.manager.place.store') }}">
