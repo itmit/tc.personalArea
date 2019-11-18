@@ -36,7 +36,7 @@
                 <label for="floor" class="col-md-4 control-label">Этаж</label>
     
                 <div class="col-md-6">
-                    <input type="text" name="" id="" value="{{ $place->floor }}" required>
+                    <input type="text" name="floor" id="floor" value="{{ $place->floor }}" required>
     
                     @if ($errors->has('floor'))
                         <span class="help-block">
