@@ -7,7 +7,7 @@
         <a href="{{ url()->previous() }}">Назад</a>
     </div>
     <div class="col-sm-12">
-        <form action="">
+        <form class="form-horizontal" method="POST" action="">
 
             <div class="form-group{{ $errors->has('block') ? ' has-error' : '' }}">
                 <label for="block" class="col-md-4 control-label">Блок</label>
@@ -44,25 +44,66 @@
                 </div>
             </div>
 
-            <div>
-                Ряд
-                <input type="text" name="" id=""  value="{{ $place->row }}">
+            <div class="form-group{{ $errors->has('row') ? ' has-error' : '' }}">
+                <label for="row" class="col-md-4 control-label">Ряд</label>
+    
+                <div class="col-md-6">
+                    <input type="text" name="row" id="row" value="{{ $place->row }}">
+    
+                    @if ($errors->has('row'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('row') }}</strong>
+                        </span>
+                    @endif
+                </div>
             </div>
-            <div>
-                Номер места
-                <input type="text" name="" id="" value="{{ $place->floor }}">
+
+            <div class="form-group{{ $errors->has('place_number') ? ' has-error' : '' }}">
+                <label for="row" class="col-md-4 control-label">Номер места</label>
+    
+                <div class="col-md-6">
+                    <input type="text" name="place_number" id="place_number" value="{{ $place->place_number }}">
+    
+                    @if ($errors->has('place_number'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('place_number') }}</strong>
+                        </span>
+                    @endif
+                </div>
             </div>
-            <div>
-                Статус
-                <select name="" id="">
-                    <option value="Свободен"  @if($place->status == "Свободен") selected @endif>Свободен</option>
-                    <option value="Арендован"  @if($place->block == "Арендован") selected @endif>Арендован</option>
-                </select>
+
+                
+            <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                <label for="status" class="col-md-4 control-label">Статус</label>
+    
+                <div class="col-md-6">
+                    <select name="" id="">
+                        <option value="Свободен"  @if($place->status == "Свободен") selected @endif>Свободен</option>
+                        <option value="Арендован"  @if($place->status == "Арендован") selected @endif>Арендован</option>
+                    </select>
+    
+                    @if ($errors->has('status'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('status') }}</strong>
+                        </span>
+                    @endif
+                </div>
             </div>
-            <div>
-                Цена
-                <input type="text" name="" id="" value="{{ $place->price }}">
+            
+            <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
+                <label for="price" class="col-md-4 control-label">Цена</label>
+    
+                <div class="col-md-6">
+                    <input type="text" name="price" id="price" value="{{ $place->price }}">
+    
+                    @if ($errors->has('price'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('price') }}</strong>
+                        </span>
+                    @endif
+                </div>
             </div>
+            
         </form> 
     </div>
 
