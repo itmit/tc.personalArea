@@ -13,7 +13,7 @@
                 <label for="block" class="col-md-4 control-label">Блок</label>
     
                 <div class="col-md-6">
-                    <select name="block" id="block">
+                    <select name="block" id="block" required autofocus>
                             <option value="Вещевые ряды" @if($place->block == "Вещевые ряды") selected @endif>Вещевые ряды</option>
                             <option value="Меха и кожа" @if($place->block == "Меха и кожа") selected @endif>Меха и кожа</option>
                             <option value="Новый ТЦ" @if($place->block == "Новый ТЦ") selected @endif>Новый ТЦ</option>
@@ -34,7 +34,7 @@
                 <label for="floor" class="col-md-4 control-label">Этаж</label>
     
                 <div class="col-md-6">
-                    <input type="text" name="" id="" value="{{ $place->floor }}">
+                    <input type="text" name="" id="" value="{{ $place->floor }}" required>
     
                     @if ($errors->has('floor'))
                         <span class="help-block">
@@ -48,7 +48,7 @@
                 <label for="row" class="col-md-4 control-label">Ряд</label>
     
                 <div class="col-md-6">
-                    <input type="text" name="row" id="row" value="{{ $place->row }}">
+                    <input type="text" name="row" id="row" value="{{ $place->row }}" required>
     
                     @if ($errors->has('row'))
                         <span class="help-block">
@@ -62,7 +62,7 @@
                 <label for="row" class="col-md-4 control-label">Номер места</label>
     
                 <div class="col-md-6">
-                    <input type="text" name="place_number" id="place_number" value="{{ $place->place_number }}">
+                    <input type="text" name="place_number" id="place_number" value="{{ $place->place_number }}" required>
     
                     @if ($errors->has('place_number'))
                         <span class="help-block">
@@ -77,7 +77,7 @@
                 <label for="status" class="col-md-4 control-label">Статус</label>
     
                 <div class="col-md-6">
-                    <select name="" id="">
+                    <select name="status" id="status" required>
                         <option value="Свободен"  @if($place->status == "Свободен") selected @endif>Свободен</option>
                         <option value="Арендован"  @if($place->status == "Арендован") selected @endif>Арендован</option>
                     </select>
@@ -94,7 +94,7 @@
                 <label for="price" class="col-md-4 control-label">Цена</label>
     
                 <div class="col-md-6">
-                    <input type="text" name="price" id="price" value="{{ $place->price }}">
+                    <input type="text" name="price" id="price" value="{{ $place->price }}" required> 
     
                     @if ($errors->has('price'))
                         <span class="help-block">
