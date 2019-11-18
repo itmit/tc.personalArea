@@ -254,6 +254,15 @@ class PlaceController extends Controller
                 ->withInput();
         }
 
-        return 'edited';
+        Place::where('id', '=', $request->id)->update([
+            'block' => $request->block,
+            'floor' => $request->floor,
+            'row' => $request->row,
+            'place_number' => $request->place_number,
+            'status' => $request->status,
+            'price' => $request->price,
+        ]);
+
+        return redirect()->route('auth.manager.place.edit', ['id' => $request->id]);
     }
 }
