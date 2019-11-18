@@ -33,7 +33,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::post('places/getPlacesByBlock', 'Web\PlaceController@getPlacesByBlock');
         Route::post('places/changePlaceStatus', 'Web\PlaceController@changePlaceStatus');
         Route::get('place/edit/{id}', 'Web\PlaceController@placeEditPage');
-        Route::post('place/edit/store/{id}', 'Web\PlaceController@placeEditStore');
+        Route::post('place/edit/store/{id}', 'Web\PlaceController@placeEditStore')->name('place.store');
         
         Route::delete('places/delete', 'Web\PlaceController@destroy');
 
