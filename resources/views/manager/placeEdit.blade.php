@@ -8,6 +8,7 @@
     </div>
     <div class="col-sm-12">
         <form class="form-horizontal" method="POST" action="{{ route('auth.manager.place.store') }}">
+            {{ csrf_field() }}
             <input type="hidden" name="id" value="{{ $place->id }}">
 
             <div class="form-group{{ $errors->has('block') ? ' has-error' : '' }}">
