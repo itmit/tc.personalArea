@@ -50,6 +50,7 @@ class AuthApiController extends ApiBaseController
                 $token->save();
 
                 return $this->sendResponse([
+                    'login' => Auth::user()->name,
                     'access_token' => $tokenResult->accessToken,
                     'token_type' => 'Bearer',
                     'expires_at' => Carbon::parse(
