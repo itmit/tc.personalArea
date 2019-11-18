@@ -30,10 +30,20 @@
                 </div>
             </div>
 
-            <div>
-                Этаж
-                <input type="text" name="" id="" value="{{ $place->floor }}">
+            <div class="form-group{{ $errors->has('floor') ? ' has-error' : '' }}">
+                <label for="floor" class="col-md-4 control-label">Этаж</label>
+    
+                <div class="col-md-6">
+                    <input type="text" name="" id="" value="{{ $place->floor }}">
+    
+                    @if ($errors->has('floor'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('floor') }}</strong>
+                        </span>
+                    @endif
+                </div>
             </div>
+
             <div>
                 Ряд
                 <input type="text" name="" id=""  value="{{ $place->row }}">
