@@ -32,6 +32,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
         Route::post('places/getPlacesByBlock', 'Web\PlaceController@getPlacesByBlock');
         Route::post('places/changePlaceStatus', 'Web\PlaceController@changePlaceStatus');
+        Route::post('place/edit/{$id}', 'Web\PlaceController@placeEdit');
         
         Route::delete('places/delete', 'Web\PlaceController@destroy');
 

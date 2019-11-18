@@ -217,4 +217,14 @@ class PlaceController extends Controller
 
         return response()->json(['Status updated']);
     }
+
+    /**
+     *
+     * Редактировать выбранное место
+     * 
+     */
+    public function placeEdit($id)
+    {
+        return $id;
+    }
 }

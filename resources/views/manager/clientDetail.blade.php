@@ -18,7 +18,7 @@
             <ul>
                 @foreach ($reservation as $item)
                     <li class="reservation-item" style="cursor: pointer">
-                        Заявка на бронирование места {{ $item->place_id }} 
+                        Заявка на бронирование места id {{ $item->place_id }} 
                         <div style="display: none" class="reservation-detail">
                             <div>
                                 Имя: {{ $item->first_name }} {{ $item->last_name }}

@@ -77,6 +77,7 @@
         <thead>
         <tr>
             <th><input type="checkbox" name="destroy-all-places" class="js-destroy-all"/></th>
+            <th><i class="material-icons">edit</i></th>
             <th>Блок</th>
             <th>Этаж</th>
             <th>Ряд</th>
@@ -89,6 +90,7 @@
         @foreach($places as $place)
             <tr @if($place->status == 'Арендован') style="background-color: #f7ecdd!important;" @endif @if($place->status == 'Забронировано') style="background-color: #ff8c00!important;" @endif>
                 <td><input type="checkbox" data-place-id="{{ $place->id }}" name="destoy-place-{{ $place->id }}" class="js-destroy"/></td>
+                <td><i class="material-icons"><a href="place/edit/{{ $place->id }}">edit</a></i></td>
                 <td>{{ $place->block }}</td>
                 <td>{{ $place->floor }}</td>
                 <td>{{ $place->row }}</td>
