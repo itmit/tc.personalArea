@@ -225,6 +225,8 @@ class PlaceController extends Controller
      */
     public function placeEdit($id)
     {
-        return $id;
+        return view("manager.placeEdit", [
+            'place' => Place::where('id', '=', $id)->get()
+        ]);
     }
 }
