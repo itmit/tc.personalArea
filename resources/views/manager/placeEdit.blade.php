@@ -11,12 +11,12 @@
             <div>
                 Блок
                 <select name="" id="">
-                    <option value="Вещевые ряды">Вещевые ряды</option>
-                    <option value="Меха и кожа">Меха и кожа</option>
-                    <option value="Новый ТЦ">Новый ТЦ</option>
-                    <option value="ТЦ 'Садовод'">ТЦ 'Садовод'</option>
-                    <option value="Свадебная галерея 'САЛЮТ'">Свадебная галерея 'САЛЮТ'</option>
-                    <option value="Ковры и текстиль">Ковры и текстиль</option>
+                    <option value="Вещевые ряды" @if($place->block == "Вещевые ряды") selected @endif>Вещевые ряды</option>
+                    <option value="Меха и кожа" @if($place->block == "Меха и кожа") selected @endif>Меха и кожа</option>
+                    <option value="Новый ТЦ" @if($place->block == "Новый ТЦ") selected @endif>Новый ТЦ</option>
+                    <option value="ТЦ 'Садовод'" @if($place->block == "ТЦ 'Садовод'") selected @endif>ТЦ 'Садовод'</option>
+                    <option value="Свадебная галерея 'САЛЮТ'" @if($place->block == "Свадебная галерея 'САЛЮТ'") selected @endif>Свадебная галерея 'САЛЮТ'</option>
+                    <option value="Ковры и текстиль" @if($place->block == "Ковры и текстиль") selected @endif>Ковры и текстиль</option>
                 </select>
             </div>
             <div>
