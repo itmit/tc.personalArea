@@ -249,7 +249,7 @@ class PlaceController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('auth.manager.place.edit')
+                ->route('auth.manager.place.edit'.$request->id)
                 ->withErrors($validator)
                 ->withInput();
         }
