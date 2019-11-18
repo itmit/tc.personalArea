@@ -7,7 +7,7 @@
         <a href="{{ url()->previous() }}">Назад</a>
     </div>
     <div class="col-sm-12">
-        <form class="form-horizontal" method="POST" action="{{ route('auth.manager.place.edit) }}">
+        <form class="form-horizontal" method="POST" action="{{ route('auth.manager.place.edit') }}">
 
             <div class="form-group{{ $errors->has('block') ? ' has-error' : '' }}">
                 <label for="block" class="col-md-4 control-label">Блок</label>
