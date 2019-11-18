@@ -20,7 +20,7 @@
             </div>
             <div>
                 Ряд
-                <input type="text" name="" id="">
+                <input type="text" name="" id=""  value="{{ $place->row }}">
             </div>
             <div>
                 Номер места
