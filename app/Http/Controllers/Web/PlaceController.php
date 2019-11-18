@@ -235,10 +235,25 @@ class PlaceController extends Controller
      * Редактировать выбранное место
      * 
      */
-    public function placeEditStore($id)
+    public function placeEditStore(Request $request)
     {
-        return view("manager.placeEdit", [
-            'place' => Place::where('id', '=', $id)->first()
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'block' => 'required',
+            'floor' => 'required',
+            'row' => 'required',
+            'place_number' => 'required',
+            'status' => 'required',
+            'price' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.manager.place.edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        return 'edited';
     }
 }

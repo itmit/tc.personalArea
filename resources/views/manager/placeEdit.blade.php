@@ -60,7 +60,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('place_number') ? ' has-error' : '' }}">
-                <label for="row" class="col-md-4 control-label">Номер места</label>
+                <label for="place_number" class="col-md-4 control-label">Номер места</label>
     
                 <div class="col-md-6">
                     <input type="text" name="place_number" id="place_number" value="{{ $place->place_number }}" required>
