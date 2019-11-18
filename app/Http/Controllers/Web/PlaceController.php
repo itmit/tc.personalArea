@@ -220,10 +220,22 @@ class PlaceController extends Controller
 
     /**
      *
+     * Страница редактирования места
+     * 
+     */
+    public function placeEditPage($id)
+    {
+        return view("manager.placeEdit", [
+            'place' => Place::where('id', '=', $id)->first()
+        ]);
+    }
+
+    /**
+     *
      * Редактировать выбранное место
      * 
      */
-    public function placeEdit($id)
+    public function placeEditPage($id)
     {
         return view("manager.placeEdit", [
             'place' => Place::where('id', '=', $id)->first()
