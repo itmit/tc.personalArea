@@ -22,7 +22,7 @@
                 @endif
             </i></h2>
             @if($lastAction->action()->type == "reservation")
-                <h3>Осталось: <span class="reservation-time-left" data-timer="{{ $ends_at }}"></span> м</h3>
+                <h3>Осталось: <span class="reservation-time-left" data-timer="{{ $ends_at }}"></span></h3>
             @endif
             <select name="new-status"
             @if($reservation->accepted == 2 || $reservation->accepted == 3)
