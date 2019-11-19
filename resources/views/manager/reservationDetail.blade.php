@@ -70,6 +70,9 @@
     <script>
         $(document).ready(function()
         {
+            let date = new Date($.now());
+            console.log(date);
+            console.log('alert');
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
                 let reservation_id = $(this).data('reservationId');
@@ -103,9 +106,6 @@
                     $('.reservation-time').hide();
                 }
             })
-
-            let date = new Date($.now());
-            console.log(date);
         })
     </script>
 
