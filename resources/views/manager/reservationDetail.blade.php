@@ -74,7 +74,7 @@
             let ends_at = $('.reservation-time-left').data('timer');
 
             var absoluteDifference = (ends_at-now)/60
-            console.log(absoluteDifference);
+            $('.reservation-time-left').html(absoluteDifference + ' м');
 
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
