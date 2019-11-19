@@ -75,18 +75,16 @@
 
             let absoluteDifference = (ends_at-now)/60;
 
-            $('.reservation-time-left').html(Math.round(absoluteDifference).toFixed(2) + ' м')
+            $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м')
 
             setTimeout(function run() {
                 let now = parseInt(Date.now() / 1000 + 10800);
                 let ends_at = $('.reservation-time-left').data('timer');
 
                 let absoluteDifference = (ends_at-now)/60;
-                $('.reservation-time-left').html(Math.round(absoluteDifference).toFixed(2) + ' м');
+                $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м');
                 setTimeout(run, 100);
             }, 100);
-            // let timerId = setInterval(() => $('.reservation-time-left').html(absoluteDifference + ' м'), 1000);
-            
 
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
