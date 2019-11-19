@@ -70,7 +70,7 @@
     <script>
         $(document).ready(function()
         {
-            let now = $.now();
+            let now = new Date();
             let ends_at = $('.reservation-time-left').data('timer')
             console.log(now + ' ' + ends_at);
 
