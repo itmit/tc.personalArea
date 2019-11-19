@@ -73,10 +73,15 @@
             let now = parseInt(Date.now() / 1000 + 10800);
             let ends_at = $('.reservation-time-left').data('timer');
 
-            var absoluteDifference = (ends_at-now)/60;
-            $('.reservation-time-left').html(absoluteDifference + ' м')
+            let absoluteDifference = (ends_at-now)/60;
+
+            // $('.reservation-time-left').html(absoluteDifference + ' м')
 
             setTimeout(function run() {
+                let now = parseInt(Date.now() / 1000 + 10800);
+                let ends_at = $('.reservation-time-left').data('timer');
+
+                let absoluteDifference = (ends_at-now)/60;
                 $('.reservation-time-left').html(absoluteDifference + ' м');
                 setTimeout(run, 100);
             }, 100);
