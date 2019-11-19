@@ -30,6 +30,12 @@
                     @if($action->id == $lastAction->action()->id)
                         @continue
                     @endif
+                    @if($lastAction->action()->type == 'reservation' && $action->type == 'cancelBeforeReservation')
+                        @continue
+                    @endif
+                    @if($lastAction->action()->type == 'create' && $action->type == 'cancelAfterReservation')
+                        @continue
+                    @endif
                     @if($action->action == 'создание')
                         @continue
                     @endif
