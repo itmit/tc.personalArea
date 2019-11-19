@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-        DB::table('actions')->get();
+        DB::table('users')->where('id', '=', 6)->delete();
         })->everyMinute()->when(function () {
             return true;
         });;
