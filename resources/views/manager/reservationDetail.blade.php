@@ -73,8 +73,9 @@
             let now = parseInt(Date.now() / 1000 + 10800);
             let ends_at = $('.reservation-time-left').data('timer');
 
-            var absoluteDifference = (ends_at-now)/60
-            $('.reservation-time-left').html(absoluteDifference + ' м');
+            var absoluteDifference = (ends_at-now)/60;
+            let timerId = setInterval(() => $('.reservation-time-left').html(absoluteDifference + ' м'), 1000);
+            
 
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
