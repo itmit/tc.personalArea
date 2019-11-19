@@ -73,10 +73,7 @@
             let now = parseInt(Date.now() / 1000 + 10800);
             let ends_at = $('.reservation-time-left').data('timer');
 
-            let dateA = new Date(now);
-            let dateB = new Date(ends_at);
-
-            var absoluteDifference = (b-a)/60
+            var absoluteDifference = (ends_at-now)/60
             console.log(absoluteDifference);
 
             $(document).on('click', '.changeReservationStatus', function() {
