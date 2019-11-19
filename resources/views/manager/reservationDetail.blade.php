@@ -83,8 +83,8 @@
 
                 let absoluteDifference = (ends_at-now)/60;
                 $('.reservation-time-left').html(round(absoluteDifference, 2) + ' м');
-                setTimeout(run, 100);
-            }, 100);
+                setTimeout(run, 1000);
+            }, 1000);
             // let timerId = setInterval(() => $('.reservation-time-left').html(absoluteDifference + ' м'), 1000);
             
 
