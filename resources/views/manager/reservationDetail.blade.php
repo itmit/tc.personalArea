@@ -75,6 +75,8 @@
 
             let absoluteDifference = (ends_at-now)/60;
 
+            console.log(absoluteDifference);
+
             let secs = (absoluteDifference.toString().includes('.')) ? (absoluteDifference.toString().split('.').pop()) : (0)
             $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
 
