@@ -5,6 +5,11 @@ namespace App\Console;
 use DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\Place;
+use App\Models\Reservation;
+use App\Models\ReservationHistory;
+use App\Models\Actions;
+use App\Models\Client;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,7 +31,23 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-        DB::table('users')->where('id', '=', 6)->delete();
+            $reservations = Reservation::where('accepted', '=', '1')->get();
+            foreach($reservations as $item)
+            {
+                $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
+                if($history->action()->type == "reservation")
+                {
+                    $stats_at = strtotime($lastAction->created_at->timezone('Europe/Moscow'));
+                    $ends_at = strtotime($lastAction->created_at->timezone('Europe/Moscow') . " + " . $lastAction->timer ." hours");
+                    if($ends_at <= $stats_at)
+                    {
+                        Reservation::where('id', '=', $item->id)->update([
+                            'accepted' => 2
+                        ]);
+                    }
+                }
+            }
+
         })->everyMinute()->when(function () {
             return true;
         });;
