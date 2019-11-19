@@ -104,7 +104,8 @@
                 }
             })
 
-
+            let date = new Date($.now());
+            console.log(date);
         })
     </script>
 
