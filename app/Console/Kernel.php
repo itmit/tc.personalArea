@@ -37,8 +37,8 @@ class Kernel extends ConsoleKernel
                 $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
                 if($history->action()->type == "reservation")
                 {
-                    $stats_at = strtotime($lastAction->created_at->timezone('Europe/Moscow'));
-                    $ends_at = strtotime($lastAction->created_at->timezone('Europe/Moscow') . " + " . $lastAction->timer ." hours");
+                    $stats_at = strtotime($history->created_at->timezone('Europe/Moscow'));
+                    $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
                     if($ends_at <= $stats_at)
                     {
                         Reservation::where('id', '=', $item->id)->update([
