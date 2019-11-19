@@ -74,11 +74,8 @@
             let ends_at = $('.reservation-time-left').data('timer');
 
             let absoluteDifference = (ends_at-now)/60;
-
-            // console.log(absoluteDifference);
-
             let secs = absoluteDifference%1*60;
-            $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
+            $('.reservation-time-left').html(parseInt(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
 
             setTimeout(function run() {
                 let now = parseInt(Date.now() / 1000 + 10800);
@@ -86,7 +83,7 @@
 
                 let absoluteDifference = (ends_at-now)/60;
                 let secs = absoluteDifference%1*60;
-                $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
+                $('.reservation-time-left').html(parseInt(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
                 if(absoluteDifference == 0)
                 {
                     return
