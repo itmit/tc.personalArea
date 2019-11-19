@@ -75,14 +75,14 @@
 
             let absoluteDifference = (ends_at-now)/60;
 
-            $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м')
+            $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м ' + (absoluteDifference.toString().includes('.')) ? (absoluteDifference.toString().split('.').pop().length) : (0));
 
             setTimeout(function run() {
                 let now = parseInt(Date.now() / 1000 + 10800);
                 let ends_at = $('.reservation-time-left').data('timer');
 
                 let absoluteDifference = (ends_at-now)/60;
-                $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м');
+                $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м ' + (absoluteDifference.toString().includes('.')) ? (absoluteDifference.toString().split('.').pop().length) : (0));
                 if(absoluteDifference == 0)
                 {
                     return
