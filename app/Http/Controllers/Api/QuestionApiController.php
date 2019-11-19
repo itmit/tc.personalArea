@@ -9,6 +9,12 @@ use App\Models\Question;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Place;
+use App\Models\Reservation;
+use App\Models\ReservationHistory;
+use App\Models\Actions;
+use App\Models\Client;
+
 class QuestionApiController extends ApiBaseController
 {
     public function store(Request $request)
@@ -30,5 +36,25 @@ class QuestionApiController extends ApiBaseController
         ]);
 
         return $this->sendResponse([], 'Stored');
+    }
+
+    public function test()
+    {
+        $reservations = Reservation::where('accepted', '=', '1')->get();
+        foreach($reservations as $item)
+        {
+            $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
+            if($history->action()->type == "reservation")
+            {
+                $stats_at = strtotime($history->created_at->timezone('Europe/Moscow'));
+                $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
+                if($ends_at <= $stats_at)
+                {
+                    Reservation::where('id', '=', $item->id)->update([
+                        'accepted' => 2
+                    ]);
+                }
+            }
+        }
     }
 }
