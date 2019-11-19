@@ -78,7 +78,11 @@
             if(absoluteDifference > 0)
             {
                 $('.reservation-time-left').html(parseInt(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
-            }       
+            }      
+            else
+            {
+                $('.reservation-time-left').html('<p style="color:red">Время бронирования вышло!</p>');
+            } 
 
             setTimeout(function run() {
                 let now = parseInt(Date.now() / 1000 + 10800);
