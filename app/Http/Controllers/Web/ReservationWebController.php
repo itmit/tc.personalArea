@@ -184,7 +184,7 @@ class ReservationWebController extends Controller
         $actions = Actions::all();
         if($lastAction->action()->type == "reservation")
         {
-            $ends_at = $lastAction->timer;
+            $ends_at =strtotime($lastAction->created_at . " + " . $lastAction->timer ." hours");
         }
         else
         {
