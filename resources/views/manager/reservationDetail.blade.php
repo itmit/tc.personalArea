@@ -76,9 +76,8 @@
             let dateA = new Date(now);
             let dateB = new Date(ends_at);
 
-            let dayRelativeDifference =   dateB.getHours()*60 + dateB.getMinutes()
-                            - dateA.getHours()*60 - dateA.getMinutes();
-            console.log(dayRelativeDifference);
+            var absoluteDifference = (b-a)/60
+            console.log(absoluteDifference);
 
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
