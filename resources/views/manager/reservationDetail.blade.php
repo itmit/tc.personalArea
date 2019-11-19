@@ -83,6 +83,10 @@
 
                 let absoluteDifference = (ends_at-now)/60;
                 $('.reservation-time-left').html(Math.round(absoluteDifference) + ' м');
+                if(absoluteDifference == 0)
+                {
+                    return
+                }
                 setTimeout(run, 100);
             }, 100);
 
