@@ -21,7 +21,9 @@
                 {{ $lastAction->action()->action }}
                 @endif
             </i></h2>
-            <h3>Осталось: <span class="reservation-time-left" data-timer="{{ $ends_at }}"></span> м</h3>
+            @if($lastAction->action()->type == "reservation")
+                <h3>Осталось: <span class="reservation-time-left" data-timer="{{ $ends_at }}"></span> м</h3>
+            @endif
             <select name="new-status"
             @if($reservation->accepted == 2 || $reservation->accepted == 3)
                 disabled title="Заявка закрыта и не может быть изменена"
