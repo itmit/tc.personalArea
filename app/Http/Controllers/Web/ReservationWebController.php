@@ -185,7 +185,7 @@ class ReservationWebController extends Controller
         if($lastAction->action()->type == "reservation")
         {
             $ends_at =strtotime($lastAction->created_at->timezone('Europe/Moscow') . " + " . $lastAction->timer ." hours");
-            $ends_at = gmdate("Y-m-d H:i:s", $ends_at);
+            // $ends_at = gmdate("Y-m-d H:i:s", $ends_at);
         }
         else
         {

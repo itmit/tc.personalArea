@@ -70,9 +70,10 @@
     <script>
         $(document).ready(function()
         {
-            let date = new Date($.now());
-            console.log(date);
-            console.log('alert');
+            let now = $.now();
+            let ends_at = $('.reservation-time-left').data('timer')
+            console.log(now + ' ' + ends_at);
+
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
                 let reservation_id = $(this).data('reservationId');
