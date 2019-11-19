@@ -182,12 +182,22 @@ class ReservationWebController extends Controller
         $history = ReservationHistory::where('bid', '=', $id)->get();
         $lastAction = ReservationHistory::where('bid', '=', $id)->latest()->first();
         $actions = Actions::all();
+        if($lastAction->action()->type == "reservation")
+        {
+            $ends_at = $lastAction->timer;
+        }
+        else
+        {
+            $ends_at = 0;
+        }
+        
 
         return view("manager.reservationDetail", [
             'reservation' => $reservation,
             'history' => $history,
             'lastAction' => $lastAction,
             'actions' => $actions,
+            'ends_at' => $ends_at
         ]);
     }
 
