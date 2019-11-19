@@ -71,8 +71,13 @@
         $(document).ready(function()
         {
             let now = parseInt(Date.now() / 1000 + 10800);
-            let ends_at = $('.reservation-time-left').data('timer')
-            let dayRelativeDifference = now.getHours()*60 + ends_at.getMinutes() - now.getHours()*60 - ends_at.getMinutes();
+            let ends_at = $('.reservation-time-left').data('timer');
+
+            let dateA = new Date(now);
+            let dateB = new Date(ends_at);
+
+            let dayRelativeDifference =   dateB.getHours()*60 + dateB.getMinutes()
+                            - dateA.getHours()*60 - dateA.getMinutes();
             console.log(dayRelativeDifference);
 
             $(document).on('click', '.changeReservationStatus', function() {
