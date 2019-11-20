@@ -1,7 +1,6 @@
 <?php
 namespace App\Console\Commands;
 
-require_once __DIR__.'/../../../vendor/autoload.php';
 use Illuminate\Console\Command;
 use App\Models\Place;
 use App\Models\Reservation;
