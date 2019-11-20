@@ -1,14 +1,14 @@
 <?php
-
 namespace App\Console\Commands;
 
+require_once __DIR__.'/../../../vendor/autoload.php';
 use Illuminate\Console\Command;
 use App\Models\Place;
 use App\Models\Reservation;
 use App\Models\ReservationHistory;
 use App\Models\Actions;
 use App\Models\Client;
-require __DIR__.'/../../../vendor/autoload.php';
+
 
 class everyMinute extends Command
 {
