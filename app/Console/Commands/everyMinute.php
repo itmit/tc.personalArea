@@ -74,8 +74,8 @@ class everyMinute extends Command
 
                     Place::where('id', '=', $item->place_id)->update([
                         'status' => 'Свободен'
-                    ])
-                }
+                    ]);
+                };
             }
         }
         // return true;
