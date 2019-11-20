@@ -71,6 +71,10 @@ class everyMinute extends Command
                     Client::where('id', '=', $item->client)->update([
                         'rating' => $newRating
                     ]);
+
+                    Place::where('id', '=', $item->place_id)->update([
+                        'status' => 'Свободен'
+                    ])
                 }
             }
         }
