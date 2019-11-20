@@ -63,6 +63,7 @@ class Kernel extends ConsoleKernel
                     }
                 }
             }
+            return true;
         })->everyMinute()->when(function () {
             return true;
         });;
