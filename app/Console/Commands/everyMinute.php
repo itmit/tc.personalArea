@@ -8,6 +8,7 @@ use App\Models\Reservation;
 use App\Models\ReservationHistory;
 use App\Models\Actions;
 use App\Models\Client;
+require __DIR__.'/../../../vendor/autoload.php';
 
 class everyMinute extends Command
 {
