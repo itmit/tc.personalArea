@@ -48,14 +48,14 @@ class QuestionApiController extends ApiBaseController
             {
                 $now = time() + 10800;
                 $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
-                $diff = ((int) $ends_at - $now) / 60;
-                return 'id: ' . $item->id . ' now: ' . $now . ' end: ' . $ends_at . ' diff: ' . $diff;
-                // if($ends_at <= $stats_at)
-                // {
-                //     Reservation::where('id', '=', $item->id)->update([
-                //         'accepted' => 2
-                //     ]);
-                // }
+                $diff = (int) $ends_at - $now;
+                
+                if($diff <= 0)
+                {
+                    Reservation::where('id', '=', $item->id)->update([
+                        'accepted' => 2
+                    ]);
+                }
             }
         }
     }
