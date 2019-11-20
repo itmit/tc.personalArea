@@ -41,6 +41,7 @@ class QuestionApiController extends ApiBaseController
     public function test()
     {
         $reservations = Reservation::where('accepted', '=', '1')->get();
+        $action = Actions::where('type', '=', 'cancelByExpiredTime')->first();
         foreach($reservations as $item)
         {
             $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
@@ -52,8 +53,21 @@ class QuestionApiController extends ApiBaseController
                 
                 if($diff <= 0)
                 {
+                    $rating = Client::where('id', '=', $item->client)->first(['rating']);
+
                     Reservation::where('id', '=', $item->id)->update([
                         'accepted' => 2
+                    ]);
+
+                    ReservationHistory::create([
+                        'bid' => $item->id,
+                        'action' => $action->id
+                    ]);
+
+                    $newRating = $rating->rating + $action->points;
+
+                    Client::where('id', '=', $item->client)->update([
+                        'rating' => $newRating
                     ]);
                 }
             }
