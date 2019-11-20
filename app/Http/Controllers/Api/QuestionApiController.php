@@ -49,7 +49,7 @@ class QuestionApiController extends ApiBaseController
                 $now = time();
                 $stats_at = strtotime($history->created_at->timezone('Europe/Moscow'));
                 $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
-                return 'now: ' . $now . ' end: ' . $ends_at . ' diff: ';
+                return 'id: ' . $item->id . 'now: ' . $now . ' end: ' . $ends_at . ' diff: ';
                 // if($ends_at <= $stats_at)
                 // {
                 //     Reservation::where('id', '=', $item->id)->update([
