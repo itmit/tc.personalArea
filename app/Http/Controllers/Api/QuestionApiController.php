@@ -46,8 +46,7 @@ class QuestionApiController extends ApiBaseController
             $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
             if($history->action()->type == "reservation")
             {
-                $now = date_create();
-                $now = date_timestamp_get($now);
+                $now = time();
                 $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
                 return 'id: ' . $item->id . ' now: ' . $now . ' end: ' . $ends_at . ' diff: ' ;
                 // if($ends_at <= $stats_at)
