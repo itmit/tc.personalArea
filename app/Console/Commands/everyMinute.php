@@ -74,6 +74,6 @@ class everyMinute extends Command
                 }
             }
         }
-        return true;
+        // return true;
     }
 }
