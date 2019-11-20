@@ -39,7 +39,7 @@
                     @if($lastAction->action()->type == 'create' && $action->type == 'cancelAfterReservation')
                         @continue
                     @endif
-                    @if($action->action == 'создание')
+                    @if($action->action()->type == 'create' || $action->action()->type == 'cancelByExpiredTime')
                         @continue
                     @endif
                     <option value="{{ $action->id }}" data-action="{{ $action->type }}">{{ $action->action }}</option>
