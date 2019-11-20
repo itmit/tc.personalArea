@@ -78,32 +78,31 @@
             if(absoluteDifference > 0)
             {
                 $('.reservation-time-left').html(parseInt(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
+                setTimeout(function run() {
+                    let now = parseInt(Date.now() / 1000 + 10800);
+                    // let ends_at = $('.reservation-time-left').data('timer');
+
+                    let absoluteDifference = (ends_at-now)/60;
+                    let secs = absoluteDifference%1*60;
+                    if(absoluteDifference > 0)
+                    {
+                        $('.reservation-time-left').html(parseInt(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
+                    }      
+                    else
+                    {
+                        $('.reservation-time-left').html('<p style="color:red">Время бронирования вышло!</p>');
+                    } 
+                    if(absoluteDifference <= 0)
+                    {
+                        location.reload();
+                    }
+                    setTimeout(run, 100);
+                }, 100);
             }      
             else
             {
                 $('.reservation-time-left').html('<p style="color:red">Время бронирования вышло!</p>');
             } 
-
-            setTimeout(function run() {
-                let now = parseInt(Date.now() / 1000 + 10800);
-                let ends_at = $('.reservation-time-left').data('timer');
-
-                let absoluteDifference = (ends_at-now)/60;
-                let secs = absoluteDifference%1*60;
-                if(absoluteDifference > 0)
-                {
-                    $('.reservation-time-left').html(parseInt(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
-                }      
-                else
-                {
-                    $('.reservation-time-left').html('<p style="color:red">Время бронирования вышло!</p>');
-                } 
-                if(absoluteDifference <= 0)
-                {
-                    return
-                }
-                setTimeout(run, 100);
-            }, 100);
 
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
