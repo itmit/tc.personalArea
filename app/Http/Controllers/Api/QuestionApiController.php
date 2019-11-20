@@ -48,12 +48,13 @@ class QuestionApiController extends ApiBaseController
             {
                 $stats_at = strtotime($history->created_at->timezone('Europe/Moscow'));
                 $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
-                if($ends_at <= $stats_at)
-                {
-                    Reservation::where('id', '=', $item->id)->update([
-                        'accepted' => 2
-                    ]);
-                }
+                return 'start: ' . $stats_at . ' end: ' . $ends_at;
+                // if($ends_at <= $stats_at)
+                // {
+                //     Reservation::where('id', '=', $item->id)->update([
+                //         'accepted' => 2
+                //     ]);
+                // }
             }
         }
     }
