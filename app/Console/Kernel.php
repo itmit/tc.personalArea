@@ -32,22 +32,37 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $reservations = Reservation::where('accepted', '=', '1')->get();
+            $action = Actions::where('type', '=', 'cancelByExpiredTime')->first();
             foreach($reservations as $item)
             {
                 $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
                 if($history->action()->type == "reservation")
                 {
-                    $stats_at = strtotime($history->created_at->timezone('Europe/Moscow'));
+                    $now = time() + 10800;
                     $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
-                    if($ends_at <= $stats_at)
+                    $diff = (int) $ends_at - $now;
+                    
+                    if($diff <= 0)
                     {
+                        $rating = Client::where('id', '=', $item->client)->first(['rating']);
+
                         Reservation::where('id', '=', $item->id)->update([
                             'accepted' => 2
+                        ]);
+
+                        ReservationHistory::create([
+                            'bid' => $item->id,
+                            'action' => $action->id
+                        ]);
+
+                        $newRating = $rating->rating + $action->points;
+
+                        Client::where('id', '=', $item->client)->update([
+                            'rating' => $newRating
                         ]);
                     }
                 }
             }
-
         })->everyMinute()->when(function () {
             return true;
         });;
