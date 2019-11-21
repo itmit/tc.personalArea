@@ -9,7 +9,7 @@
         "ext-json": "*",
         "asan/phpexcel": "^2.0",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.7.*",
+        "laravel/framework": "5.6.*",
         "laravel/passport": "^7.5",
         "laravel/tinker": "~1.0",
         "webpatser/laravel-uuid": "^3.0",
