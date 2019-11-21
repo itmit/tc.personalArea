@@ -62,7 +62,7 @@ class PlaceApiController extends ApiBaseController
             }
             else
             {
-                $place['reservation'] = 0;
+                $place['reservation'] = NULL;
             }
         }
         
