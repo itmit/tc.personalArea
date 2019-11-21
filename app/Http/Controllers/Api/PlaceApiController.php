@@ -54,8 +54,8 @@ class PlaceApiController extends ApiBaseController
             ->where('block', '=', $block)
             ->where('status', '=', $status)->get();
         $reservations = Reservation::where('accepted', '=', '1')->get();
-        foreach ($reservations as $reservation) {
-            foreach($places as $place)
+        foreach ($places as $place) {
+            foreach($reservations as $reservation)
             {
                 if($reservation->place_id == $place->id && $reservation->history()->action == $actions->id)
                 {
