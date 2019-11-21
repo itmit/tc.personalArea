@@ -60,7 +60,7 @@ class PlaceApiController extends ApiBaseController
             ])->first();
             if($reservation != NULL && $reservation->accepted == 1)
             {
-                $place['reservation'] = $reservation->history()->id;
+                $place['reservation'] = $reservation->id;
             }
             else
             {
