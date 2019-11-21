@@ -34,4 +34,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(Client::class, 'client')->get()->first();
     }
+
+    public function history()
+    {
+        return $this->hasOne(ReservationHistory::class, 'id')->latest()->first();
+    }
 }

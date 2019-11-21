@@ -17,10 +17,31 @@
             Заявки на бронирование:
             <ul>
                 @foreach ($reservation as $item)
-                    <li>Заявка на бронирование места {{ $item->place_id }}</li>
+                    <li class="reservation-item" style="cursor: pointer">
+                        Заявка на бронирование места id {{ $item->place_id }} 
+                        <div style="display: none" class="reservation-detail">
+                            <div>
+                                Имя: {{ $item->first_name }} {{ $item->last_name }}
+                            </div>
+                            <div>
+                                Место <b>{{ $item->place()->place_number }}</b> ряд <b>{{ $item->place()->row }}</b> этаж <b>{{ $item->place()->floor }}</b> блок <b>{{ $item->place()->block }}</b>
+                            </div>
+                            <div>
+                                {{-- Статус заявки: {{ $item->history()->action }} --}}
+                            </div>
+                        </div>
+                    </li>
+                    <hr>
                 @endforeach
             </ul>
         </div>
     </div>
-
+    <script>
+        $(document).ready(function()
+        {
+            $(document).on('click', '.reservation-item', function() {
+                $(this).find('.reservation-detail').show();
+            })
+        })
+    </script>
 @endsection

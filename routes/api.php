@@ -44,3 +44,5 @@ Route::post('place/makeReservation', 'Api\PlaceApiController@makeReservation');
 Route::post('question/store', 'Api\QuestionApiController@store');
 
 Route::post('admin/login', 'Api\AuthApiController@login');
+
+Route::get('test', 'Api\QuestionApiController@test');

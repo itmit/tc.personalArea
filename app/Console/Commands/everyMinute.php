@@ -1,44 +1,46 @@
 <?php
+namespace App\Console\Commands;
 
-namespace App\Http\Controllers\Api;
-
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
-use App\Models\Question;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Console\Command;
 use App\Models\Place;
 use App\Models\Reservation;
 use App\Models\ReservationHistory;
 use App\Models\Actions;
 use App\Models\Client;
 
-class QuestionApiController extends ApiBaseController
+
+class everyMinute extends Command
 {
-    public function store(Request $request)
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'minute:update';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'phone_number' => 'required',
-            'text' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->sendError($validator->errors(), "Validation error", 401);
-        }
-
-        Question::create([
-            'name' => $request->input('name'),
-            'phone_number' => $request->input('phone_number'),
-            'text' => $request->input('text')
-        ]);
-
-        return $this->sendResponse([], 'Stored');
+        parent::__construct();
     }
 
-    public function test()
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
     {
         $reservations = Reservation::where('accepted', '=', '1')->get();
         $action = Actions::where('type', '=', 'cancelByExpiredTime')->first();
@@ -69,8 +71,13 @@ class QuestionApiController extends ApiBaseController
                     Client::where('id', '=', $item->client)->update([
                         'rating' => $newRating
                     ]);
-                }
+
+                    Place::where('id', '=', $item->place_id)->update([
+                        'status' => 'Свободен'
+                    ]);
+                };
             }
         }
+        // return true;
     }
 }

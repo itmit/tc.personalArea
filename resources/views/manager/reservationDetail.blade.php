@@ -21,6 +21,9 @@
                 {{ $lastAction->action()->action }}
                 @endif
             </i></h2>
+            @if($lastAction->action()->type == "reservation")
+                <h3>Осталось: <span class="reservation-time-left" data-timer="{{ $ends_at }}"></span></h3>
+            @endif
             <select name="new-status"
             @if($reservation->accepted == 2 || $reservation->accepted == 3)
                 disabled title="Заявка закрыта и не может быть изменена"
@@ -30,7 +33,13 @@
                     @if($action->id == $lastAction->action()->id)
                         @continue
                     @endif
-                    @if($action->action == 'создание')
+                    @if($lastAction->action()->type == 'reservation' && $action->type == 'cancelBeforeReservation')
+                        @continue
+                    @endif
+                    @if($lastAction->action()->type == 'create' && $action->type == 'cancelAfterReservation')
+                        @continue
+                    @endif
+                    @if($action->type == 'create' || $action->type == 'cancelByExpiredTime')
                         @continue
                     @endif
                     <option value="{{ $action->id }}" data-action="{{ $action->type }}">{{ $action->action }}</option>
@@ -61,6 +70,40 @@
     <script>
         $(document).ready(function()
         {
+            let now = parseInt(Date.now() / 1000 + 10800);
+            let ends_at = $('.reservation-time-left').data('timer');
+
+            let absoluteDifference = (ends_at-now)/60;
+            let secs = absoluteDifference%1*60;
+            if(absoluteDifference > 0)
+            {
+                $('.reservation-time-left').html(parseInt(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
+                setTimeout(function run() {
+                    let now = parseInt(Date.now() / 1000 + 10800);
+                    // let ends_at = $('.reservation-time-left').data('timer');
+
+                    let absoluteDifference = (ends_at-now)/60;
+                    let secs = absoluteDifference%1*60;
+                    if(absoluteDifference > 0)
+                    {
+                        $('.reservation-time-left').html(parseInt(absoluteDifference) + ' м ' + Math.round(secs) + ' с');
+                    }      
+                    else
+                    {
+                        $('.reservation-time-left').html('<p style="color:red">Время бронирования вышло!</p>');
+                    } 
+                    if(absoluteDifference <= 0)
+                    {
+                        location.reload();
+                    }
+                    setTimeout(run, 100);
+                }, 100);
+            }      
+            else
+            {
+                $('.reservation-time-left').html('<p style="color:red">Время бронирования вышло!</p>');
+            } 
+
             $(document).on('click', '.changeReservationStatus', function() {
                 let new_status = $("[name='new-status']").val();
                 let reservation_id = $(this).data('reservationId');

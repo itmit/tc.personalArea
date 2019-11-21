@@ -125,6 +125,10 @@
                     <li><a href="{{ route('auth.manager.places.index') }}">Места</a></li>
                     @endability
 
+                    @ability('super-admin,manager', 'show-reservation-places-list')
+                    <li><a href="{{ route('auth.manager.reservation.index') }}">Заявки на бронь</a></li>
+                    @endability
+
                     @ability('super-admin,manager', 'show-bid-for-sale-list')
                     <li><a href="{{ route('auth.manager.bidForSale.index') }}">Заявки на аренду помещения</a></li>
                     @endability
@@ -133,12 +137,8 @@
                     <li><a href="{{ route('auth.manager.bidForBuy.index') }}">Заявки на сдачу в аренду помещения</a></li>
                     @endability
 
-                    @ability('super-admin,manager', 'show-reservation-places-list')
-                    <li><a href="{{ route('auth.manager.reservation.index') }}">Заявки на бронь</a></li>
-                    @endability
-
                     @ability('super-admin', 'show-questions-list')
-                    <li><a href="{{ route('auth.manager.questions.index') }}">Заявки по другим вопросам</a></li>
+                    <li><a href="{{ route('auth.manager.questions.index') }}">Переуступка права пользования помещением</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')

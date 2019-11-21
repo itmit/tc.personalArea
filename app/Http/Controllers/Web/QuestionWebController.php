@@ -17,7 +17,7 @@ class QuestionWebController extends Controller
     public function index()
     {
         return view('admin.questionsList', [
-            'title' => 'Вопросы',
+            'title' => 'Переуступка права пользования помещением',
             'questions' => Question::select('*')
             ->orderBy('created_at', 'desc')->get()
         ]);

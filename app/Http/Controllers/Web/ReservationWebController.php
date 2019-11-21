@@ -182,12 +182,23 @@ class ReservationWebController extends Controller
         $history = ReservationHistory::where('bid', '=', $id)->get();
         $lastAction = ReservationHistory::where('bid', '=', $id)->latest()->first();
         $actions = Actions::all();
+        if($lastAction->action()->type == "reservation")
+        {
+            $ends_at =strtotime($lastAction->created_at->timezone('Europe/Moscow') . " + " . $lastAction->timer ." hours");
+            // $ends_at = gmdate("Y-m-d H:i:s", $ends_at);
+        }
+        else
+        {
+            $ends_at = 0;
+        }
+        
 
         return view("manager.reservationDetail", [
             'reservation' => $reservation,
             'history' => $history,
             'lastAction' => $lastAction,
             'actions' => $actions,
+            'ends_at' => $ends_at
         ]);
     }
 
@@ -200,13 +211,9 @@ class ReservationWebController extends Controller
     {
         $action = Actions::where('id', '=', $request->new_status)->first();
 
-        // $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
-        // $newRating = $rating->rating + $action->points;
-        // return response()->json($newRating);
-
         DB::beginTransaction();
         try {
-            if($action->type == 'cancel')
+            if($action->type == 'cancelBeforeReservation' || $action->type == 'cancelAfterReservation')
             {
                 $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
                 Reservation::where('id', '=', $request->reservation_id)->update([

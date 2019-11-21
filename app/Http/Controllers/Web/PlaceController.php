@@ -217,4 +217,52 @@ class PlaceController extends Controller
 
         return response()->json(['Status updated']);
     }
+
+    /**
+     *
+     * Страница редактирования места
+     * 
+     */
+    public function placeEditPage($id)
+    {
+        return view("manager.placeEdit", [
+            'place' => Place::where('id', '=', $id)->first()
+        ]);
+    }
+
+    /**
+     *
+     * Редактировать выбранное место
+     * 
+     */
+    public function placeEditStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'block' => 'required',
+            'floor' => 'required',
+            'row' => 'required',
+            'place_number' => 'required',
+            'status' => 'required',
+            'price' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.manager.place.edit', ['id' => $request->id])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Place::where('id', '=', $request->id)->update([
+            'block' => $request->block,
+            'floor' => $request->floor,
+            'row' => $request->row,
+            'place_number' => $request->place_number,
+            'status' => $request->status,
+            'price' => $request->price,
+        ]);
+
+        return redirect()->route('auth.manager.place.edit', ['id' => $request->id]);
+    }
 }

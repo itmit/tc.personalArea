@@ -2,8 +2,14 @@
 
 namespace App\Console;
 
+use DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\Place;
+use App\Models\Reservation;
+use App\Models\ReservationHistory;
+use App\Models\Actions;
+use App\Models\Client;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +30,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('minute:update')->everyMinute();
     }
 
     /**
