@@ -26,6 +26,7 @@ abstract class ApiBaseController extends Controller
             'success' => true,
             'data' => $result,
             'message' => $message,
+            'date' => $today = date("Y-m-d H:i:s"),  
         ], 200);
     }
 

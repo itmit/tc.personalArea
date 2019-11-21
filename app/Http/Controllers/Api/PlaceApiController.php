@@ -40,8 +40,7 @@ class PlaceApiController extends ApiBaseController
      * @return JsonResponse
      */
     public function show(string $block): JsonResponse
-    {
-        $today = date("Y-m-d H:i:s");    
+    { 
         $action = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
@@ -68,7 +67,7 @@ class PlaceApiController extends ApiBaseController
         }
         
         return $this->sendResponse(
-            [$places, $today],
+            [$places],
             "Places in block \"$block\"");
     }
 
