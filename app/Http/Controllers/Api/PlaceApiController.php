@@ -53,19 +53,27 @@ class PlaceApiController extends ApiBaseController
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
             ->where('status', '=', $status)->get();
-        $reservations = Reservation::where('accepted', '=', '1')->get();
         foreach ($places as $place) {
-            foreach($reservations as $reservation)
+            $reservation = Reservation::where('accepted', '=', '1')->where('place_id', '=', $place->id)->first();
+            if($reservation != NULL && $reservation->accepted == 1)
             {
-                if($reservation->place_id == $place->id && $reservation->history()->action == $actions->id)
-                {
-                    $place['reservation'] = $reservation->history()->timer;
-                }
-                else
-                {
-                    $place['reservation'] = $reservation->history()->action;
-                }
+                $place['reservation'] = $reservation->history()->action;
             }
+            else
+            {
+                $place['reservation'] = 0;
+            }
+            // foreach($reservations as $reservation)
+            // {
+                // if($reservation->place_id == $place->id && $reservation->history()->action == $actions->id)
+                // {
+                //     $place['reservation'] = $reservation->history()->timer;
+                // }
+                // else
+                // {
+                //     $place['reservation'] = $reservation->history()->action;
+                // }
+            // }
         }
         
         return $this->sendResponse(
