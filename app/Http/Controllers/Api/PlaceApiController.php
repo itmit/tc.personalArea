@@ -41,10 +41,35 @@ class PlaceApiController extends ApiBaseController
      */
     public function show(string $block): JsonResponse
     {
+        $today = date("Y-m-d H:i:s");    
+        $action = Actions::where('type', '=', 'reservation')->first();
+        $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
+            ->where('block', '=', $block)
+            ->where('status', '=', $status)->get();
+        foreach ($places as $place) {
+            $reservation = Reservation::where([
+                ['accepted', '=', '1'],
+                ['place_id', '=', $place->id],
+            ])->first();
+            if($reservation != NULL && $reservation->accepted == 1)
+            {
+                $lastAction = ReservationHistory::where('bid', '=', $reservation->id)->latest()->first();
+                if($lastAction->action == $action->id)
+                {
+                    $ends_at = date("Y-m-d H:i:s", strtotime($lastAction->created_at->timezone('Europe/Moscow') . " + " . $lastAction->timer ." hours"));
+                    $place['reservation'] = $ends_at;
+                }
+                
+            }
+            else
+            {
+                $place['reservation'] = 0;
+            }
+        }
+        
         return $this->sendResponse(
-            Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
-                ->where('block', '=', $block)->get()->toArray(),
-            "Places in block \"$block\" retrieved successfully.");
+            [$places, $today],
+            "Places in block \"$block\", with status $status retrieved successfully.");
     }
 
     public function showPlacesInBlockWithStatus(string $block, string $status)
@@ -73,17 +98,6 @@ class PlaceApiController extends ApiBaseController
             {
                 $place['reservation'] = 0;
             }
-            // foreach($reservations as $reservation)
-            // {
-                // if($reservation->place_id == $place->id && $reservation->history()->action == $actions->id)
-                // {
-                //     $place['reservation'] = $reservation->history()->timer;
-                // }
-                // else
-                // {
-                //     $place['reservation'] = $reservation->history()->action;
-                // }
-            // }
         }
         
         return $this->sendResponse(
