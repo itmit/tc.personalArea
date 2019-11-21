@@ -34,9 +34,9 @@ class Place extends Model
         'status',
     ];
 
-    public static function checkValidPlaceNumber(string $block, string $floor, string $number) : ?Place
+    public static function checkValidPlaceNumber(string $block, string $floor, string $number, string $row) : ?Place
     {
-        return Place::whereRaw("place_number = \"$number\" and block = \"$block\" and floor = \"$floor\"")->first();
+        return Place::whereRaw("place_number = \"$number\" and block = \"$block\" and floor = \"$floor\" and row = \"$row\"")->first();
     }
 
     public function reservation()

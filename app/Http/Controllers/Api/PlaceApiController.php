@@ -58,7 +58,7 @@ class PlaceApiController extends ApiBaseController
 
     public function checkValidPlaceNumber(Request $request)
     {
-        return Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
+        return Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'), $request->input('row'));
     }
 
     public function makeReservation(Request $request)
@@ -69,7 +69,7 @@ class PlaceApiController extends ApiBaseController
             'phone' => 'required',
             'block' => 'required',
             'floor' => 'required',
-            // 'row' => 'required',
+            'row' => 'required',
             'place_number' => 'required',
         ]);
 
@@ -77,7 +77,7 @@ class PlaceApiController extends ApiBaseController
             return $this->sendError($validator->errors(), "Validation error", 401);
         }
 
-        $this->place = Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'));
+        $this->place = Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'), $request->input('row'));
 
         $validator->after(function ($validator) {
             if ($this->place == null) {
