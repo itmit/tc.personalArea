@@ -57,7 +57,7 @@ class PlaceApiController extends ApiBaseController
             $reservation = Reservation::where('accepted', '=', '1')->where('place_id', '=', $place->id)->first();
             if($reservation != NULL && $reservation->accepted == 1)
             {
-                $place['reservation'] = $reservation->history()->action;
+                $place['reservation'] = $reservation->history()->id;
             }
             else
             {
