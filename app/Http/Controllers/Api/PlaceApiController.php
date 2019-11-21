@@ -45,7 +45,7 @@ class PlaceApiController extends ApiBaseController
         $action = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
-            ->where('status', '=', $status)->get();
+            ->get();
         foreach ($places as $place) {
             $reservation = Reservation::where([
                 ['accepted', '=', '1'],
