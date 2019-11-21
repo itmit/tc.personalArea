@@ -49,6 +49,7 @@ class PlaceApiController extends ApiBaseController
 
     public function showPlacesInBlockWithStatus(string $block, string $status)
     {
+        $today = date("Y-m-d H:i:s");    
         $actions = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
@@ -80,7 +81,7 @@ class PlaceApiController extends ApiBaseController
         }
         
         return $this->sendResponse(
-            [$places],
+            [$places, $today],
             "Places in block \"$block\", with status $status retrieved successfully.");
     }
 
