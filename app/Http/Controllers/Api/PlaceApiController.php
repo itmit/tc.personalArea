@@ -53,7 +53,7 @@ class PlaceApiController extends ApiBaseController
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
             ->where('status', '=', $status)->get();
-        $reservations = Reservations::where('accepted', '=', '1')->get();
+        $reservations = Reservation::where('accepted', '=', '1')->get();
         foreach ($reservations as $reservation) {
             foreach($places as $place)
             {
