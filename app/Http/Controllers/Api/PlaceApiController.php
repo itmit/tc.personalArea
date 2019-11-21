@@ -69,7 +69,7 @@ class PlaceApiController extends ApiBaseController
         
         return $this->sendResponse(
             [$places, $today],
-            "Places in block \"$block\", with status $status retrieved successfully.");
+            "Places in block \"$block\"");
     }
 
     public function showPlacesInBlockWithStatus(string $block, string $status)
