@@ -60,7 +60,7 @@ class PlaceApiController extends ApiBaseController
             }
             else
             {
-                $place['reservation'] = $place->reservation()->id;
+                $place['reservation'] = $place->reservation();
             }
             
         }
