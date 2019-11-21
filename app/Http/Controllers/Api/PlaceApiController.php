@@ -49,21 +49,25 @@ class PlaceApiController extends ApiBaseController
 
     public function showPlacesInBlockWithStatus(string $block, string $status)
     {
+        $actions = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
             ->where('status', '=', $status)->get();
-        foreach($places as $place)
-        {
-            if($place->reservation() == NULL)
+        $reservations = Reservations::where('accepted', '=', '1')->get();
+        foreach ($reservations as $reservation) {
+            foreach($places as $place)
             {
-                $place['reservation'] = null;
+                if($reservation->place_id == $place->id && $reservation->history()->action == $actions->id)
+                {
+                    $place['reservation'] = $reservation->history()->timer;
+                }
+                else
+                {
+                    $place['reservation'] = null;
+                }
             }
-            else
-            {
-                $place['reservation'] = $place->reservation()->history()->action;
-            }
-            
         }
+        
         return $this->sendResponse(
             [$places],
             "Places in block \"$block\", with status $status retrieved successfully.");
