@@ -67,7 +67,7 @@ class PlaceApiController extends ApiBaseController
         }
         
         return $this->sendResponse(
-            [$places],
+            $places,
             "Places in block \"$block\"");
     }
 
