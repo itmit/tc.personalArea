@@ -64,7 +64,7 @@ class PlaceApiController extends ApiBaseController
                 $lastAction = ReservationHistory::where('bid', '=', $reservation->id)->latest()->first();
                 if($lastAction->action == $action->id)
                 {
-                    $ends_at =strtotime($lastAction->created_at->timezone('Europe/Moscow') . " + " . $lastAction->timer ." hours");
+                    $ends_at = date("Y-m-d H:i:s", strtotime($lastAction->created_at->timezone('Europe/Moscow') . " + " . $lastAction->timer ." hours"));
                     $place['reservation'] = $ends_at;
                 }
                 
