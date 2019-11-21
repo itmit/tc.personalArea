@@ -41,6 +41,6 @@ class Place extends Model
 
     public function reservation()
     {
-        return $this->hasOne(Reservation::class);
+        return $this->hasOne(Reservation::class, 'place_id');
     }
 }
