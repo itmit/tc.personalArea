@@ -50,7 +50,7 @@ class PlaceApiController extends ApiBaseController
     public function showPlacesInBlockWithStatus(string $block, string $status)
     {
         $today = date("Y-m-d H:i:s");    
-        $actions = Actions::where('type', '=', 'reservation')->first();
+        $action = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
             ->where('status', '=', $status)->get();
@@ -61,7 +61,12 @@ class PlaceApiController extends ApiBaseController
             ])->first();
             if($reservation != NULL && $reservation->accepted == 1)
             {
-                $place['reservation'] = $reservation->id;
+                $lastAction = ReservationHistory::where('bid', '=', $reservation->id)->latest()->first();
+                if($lastAction->action == $action->id)
+                {
+                    $place['reservation'] = $lastAction->timer;
+                }
+                
             }
             else
             {
