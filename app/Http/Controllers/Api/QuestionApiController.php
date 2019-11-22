@@ -86,5 +86,6 @@ class QuestionApiController extends ApiBaseController
                 ]);
             }
         }
+        return $now;
     }
 }
