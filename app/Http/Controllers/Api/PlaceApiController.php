@@ -159,7 +159,8 @@ class PlaceApiController extends ApiBaseController
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'client' => $clientId,
-                'place_id' => $this->place->id
+                'place_id' => $this->place->id,
+                'expire' => 0
             ]);
 
             if($newReserved)
