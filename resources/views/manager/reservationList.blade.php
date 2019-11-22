@@ -93,6 +93,7 @@
                             //     result += '<td>Бронь была отменена</td>';
                             // }
                             result += '<td>' + response[i]['created_at'] + '</td>';
+                            result += '<td>' + response[i]['created_at'] + '</td>';
                             // result += '<td>' + response[i]['updated_at'] + '</td>';
                             result += '</tr>';
                         }
