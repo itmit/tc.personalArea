@@ -47,7 +47,7 @@ class expire_test extends Command
         $reservations = Reservation::where('accepted', '=', '0')->get();
         foreach($reservations as $reservation)
         {
-            $expire_at = strtotime($reservation->expire_at);
+            $expire_at = strtotime($reservation->expire_ats);
             $diff =(int) $expire_at - $now;
             if($diff <= 0)
             {
