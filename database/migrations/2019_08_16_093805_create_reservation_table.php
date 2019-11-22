@@ -21,6 +21,8 @@ class CreateReservationTable extends Migration
             $table->integer('place_id');
             $table->integer('accepted')->unsigned();
             $table->timestamps();
+            $table->integer('expire')->unsigned();
+            $table->timestamp('expires_at');
 
             $table->foreign('client')->references('id')->on('clients');
         });

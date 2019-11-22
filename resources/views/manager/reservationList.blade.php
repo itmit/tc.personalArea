@@ -18,6 +18,7 @@
             <th>Ряд</th>
             <th>Место</th>
             <th>Создано</th>
+            <th>Истекает</th>
         </tr>
         </thead>
         <tbody>
@@ -31,7 +32,7 @@
                 <td>{{ $place->place()->floor }}</td>
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
-                {{-- <td><button class="makeReservation"  data-userid="{{ $place->id }}" data-placeid="{{ $place->place_id }}">Забронировать</button> / <button class="cancelReservation" data-placeid="{{ $place->id }}">Отказать</button></td> --}}
+                <td>{{ $place->created_at->timezone('Europe/Moscow') }}</td>
                 <td>{{ $place->created_at->timezone('Europe/Moscow') }}</td>
             </tr>
         @endforeach
@@ -41,23 +42,23 @@
     <script>
         $(document).ready(function()
         {
-            $(document).on('click', '.makeReservation', function() {
-                let place_id = $(this).data('placeid');
-                let user_id = $(this).data('userid');
-                $.ajax({
-                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                    dataType: "json",
-                    data: {place_id: place_id, user_id: user_id},
-                    url     : 'reservation/confirmReservation',
-                    method    : 'post',
-                    success: function (response) {
-                        $('#' + user_id).remove();
-                    },
-                    error: function (xhr, err) { 
-                        console.log(err + " " + xhr);
-                    }
-                });
-            });
+            // $(document).on('click', '.makeReservation', function() {
+            //     let place_id = $(this).data('placeid');
+            //     let user_id = $(this).data('userid');
+            //     $.ajax({
+            //         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //         dataType: "json",
+            //         data: {place_id: place_id, user_id: user_id},
+            //         url     : 'reservation/confirmReservation',
+            //         method    : 'post',
+            //         success: function (response) {
+            //             $('#' + user_id).remove();
+            //         },
+            //         error: function (xhr, err) { 
+            //             console.log(err + " " + xhr);
+            //         }
+            //     });
+            // });
 
             $(document).on('change', '#selectByAccept', function() {
                 let selectByAccept = $('#selectByAccept').val();
@@ -104,42 +105,42 @@
                 });
             });
 
-            $(document).on('click', '.deleteReservation', function() {
-                let place_id = $(this).data('placeid');
-                // console.log(place_id);
-                $.ajax({
-                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                    dataType: "json",
-                    data: {place_id: place_id},
-                    url     : 'reservation/deleteReservation',
-                    method    : 'post',
-                    success: function (response) {
-                        $(this).remove();
-                        // console.log('suc');
-                        // console.log($(this).parent().html());
-                    },
-                    error: function (xhr, err) { 
-                        console.log(err + " " + xhr);
-                    }
-                });
-            });
+            // $(document).on('click', '.deleteReservation', function() {
+            //     let place_id = $(this).data('placeid');
+            //     // console.log(place_id);
+            //     $.ajax({
+            //         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //         dataType: "json",
+            //         data: {place_id: place_id},
+            //         url     : 'reservation/deleteReservation',
+            //         method    : 'post',
+            //         success: function (response) {
+            //             $(this).remove();
+            //             // console.log('suc');
+            //             // console.log($(this).parent().html());
+            //         },
+            //         error: function (xhr, err) { 
+            //             console.log(err + " " + xhr);
+            //         }
+            //     });
+            // });
 
-            $(document).on('click', '.cancelReservation', function() {
-                let place_id = $(this).data('placeid');
-                $.ajax({
-                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                    dataType: "json",
-                    data: {place_id: place_id},
-                    url     : 'reservation/cancelReservation',
-                    method    : 'post',
-                    success: function (response) {
-                        $('#' + place_id).remove();
-                    },
-                    error: function (xhr, err) { 
-                        console.log(err + " " + xhr);
-                    }
-                });
-            });
+            // $(document).on('click', '.cancelReservation', function() {
+            //     let place_id = $(this).data('placeid');
+            //     $.ajax({
+            //         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //         dataType: "json",
+            //         data: {place_id: place_id},
+            //         url     : 'reservation/cancelReservation',
+            //         method    : 'post',
+            //         success: function (response) {
+            //             $('#' + place_id).remove();
+            //         },
+            //         error: function (xhr, err) { 
+            //             console.log(err + " " + xhr);
+            //         }
+            //     });
+            // });
         });
     </script>
 
