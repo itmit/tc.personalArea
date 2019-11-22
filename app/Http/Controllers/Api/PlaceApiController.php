@@ -95,12 +95,12 @@ class PlaceApiController extends ApiBaseController
             }
             else
             {
-                $place['reservation'] = 0;
+                $place['reservation'] = NULL;
             }
         }
         
         return $this->sendResponse(
-            [$places, $today],
+            $places->toArray(),
             "Places in block \"$block\", with status $status retrieved successfully.");
     }
 
