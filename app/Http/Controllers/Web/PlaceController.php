@@ -153,6 +153,7 @@ class PlaceController extends Controller
                     if ($validator->fails()) {
 
                         DB::rollBack();
+                        dd($validator);
                         return redirect()
                             ->route('auth.manager.places.index')
                             ->withErrors($validator)
