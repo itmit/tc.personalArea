@@ -63,7 +63,7 @@
     <div class="col-sm-12">
         <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control">
             <option value="По-умолчанию">По-умолчанию</option>
-            <option value="Вещевые ряды">Вещевые ряды</option>
+            <option value="Вещевой">Вещевые ряды</option>
             <option value="ТЦ Садовод">ТЦ Садовод</option>
             <option value="Новый ТЦ">Новый ТЦ</option>
             <option value="Меха и кожа">Меха и кожа</option>

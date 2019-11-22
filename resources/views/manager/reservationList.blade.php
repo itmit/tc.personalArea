@@ -32,8 +32,8 @@
                 <td>{{ $place->place()->floor }}</td>
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
-                <td>{{ $place->created_at->timezone('Europe/Moscow') }}</td>
-                <td>{{ $place->expires_at->timezone('Europe/Moscow') }}</td>
+                <td>{{ date('H:i d.m.Y', strtotime($place->created_at->timezone('Europe/Moscow'))) }}</td>
+                <td>{{ date('H:i d.m.Y', strtotime($place->expires_at->timezone('Europe/Moscow'))) }}</td>
             </tr>
         @endforeach
         </tbody>
