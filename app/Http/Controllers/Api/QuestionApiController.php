@@ -78,8 +78,8 @@ class QuestionApiController extends ApiBaseController
         foreach($reservations as $reservation)
         {
             $expire_at = strtotime($reservation->created_at . " + " . $now ." seconds");
-            $diff = (int) $expire_at - $now;
-            return 'now: ' . $now . ' expire_at: ' . $expire_at . ' diff: ' . $diff;
+            $diff = $now - (int) $expire_at;
+            // return 'now: ' . $now . ' expire_at: ' . $expire_at . ' diff: ' . $diff;
             if($diff <= 0)
             {
                 Reservation::where('id', '=', $reservation->id)->update([
