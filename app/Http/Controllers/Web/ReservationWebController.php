@@ -21,9 +21,7 @@ class ReservationWebController extends Controller
      */
     public function index()
     {
-        $places = Reservation::where('accepted', '=', '0')
-        ->join('clients', 'reservation.client', '=', 'clients.id')
-        ->orderBy('clients.rating', 'desc')
+        $places = Reservation::where('accepted', '=', '0')->orderBy('created_at', 'desc')
         ->get();
 
         return view('manager.reservationList', [
