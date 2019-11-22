@@ -161,9 +161,18 @@ class PlaceApiController extends ApiBaseController
                 'last_name' => $request->input('last_name'),
                 'client' => $clientId,
                 'place_id' => $this->place->id,
-                'expire' => 0
+                'expire' => 0,
+                
             ]);
 
+            $countOfReservations = Reservation::where('accepted', '=', '0')->get();
+            $countOfReservations = $countOfReservations->count();
+            $secs = (10 * $countOfReservations + 15) * 60;
+
+            Reservation::where('id', '=', $newReserved->id)->update([
+                'expires_at' => date("Y-m-d H:i:s", strtotime($newReserved->created_at . " + " . $secs ." seconds"))
+            ]);
+            
             if($newReserved)
             {
 
@@ -174,8 +183,7 @@ class PlaceApiController extends ApiBaseController
                     'action' => $create->id
                 ]);
 
-                $countOfReservations = Reservation::where('accepted', '=', '0')->get();
-                $countOfReservations = $countOfReservations->count();
+                
 
                 $newReserved['countOfReservations'] = $countOfReservations;
 

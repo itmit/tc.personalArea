@@ -33,7 +33,7 @@
                 <td>{{ $place->place()->row }}</td>
                 <td>{{ $place->place()->place_number }}</td>
                 <td>{{ $place->created_at->timezone('Europe/Moscow') }}</td>
-                <td>{{ $place->created_at->timezone('Europe/Moscow') }}</td>
+                <td>{{ $place->expires_at->timezone('Europe/Moscow') }}</td>
             </tr>
         @endforeach
         </tbody>
