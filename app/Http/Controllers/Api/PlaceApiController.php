@@ -177,8 +177,7 @@ class PlaceApiController extends ApiBaseController
             }
             else
             {
-                $countOfReservations--;
-                $secs = (10 * $countOfReservations + 15) * 60;
+                $secs = 10 * 60;
 
                 Reservation::where('id', '=', $newReserved->id)->update([
                     'expires_at' => date("Y-m-d H:i:s", strtotime($newReserved->created_at . " + " . $secs ." seconds"))
