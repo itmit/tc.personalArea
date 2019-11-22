@@ -40,36 +40,50 @@ class QuestionApiController extends ApiBaseController
 
     public function test()
     {
-        $reservations = Reservation::where('accepted', '=', '1')->get();
-        $action = Actions::where('type', '=', 'cancelByExpiredTime')->first();
-        foreach($reservations as $item)
-        {
-            $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
-            if($history->action()->type == "reservation")
-            {
-                $now = time() + 10800;
-                $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
-                $diff = (int) $ends_at - $now;
+        // $reservations = Reservation::where('accepted', '=', '1')->get();
+        // $action = Actions::where('type', '=', 'cancelByExpiredTime')->first();
+        // foreach($reservations as $item)
+        // {
+        //     $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
+        //     if($history->action()->type == "reservation")
+        //     {
+        //         $now = time() + 10800;
+        //         $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
+        //         $diff = (int) $ends_at - $now;
                 
-                if($diff <= 0)
-                {
-                    $rating = Client::where('id', '=', $item->client)->first(['rating']);
+        //         if($diff <= 0)
+        //         {
+        //             $rating = Client::where('id', '=', $item->client)->first(['rating']);
 
-                    Reservation::where('id', '=', $item->id)->update([
-                        'accepted' => 2
-                    ]);
+        //             Reservation::where('id', '=', $item->id)->update([
+        //                 'accepted' => 2
+        //             ]);
 
-                    ReservationHistory::create([
-                        'bid' => $item->id,
-                        'action' => $action->id
-                    ]);
+        //             ReservationHistory::create([
+        //                 'bid' => $item->id,
+        //                 'action' => $action->id
+        //             ]);
 
-                    $newRating = $rating->rating + $action->points;
+        //             $newRating = $rating->rating + $action->points;
 
-                    Client::where('id', '=', $item->client)->update([
-                        'rating' => $newRating
-                    ]);
-                }
+        //             Client::where('id', '=', $item->client)->update([
+        //                 'rating' => $newRating
+        //             ]);
+        //         }
+        //     }
+        // }
+        $now = time();
+
+        $reservations = Reservation::where('accepted', '=', '0')->get();
+        foreach($reservations as $reservation)
+        {
+            $expire_at = strtotime($reservation->created_at . " + " . $now ." seconds");
+            $diff = (int) $expire_at - $now;
+            if($diff <= 0)
+            {
+                Reservation::where('id', '=', $reservation->id)->update([
+                    'expire' => 1
+                ]);
             }
         }
     }
