@@ -48,8 +48,8 @@ class expire_test extends Command
         foreach($reservations as $reservation)
         {
             $expire_at = strtotime($reservation->expires_at);
-            $diff =  $now - (int) $expire_at;
-            if($diff >= 0)
+
+            if($expire_at <= $now)
             {
                 Reservation::where('id', '=', $reservation->id)->update([
                     'expire' => 1
