@@ -176,12 +176,13 @@ class PlaceApiController extends ApiBaseController
                 $countOfReservations = Reservation::where('accepted', '=', '0')->get();
                 $countOfReservations = $countOfReservations->count();
 
+                $newReserved['countOfReservations'] = $countOfReservations;
+
                 if($newReservetionHistory)
                 {
-                    return $this->sendResponse([
-                        $newReserved,
-                        $countOfReservations
-                    ],
+                    return $this->sendResponse(
+                        $newReserved->toArray()
+                    ,
                         'Reserved');
                 }
             }
