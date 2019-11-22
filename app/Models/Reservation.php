@@ -22,6 +22,8 @@ class Reservation extends Model
      */
     protected $guarded = ['id'];
 
+    protected $dates = ['expires_at'];
+
     /**
      * @return User
      */
