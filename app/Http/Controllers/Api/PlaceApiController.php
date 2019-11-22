@@ -148,8 +148,9 @@ class PlaceApiController extends ApiBaseController
             $clientId = $client->id;
         }
 
-        $isReserved = Reservation::latest()->where('place_id', '=', $this->place->id)->where('accepted', '<>', '1')->first();
-        if($isReserved)
+        $isReserved = Reservation::latest()->where('place_id', '=', $this->place->id)->where('accepted', '=', '1')->first();
+        $isTaken = Place::where('id', '=', $this->place->id)->first();
+        if($isReserved || $isTaken->status == 'Арендован')
         {
             return $this->SendError('Reservation error', 'Место уже забронировано', 401);
         }
