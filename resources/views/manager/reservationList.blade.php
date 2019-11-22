@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         @foreach($places as $place)
-            <tr id="{{ $place->id }}">
+            <tr id="{{ $place->id }}" @if($place->expire == 1) style="background-color: red" @endif>
                 <td><i class="material-icons"><a href="reservation/{{ $place->id }}">slideshow</a></i></td>
                 <td><a href="../client/{{ $place->client()->id }}">{{ $place->first_name }} {{ $place->last_name }}</a></td>
                 <td>{{ $place->client()->rating }}</td>
