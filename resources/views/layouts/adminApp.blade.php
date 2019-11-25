@@ -214,6 +214,7 @@
                             result += '<tr>';
                         }
                         result += '<td><input type="checkbox" data-place-id="' + data[0][i]['id'] + '" name="destoy-place-' + data[0][i]['id'] + '" class="js-destroy"/></td>';
+                        result += '<td><i class="material-icons"><a href="place/edit/' + data[0][i]['id'] + '">edit</a></i></td>';
                         result += '<td>' + data[0][i]['block'] + '</td>';
                         result += '<td>' + data[0][i]['floor'] + '</td>';
                         result += '<td>' + data[0][i]['row'] + '</td>';

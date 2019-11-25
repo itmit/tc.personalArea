@@ -39,7 +39,7 @@ class PlaceApiController extends ApiBaseController
      * @param string $block
      * @return JsonResponse
      */
-    public function show(string $block, int $offset, int $limit): JsonResponse
+    public function show(string $block, int $offset = 0, int $limit = 100): JsonResponse
     { 
         $action = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
