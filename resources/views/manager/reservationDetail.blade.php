@@ -3,6 +3,9 @@
 @section('content')
 
     <h1>Заявка на бронирование места</h1>
+    @if($reservation->expire == 1)
+    <h3>Время обработки данной заявки истекло</h3>
+    @endif
     <div class="col-sm-12">
         <a href="/reservation">Назад</a>
     </div>
