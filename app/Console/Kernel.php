@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('minute:update')->everyMinute();
         $schedule->command('expire:check')->everyMinute();
-        $schedule->command('push:send')->everyTenMinutes();
+        // $schedule->command('push:send')->everyTenMinutes();
     }
 
     /**
