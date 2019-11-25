@@ -21,7 +21,11 @@ class ReservationWebController extends Controller
      */
     public function index()
     {
-        $places = Reservation::where('accepted', '=', '0')->orderBy('created_at', 'desc')
+        $places = Reservation::where('accepted', '=', '0')
+        ->join('clients', 'reservation.client', '=', 'clients.id')
+        ->orderBy('clients.rating', 'desc')
+        // ->select('reservation.id', 'reservation.first_name', 'reservation.last_name', 'reservation.created_at', 'reservation.expire', 'reservation.expires_at', 'reservation.accepted', 'clients.rating',
+        // 'clients.id', 'clients.phone')
         ->get();
 
         return view('manager.reservationList', [
@@ -58,76 +62,44 @@ class ReservationWebController extends Controller
         $response = [];
         switch ($request->selectByAccept) {
             case 'all':
-                $reservations = Reservation::orderBy('created_at', 'desc')->get();
-                foreach ($reservations as $reservation) {
-                    $response[] = [
-                        'id'   => $reservation->id,
-                        'first_name' => $reservation->first_name,
-                        'last_name' => $reservation->last_name,
-                        'phone' => $reservation->phone,
-                        'accepted' => $reservation->accepted,
-                        'created_at' => substr($reservation->created_at->timezone('Europe/Moscow'), 0),
-                        'updated_at' => substr($reservation->updated_at->timezone('Europe/Moscow'), 0),
-                        'place' => [
-                            'id' => $reservation->place()->id,
-                            'block' => $reservation->place()->block,
-                            'floor' => $reservation->place()->floor,
-                            'row' => $reservation->place()->row,
-                            'place_number' => $reservation->place()->place_number
-                        ]
-                    ];
-                }
-                return response()->json($response);
+                $reservations = Reservation::join('clients', 'reservation.client', '=', 'clients.id')
+                ->orderBy('clients.rating', 'desc')->get();
                 break;
             case 'active':
-                $reservations = Reservation::where('accepted', '=', '0')->orderBy('created_at', 'desc')->get();
-                foreach ($reservations as $reservation) {
-                    $response[] = [
-                        'id'   => $reservation->id,
-                        'first_name' => $reservation->first_name,
-                        'last_name' => $reservation->last_name,
-                        'phone' => $reservation->phone,
-                        'accepted' => $reservation->accepted,
-                        'created_at' => substr($reservation->created_at->timezone('Europe/Moscow'), 0),
-                        'updated_at' => substr($reservation->updated_at->timezone('Europe/Moscow'), 0),
-                        'place' => [
-                            'id' => $reservation->place()->id,
-                            'block' => $reservation->place()->block,
-                            'floor' => $reservation->place()->floor,
-                            'row' => $reservation->place()->row,
-                            'place_number' => $reservation->place()->place_number
-                        ]
-                    ];
-                }
-                return response()->json($response);
+                $reservations = Reservation::where('accepted', '=', '0')->join('clients', 'reservation.client', '=', 'clients.id')
+                ->orderBy('clients.rating', 'desc')->get();
                 break;
             case 'accepted':
-                $reservations = Reservation::where('accepted', '<>', '0')->orderBy('created_at', 'desc')->get();
-                foreach ($reservations as $reservation) {
-                    $response[] = [
-                        'id'   => $reservation->id,
-                        'first_name' => $reservation->first_name,
-                        'last_name' => $reservation->last_name,
-                        'phone' => $reservation->phone,
-                        'accepted' => $reservation->accepted,
-                        'created_at' => substr($reservation->created_at->timezone('Europe/Moscow'), 0),
-                        'updated_at' => substr($reservation->updated_at->timezone('Europe/Moscow'), 0),
-                        'place' => [
-                            'id' => $reservation->place()->id,
-                            'block' => $reservation->place()->block,
-                            'floor' => $reservation->place()->floor,
-                            'row' => $reservation->place()->row,
-                            'place_number' => $reservation->place()->place_number
-                        ]
-                    ];
-                }
-                return response()->json($response);
+                $reservations = Reservation::where('accepted', '<>', '0')->join('clients', 'reservation.client', '=', 'clients.id')
+                ->orderBy('clients.rating', 'desc')->get();
                 break;
             default:
                 return response()->json(['Error']);
         }
 
-        return response()->json(['Reservated']);
+        foreach ($reservations as $reservation) {
+            $response[] = [
+                'id'   => $reservation->id,
+                'first_name' => $reservation->first_name,
+                'last_name' => $reservation->last_name,
+                'phone' => $reservation->client()->phone,
+                'rating' => $reservation->client()->rating,
+                'client_id' => $reservation->client()->id,
+                'accepted' => $reservation->accepted,
+                'created_at' => date('H:i d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))),
+                'expires_at' => date('H:i d.m.Y', strtotime($reservation->expires_at->timezone('Europe/Moscow'))),
+                'expire' => $reservation->expire,
+                'place' => [
+                    'id' => $reservation->place()->id,
+                    'block' => $reservation->place()->block,
+                    'floor' => $reservation->place()->floor,
+                    'row' => $reservation->place()->row,
+                    'place_number' => $reservation->place()->place_number
+                ]
+            ];
+        }
+
+        return response()->json($response);
     }
 
     /**
