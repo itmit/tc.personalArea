@@ -16,13 +16,15 @@
     
                 <div class="col-md-6">
                     <select name="block" id="block" required autofocus>
-                            <option value="Вещевые ряды" @if($place->block == "Вещевые ряды") selected @endif>Вещевые ряды</option>
-                            <option value="Меха и кожа" @if($place->block == "Меха и кожа") selected @endif>Меха и кожа</option>
-                            <option value="Новый ТЦ" @if($place->block == "Новый ТЦ") selected @endif>Новый ТЦ</option>
-                            <option value="ТЦ 'Садовод'" @if($place->block == "ТЦ 'Садовод'") selected @endif>ТЦ 'Садовод'</option>
-                            <option value="Свадебная галерея 'САЛЮТ'" @if($place->block == "Свадебная галерея 'САЛЮТ'") selected @endif>Свадебная галерея 'САЛЮТ'</option>
-                            <option value="Ковры и текстиль" @if($place->block == "Ковры и текстиль") selected @endif>Ковры и текстиль</option>
-                        </select>
+                        <option value="Вещевой" @if($place->block == "Вещевой") selected @endif>Вещевые ряды</option>
+                        <option value="ТЦ" @if($place->block == "ТЦ") selected @endif>ТЦ Садовод</option>
+                        <option value="Новый ТЦ" @if($place->block == "Новый ТЦ") selected @endif>Новый ТЦ</option>
+                        <option value="5 павильон" @if($place->block == "5 павильон") selected @endif>Меха и кожа</option>
+                        <option value="ЗСМИ" @if($place->block == "ЗСМИ") selected @endif>Пальтовый круг</option>
+                        <option value="Салют" @if($place->block == "Салют") selected @endif>Свадебная галерея 'САЛЮТ'</option>
+                        <option value="ковры и текстиль" @if($place->block == "ковры и текстиль") selected @endif>Ковры и текстиль</option>
+                        <option value="Дом бижутерии" @if($place->block == "Дом бижутерии") selected @endif>Дом бижутерии</option>
+                    </select>
     
                     @if ($errors->has('block'))
                         <span class="help-block">
