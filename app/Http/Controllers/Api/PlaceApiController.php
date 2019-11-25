@@ -39,11 +39,14 @@ class PlaceApiController extends ApiBaseController
      * @param string $block
      * @return JsonResponse
      */
-    public function show(string $block): JsonResponse
+    public function show(string $block, int $offset, int $limit): JsonResponse
     { 
         $action = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
+            ->inRandomOrder()
+            ->offset($offset)
+            ->limit($limit)
             ->get();
         foreach ($places as $place) {
             $reservation = Reservation::where([
