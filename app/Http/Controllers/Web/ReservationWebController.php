@@ -22,8 +22,8 @@ class ReservationWebController extends Controller
     public function index()
     {
         $places = Reservation::where('accepted', '=', '0')
-        ->join('clients', 'reservation.client', '=', 'clients.id')
-        ->orderBy('clients.rating', 'desc')
+        // ->join('clients', 'reservation.client', '=', 'clients.id')
+        ->orderBy('created_at', 'desc')
         // ->select('reservation.id', 'reservation.first_name', 'reservation.last_name', 'reservation.created_at', 'reservation.expire', 'reservation.expires_at', 'reservation.accepted', 'clients.rating',
         // 'clients.id', 'clients.phone')
         ->get();
@@ -62,16 +62,13 @@ class ReservationWebController extends Controller
         $response = [];
         switch ($request->selectByAccept) {
             case 'all':
-                $reservations = Reservation::join('clients', 'reservation.client', '=', 'clients.id')
-                ->orderBy('clients.rating', 'desc')->get();
+                $reservations = Reservation::orderBy('created_at', 'desc')->get();
                 break;
             case 'active':
-                $reservations = Reservation::where('accepted', '=', '0')->join('clients', 'reservation.client', '=', 'clients.id')
-                ->orderBy('clients.rating', 'desc')->get();
+                $reservations = Reservation::where('accepted', '=', '0')->orderBy('created_at', 'desc')->get();
                 break;
             case 'accepted':
-                $reservations = Reservation::where('accepted', '<>', '0')->join('clients', 'reservation.client', '=', 'clients.id')
-                ->orderBy('clients.rating', 'desc')->get();
+                $reservations = Reservation::where('accepted', '<>', '0')->orderBy('created_at', 'desc')->get();
                 break;
             default:
                 return response()->json(['Error']);
