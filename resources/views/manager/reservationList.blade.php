@@ -42,24 +42,6 @@
     <script>
         $(document).ready(function()
         {
-            // $(document).on('click', '.makeReservation', function() {
-            //     let place_id = $(this).data('placeid');
-            //     let user_id = $(this).data('userid');
-            //     $.ajax({
-            //         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //         dataType: "json",
-            //         data: {place_id: place_id, user_id: user_id},
-            //         url     : 'reservation/confirmReservation',
-            //         method    : 'post',
-            //         success: function (response) {
-            //             $('#' + user_id).remove();
-            //         },
-            //         error: function (xhr, err) { 
-            //             console.log(err + " " + xhr);
-            //         }
-            //     });
-            // });
-
             $(document).on('change', '#selectByAccept', function() {
                 let selectByAccept = $('#selectByAccept').val();
                 $.ajax({
@@ -73,7 +55,7 @@
                         for(var i = 0; i < response.length; i++) {
                             result += '<tr id="' + response[i]['id'] + '">';
                             result += '<td><i class="material-icons"><a href="reservation/' + response[i]['id'] + '">slideshow</a></i></td>';
-                            result += '<td>' + response[i]['first_name'] + ' ' + response[i]['last_name'] + '</td>';
+                            result += '<td><a href="../client/' + response[i]['client_id'] + '">' + response[i]['first_name'] + ' ' + response[i]['last_name'] + '</a></td>';
                             result += '<td>' + response[i]['rating'] + '</td>';
                             result += '<td>' + response[i]['phone'] + '</td>';
                             result += '<td>' + response[i]['place']['block'] + '</td>';
