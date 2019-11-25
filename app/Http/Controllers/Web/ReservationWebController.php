@@ -62,13 +62,16 @@ class ReservationWebController extends Controller
         $response = [];
         switch ($request->selectByAccept) {
             case 'all':
-                $reservations = Reservation::orderBy('created_at', 'desc')->get();
+                $reservations = Reservation::join('clients', 'reservation.client', '=', 'clients.id')
+                ->orderBy('clients.rating', 'desc')->get();
                 break;
             case 'active':
-                $reservations = Reservation::where('accepted', '=', '0')->orderBy('created_at', 'desc')->get();
+                $reservations = Reservation::where('accepted', '=', '0')->join('clients', 'reservation.client', '=', 'clients.id')
+                ->orderBy('clients.rating', 'desc')->get();
                 break;
             case 'accepted':
-                $reservations = Reservation::where('accepted', '<>', '0')->orderBy('created_at', 'desc')->get();
+                $reservations = Reservation::where('accepted', '<>', '0')->join('clients', 'reservation.client', '=', 'clients.id')
+                ->orderBy('clients.rating', 'desc')->get();
                 break;
             default:
                 return response()->json(['Error']);
