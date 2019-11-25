@@ -187,10 +187,8 @@ class PlaceApiController extends ApiBaseController
                 ]);
             }
             
-            
             if($newReserved)
             {
-
                 $create = Actions::where('type', '=', 'create')->first();
 
                 $newReservetionHistory = ReservationHistory::create([
@@ -198,18 +196,41 @@ class PlaceApiController extends ApiBaseController
                     'action' => $create->id
                 ]);
 
-                
-
                 $newReserved['countOfReservations'] = $countOfReservations;
 
                 if($newReservetionHistory)
                 {
+                    if ($countOfReservations % 5 == 0)
+                    {
+                        $this->SendPush($countOfReservations);
+                    }
+
                     return $this->sendResponse(
-                        $newReserved->toArray()
-                    ,
+                        $newReserved->toArray(),
                         'Reserved');
                 }
             }
         }
+    }
+
+    private function SendPush(int $countOfReservations)
+    {
+        $ch = curl_init();
+
+        // set url
+        curl_setopt($ch, CURLOPT_URL, "https://fcm.googleapis.com/v1/projects/tc-gardener/messages:send");
+
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, '{"message":{"notification":{"body":"У вас '.$countOfReservations.' необработанных заявок.","title":"Внимание"},"topic":"AdminNotification"}}');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "Authorization : Bearer ya29.ImOyB2NvUZji_VZEKsK22DR6SRsnxIbqNbkD_kCUQuOSQ_UdXyDWk-bLMyGqHdf-auwSH0L4AaukaJADR9hH2Q-tFVUz-vGOBoBeICrBadBadi9ev3Qt1zNDm4ZuAsVGgHxw9No"
+        ]);
+
+        curl_exec($ch);
+
+        curl_close($ch); 
     }
 }
