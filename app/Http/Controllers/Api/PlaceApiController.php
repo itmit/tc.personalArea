@@ -213,45 +213,33 @@ class PlaceApiController extends ApiBaseController
         }
     }
 
-    private function GoogleClientLogin()
-    {
-        $client = new Google_Client();
-        $client->setAuthConfig('client_secret.json');
-        $client->addScope(Google_Service_Drive::DRIVE_METADATA_READONLY);
-        $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback');
-
-        // offline access will give you both an access and refresh token so that
-        // your app can refresh the access token without user interaction.
-        $client->setAccessType('offline');
-
-        // Using "consent" ensures that your application always receives a refresh token.
-        // If you are not using offline access, you can omit this.
-        $client->setApprovalPrompt("consent");
-        $client->setIncludeGrantedScopes(true);
-
-        $auth_url = $client->createAuthUrl();
-    
-        header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
-    }
-
     private function SendPush(int $countOfReservations)
     {
-        $ch = curl_init();
+        $url = 'https://fcm.googleapis.com/fcm/send';
 
-        // set url
-        curl_setopt($ch, CURLOPT_URL, "https://fcm.googleapis.com/v1/projects/tc-gardener/messages:send");
+        $fields = array (
+            'to' => '/topics/AdminNotification',
+            "notification" => [
+                "body" => "У вас ".$countOfReservations." необработанных заявок.",
+                "title" => "Внимание"
+            ]
+        );
+        $fields = json_encode ( $fields );
 
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, '{"message":{"notification":{"body":"У вас '.$countOfReservations.' необработанных заявок.","title":"Внимание"},"topic":"AdminNotification"}}');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            "Accept: application/json",
-            "Content-Type: application/json",
-            "Authorization : Bearer ya29.ImOyB2NvUZji_VZEKsK22DR6SRsnxIbqNbkD_kCUQuOSQ_UdXyDWk-bLMyGqHdf-auwSH0L4AaukaJADR9hH2Q-tFVUz-vGOBoBeICrBadBadi9ev3Qt1zNDm4ZuAsVGgHxw9No"
-        ]);
+        $headers = array (
+                'Authorization: key=' . "AAAAcZkfTDU:APA91bGgoysHhtZfk272579GGadndryldrSN49MEIO3QGrgI1aKTYir62YbtVXHEaICk1-G1NIWq9DsmCwQGmcmnqqlXWltysqQRoXPoXEdkvz-1oiHS-cF54VSNsWOvut-I_0gBQgrx",
+                'Content-Type: application/json'
+        );
 
-        curl_exec($ch);
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
 
-        curl_close($ch); 
+        curl_exec ( $ch );
+
+        curl_close ( $ch );
     }
 }

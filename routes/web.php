@@ -74,30 +74,6 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     });
 });
 
-Route::get('test', function(){
-    $client = new Google_Client();
-    $client->setAuthConfig('../client_secret.json');
-    $client->addScope(Google_Service_Drive::DRIVE_METADATA_READONLY);
-    $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback');
-
-    // offline access will give you both an access and refresh token so that
-    // your app can refresh the access token without user interaction.
-    $client->setAccessType('offline');
-
-    // Using "consent" ensures that your application always receives a refresh token.
-    // If you are not using offline access, you can omit this.
-    // $client->setApprovalPrompt("consent");
-    // $client->setIncludeGrantedScopes(true);
-
-    $auth_url = $client->createAuthUrl();
-
-    return redirect(filter_var($auth_url, FILTER_SANITIZE_URL));
-});
-
-Route::get('oauth2callback', function(Request $request) {
-dd($request);
-});
-
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
