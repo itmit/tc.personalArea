@@ -81,6 +81,7 @@ class ReservationWebController extends Controller
                 'accepted' => $reservation->accepted,
                 'created_at' => date('H:i d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))),
                 'expires_at' => date('H:i d.m.Y', strtotime($reservation->expires_at->timezone('Europe/Moscow'))),
+                'expire' => $reservation->expire,
                 'place' => [
                     'id' => $reservation->place()->id,
                     'block' => $reservation->place()->block,

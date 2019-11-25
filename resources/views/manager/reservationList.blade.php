@@ -53,7 +53,14 @@
                     success: function (response) {
                         let result = '';
                         for(var i = 0; i < response.length; i++) {
-                            result += '<tr id="' + response[i]['id'] + '">';
+                            if(response[i]['expire'] == 1)
+                            {
+                                result += '<tr id="' + response[i]['id'] + '" style="background-color: red">';
+                            }
+                            else
+                            {
+                                result += '<tr id="' + response[i]['id'] + '">';
+                            }
                             result += '<td><i class="material-icons"><a href="reservation/' + response[i]['id'] + '">slideshow</a></i></td>';
                             result += '<td><a href="../client/' + response[i]['client_id'] + '">' + response[i]['first_name'] + ' ' + response[i]['last_name'] + '</a></td>';
                             result += '<td>' + response[i]['rating'] + '</td>';
