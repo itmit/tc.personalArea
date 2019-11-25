@@ -59,75 +59,37 @@ class ReservationWebController extends Controller
         switch ($request->selectByAccept) {
             case 'all':
                 $reservations = Reservation::orderBy('created_at', 'desc')->get();
-                foreach ($reservations as $reservation) {
-                    $response[] = [
-                        'id'   => $reservation->id,
-                        'first_name' => $reservation->first_name,
-                        'last_name' => $reservation->last_name,
-                        'phone' => $reservation->phone,
-                        'accepted' => $reservation->accepted,
-                        'created_at' => substr($reservation->created_at->timezone('Europe/Moscow'), 0),
-                        'updated_at' => substr($reservation->updated_at->timezone('Europe/Moscow'), 0),
-                        'place' => [
-                            'id' => $reservation->place()->id,
-                            'block' => $reservation->place()->block,
-                            'floor' => $reservation->place()->floor,
-                            'row' => $reservation->place()->row,
-                            'place_number' => $reservation->place()->place_number
-                        ]
-                    ];
-                }
-                return response()->json($response);
                 break;
             case 'active':
                 $reservations = Reservation::where('accepted', '=', '0')->orderBy('created_at', 'desc')->get();
-                foreach ($reservations as $reservation) {
-                    $response[] = [
-                        'id'   => $reservation->id,
-                        'first_name' => $reservation->first_name,
-                        'last_name' => $reservation->last_name,
-                        'phone' => $reservation->phone,
-                        'accepted' => $reservation->accepted,
-                        'created_at' => substr($reservation->created_at->timezone('Europe/Moscow'), 0),
-                        'updated_at' => substr($reservation->updated_at->timezone('Europe/Moscow'), 0),
-                        'place' => [
-                            'id' => $reservation->place()->id,
-                            'block' => $reservation->place()->block,
-                            'floor' => $reservation->place()->floor,
-                            'row' => $reservation->place()->row,
-                            'place_number' => $reservation->place()->place_number
-                        ]
-                    ];
-                }
-                return response()->json($response);
                 break;
             case 'accepted':
                 $reservations = Reservation::where('accepted', '<>', '0')->orderBy('created_at', 'desc')->get();
-                foreach ($reservations as $reservation) {
-                    $response[] = [
-                        'id'   => $reservation->id,
-                        'first_name' => $reservation->first_name,
-                        'last_name' => $reservation->last_name,
-                        'phone' => $reservation->phone,
-                        'accepted' => $reservation->accepted,
-                        'created_at' => substr($reservation->created_at->timezone('Europe/Moscow'), 0),
-                        'updated_at' => substr($reservation->updated_at->timezone('Europe/Moscow'), 0),
-                        'place' => [
-                            'id' => $reservation->place()->id,
-                            'block' => $reservation->place()->block,
-                            'floor' => $reservation->place()->floor,
-                            'row' => $reservation->place()->row,
-                            'place_number' => $reservation->place()->place_number
-                        ]
-                    ];
-                }
-                return response()->json($response);
                 break;
             default:
                 return response()->json(['Error']);
         }
 
-        return response()->json(['Reservated']);
+        foreach ($reservations as $reservation) {
+            $response[] = [
+                'id'   => $reservation->id,
+                'first_name' => $reservation->first_name,
+                'last_name' => $reservation->last_name,
+                'phone' => $reservation->phone,
+                'accepted' => $reservation->accepted,
+                'created_at' => substr($reservation->created_at->timezone('Europe/Moscow'), 0),
+                'updated_at' => substr($reservation->updated_at->timezone('Europe/Moscow'), 0),
+                'place' => [
+                    'id' => $reservation->place()->id,
+                    'block' => $reservation->place()->block,
+                    'floor' => $reservation->place()->floor,
+                    'row' => $reservation->place()->row,
+                    'place_number' => $reservation->place()->place_number
+                ]
+            ];
+        }
+
+        return response()->json($response);
     }
 
     /**
