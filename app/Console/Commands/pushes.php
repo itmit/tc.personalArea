@@ -41,22 +41,31 @@ class pushes extends Command
         $countOfReservations = Reservation::where('accepted', '=', '0')->get();
         $countOfReservations = $countOfReservations->count();
 
-        $ch = curl_init();
+        $url = 'https://fcm.googleapis.com/fcm/send';
 
-        // set url
-        curl_setopt($ch, CURLOPT_URL, "https://fcm.googleapis.com/v1/projects/tc-gardener/messages:send");
+        $fields = array (
+            'to' => '/topics/AdminNotification',
+            "notification" => [
+                "body" => "У вас ".$countOfReservations." необработанных заявок.",
+                "title" => "Внимание"
+            ]
+        );
+        $fields = json_encode ( $fields );
 
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, '{"message":{"notification":{"body":"У вас '.$countOfReservations.' необработанных заявок.","title":"Внимание"},"topic":"AdminNotification"}}');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            "Accept: application/json",
-            "Content-Type: application/json",
-            "Authorization : Bearer ya29.ImOyB2NvUZji_VZEKsK22DR6SRsnxIbqNbkD_kCUQuOSQ_UdXyDWk-bLMyGqHdf-auwSH0L4AaukaJADR9hH2Q-tFVUz-vGOBoBeICrBadBadi9ev3Qt1zNDm4ZuAsVGgHxw9No"
-        ]);
+        $headers = array (
+                'Authorization: key=' . "AAAAcZkfTDU:APA91bGgoysHhtZfk272579GGadndryldrSN49MEIO3QGrgI1aKTYir62YbtVXHEaICk1-G1NIWq9DsmCwQGmcmnqqlXWltysqQRoXPoXEdkvz-1oiHS-cF54VSNsWOvut-I_0gBQgrx",
+                'Content-Type: application/json'
+        );
 
-        curl_exec($ch);
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
 
-        curl_close($ch); 
+        curl_exec ( $ch );
+
+        curl_close ( $ch );
     }
 }
