@@ -34,12 +34,13 @@ class BidForBuyApiController extends ApiBaseController
         $validator = Validator::make($request->all(), [
             'PlaceNumber' => 'required|string|max:255',
             'Block' => 'required|string|max:255',
+            'Row' => 'required|string',
             'Name' => 'required|string|max:30|min:3',
             'PhoneNumber' => 'required|string|max:18|min:18',
             'Floor' => 'required|string|max:255'
         ]);
 
-        $this->place = Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'));
+        $this->place = Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'), $request->input('Row'));
 
         $validator->after(function ($validator) {
             if ($this->place == null) {
