@@ -39,14 +39,14 @@ class PlaceApiController extends ApiBaseController
      * @param string $block
      * @return JsonResponse
      */
-    public function show(string $block, int $offset = 0, int $limit = 100): JsonResponse
+    public function show(string $block, Request $request): JsonResponse
     { 
         $action = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
             // ->inRandomOrder()
-            ->offset($offset)
-            ->limit($limit)
+            ->offset($request->offset)
+            ->limit($request->limit)
             ->get();
         foreach ($places as $place) {
             $reservation = Reservation::where([
@@ -125,7 +125,7 @@ class PlaceApiController extends ApiBaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->errors(), "Validation error", 401);
+            return $this->sendError($validator->errors(), "Validation error");
         }
 
         $this->place = Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'), $request->input('row'));
@@ -155,7 +155,7 @@ class PlaceApiController extends ApiBaseController
         $isTaken = Place::where('id', '=', $this->place->id)->first();
         if($isReserved || $isTaken->status == 'Арендован')
         {
-            return $this->SendError('Reservation error', 'Место уже забронировано', 401);
+            return $this->SendError('Reservation error', 'Место уже арендовано');
         }
         else
         {

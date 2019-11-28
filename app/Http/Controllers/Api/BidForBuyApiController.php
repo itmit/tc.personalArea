@@ -40,6 +40,10 @@ class BidForBuyApiController extends ApiBaseController
             'Floor' => 'required|string|max:255'
         ]);
 
+        if ($validator->fails()) {
+            return $this->sendError('Validation error.', $validator->errors()->first());
+        }
+
         $this->place = Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'), $request->input('Row'));
 
         $validator->after(function ($validator) {
@@ -50,7 +54,7 @@ class BidForBuyApiController extends ApiBaseController
 
 
         if ($validator->fails()) {
-            return $this->sendError('Validation error.', $validator->errors()->all());
+            return $this->sendError('Validation error.', $validator->errors()->first());
         }    
         
         $newBidForBuy = BidForBuy::create([

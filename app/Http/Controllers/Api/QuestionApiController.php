@@ -26,7 +26,7 @@ class QuestionApiController extends ApiBaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->errors(), "Validation error", 401);
+            return $this->sendError('Validation error.', $validator->errors()->first());
         }
 
         Question::create([
@@ -40,38 +40,6 @@ class QuestionApiController extends ApiBaseController
 
     public function test()
     {
-        // $reservations = Reservation::where('accepted', '=', '1')->get();
-        // $action = Actions::where('type', '=', 'cancelByExpiredTime')->first();
-        // foreach($reservations as $item)
-        // {
-        //     $history = ReservationHistory::where('bid', '=', $item->id)->latest()->first();
-        //     if($history->action()->type == "reservation")
-        //     {
-        //         $now = time() + 10800;
-        //         $ends_at = strtotime($history->created_at->timezone('Europe/Moscow') . " + " . $history->timer ." hours");
-        //         $diff = (int) $ends_at - $now;
-                
-        //         if($diff <= 0)
-        //         {
-        //             $rating = Client::where('id', '=', $item->client)->first(['rating']);
-
-        //             Reservation::where('id', '=', $item->id)->update([
-        //                 'accepted' => 2
-        //             ]);
-
-        //             ReservationHistory::create([
-        //                 'bid' => $item->id,
-        //                 'action' => $action->id
-        //             ]);
-
-        //             $newRating = $rating->rating + $action->points;
-
-        //             Client::where('id', '=', $item->client)->update([
-        //                 'rating' => $newRating
-        //             ]);
-        //         }
-        //     }
-        // }
         $now = time();
 
         $reservations = Reservation::where('accepted', '=', '0')->get();
