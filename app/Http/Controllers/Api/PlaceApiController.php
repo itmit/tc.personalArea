@@ -46,8 +46,8 @@ class PlaceApiController extends ApiBaseController
             ->where('block', '=', $block)
             // ->inRandomOrder()
             ->orderBy('row', 'desc')
-            ->offset($offset)
-            ->limit($limit)
+            ->offset($request->offset)
+            ->limit($request->limit)
             ->get();
         foreach ($places as $place) {
             $reservation = Reservation::where([
