@@ -45,6 +45,7 @@ class PlaceApiController extends ApiBaseController
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)
             // ->inRandomOrder()
+            ->orderBy('row', 'desc')
             ->offset($offset)
             ->limit($limit)
             ->get();
