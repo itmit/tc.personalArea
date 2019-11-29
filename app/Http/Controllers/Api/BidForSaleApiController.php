@@ -41,6 +41,10 @@ class BidForSaleApiController extends ApiBaseController
             'PhoneNumber' => 'required|string|max:18|min:18',
             'Floor' => 'required|string|max:255'
         ]);
+        
+        if ($validator->fails()) {
+            return $this->sendError('Validation error.', $validator->errors()->first());
+        }
 
         $this->place = Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'), $request->input('Row'));  
 
@@ -51,7 +55,7 @@ class BidForSaleApiController extends ApiBaseController
         });
 
         if ($validator->fails()) {
-            return $this->sendError('Validation error.', $validator->errors()->all());
+            return $this->sendError('Validation error.', $validator->errors()->first());
         }       
         
         $newBidForSale = BidForSale::create([
