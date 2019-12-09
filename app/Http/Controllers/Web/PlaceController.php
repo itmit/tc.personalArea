@@ -94,11 +94,11 @@ class PlaceController extends Controller
     {
         if($request->input('block') == "По-умолчанию")
         {
-            return response()->json([Place::select('*')->orderBy('created_at', 'desc')->get()]);
+            return response()->json([Place::select('*')->orderBy('created_at', 'asc')->get()]);
         }
         else
         {
-            return response()->json([Place::select('*')->where('block', $request->input('block'))->orderBy('created_at', 'desc')->get()]);
+            return response()->json([Place::select('*')->where('block', $request->input('block'))->orderBy('created_at', 'asc')->get()]);
         }
         
         
