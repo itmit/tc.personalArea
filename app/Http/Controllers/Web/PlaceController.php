@@ -27,7 +27,7 @@ class PlaceController extends Controller
     {
         return view('manager.placeList', [
             'title' => 'Список мест',
-            'places' => Place::select('*')->orderBy('row', 'desc')
+            'places' => Place::select('*')->orderBy('created_at', 'asc')
             ->limit(500)->get()
         ]);
     }
