@@ -119,7 +119,7 @@ class PlaceApiController extends ApiBaseController
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|min:18',
             'block' => 'required',
             'floor' => 'required',
             'row' => 'required',
