@@ -8,6 +8,7 @@
         "php": ">=7.0.0",
         "ext-json": "*",
         "asan/phpexcel": "^2.0",
+        "caouecs/laravel-lang": "^4.0",
         "fideloper/proxy": "^4.0",
         "google/apiclient": "^2.0",
         "laravel/framework": "5.6.*",
