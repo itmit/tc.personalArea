@@ -32,6 +32,7 @@ class Place extends Model
         'price',
         'place_number',
         'status',
+        'sort'
     ];
 
     public static function checkValidPlaceNumber(string $block, string $floor, string $number, string $row) : ?Place
