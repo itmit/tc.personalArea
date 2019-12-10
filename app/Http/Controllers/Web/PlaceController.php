@@ -94,11 +94,11 @@ class PlaceController extends Controller
     {
         if($request->input('block') == "По-умолчанию")
         {
-            return response()->json([Place::select('*')->orderBy('created_at', 'asc')->get()]);
+            return response()->json([Place::select('*')->orderBy('sort', 'asc')->get()]);
         }
         else
         {
-            return response()->json([Place::select('*')->where('block', $request->input('block'))->orderBy('created_at', 'asc')->get()]);
+            return response()->json([Place::select('*')->where('block', $request->input('block'))->orderBy('sort', 'asc')->get()]);
         }
         
         
@@ -201,7 +201,7 @@ class PlaceController extends Controller
         return Validator::make($data, [
             'block' => 'required|string|max:255',
             'floor' => 'integer',
-            'row' => 'required|string',
+            // 'row' => 'required|string',
             // 'price' => 'integer',
             'place_number' => 'required|string|max:255',
             'status' => 'required|string|max:255',

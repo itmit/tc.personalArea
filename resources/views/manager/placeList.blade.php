@@ -64,7 +64,7 @@
 
     <div class="col-sm-12">
         <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control">
-            <option value="По-умолчанию">По-умолчанию</option>
+            {{-- <option value="По-умолчанию">По-умолчанию</option> --}}
             <option value="Вещевой">Вещевые ряды</option>
             <option value="ТЦ">ТЦ Садовод</option>
             <option value="Новый ТЦ">Новый ТЦ</option>
