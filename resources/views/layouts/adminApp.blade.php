@@ -130,11 +130,11 @@
                     @endability
 
                     @ability('super-admin,manager', 'show-bid-for-sale-list')
-                    <li><a href="{{ route('auth.manager.bidForSale.index') }}">Заявки на аренду помещения</a></li>
+                    <li><a href="{{ route('auth.manager.bidForSale.index') }}">Сдать помещение</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
-                    <li><a href="{{ route('auth.manager.bidForBuy.index') }}">Заявки на сдачу в аренду помещения</a></li>
+                    <li><a href="{{ route('auth.manager.bidForBuy.index') }}">Арендовать помещение</a></li>
                     @endability
 
                     @ability('super-admin', 'show-questions-list')
