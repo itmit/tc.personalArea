@@ -196,7 +196,7 @@ class PlaceController extends Controller
         return Validator::make($data, [
             'block' => 'required|string|max:255',
             'floor' => 'integer',
-            // 'row' => 'required|string',
+            'row' => 'required|string',
             // 'price' => 'integer',
             'place_number' => 'required|string|max:255',
             'status' => 'required|string|max:255',
