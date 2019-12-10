@@ -22,6 +22,7 @@ class CreatePlaceTable extends Migration
             $table->string('place_number');
             $table->string('status');
             $table->integer('price')->nullable();
+            $table->integer('sort')->unsigned();
             $table->timestamps();
 
             $table->unique(['block', 'place_number', 'row', 'floor']);

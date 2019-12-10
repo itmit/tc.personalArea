@@ -27,8 +27,8 @@ class PlaceController extends Controller
     {
         return view('manager.placeList', [
             'title' => 'Список мест',
-            'places' => Place::select('*')->orderBy('created_at', 'asc')
-            ->limit(500)->get()
+            // 'places' => Place::select('*')->orderBy('created_at', 'asc')
+            // ->limit(500)->get()
         ]);
     }
 
@@ -119,7 +119,9 @@ class PlaceController extends Controller
                     function (Xlsx $reader) {
                         $reader->setColumnLimit(4);
                         $reader->ignoreEmptyRow(false);
-                    });
+                });
+
+                $i = 0;
 
                 DB::beginTransaction();
 
@@ -168,6 +170,7 @@ class PlaceController extends Controller
                             'row' => $data['row'],
                             'place_number' => $data['place_number'],
                             'status' => $request->input('status'),
+                            'sort' => $i,
                         ]);
                     } else {
                         Place::create([
@@ -175,9 +178,11 @@ class PlaceController extends Controller
                             'row' => $data['row'],
                             'place_number' => $data['place_number'],
                             'status' => $request->input('status'),
+                            'sort' => $i,
                         ]);
 
                     }
+                    $i++;
                 }
                 unlink($path);
                 DB::commit();

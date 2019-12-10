@@ -60,6 +60,8 @@
         <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченные места</button>
     </div>
 
+    <h2>Выберете блок</h2>
+
     <div class="col-sm-12">
         <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control">
             <option value="По-умолчанию">По-умолчанию</option>
@@ -88,7 +90,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($places as $place)
+        {{-- @foreach($places as $place)
             <tr @if($place->status == 'Арендован') style="background-color: #f7ecdd!important;" @endif @if($place->status == 'Забронировано') style="background-color: #ff8c00!important;" @endif>
                 <td><input type="checkbox" data-place-id="{{ $place->id }}" name="destoy-place-{{ $place->id }}" class="js-destroy"/></td>
                 <td><i class="material-icons"><a href="place/edit/{{ $place->id }}">edit</a></i></td>
@@ -105,7 +107,7 @@
                 </td>
                 <td>{{ $place->price }}</td>
             </tr>
-        @endforeach
+        @endforeach --}}
         </tbody>
     </table>
 
