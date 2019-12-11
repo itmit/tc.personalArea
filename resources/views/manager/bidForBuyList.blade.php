@@ -28,6 +28,7 @@
                 <td>{{ $bid->place()->get()->first()->place_number }}</td>
                 <td>{{ $bid->seller_name }}</td>
                 <td>{{ $bid->phone_number }}</td>
+                <td>{{ $bid->text }}</td>
             </tr>
         @endforeach
         </tbody>
