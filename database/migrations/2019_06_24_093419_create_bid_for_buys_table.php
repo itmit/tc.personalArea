@@ -19,6 +19,7 @@ class CreateBidForBuysTable extends Migration
             $table->string('seller_name');
             $table->string('phone_number', 18);
             $table->integer('place')->unsigned();
+            $table->text('text')->nullable();
             $table->timestamps();
 
             $table->foreign('place')->references('id')->on('places')

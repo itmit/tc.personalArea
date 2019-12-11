@@ -18,6 +18,11 @@ class CreateQuestionsTable extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->text('text');
+            $table->integer('place')->unsigned();
+
+            $table->foreign('place')->references('id')->on('places')
+                ->onUpdate('cascade')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

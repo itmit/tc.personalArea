@@ -39,7 +39,8 @@ class BidForSaleApiController extends ApiBaseController
             'Name' => 'required|string|max:30|min:3',
             'Row' => 'required|string',
             'PhoneNumber' => 'required|string|max:18|min:18',
-            'Floor' => 'required|string|max:255'
+            'Floor' => 'required|string|max:255',
+            'Text' => 'required|string'
         ]);
         
         if ($validator->fails()) {
@@ -61,7 +62,8 @@ class BidForSaleApiController extends ApiBaseController
         $newBidForSale = BidForSale::create([
             'place' => $this->place->id,
             'seller_name' => $request->Name,
-            'phone_number' => $request->PhoneNumber
+            'phone_number' => $request->PhoneNumber,
+            'text' => $request->Text,
         ]);
 
         return $this->sendResponse([

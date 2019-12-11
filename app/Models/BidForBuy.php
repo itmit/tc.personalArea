@@ -9,11 +9,7 @@ class BidForBuy extends Model
     /**
      * @var array
      */
-    protected $fillable = [
-        'place',
-        'seller_name',
-        'phone_number',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * @var string

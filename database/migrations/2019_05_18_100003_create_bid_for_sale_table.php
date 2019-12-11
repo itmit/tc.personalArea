@@ -17,6 +17,7 @@ class CreateBidForSaleTable extends Migration
             $table->increments('id');
             $table->string('seller_name');
             $table->string('phone_number', 18);
+            $table->text('text')->nullable();
             $table->timestamps();
 
             $table->integer('place')->unsigned();

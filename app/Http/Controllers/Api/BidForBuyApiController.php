@@ -37,7 +37,8 @@ class BidForBuyApiController extends ApiBaseController
             'Row' => 'required|string',
             'Name' => 'required|string|max:30|min:3',
             'PhoneNumber' => 'required|string|max:18|min:18',
-            'Floor' => 'required|string|max:255'
+            'Floor' => 'required|string|max:255',
+            'Text' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -60,7 +61,8 @@ class BidForBuyApiController extends ApiBaseController
         $newBidForBuy = BidForBuy::create([
             'place' => $this->place->id,
             'seller_name' => $request->Name,
-            'phone_number' => $request->PhoneNumber
+            'phone_number' => $request->PhoneNumber,
+            'text' => $request->Text,
         ]);
 
         return $this->sendResponse([
