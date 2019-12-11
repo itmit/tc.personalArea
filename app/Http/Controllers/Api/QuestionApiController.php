@@ -33,7 +33,7 @@ class QuestionApiController extends ApiBaseController
             return $this->sendError('Validation error.', $validator->errors()->first());
         }
 
-        $this->place = Place::checkValidPlaceNumber($request->input('Block'), $request->input('Floor'), $request->input('PlaceNumber'), $request->input('Row'));  
+        $this->place = Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'), $request->input('row'));  
 
         $validator->after(function ($validator) {
             if ($this->place == null) {
