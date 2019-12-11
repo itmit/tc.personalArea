@@ -15,6 +15,9 @@
         </thead>
         <tbody>
         @foreach($questions as $question)
+        @if($question->place()->get()->first() == NULL)
+        @continue
+        @endif
             <tr>
                 <td>{{ $question->place()->get()->first()->block }}</td>
                 <td>{{ $question->place()->get()->first()->floor }}</td>
