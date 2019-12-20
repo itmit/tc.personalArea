@@ -57,9 +57,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
             'only' => ['index', 'create', 'store', 'show']
         ]);
 
-        Route::resource('questions', 'Web\QuestionWebController', [
-            'only' => ['index', 'create', 'store']
-        ]);
+        Route::resource('questions', 'Web\QuestionWebController');
 
         Route::post('reservation/confirmReservation', 'Web\ReservationWebController@confirmReservation');
         Route::post('reservation/selectByAccept', 'Web\ReservationWebController@selectByAccept');

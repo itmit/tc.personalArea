@@ -11,6 +11,7 @@
             <th>Имя</th>
             <th>Телефон</th>
             <th>Текст</th>
+            <th>Удалить</th>
         </tr>
         </thead>
         <tbody>
@@ -26,10 +27,36 @@
                 <td>{{ $question->name }}</td>
                 <td>{{ $question->phone_number }}</td>
                 <td>{{ $question->text }}</td>
+                <td><i class="material-icons delete-question" style="cursor: pointer" data-id="{{ $question->id }}">delete</i></td>
             </tr>
         @endforeach
         </tbody>
     </table>
 
+    <script>
 
+    $(document).on('click', '.delete-question', function() {
+        let isDelete = confirm("Удалить обращение? Данное действие невозможно отменить!");
+    
+        if(isDelete)
+        {
+            let id = $(this).data('id');
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { id: id },
+                url     : 'questions/delete',
+                method    : 'delete',
+                success: function (response) {
+                    $(this).closest('tr').remove();
+                    console.log('Удалено!');
+                },
+                error: function (xhr, err) { 
+                    console.log("Error: " + xhr + " " + err);
+                }
+            });
+        }
+    });
+    
+    </script>
 @endsection

@@ -22,4 +22,16 @@ class QuestionWebController extends Controller
             ->orderBy('created_at', 'desc')->get()
         ]);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        Question::where('id', '=', $request->id)->delete();
+        return response()->json(['succses'=>'Удалено'], 200); 
+    }
 }
