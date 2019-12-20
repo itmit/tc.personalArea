@@ -88,7 +88,7 @@ class ManagerController extends Controller
      */
     public function destroy(Request $request)
     {
-        User::where('contest_id', '=', $request->id)->delete();
+        User::where('id', '=', $request->id)->delete();
         return response()->json(['succses'=>'Удалено'], 200); 
     }
 }
