@@ -13,6 +13,7 @@
             <th>Почта</th>
             <th>Дата создания</th>
             <th>Дата обновления</th>
+            <th>Удалить</th>
         </tr>
         </thead>
         <tbody>
@@ -22,8 +23,36 @@
                 <td>{{ $manager->email }}</td>
                 <td>{{ $manager->created_at }}</td>
                 <td>{{ $manager->updated_at }}</td>
+                <td><i class="material-icons delete-manager" style="cursor: pointer" data-id="{{ $manager->id }}">delete</i></td>
             </tr>
         @endforeach
         </tbody>
     </table>
+
+    <script>
+
+    $(document).on('click', '.delete-manager', function() {
+        let isDelete = confirm("Удалить менеджера? Данное действие невозможно отменить!");
+    
+        if(isDelete)
+        {
+            let id = $(this).data('id');
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { id: id },
+                url     : 'managers/delete',
+                method    : 'delete',
+                success: function (response) {
+                    $(this).closest('tr').remove();
+                    console.log('Удалено!');
+                },
+                error: function (xhr, err) { 
+                    console.log("Error: " + xhr + " " + err);
+                }
+            });
+        }
+    });
+    
+    </script>
 @endsection

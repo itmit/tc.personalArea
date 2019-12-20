@@ -19,9 +19,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
     Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
-        Route::resource('managers', 'Web\ManagerController', [
-            'only' => ['index', 'create', 'store']
-        ]);
+        Route::resource('managers', 'Web\ManagerController');
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
