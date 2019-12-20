@@ -4,7 +4,7 @@
 <div class="import-tc">
     <p class="text-tc-h">Импорт</p>
     @ability('super-admin,manager', 'import-place')
-    <form action="{{ route('auth.manager.places.import') }}" method="post" enctype="multipart/form-data">
+    {{-- <form action="{{ route('auth.manager.places.import') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
 
@@ -45,7 +45,7 @@
             </button>
         </div>
     </form>
-</div>
+</div> --}}
     @endability
 
     @ability('super-admin,manager', 'create-place')
