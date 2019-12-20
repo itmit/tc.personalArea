@@ -115,34 +115,34 @@
             <div class="col-xs-12 col-sm-3 tc-left-menu">
                 <ul class="nav">
 
-                    <li class="active"><a href="{{ route('auth.home') }}">Главная</a></li>
+                    <li name="home"><a href="{{ route('auth.home') }}">Главная</a></li>
 
                     @ability('super-admin', 'show-manager-list')
-                    <li><a href="{{ route('auth.admin.managers.index') }}">Список менеджеров</a></li>
+                    <li name="managers"><a href="{{ route('auth.admin.managers.index') }}">Список менеджеров</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-place-list')
-                    <li><a href="{{ route('auth.manager.places.index') }}">Места</a></li>
+                    <li name="places"><a href="{{ route('auth.manager.places.index') }}">Места</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-reservation-places-list')
-                    <li><a href="{{ route('auth.manager.reservation.index') }}">Заявки на бронь</a></li>
+                    <li name="reservation"><a href="{{ route('auth.manager.reservation.index') }}">Заявки на бронь</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-bid-for-sale-list')
-                    <li><a href="{{ route('auth.manager.bidForSale.index') }}">Арендовать помещение</a></li>
+                    <li name="bidForSale"><a href="{{ route('auth.manager.bidForSale.index') }}">Арендовать помещение</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
-                    <li><a href="{{ route('auth.manager.bidForBuy.index') }}">Сдать помещение</a></li>
+                    <li name="bidForBuy"><a href="{{ route('auth.manager.bidForBuy.index') }}">Сдать помещение</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-questions-list')
-                    <li><a href="{{ route('auth.manager.questions.index') }}">Переуступка права пользования помещением</a></li>
+                    <li name="questions"><a href="{{ route('auth.manager.questions.index') }}">Переуступка права пользования помещением</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
-                    <li><a href="{{ route('auth.manager.news.index') }}">Новости</a></li>
+                    <li name="news"><a href="{{ route('auth.manager.news.index') }}">Новости</a></li>
                     @endability
                 </ul>
             </div>
@@ -159,13 +159,40 @@
 
         let pathname = window.location.pathname;
         console.log(pathname);
-        // let urlcheck = /\/bid\/\d+$/.test(pathname); 
-        // if(pathname != '/bid')
-        // {
-        //     if(urlcheck != true)
-        //     {
-        //     }
-        // }
+        switch(pathname) {
+        case '/home':
+            $( "li[name='home']" ).addClass( "active" );
+            break;
+
+        case '/managers':
+            $( "li[name='managers']" ).addClass( "active" );
+            break;
+
+        case '/places':
+            $( "li[name='places']" ).addClass( "active" );
+            break;
+
+        case '/reservation':
+            $( "li[name='reservation']" ).addClass( "active" );
+            break;
+
+        case '/bidForSale':
+            $( "li[name='bidForSale']" ).addClass( "active" );
+            break;
+
+        case '/bidForBuy':
+            $( "li[name='bidForBuy']" ).addClass( "active" );
+            break;
+
+        case '/questions':
+            $( "li[name='questions']" ).addClass( "active" );
+            break;
+
+        case '/news':
+            $( "li[name='news']" ).addClass( "active" );
+            break;
+        }
+        
 
         $(document).on('click', '.js-destroy-button', function() {
             let ids = [];
