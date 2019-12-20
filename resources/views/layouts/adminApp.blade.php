@@ -158,7 +158,7 @@
     $(document).ready(function() {
 
         let pathname = window.location.pathname;
-        console.log(pathname);
+
         switch(pathname) {
         case '/home':
             $( "li[name='home']" ).addClass( "active" );
