@@ -1,9 +1,9 @@
 @extends('layouts.adminApp')
 
 @section('content')
-<div class="import-tc">
-    <p class="text-tc-h">Импорт</p>
-    @ability('super-admin,manager', 'import-place')
+{{-- <div class="import-tc">
+    <p class="text-tc-h">Импорт</p> --}}
+    {{-- @ability('super-admin,manager', 'import-place') --}}
     {{-- <form action="{{ route('auth.manager.places.import') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
@@ -46,7 +46,7 @@
         </div>
     </form>
 </div> --}}
-    @endability
+    {{-- @endability --}}
 
     @ability('super-admin,manager', 'create-place')
     <form class="form-horizontal" method="GET" action="{{ route('auth.manager.places.create') }}">
