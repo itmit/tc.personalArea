@@ -4,7 +4,7 @@
 
     @ability('super-admin', 'create-manager')
 
-    <button type="submit" class="btn btn-tc-manager"><a href="{{ route('auth.admin.managers.create') }}">Создать менеджера</a></button>
+    <a href="{{ route('auth.admin.managers.create') }}" class="btn btn-tc-manager">Создать менеджера</a>
     @endability
     <table class="table table-bordered">
         <thead>

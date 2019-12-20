@@ -130,11 +130,11 @@
                     @endability
 
                     @ability('super-admin,manager', 'show-bid-for-sale-list')
-                    <li><a href="{{ route('auth.manager.bidForSale.index') }}">Сдать помещение</a></li>
+                    <li><a href="{{ route('auth.manager.bidForSale.index') }}">Арендовать помещение</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
-                    <li><a href="{{ route('auth.manager.bidForBuy.index') }}">Арендовать помещение</a></li>
+                    <li><a href="{{ route('auth.manager.bidForBuy.index') }}">Сдать помещение</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-questions-list')
@@ -156,6 +156,17 @@
 
 <script>
     $(document).ready(function() {
+
+        let pathname = window.location.pathname;
+        console.log(pathname);
+        // let urlcheck = /\/bid\/\d+$/.test(pathname); 
+        // if(pathname != '/bid')
+        // {
+        //     if(urlcheck != true)
+        //     {
+        //     }
+        // }
+
         $(document).on('click', '.js-destroy-button', function() {
             let ids = [];
 
