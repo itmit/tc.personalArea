@@ -79,4 +79,16 @@ class ManagerController extends Controller
 
         return redirect('/login');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        User::where('contest_id', '=', $request->id)->delete();
+        return response()->json(['succses'=>'Удалено'], 200); 
+    }
 }
