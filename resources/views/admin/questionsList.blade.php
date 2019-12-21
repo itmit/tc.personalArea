@@ -83,7 +83,7 @@
                         result += '<td>' + response[i]['name'] + '</td>';
                         result += '<td>' + response[i]['phone'] + '</td>';
                         result += '<td>' + response[i]['text'] + '</td>';
-                        result += '<td <i class="material-icons delete-question" style="cursor: pointer" data-id="' + response[i]['id'] + '">delete</i></td>';
+                        result += '<td><i class="material-icons delete-question" style="cursor: pointer" data-id="' + response[i]['id'] + '">delete</i></td>';
                         result += '</tr>';
                     }
                     $('tbody').html(result);
