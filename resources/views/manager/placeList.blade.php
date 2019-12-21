@@ -60,7 +60,7 @@
         <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченные места</button>
     </div>
 
-    <h2>Выберете блок</h2>
+    <h2>Выберите блок</h2>
 
     <div class="col-sm-12">
         <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control">
