@@ -41,9 +41,9 @@ class QuestionWebController extends Controller
                 'block' => $place->block,
                 'floor' => $place->floor,
                 'row' => $place->row,
-                'place' => $place->place,
+                'place' => $place->place_number,
                 'name' => $item->name,
-                'phone' => $item->phone,
+                'phone' => $item->phone_number,
                 'text' => $item->text,
             ];
         }
