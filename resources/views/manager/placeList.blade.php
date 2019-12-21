@@ -128,15 +128,15 @@
                         success: function (response) {
                             if(selectByAccept == 'Свободен')
                             {
-                                place.css("background-color","");
+                                place.attr('style', 'background-color: !important');
                             }
                             if(selectByAccept == 'Арендован')
                             {
-                                place.css("background-color","#f7ecdd!important");
+                                place.attr('style', 'background-color: #f7ecdd!important');
                             }
                             if(selectByAccept == 'Забронировано')
                             {
-                                place.css("background-color","#ff8c00!important");
+                                place.attr('style', 'background-color: #ff8c00!important');
                             }
                             console.log(response)
                         },
