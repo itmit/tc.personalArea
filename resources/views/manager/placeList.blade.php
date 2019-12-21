@@ -126,8 +126,18 @@
                         url     : 'places/changePlaceStatus',
                         method    : 'post',
                         success: function (response) {
-                            // console.log(place.html());
-                            place.css("border","3px solid red");
+                            if(selectByAccept == 'Свободен')
+                            {
+                                place.css("background-color","");
+                            }
+                            if(selectByAccept == 'Арендован')
+                            {
+                                place.css("background-color","#f7ecdd!important");
+                            }
+                            if(selectByAccept == 'Забронировано')
+                            {
+                                place.css("background-color","#ff8c00!important");
+                            }
                             console.log(response)
                         },
                         error: function (xhr, err) { 
