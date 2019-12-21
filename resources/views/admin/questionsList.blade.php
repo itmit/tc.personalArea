@@ -79,9 +79,9 @@
                         result += '<td>' + response[i]['block'] + '</td>';
                         result += '<td>' + response[i]['floor'] + '</td>';
                         result += '<td>' + response[i]['row'] + '</td>';
-                        result += '<td>' + response[i]['place_number'] + '</td>';
+                        result += '<td>' + response[i]['place'] + '</td>';
                         result += '<td>' + response[i]['name'] + '</td>';
-                        result += '<td>' + response[i]['phone_number'] + '</td>';
+                        result += '<td>' + response[i]['phone'] + '</td>';
                         result += '<td>' + response[i]['text'] + '</td>';
                         result += '<td <i class="material-icons delete-question" style="cursor: pointer" data-id="' + response[i]['id'] + '">delete</i></td>';
                         result += '</tr>';
