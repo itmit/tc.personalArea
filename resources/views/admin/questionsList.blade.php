@@ -1,37 +1,41 @@
 @extends('layouts.adminApp')
 
 @section('content')
-    <table class="table table-bordered">
-        <thead>
+<ul class="nav nav-tabs" id="myTab">
+    <li data-type="assignment" class="active"><a href="#">Переуступка прав</a></li>
+    <li data-type="acquisition"><a href="#">Приобретение прав</a></li>
+</ul>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Блок</th>
+        <th>Этаж</th>
+        <th>Ряд</th>
+        <th>Место</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Текст</th>
+        <th>Удалить</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($questions as $question)
+    @if($question->place()->get()->first() == NULL)
+    @continue
+    @endif
         <tr>
-            <th>Блок</th>
-            <th>Этаж</th>
-            <th>Ряд</th>
-            <th>Место</th>
-            <th>Имя</th>
-            <th>Телефон</th>
-            <th>Текст</th>
-            <th>Удалить</th>
+            <td>{{ $question->place()->get()->first()->block }}</td>
+            <td>{{ $question->place()->get()->first()->floor }}</td>
+            <td>{{ $question->place()->get()->first()->row }}</td>
+            <td>{{ $question->place()->get()->first()->place_number }}</td>
+            <td>{{ $question->name }}</td>
+            <td>{{ $question->phone_number }}</td>
+            <td>{{ $question->text }}</td>
+            <td><i class="material-icons delete-question" style="cursor: pointer" data-id="{{ $question->id }}">delete</i></td>
         </tr>
-        </thead>
-        <tbody>
-        @foreach($questions as $question)
-        @if($question->place()->get()->first() == NULL)
-        @continue
-        @endif
-            <tr>
-                <td>{{ $question->place()->get()->first()->block }}</td>
-                <td>{{ $question->place()->get()->first()->floor }}</td>
-                <td>{{ $question->place()->get()->first()->row }}</td>
-                <td>{{ $question->place()->get()->first()->place_number }}</td>
-                <td>{{ $question->name }}</td>
-                <td>{{ $question->phone_number }}</td>
-                <td>{{ $question->text }}</td>
-                <td><i class="material-icons delete-question" style="cursor: pointer" data-id="{{ $question->id }}">delete</i></td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+    @endforeach
+    </tbody>
+</table>
 
     <script>
 

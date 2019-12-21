@@ -18,7 +18,7 @@ class QuestionWebController extends Controller
     {
         return view('admin.questionsList', [
             'title' => 'Переуступка права пользования помещением',
-            'questions' => Question::select('*')
+            'questions' => Question::select('*')->where('type', '=', 'assignment')
             ->orderBy('created_at', 'desc')->get()
         ]);
     }

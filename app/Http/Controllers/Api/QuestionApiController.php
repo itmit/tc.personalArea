@@ -27,6 +27,7 @@ class QuestionApiController extends ApiBaseController
             'block' => 'required|string|max:255',
             'row' => 'required|string',
             'floor' => 'required|string|max:255',
+            'type' => 'required|string|max:255'
         ]);
 
         if ($validator->fails()) {
@@ -46,6 +47,7 @@ class QuestionApiController extends ApiBaseController
             'phone_number' => $request->input('phone_number'),
             'text' => $request->input('text'),
             'place' => $this->place->id,
+            'type' => $request->input('type')
         ]);
 
         return $this->sendResponse([], 'Stored');
