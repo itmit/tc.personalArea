@@ -118,7 +118,7 @@
                 $(document).on('change', '#changePlaceStatus', function() {
                     let selectByAccept = $(this).val();
                     let place_id = $(this).data('placeid');
-                    let place = $(this);
+                    let place = $(this).parent('tr');
                     $.ajax({
                         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                         dataType: "json",
