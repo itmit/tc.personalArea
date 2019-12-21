@@ -34,7 +34,7 @@ class QuestionWebController extends Controller
 
         $questions = Question::select('*')->where('type', $request->input('type'))->orderBy('created_at', 'asc')->get();
 
-        foreach ($questins as $item) {
+        foreach ($questions as $item) {
             $place = $item->place()->get()->first();
             $response[] = [
                 'id' => $item->id,
