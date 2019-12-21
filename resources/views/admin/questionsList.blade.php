@@ -73,27 +73,20 @@
             url     : 'questions/selectByType',
             method    : 'post',
             success: function (response) {
-                // let result = '';
-                //     for(var i = 0; i < response.length; i++) {
-                //         result += '<tr>';
-                //         result += '<td><a href="bid/' + response[i]['id'] + '">' + response[i]['status'] + '</a></td>';
-                //         if(response[i]['client']['name'] == null)
-                //         {     
-                //             result += '<td><a href="client/' + response[i]['client']['id'] + '">' + response[i]['client']['organization'] + '</a></td>';
-                //         }
-                //         else
-                //         {
-                //             result += '<td><a href="client/' + response[i]['client']['id'] + '">' + response[i]['client']['name'] + '</a></td>';
-                //         }
-                //         result += '<td>' + response[i]['guard'] + '</td>';
-                //         result += '<td>' + response[i]['location']['latitude'] + ' | ' + response[i]['location']['longitude'] + '</td>';
-                //         result += '<td>' + response[i]['type'] + '</td>';
-                //         result += '<td>' + response[i]['client']['phone_number'] + '</td>';
-                //         result += '<td>' + response[i]['created_at'] + '</td>';
-                //         result += '<td>' + response[i]['updated_at'] + '</td>';
-                //         result += '</tr>';
-                //     }
-                //     $('tbody').html(result);
+                let result = '';
+                    for(var i = 0; i < response.length; i++) {
+                        result += '<tr>';
+                        result += '<td>' + response[i]['block'] + '</td>';
+                        result += '<td>' + response[i]['floor'] + '</td>';
+                        result += '<td>' + response[i]['row'] + '</td>';
+                        result += '<td>' + response[i]['place_number'] + '</td>';
+                        result += '<td>' + response[i]['name'] + '</td>';
+                        result += '<td>' + response[i]['phone_number'] + '</td>';
+                        result += '<td>' + response[i]['text'] + '</td>';
+                        result += '<td <i class="material-icons delete-question" style="cursor: pointer" data-id="' + response[i]['id'] + '">delete</i></td>';
+                        result += '</tr>';
+                    }
+                    $('tbody').html(result);
             },
             error: function (xhr, err) { 
                 console.log(err + " " + xhr);
