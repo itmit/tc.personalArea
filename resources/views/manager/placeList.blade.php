@@ -118,6 +118,7 @@
                 $(document).on('change', '#changePlaceStatus', function() {
                     let selectByAccept = $(this).val();
                     let place_id = $(this).data('placeid');
+                    let place = $(this);
                     $.ajax({
                         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                         dataType: "json",
@@ -125,7 +126,7 @@
                         url     : 'places/changePlaceStatus',
                         method    : 'post',
                         success: function (response) {
-                            console.log($(this).html());
+                            console.log(place.html());
                             // $(this).parent("tr").css("border","3px solid red");
                             console.log(response)
                         },
