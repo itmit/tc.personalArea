@@ -126,8 +126,8 @@
                         url     : 'places/changePlaceStatus',
                         method    : 'post',
                         success: function (response) {
-                            // console.log(place.html());
-                            place.css("border","3px solid red");
+                            console.log(place.html());
+                            // place.css("border","3px solid red");
                             console.log(response)
                         },
                         error: function (xhr, err) { 
