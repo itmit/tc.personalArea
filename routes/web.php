@@ -58,6 +58,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         ]);
 
         Route::resource('questions', 'Web\QuestionWebController');
+        Route::post('questions/selectByType', 'Web\QuestionWebController@selectByType');
 
         Route::post('reservation/confirmReservation', 'Web\ReservationWebController@confirmReservation');
         Route::post('reservation/selectByAccept', 'Web\ReservationWebController@selectByAccept');

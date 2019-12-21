@@ -24,6 +24,16 @@ class QuestionWebController extends Controller
     }
 
     /**
+     * Показывает список заявок на бронирование.
+     *
+     * @return Factory|View
+     */
+    public function selectByType(request $request)
+    {
+        return response()->json([Question::select('*')->where('type', $request->input('type'))->orderBy('created_at', 'asc')->get()]);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
