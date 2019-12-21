@@ -125,7 +125,8 @@
                         url     : 'places/changePlaceStatus',
                         method    : 'post',
                         success: function (response) {
-                            $(this).parent("tr").css("border","3px solid red");
+                            console.log($(this).parent("tr").html());
+                            // $(this).parent("tr").css("border","3px solid red");
                             console.log(response)
                         },
                         error: function (xhr, err) { 
