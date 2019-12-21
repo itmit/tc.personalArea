@@ -30,7 +30,25 @@ class QuestionWebController extends Controller
      */
     public function selectByType(request $request)
     {
-        return response()->json([Question::select('*')->where('type', $request->input('type'))->orderBy('created_at', 'asc')->get()]);
+        $response = [];
+
+        $questions = Question::select('*')->where('type', $request->input('type'))->orderBy('created_at', 'asc')->get();
+
+        foreach ($questins as $item) {
+            $place = $item->place()->get()->first();
+            $response[] = [
+                'id' => $item->id,
+                'block' => $place->block,
+                'floor' => $place->floor,
+                'row' => $place->row,
+                'place' => $place->place,
+                'name' => $item->name,
+                'phone' => $item->phone,
+                'text' => $item->text,
+            ];
+        }
+
+        return response()->json($response);
     }
 
     /**
