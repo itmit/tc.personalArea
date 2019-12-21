@@ -76,7 +76,7 @@
             <option value="Дом бижутерии">Дом бижутерии</option>
         </select>
     </div>
-
+    <br>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -125,6 +125,7 @@
                         url     : 'places/changePlaceStatus',
                         method    : 'post',
                         success: function (response) {
+                            $(this).parent("tr").css("border","3px solid red");
                             console.log(response)
                         },
                         error: function (xhr, err) { 
