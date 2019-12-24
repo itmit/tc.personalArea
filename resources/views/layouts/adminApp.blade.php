@@ -159,7 +159,7 @@
 
         let pathname = window.location.pathname;
 
-        switch(pathname) {
+        switch(pathname.split('/')[1]) {
         case '/home':
             $( "li[name='home']" ).addClass( "active" );
             break;
