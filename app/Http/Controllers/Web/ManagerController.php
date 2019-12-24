@@ -103,4 +103,16 @@ class ManagerController extends Controller
             'manager' => User::where('id', '=', $id)->first()
         ]);
     }
+
+    /**
+     *
+     * Страница редактирования места
+     * 
+     */
+    public function edit($id)
+    {
+        return view("admin.editManager", [
+            'manager' => User::where('id', '=', $id)->first()
+        ]);
+    }
 }
