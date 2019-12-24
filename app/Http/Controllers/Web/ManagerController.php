@@ -91,4 +91,16 @@ class ManagerController extends Controller
         User::where('id', '=', $request->id)->delete();
         return response()->json(['succses'=>'Удалено'], 200); 
     }
+
+    /**
+     *
+     * Страница редактирования места
+     * 
+     */
+    public function managerEditPage($id)
+    {
+        return view("admin.editManager", [
+            'manager' => User::where('id', '=', $id)->first()
+        ]);
+    }
 }
