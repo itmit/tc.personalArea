@@ -4,10 +4,10 @@
 
 <h1>Менеджер {{$manager->name}}</h1>
 <div class="col-sm-12">
-    <a href="/places">Назад</a>
+    <a href="/managers">Назад</a>
 </div>
 <div class="col-sm-12">
-    <form class="form-horizontal" method="POST" action="{{ route('auth.admin.managers.edit', ['id' => $manager->id]) }}">
+    <form class="form-horizontal" method="GET" action="{{ route('auth.admin.managers.edit', ['id' => $manager->id]) }}">
         {{ csrf_field() }}
         <input type="hidden" name="id" value="{{ $manager->id }}">
 
