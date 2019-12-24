@@ -159,38 +159,36 @@
 
         let pathname = window.location.pathname;
 
-        console.log(pathname.split('/')[1]);
-
         switch(pathname.split('/')[1]) {
-        case '/home':
+        case '/':
             $( "li[name='home']" ).addClass( "active" );
             break;
 
-        case '/managers':
+        case 'managers':
             $( "li[name='managers']" ).addClass( "active" );
             break;
 
-        case '/places':
+        case 'places':
             $( "li[name='places']" ).addClass( "active" );
             break;
 
-        case '/reservation':
+        case 'reservation':
             $( "li[name='reservation']" ).addClass( "active" );
             break;
 
-        case '/bidForSale':
+        case 'bidForSale':
             $( "li[name='bidForSale']" ).addClass( "active" );
             break;
 
-        case '/bidForBuy':
+        case 'bidForBuy':
             $( "li[name='bidForBuy']" ).addClass( "active" );
             break;
 
-        case '/questions':
+        case 'questions':
             $( "li[name='questions']" ).addClass( "active" );
             break;
 
-        case '/news':
+        case 'news':
             $( "li[name='news']" ).addClass( "active" );
             break;
         }
