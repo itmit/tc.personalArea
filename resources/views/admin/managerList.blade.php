@@ -13,7 +13,7 @@
             <th>Почта</th>
             <th>Дата создания</th>
             <th>Дата обновления</th>
-            <th>Удалить</th>
+            <th>Изменить</th>
             <th>Удалить</th>
         </tr>
         </thead>
@@ -24,7 +24,7 @@
                 <td>{{ $manager->email }}</td>
                 <td>{{ $manager->created_at }}</td>
                 <td>{{ $manager->updated_at }}</td>
-                <td><i class="material-icons edit-manager" style="cursor: pointer" data-id="{{ $manager->id }}">edit</i></td>
+                <td><a href="managers/edit/{{ $manager->id }}"><i class="material-icons edit-manager" data-id="{{ $manager->id }}">edit</i></a></td>
                 <td><i class="material-icons delete-manager" style="cursor: pointer" data-id="{{ $manager->id }}">delete</i></td>
             </tr>
         @endforeach
