@@ -20,6 +20,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
     Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
         Route::resource('managers', 'Web\ManagerController');
+        Route::get('managers/edit/{id}', 'Web\ManagerController@managerEditPage');
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
