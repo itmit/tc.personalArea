@@ -127,9 +127,7 @@ class ManagerController extends Controller
             'name' => $request->name,
             'email' => $request->email,
         ]);
-        return view('admin.managerList', [
-            'managers' => Role::getUsersByRoleName('manager'),
-            'title' => 'Список менеджеров'
-        ]);
+        
+        return redirect()->route('auth.admin.managers');
     }
 }
