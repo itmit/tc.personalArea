@@ -137,7 +137,7 @@
                     <li name="bidForBuy"><a href="{{ route('auth.manager.bidForBuy.index') }}">Сдать помещение</a></li>
                     @endability
 
-                    @ability('super-admin,manager', 'show-questions-list')
+                    @ability('super-admin', 'show-questions-list')
                     <li name="questions"><a href="{{ route('auth.manager.questions.index') }}">Переуступка права пользования помещением</a></li>
                     @endability
 
