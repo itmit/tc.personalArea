@@ -128,6 +128,6 @@ class ManagerController extends Controller
             'email' => $request->email,
         ]);
         
-        return redirect()->route('admin.managers.index');
+        return redirect()->route('auth.admin.managers.index');
     }
 }
