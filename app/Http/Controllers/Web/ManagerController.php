@@ -109,10 +109,28 @@ class ManagerController extends Controller
      * Страница редактирования места
      * 
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        return view("admin.editManager", [
-            'manager' => User::where('id', '=', $id)->first()
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('managers/edit/{id}', ['id' => $id])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        User::where('id', '=', $id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+        return view('admin.managerList', [
+            'managers' => Role::getUsersByRoleName('manager'),
+            'title' => 'Список менеджеров'
         ]);
     }
 }
