@@ -59,13 +59,12 @@ class BidForSaleController extends Controller
     }
 
     /**
-     * Показывает список мест.
+     * 
      *
      * @return Factory|View
      */
     public function show($id)
     {
-        // dd(BidForSale::select('*')->where('id', '=', $id)->orderBy('created_at', 'desc')->get());
         return view('manager.bidForSaleDetail', [
             'title' => 'Заявка на аренду помещения',
             'bid' => BidForSale::where('id', '=', $id)->orderBy('created_at', 'desc')->first()
