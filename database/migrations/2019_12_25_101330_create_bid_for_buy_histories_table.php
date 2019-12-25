@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBidForBuysTable extends Migration
+class CreateBidForBuyHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreateBidForBuysTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('bid_for_buys');
-        Schema::create('bid_for_buys', function (Blueprint $table) {
+        Schema::create('bid_for_buy_histories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('seller_name');
-            $table->string('phone_number', 18);
-            $table->integer('place')->unsigned();
-            $table->text('text')->nullable();
+            $table->integer('bid');
             $table->enum('status', ['не обработана', 'в работе', 'отказано', 'успешно завершена']);
+            $table->text('text');
             $table->timestamps();
 
-            $table->foreign('place')->references('id')->on('places')
-                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('bid')->references('id')->on('bid_for_buys');
         });
     }
 
@@ -35,6 +31,6 @@ class CreateBidForBuysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bid_for_buys');
+        Schema::dropIfExists('bid_for_buy_histories');
     }
 }

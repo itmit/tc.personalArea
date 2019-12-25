@@ -77,7 +77,6 @@ class PlaceApiController extends ApiBaseController
 
     public function showPlacesInBlockWithStatus(string $block, string $status)
     {
-        $today = date("Y-m-d H:i:s");    
         $action = Actions::where('type', '=', 'reservation')->first();
         $places = Place::select('id', 'block', 'floor', 'row', 'place_number', 'status', 'price')
             ->where('block', '=', $block)

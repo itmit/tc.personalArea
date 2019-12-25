@@ -2,8 +2,9 @@
 
 @section('content')
 <ul class="nav nav-tabs" id="myTab">
-    <li data-type="assignment" class="active"><a href="#">Переуступка прав</a></li>
-    <li data-type="acquisition"><a href="#">Приобретение прав</a></li>
+    <li data-type="untreated" class="active"><a href="#">Необработанные</a></li>
+    <li data-type="in work"><a href="#">В работе</a></li>
+    <li data-type="processed"><a href="#">Обработанные</a></li>
 </ul>
 <table class="table table-bordered">
     <thead>
@@ -45,3 +46,10 @@
     });
 </script>
 @endsection
+
+не обработана 
+
+в работе
+
+успешно завершена
+нет ответа
