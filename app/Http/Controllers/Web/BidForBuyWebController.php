@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\BidForBuy;
+use App\Models\BidForBuyHistory;
 use App\Models\Place;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
@@ -57,16 +58,17 @@ class BidForBuyWebController extends Controller
         return response()->json(['Bids destroyed']);
     }
 
-    /**
+   /**
      * 
      *
      * @return Factory|View
      */
     public function show($id)
     {
-        return view('manager.bidForBuyDetail', [
-            'title' => 'Заявка на сдачу в аренду помещения',
-            'bid' => BidForBuy::where('id', '=', $id)->orderBy('created_at', 'desc')->first()
+        return view('manager.bidForSaleDetail', [
+            'title' => 'Заявка на аренду помещения',
+            'bid' => BidForBuy::where('id', '=', $id)->orderBy('created_at', 'desc')->first(),
+            'history' => BidForBuyHistory::where('bid', '=', $id)->orderBy('created_at', 'desc')->get()
         ]);
     }
 }

@@ -25,7 +25,9 @@
             disabled title="Заявка закрыта и не может быть изменена"
         @endif
         class="form-control new-status">
-            
+            <option value="в работе">в работе</option>
+            <option value="отказано">отказано</option>
+            <option value="успешно завершена">успешно завершена</option>
         </select>
         <br>
         <input type="button" value="Обновить статус" class="changeReservationStatus" data-bid-id="{{ $bid->id }}"
