@@ -93,7 +93,7 @@ class ReservationWebController extends Controller
                 'expires_at' => date('H:i d.m.Y', strtotime($reservation->expires_at->timezone('Europe/Moscow'))),
                 'expire' => $reservation->expire,
                 'place' => [
-                    'id' => $place->id,
+                    'id' => $place['id'],
                     'block' => $place->block,
                     'floor' => $place->floor,
                     'row' => $place->row,
