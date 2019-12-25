@@ -1,15 +1,9 @@
 @extends('layouts.adminApp')
 
 @section('content')
-    @ability('super-admin', 'delete-bidForBuy')
-    <div class="col-sm-12">
-        <button type="button" class="btn btn-tc-manager js-destroy-bidsForBuy-button">Удалить отмеченные заявки</button>
-    </div>
-    @endability
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th><input type="checkbox" name="destroy-all-bidsForBuy" class="destroy-all-bidsForBuy"/></th>
             <th>Блок</th>
             <th>Этаж</th>
             <th>Ряд</th>
@@ -28,7 +22,6 @@
             $place = $bid->place()->get()->first();
         ?>
             <tr>
-                <td><input type="checkbox" data-place-id="{{ $bid->id }}" name="destoy-place-{{ $bid->id }}" class="js-destroy-bidForBuy"/></td>
                 <td><a href="bidForBuy/{{ $bid->id }}">{{ $place->block }}</a></td></td>
                 <td>{{ $place->floor }}</td>
                 <td>{{ $place->row }}</td>
