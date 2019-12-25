@@ -37,9 +37,9 @@
     <div>
         История заявки
         <ul>
-            {{-- @foreach ($history as $item)
-                <li>{{$item->action()->action}} (изменение рейтинга: {{ $item->action()->points }}) в {{ $item->created_at->timezone('Europe/Moscow') }}</li>
-            @endforeach --}}
+            @foreach ($history as $item)
+                <li>{{$item->status}} в {{ $item->created_at->timezone('Europe/Moscow') }}</li>
+            @endforeach
         </ul>
     </div>
 </div>

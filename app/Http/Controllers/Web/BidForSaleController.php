@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\BidForSale;
+use App\Models\BidForSaleHistory;
 use App\Models\Place;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
@@ -43,7 +44,8 @@ class BidForSaleController extends Controller
     {
         return view('manager.bidForSaleDetail', [
             'title' => 'Заявка на аренду помещения',
-            'bid' => BidForSale::where('id', '=', $id)->orderBy('created_at', 'desc')->first()
+            'bid' => BidForSale::where('id', '=', $id)->orderBy('created_at', 'desc')->first(),
+            'history' => BidForSaleHistory::where('bid', '=', $id)->orderBy('created_at', 'desc')->get()
         ]);
     }
 }
