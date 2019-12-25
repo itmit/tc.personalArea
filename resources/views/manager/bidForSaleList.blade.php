@@ -10,7 +10,6 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th><input type="checkbox" name="destroy-all-bidsForSale" class="destroy-all-bidsForSale"/></th>
             <th>Блок</th>
             <th>Этаж</th>
             <th>Ряд</th>
@@ -29,7 +28,6 @@
             $place = $bid->place()->get()->first();
         ?>
             <tr>
-                <td><input type="checkbox" data-place-id="{{ $bid->id }}" name="destoy-place-{{ $bid->id }}" class="js-destroy-bidForSale"/></td>
                 <td><a href="bidForSale/{{ $bid->id }}">{{ $place->block }}</a></td>
                 <td>{{ $place->floor }}</td>
                 <td>{{ $place->row }}</td>
