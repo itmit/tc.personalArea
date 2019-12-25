@@ -65,6 +65,7 @@ class BidForSaleController extends Controller
      */
     public function show($id)
     {
+        dd(BidForSale::where('id', '=', $id)->orderBy('created_at', 'desc')->get());
         return view('manager.bidForSaleDetail', [
             'title' => 'Заявка на аренду помещения',
             'bid' => BidForSale::where('id', '=', $id)->orderBy('created_at', 'desc')->get()
