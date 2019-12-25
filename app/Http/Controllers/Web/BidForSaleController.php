@@ -27,29 +27,29 @@ class BidForSaleController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('manager.bidForSaleCreate', [
-            'title' => 'Создать заявку продажа (для теста!!!)'
-        ]);
-    }
+    // /**
+    //  * Show the form for creating a new resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function create()
+    // {
+    //     return view('manager.bidForSaleCreate', [
+    //         'title' => 'Создать заявку продажа (для теста!!!)'
+    //     ]);
+    // }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $apiController = new BidForSaleApiController;
-        return $apiController->store($request);
-    }
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(Request $request)
+    // {
+    //     $apiController = new BidForSaleApiController;
+    //     return $apiController->store($request);
+    // }
 
     public function destroy(Request $request)
     {
@@ -67,7 +67,7 @@ class BidForSaleController extends Controller
     {
         return view('manager.bidForSaleDetail', [
             'title' => 'Заявка на аренду помещения',
-            'bid' => BidForSale::with('place')->where('id', '=', $id)->orderBy('created_at', 'desc')->get()
+            'bid' => BidForSale::where('id', '=', $id)->orderBy('created_at', 'desc')->get()
         ]);
     }
 }
