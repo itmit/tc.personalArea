@@ -14,6 +14,9 @@
             $place = $bid->place()->get()->first();    
         ?>
         Место <b>{{ $place->place_number }}</b> ряд <b>{{ $place->row }}</b> этаж <b>{{ $place->floor }}</b> блок <b>{{ $place->block }}</b>
+        <p>
+            {{ $bid->text }}
+        </p>
     </div>
     {{-- <div>
         <h2>Текущий статус заявки: <i>
