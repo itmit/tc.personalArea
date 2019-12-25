@@ -10,7 +10,10 @@
         Заявку создал {{ $bid->seller_name }} тел. <i>{{ $bid->phone_number }}</i> в {{ date('H:i d.m.Y', strtotime($bid->created_at->timezone('Europe/Moscow'))) }}
     </div>
     <div>
-        Место <b>{{ $bid->place()->get()->first()->place_number }}</b> ряд <b>{{ $bid->place()->get()->first()->row }}</b> этаж <b>{{ $bid->place()->get()->first()->floor }}</b> блок <b>{{ $bid->place()->get()->first()->block }}</b>
+        <?
+            $place = $bid->place()->get()->first();    
+        ?>
+        Место <b>{{ $place->place_number }}</b> ряд <b>{{ $place->row }}</b> этаж <b>{{ $place->floor }}</b> блок <b>{{ $place->block }}</b>
     </div>
     {{-- <div>
         <h2>Текущий статус заявки: <i>
