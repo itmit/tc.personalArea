@@ -64,7 +64,7 @@ class BidForBuyWebController extends Controller
      */
     public function show($id)
     {
-        return view('manager.bidForSaleDetail', [
+        return view('manager.bidForBuyDetail', [
             'title' => 'Заявка на сдачу в аренду помещения',
             'bid' => BidForBuy::where('id', '=', $id)->orderBy('created_at', 'desc')->first()
         ]);
