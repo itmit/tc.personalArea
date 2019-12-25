@@ -94,10 +94,10 @@ class ReservationWebController extends Controller
                 'expire' => $reservation->expire,
                 'place' => [
                     'id' => $place['id'],
-                    'block' => $place->block,
-                    'floor' => $place->floor,
-                    'row' => $place->row,
-                    'place_number' => $place->place_number
+                    'block' => $place['block'],
+                    'floor' => $place['floor'],
+                    'row' => $place['row'],
+                    'place_number' => $place['place_number']
                 ]
             ];
         }
