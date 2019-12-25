@@ -74,24 +74,29 @@ class ReservationWebController extends Controller
                 return response()->json(['Error']);
         }
 
+        $place = null;
+        $client = null;
+
         foreach ($reservations as $reservation) {
+            $place = $reservation->place();
+            $client = $reservation->client();
             $response[] = [
                 'id'   => $reservation->id,
                 'first_name' => $reservation->first_name,
                 'last_name' => $reservation->last_name,
-                'phone' => $reservation->client()->phone,
-                'rating' => $reservation->client()->rating,
-                'client_id' => $reservation->client()->id,
+                'phone' => $client->phone,
+                'rating' => $client->rating,
+                'client_id' => $client->id,
                 'accepted' => $reservation->accepted,
                 'created_at' => date('H:i d.m.Y', strtotime($reservation->created_at->timezone('Europe/Moscow'))),
                 'expires_at' => date('H:i d.m.Y', strtotime($reservation->expires_at->timezone('Europe/Moscow'))),
                 'expire' => $reservation->expire,
                 'place' => [
-                    'id' => $reservation->place()->id,
-                    'block' => $reservation->place()->block,
-                    'floor' => $reservation->place()->floor,
-                    'row' => $reservation->place()->row,
-                    'place_number' => $reservation->place()->place_number
+                    'id' => $place->id,
+                    'block' => $place->block,
+                    'floor' => $place->floor,
+                    'row' => $place->row,
+                    'place_number' => $place->place_number
                 ]
             ];
         }
