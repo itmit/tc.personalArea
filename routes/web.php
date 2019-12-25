@@ -38,13 +38,9 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
         Route::post('places/import', 'Web\PlaceController@importFromExcel')->name('places.import');
 
-        Route::resource('news', 'Web\NewsController', [
-            'only' => ['index', 'create', 'store']
-        ]);
+        Route::resource('news', 'Web\NewsController');
 
-        Route::resource('bidForSale', 'Web\BidForSaleController', [
-            'only' => ['index', 'create', 'store']
-        ]);
+        Route::resource('bidForSale', 'Web\BidForSaleController');
 
         Route::delete('bidForSale/delete', 'Web\BidForSaleController@destroy');
 

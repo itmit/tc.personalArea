@@ -57,4 +57,17 @@ class BidForSaleController extends Controller
 
         return response()->json(['Bids destroyed']);
     }
+
+    /**
+     * Показывает список мест.
+     *
+     * @return Factory|View
+     */
+    public function show($id)
+    {
+        return view('manager.bidForSaleDetail', [
+            'title' => 'Заявка на аренду помещения',
+            'bid' => BidForSale::with('place')->where('id', '=', $id)->orderBy('created_at', 'desc')->get()
+        ]);
+    }
 }
