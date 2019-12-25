@@ -24,15 +24,13 @@
         @foreach($bids as $bid)
             <tr>
                 <td><input type="checkbox" data-place-id="{{ $bid->id }}" name="destoy-place-{{ $bid->id }}" class="js-destroy-bidForSale"/></td>
-                <a href="bidForSale/{{ $bid->id }}">
-                    <td>{{ $bid->place()->get()->first()->block }}</td>
+                    <td><a href="bidForSale/{{ $bid->id }}">{{ $bid->place()->get()->first()->block }}</a></td>
                     <td>{{ $bid->place()->get()->first()->floor }}</td>
                     <td>{{ $bid->place()->get()->first()->row }}</td>
                     <td>{{ $bid->place()->get()->first()->place_number }}</td>
                     <td>{{ $bid->seller_name }}</td>
                     <td>{{ $bid->phone_number }}</td>
                     <td>{{ $bid->text }}</td>
-                </a>
             </tr>
         @endforeach
         </tbody>
