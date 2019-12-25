@@ -29,6 +29,7 @@
             <option value="отказано">отказано</option>
             <option value="успешно завершена">успешно завершена</option>
         </select>
+        <input type="text" name="" id="" class="form-control" placeholder=" введите поясняющее сообщение">
         <br>
         <input type="button" value="Обновить статус" class="changeReservationStatus" data-bid-id="{{ $bid->id }}"
         @if($bid->status == 'отказано' || $bid->status == 'успешно завершена')

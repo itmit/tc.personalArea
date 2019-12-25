@@ -48,4 +48,25 @@ class BidForSaleController extends Controller
             'history' => BidForSaleHistory::where('bid', '=', $id)->orderBy('created_at', 'desc')->get()
         ]);
     }
+
+    public function changeBidStatus(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+                BidForSale::where('bid', '=', $request->bidId)->update([
+                    'status' => $request->status
+                ]);
+                BidForSaleHistory::create([
+                    'bid' => $request->bidId,
+                    'status' => $request->status,
+                    'text' => $request->text
+                ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['error'=>'Что-то пошло не так'], 500); 
+        }
+
+        return response()->json(['succses'=>'Удалено'], 200); 
+    }
 }

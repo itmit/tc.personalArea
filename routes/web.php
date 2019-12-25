@@ -41,14 +41,14 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('news', 'Web\NewsController');
 
         Route::resource('bidForSale', 'Web\BidForSaleController');
+        Route::post('bidForSale/changeBidStatus', 'Web\BidForSaleController@changeBidStatus');
 
-        Route::delete('bidForSale/delete', 'Web\BidForSaleController@destroy');
 
-        Route::resource('bidForBuy', 'Web\BidForBuyWebController', [
-            'only' => ['index', 'create', 'store']
-        ]);
+        // Route::delete('bidForSale/delete', 'Web\BidForSaleController@destroy');
 
-        Route::delete('bidForBuy/delete', 'Web\BidForBuyWebController@destroy');
+        Route::resource('bidForBuy', 'Web\BidForBuyWebController');
+
+        // Route::delete('bidForBuy/delete', 'Web\BidForBuyWebController@destroy');
 
         Route::resource('reservation', 'Web\ReservationWebController', [
             'only' => ['index', 'create', 'store', 'show']
