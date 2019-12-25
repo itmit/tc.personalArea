@@ -20,13 +20,19 @@
         </tr>
         </thead>
         <tbody>
+            <?
+            $place = null;
+        ?>
         @foreach($bids as $bid)
+        <?
+            $place = $bid->place()->get()->first();
+        ?>
             <tr>
                 <td><input type="checkbox" data-place-id="{{ $bid->id }}" name="destoy-place-{{ $bid->id }}" class="js-destroy-bidForBuy"/></td>
-                <td>{{ $bid->place()->get()->first()->block }}</td>
-                <td>{{ $bid->place()->get()->first()->floor }}</td>
-                <td>{{ $bid->place()->get()->first()->row }}</td>
-                <td>{{ $bid->place()->get()->first()->place_number }}</td>
+                <td><a href="bidForBuy/{{ $bid->id }}">{{ $place->block }}</a></td></td>
+                <td>{{ $place->floor }}</td>
+                <td>{{ $place->row }}</td>
+                <td>{{ $place->place_number }}</td>
                 <td>{{ $bid->seller_name }}</td>
                 <td>{{ $bid->phone_number }}</td>
                 <td>{{ $bid->text }}</td>
