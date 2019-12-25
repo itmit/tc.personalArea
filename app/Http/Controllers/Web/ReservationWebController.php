@@ -79,6 +79,7 @@ class ReservationWebController extends Controller
 
         foreach ($reservations as $reservation) {
             $place = $reservation->place();
+            dd($place);
             $client = $reservation->client();
             $response[] = [
                 'id'   => $reservation->id,
