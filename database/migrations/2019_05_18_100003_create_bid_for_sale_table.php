@@ -18,7 +18,7 @@ class CreateBidForSaleTable extends Migration
             $table->string('seller_name');
             $table->string('phone_number', 18);
             $table->text('text')->nullable();
-            $table->enum('status', ['не обработана', 'в работе', 'отказано', 'успешно завершена']);
+            $table->enum('status', ['не обработана', 'в работе', 'отказано', 'успешно завершена'])->default('не обработана');
             $table->timestamps();
 
             $table->integer('place')->unsigned();
