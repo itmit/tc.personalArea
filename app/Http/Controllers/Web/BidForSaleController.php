@@ -101,7 +101,7 @@ class BidForSaleController extends Controller
                 'floor' => $place->floor,
                 'row' => $place->row,
                 'place' => $place->place_number,
-                'name' => $item->name,
+                'name' => $item->seller_name,
                 'phone' => $item->phone_number,
             ];
         }
