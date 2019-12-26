@@ -15,7 +15,7 @@ class CreateBidForSaleHistoriesTable extends Migration
     {
         // Schema::create('bid_for_sale_histories', function (Blueprint $table) {
         //     $table->increments('id');
-        //     $table->integer('bid');
+        //     $table->integer('bid')->unsigned;
         //     $table->enum('status', ['не обработана', 'в работе', 'отказано', 'успешно завершена']);
         //     $table->text('text')->nullable();
         //     $table->timestamps();

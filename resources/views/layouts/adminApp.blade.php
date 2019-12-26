@@ -138,7 +138,11 @@
                     @endability
 
                     @ability('super-admin', 'show-questions-list')
-                    <li name="questions"><a href="{{ route('auth.manager.questions.index') }}">Переуступка права пользования помещением</a></li>
+                    <li name="questions"><a href="{{ route('auth.manager.questions.index') }}">Переуступка прав пользования помещением</a></li>
+                    @endability
+
+                    @ability('super-admin', 'show-questions-list')
+                    <li name="questions"><a href="{{ route('auth.manager.questions.index') }}">Приобретение прав пользования помещением</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')

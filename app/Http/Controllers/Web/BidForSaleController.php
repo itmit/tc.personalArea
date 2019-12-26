@@ -70,4 +70,42 @@ class BidForSaleController extends Controller
 
         return response()->json(['succses'=>'Статус обновлен'], 200); 
     }
+
+    /**
+     * Показывает список заявок на бронирование.
+     *
+     * @return Factory|View
+     */
+    public function selectByType(request $request)
+    {
+        if($request->input('type') == 'untreated')
+        {
+            $bids = BidForSale::select('*')->where('status', 'не обработана')->orderBy('created_at', 'desc')->get();
+        }
+        if($request->input('type') == 'in work')
+        {
+            $bids = BidForSale::select('*')->where('status', 'в работе')->orderBy('created_at', 'desc')->get();
+        }
+        if($request->input('type') == 'processed')
+        {
+            $bids = BidForSale::select('*')->where('status', 'отказано')->orWhere('status', 'успешно завершена')->orderBy('created_at', 'desc')->get();
+        }
+
+        $response = [];
+
+        foreach ($bids as $item) {
+            $place = $item->place()->get()->first();
+            $response[] = [
+                'id' => $item->id,
+                'block' => $place->block,
+                'floor' => $place->floor,
+                'row' => $place->row,
+                'place' => $place->place_number,
+                'name' => $item->name,
+                'phone' => $item->phone_number,
+            ];
+        }
+
+        return response()->json($response);
+    }
 }
