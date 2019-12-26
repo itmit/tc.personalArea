@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
+use App\Models\QuestionHistory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,12 +43,17 @@ class QuestionApiController extends ApiBaseController
             }
         });
 
-        Question::create([
+        $newQuestion = Question::create([
             'name' => $request->input('name'),
             'phone_number' => $request->input('phone_number'),
             'text' => $request->input('text'),
             'place' => $this->place->id,
             'type' => $request->input('type')
+        ]);
+
+        QuestionHistory::create([
+            'bid' => $newQuestion->id,
+            'status' => 'не обработана',
         ]);
 
         return $this->sendResponse([], 'Stored');

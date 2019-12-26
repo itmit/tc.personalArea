@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\BidForBuy;
+use App\Models\BidForBuyHistory;
 use App\Models\Place;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -63,6 +64,11 @@ class BidForBuyApiController extends ApiBaseController
             'seller_name' => $request->Name,
             'phone_number' => $request->PhoneNumber,
             'text' => $request->Text,
+        ]);
+
+        BidForBuyHistory::create([
+            'bid' => $newBidForBuy->id,
+            'status' => 'не обработана',
         ]);
 
         return $this->sendResponse([
