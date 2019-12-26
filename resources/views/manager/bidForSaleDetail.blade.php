@@ -58,7 +58,7 @@
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
                 data: {status: status, bidId: bidId, text: text},
-                url     : 'bidForSale/changeBidStatus',
+                url     : 'changeBidStatus',
                 method    : 'post',
                 success: function (response) {
                     location.reload();
