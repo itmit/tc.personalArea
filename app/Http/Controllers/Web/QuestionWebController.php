@@ -94,7 +94,7 @@ class QuestionWebController extends Controller
                 'title' => 'Переуступка прав',
                 'bid' => $bid,
                 'link' => '/assignment',
-                // 'history' => QuestionHistory::where('bid', '=', $id)->orderBy('created_at', 'asc')->get()
+                'history' => QuestionHistory::where('bid', '=', $id)->orderBy('created_at', 'asc')->get()
             ]);
         }
         if($bid->type == 'acquisition')
@@ -103,7 +103,7 @@ class QuestionWebController extends Controller
                 'title' => 'Приобретение прав',
                 'bid' => $bid,
                 'link' => '/acquisition',
-                // 'history' => QuestionHistory::where('bid', '=', $id)->orderBy('created_at', 'asc')->get()
+                'history' => QuestionHistory::where('bid', '=', $id)->orderBy('created_at', 'asc')->get()
             ]);
         }
     }
