@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->text('text');
             $table->integer('place')->unsigned();
             $table->enum('type', ['assignment', 'acquisition']);
+            $table->enum('status', ['не обработана', 'в работе', 'отказано', 'успешно завершена'])->default('не обработана');
 
             $table->foreign('place')->references('id')->on('places')
                 ->onUpdate('cascade')->onDelete('cascade');
