@@ -78,4 +78,32 @@ class QuestionWebController extends Controller
         Question::where('id', '=', $request->id)->delete();
         return response()->json(['succses'=>'Удалено'], 200); 
     }
+
+    /**
+     * 
+     *
+     * @return Factory|View
+     */
+    public function show($id)
+    {
+        $bid =  Question::where('id', '=', $id)->first();
+        if($bid->type == 'assignment')
+        {
+            return view('admin.questionDetail', [
+                'title' => 'Переуступка прав',
+                'bid' => $bid,
+                'link' => '/assignment',
+                // 'history' => BidForSaleHistory::where('bid', '=', $id)->orderBy('created_at', 'asc')->get()
+            ]);
+        }
+        if($bid->type == 'acquisition')
+        {
+            return view('admin.questionDetail', [
+                'title' => 'Приобретение прав',
+                'bid' => $bid,
+                'link' => '/acquisition',
+                // 'history' => BidForSaleHistory::where('bid', '=', $id)->orderBy('created_at', 'asc')->get()
+            ]);
+        }
+    }
 }
