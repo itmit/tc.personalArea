@@ -2,8 +2,9 @@
 
 @section('content')
 <ul class="nav nav-tabs" id="myTab">
-    <li data-type="assignment" class="active"><a href="#">Переуступка прав</a></li>
-    <li data-type="acquisition"><a href="#">Приобретение прав</a></li>
+    <li data-type="untreated" class="active"><a href="#">Необработанные</a></li>
+    <li data-type="in work"><a href="#">В работе</a></li>
+    <li data-type="processed"><a href="#">Обработанные</a></li>
 </ul>
 <table class="table table-bordered">
     <thead>
@@ -12,57 +13,34 @@
         <th>Этаж</th>
         <th>Ряд</th>
         <th>Место</th>
-        <th>Имя</th>
-        <th>Телефон</th>
-        <th>Текст</th>
-        <th>Удалить</th>
+        <th>Имя продавца</th>
+        <th>Номер телефона</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($questions as $question)
-    @if($question->place()->get()->first() == NULL)
-    @continue
-    @endif
+    <?
+        $place = null;
+    ?>
+    @foreach($bids as $bid)
+    <?
+        $place = $bid->place()->get()->first();
+    ?>
         <tr>
-            <td>{{ $question->place()->get()->first()->block }}</td>
-            <td>{{ $question->place()->get()->first()->floor }}</td>
-            <td>{{ $question->place()->get()->first()->row }}</td>
-            <td>{{ $question->place()->get()->first()->place_number }}</td>
-            <td>{{ $question->name }}</td>
-            <td>{{ $question->phone_number }}</td>
-            <td>{{ $question->text }}</td>
-            <td><i class="material-icons delete-question" style="cursor: pointer" data-id="{{ $question->id }}">delete</i></td>
+            <td><a href="{{$link}}/{{ $bid->id }}">{{ $place->block }}</a></td>
+            <td>{{ $place->floor }}</td>
+            <td>{{ $place->row }}</td>
+            <td>{{ $place->place_number }}</td>
+            <td>{{ $bid->seller_name }}</td>
+            <td>{{ $bid->phone_number }}</td>
         </tr>
     @endforeach
     </tbody>
 </table>
 
-    <script>
-
-    $(document).on('click', '.delete-question', function() {
-        let isDelete = confirm("Удалить обращение? Данное действие невозможно отменить!");
-    
-        if(isDelete)
-        {
-            let id = $(this).data('id');
-            $.ajax({
-                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                dataType: "json",
-                data    : { id: id },
-                url     : 'questions/delete',
-                method    : 'delete',
-                success: function (response) {
-                    $(this).closest('tr').remove();
-                    console.log('Удалено!');
-                },
-                error: function (xhr, err) { 
-                    console.log("Error: " + xhr + " " + err);
-                }
-            });
-        }
-    });
-
-    $('#myTab li').click(function (e) {
+<script>
+    $(document).ready(function()
+    {
+        $('#myTab li').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
         let type = $(this).data('type');
@@ -70,20 +48,18 @@
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             dataType: "json",
             data: {type: type},
-            url     : 'questions/selectByType',
+            url     : 'bidForSale/selectByType',
             method    : 'post',
             success: function (response) {
                 let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<tr>';
-                        result += '<td>' + response[i]['block'] + '</td>';
+                        result += '<td><a href="bidForSale/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
                         result += '<td>' + response[i]['floor'] + '</td>';
                         result += '<td>' + response[i]['row'] + '</td>';
                         result += '<td>' + response[i]['place'] + '</td>';
                         result += '<td>' + response[i]['name'] + '</td>';
                         result += '<td>' + response[i]['phone'] + '</td>';
-                        result += '<td>' + response[i]['text'] + '</td>';
-                        result += '<td><i class="material-icons delete-question" style="cursor: pointer" data-id="' + response[i]['id'] + '">delete</i></td>';
                         result += '</tr>';
                     }
                     $('tbody').html(result);
@@ -93,6 +69,7 @@
             }
         });
     })
-    
-    </script>
+
+    });
+</script>
 @endsection
