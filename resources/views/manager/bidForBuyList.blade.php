@@ -56,7 +56,7 @@ $(document).ready(function()
                 let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<tr>';
-                        result += '<td><a href="bidForSale/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
+                        result += '<td><a href="bidForBuy/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
                         result += '<td>' + response[i]['floor'] + '</td>';
                         result += '<td>' + response[i]['row'] + '</td>';
                         result += '<td>' + response[i]['place'] + '</td>';
