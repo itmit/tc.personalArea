@@ -43,7 +43,7 @@
         История заявки
         <ul>
             @foreach ($history as $item)
-                <li>{{$item->status}} с сообщением '{{$item->text}}' в {{ $item->created_at->timezone('Europe/Moscow') }}</li>
+                <li>{{$item->status}} @if(!$item->text) без сообщения @else с сообщением '{{$item->text}}' @endif в {{ $item->created_at->timezone('Europe/Moscow') }}</li>
             @endforeach
         </ul>
     </div>
