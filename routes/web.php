@@ -58,8 +58,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         ]);
 
         // Route::resource('questions', 'Web\QuestionWebController');
-        Route::get('questions/assignment', 'Web\QuestionWebController@assignmentIndex');
-        Route::get('questions/acquisition', 'Web\QuestionWebController@acquisitionIndex');
+        Route::get('assignment', 'Web\QuestionWebController@assignmentIndex');
+        Route::get('acquisition', 'Web\QuestionWebController@acquisitionIndex');
         Route::post('questions/selectByType', 'Web\QuestionWebController@selectByType');
 
         Route::post('reservation/confirmReservation', 'Web\ReservationWebController@confirmReservation');

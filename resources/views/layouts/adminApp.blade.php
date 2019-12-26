@@ -138,11 +138,11 @@
                     @endability
 
                     @ability('super-admin', 'show-questions-list')
-                    <li name="questions"><a href="questions/assignment">Переуступка прав пользования помещением</a></li>
+                    <li name="assignment"><a href="assignment">Переуступка прав пользования помещением</a></li>
                     @endability
 
                     @ability('super-admin', 'show-questions-list')
-                    <li name="questions"><a href="questions/acquisition">Приобретение прав пользования помещением</a></li>
+                    <li name="acquisition"><a href="acquisition">Приобретение прав пользования помещением</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-purchase-requisition-list')
@@ -188,8 +188,12 @@
             $( "li[name='bidForBuy']" ).addClass( "active" );
             break;
 
-        case 'questions':
-            $( "li[name='questions']" ).addClass( "active" );
+        case 'assignment':
+            $( "li[name='assignment']" ).addClass( "active" );
+            break;
+
+        case 'acquisition':
+            $( "li[name='acquisition']" ).addClass( "active" );
             break;
 
         case 'news':
