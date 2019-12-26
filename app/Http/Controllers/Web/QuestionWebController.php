@@ -116,15 +116,15 @@ class QuestionWebController extends Controller
     {
         if($request->input('type') == 'untreated')
         {
-            $bids = Question::select('*')->where('status', 'не обработана')->orderBy('created_at', 'desc')->get();
+            $bids = Question::select('*')->where('status', 'не обработана')->where('type', $request->pathname)->orderBy('created_at', 'desc')->get();
         }
         if($request->input('type') == 'in work')
         {
-            $bids = Question::select('*')->where('status', 'в работе')->orderBy('created_at', 'desc')->get();
+            $bids = Question::select('*')->where('status', 'в работе')->where('type', $request->pathname)->orderBy('created_at', 'desc')->get();
         }
         if($request->input('type') == 'processed')
         {
-            $bids = Question::select('*')->where('status', 'отказано')->orWhere('status', 'успешно завершена')->orderBy('created_at', 'desc')->get();
+            $bids = Question::select('*')->where('status', 'отказано')->orWhere('status', 'успешно завершена')->where('type', $request->pathname)->orderBy('created_at', 'desc')->get();
         };
 
         $path = null;
@@ -148,7 +148,7 @@ class QuestionWebController extends Controller
                 'floor' => $place->floor,
                 'row' => $place->row,
                 'place' => $place->place_number,
-                'name' => $item->seller_name,
+                'name' => $item->name,
                 'phone' => $item->phone_number,
             ];
         }
