@@ -46,21 +46,12 @@ class BidForSaleController extends Controller
         return view('manager.bidForSaleDetail', [
             'title' => 'Заявка на аренду помещения',
             'bid' => BidForSale::where('id', '=', $id)->orderBy('created_at', 'desc')->first(),
-            'history' => BidForSaleHistory::where('bid', '=', $id)->orderBy('created_at', 'desc')->get()
+            'history' => BidForSaleHistory::where('bid', '=', $id)->orderBy('created_at', 'asc')->get()
         ]);
     }
 
     public function changeBidStatus(Request $request)
     {
-        // BidForSale::where('id', '=', $request->bidId)->update([
-        //     'status' => $request->status
-        // ]);
-        // BidForSaleHistory::create([
-        //     'bid' => $request->bidId,
-        //     'status' => $request->status,
-        //     'text' => $request->text
-        // ]);
-
         DB::beginTransaction();
         try {
                 BidForSale::where('id', '=', $request->bidId)->update([
