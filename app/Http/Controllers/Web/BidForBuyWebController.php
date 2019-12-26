@@ -9,6 +9,7 @@ use App\Models\Place;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Api\BidForBuyApiController;
 
