@@ -29,7 +29,9 @@
             <option value="отказано">отказано</option>
             <option value="успешно завершена">успешно завершена</option>
         </select>
-        <input type="text" name="message" class="form-control" placeholder=" введите поясняющее сообщение">
+        <input type="text" name="message" class="form-control" placeholder=" введите поясняющее сообщение" @if($bid->status == 'отказано' || $bid->status == 'успешно завершена')
+        disabled title="Заявка закрыта и не может быть изменена"
+        @endif>
         <br>
         <input type="button" value="Обновить статус" class="changeBidStatus" data-bid-id="{{ $bid->id }}"
         @if($bid->status == 'отказано' || $bid->status == 'успешно завершена')
