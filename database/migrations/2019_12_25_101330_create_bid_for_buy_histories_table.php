@@ -17,7 +17,7 @@ class CreateBidForBuyHistoriesTable extends Migration
             $table->increments('id');
             $table->integer('bid')->unsigned();
             $table->enum('status', ['не обработана', 'в работе', 'отказано', 'успешно завершена']);
-            $table->text('text');
+            $table->text('text')->nullable();
             $table->timestamps();
 
             $table->foreign('bid')->references('id')->on('bid_for_buys');
