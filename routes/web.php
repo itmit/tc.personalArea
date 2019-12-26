@@ -60,6 +60,10 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         // Route::resource('questions', 'Web\QuestionWebController');
         Route::get('assignment', 'Web\QuestionWebController@assignmentIndex');
         Route::get('acquisition', 'Web\QuestionWebController@acquisitionIndex');
+        Route::get('assignment/{id}', 'Web\QuestionWebController@show');
+        Route::get('acquisition/{id}', 'Web\QuestionWebController@show');
+
+
         Route::post('questions/selectByType', 'Web\QuestionWebController@selectByType');
 
         Route::post('reservation/confirmReservation', 'Web\ReservationWebController@confirmReservation');
