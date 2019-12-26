@@ -30,7 +30,7 @@
             <td>{{ $place->floor }}</td>
             <td>{{ $place->row }}</td>
             <td>{{ $place->place_number }}</td>
-            <td>{{ $bid->seller_name }}</td>
+            <td>{{ $bid->name }}</td>
             <td>{{ $bid->phone_number }}</td>
         </tr>
     @endforeach
