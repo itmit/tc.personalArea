@@ -156,4 +156,25 @@ class QuestionWebController extends Controller
 
         return response()->json($response);
     }
+
+    public function changeBidStatus(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+                Question::where('id', '=', $request->bidId)->update([
+                    'status' => $request->status
+                ]);
+                QuestionHistory::create([
+                    'bid' => $request->bidId,
+                    'status' => $request->status,
+                    'text' => $request->text
+                ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['error'=>'Что-то пошло не так'], 500); 
+        }
+
+        return response()->json(['succses'=>'Статус обновлен'], 200); 
+    }
 }

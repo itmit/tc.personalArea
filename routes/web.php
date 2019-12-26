@@ -62,6 +62,9 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::get('acquisition', 'Web\QuestionWebController@acquisitionIndex')->name('acquisition');
         Route::get('assignment/{id}', 'Web\QuestionWebController@show');
         Route::get('acquisition/{id}', 'Web\QuestionWebController@show');
+        Route::post('assignment/changeBidStatus', 'Web\QuestionWebController@changeBidStatus');
+        Route::post('acquisition/changeBidStatus', 'Web\QuestionWebController@changeBidStatus');
+
         Route::post('questions/selectByType', 'Web\QuestionWebController@selectByType');
 
 
