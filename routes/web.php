@@ -57,7 +57,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
             'only' => ['index', 'create', 'store', 'show']
         ]);
 
-        Route::resource('questions', 'Web\QuestionWebController');
+        // Route::resource('questions', 'Web\QuestionWebController');
         Route::get('questions/assignment', 'Web\QuestionWebController@assignmentIndex');
         Route::get('questions/acquisition', 'Web\QuestionWebController@acquisitionIndex');
         Route::post('questions/selectByType', 'Web\QuestionWebController@selectByType');
