@@ -64,7 +64,7 @@ class BidForBuyWebController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            return response()->json(['error'=>'Что-то пошло не так'], 500); 
+            return response()->json(['error'=>$e], 500); 
         }
 
         return response()->json(['succses'=>'Статус обновлен'], 200); 
