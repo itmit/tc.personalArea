@@ -128,11 +128,11 @@ class QuestionWebController extends Controller
         };
 
         $path = null;
-        if($pathname == 'assignment')
+        if($request->pathname == 'assignment')
         {
             $path = 'assignment';
         };
-        if($pathname == 'acquisition')
+        if($request->pathname == 'acquisition')
         {
             $path = 'acquisition';
         };
