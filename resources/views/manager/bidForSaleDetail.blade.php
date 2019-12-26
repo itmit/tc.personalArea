@@ -54,19 +54,19 @@
             let bidId = $(this).data('bidId');
             let text = $("[name='message']").val();
             console.log(status + ' ' + bidId + ' ' + text);
-            // $.ajax({
-            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     dataType: "json",
-            //     data: {new_status: new_status, reservation_id: reservation_id, client_id: client_id, place_id: place_id, timer: timer},
-            //     url     : 'changeReservationStatus',
-            //     method    : 'post',
-            //     success: function (response) {
-            //         location.reload();
-            //     },
-            //     error: function (xhr, err) { 
-            //         console.log(err + " " + xhr);
-            //     }
-            // });
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data: {status: status, bidId: bidId, text: text},
+                url     : 'bidForSale/changeBidStatus',
+                method    : 'post',
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
         })
     })
 </script>

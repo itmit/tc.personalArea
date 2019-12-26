@@ -67,6 +67,6 @@ class BidForSaleController extends Controller
             return response()->json(['error'=>'Что-то пошло не так'], 500); 
         }
 
-        return response()->json(['succses'=>'Удалено'], 200); 
+        return response()->json(['succses'=>'Статус обновлен'], 200); 
     }
 }
