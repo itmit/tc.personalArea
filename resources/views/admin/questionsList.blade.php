@@ -21,7 +21,7 @@
     <?
         $place = null;
     ?>
-    @foreach($bids as $bid)
+    @foreach($questions as $bid)
     <?
         $place = $bid->place()->get()->first();
     ?>
