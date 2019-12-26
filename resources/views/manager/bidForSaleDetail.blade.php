@@ -51,7 +51,7 @@
     {
         $(document).on('click', '.changeBidStatus', function() {
             let status = $("[name='new-status']").val();
-            let bidId = $(this).data('reservationId');
+            let bidId = $(this).data('bidId');
             let text = $("[name='message']").val();
             console.log(status + ' ' + bidId + ' ' + text);
             // $.ajax({
