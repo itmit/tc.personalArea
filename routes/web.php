@@ -48,6 +48,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         // Route::delete('bidForSale/delete', 'Web\BidForSaleController@destroy');
 
         Route::resource('bidForBuy', 'Web\BidForBuyWebController');
+        Route::post('bidForBuy/changeBidStatus', 'Web\BidForBuyWebController@changeBidStatus');
+        Route::post('bidForBuy/selectByType', 'Web\BidForBuyWebController@selectByType');
 
         // Route::delete('bidForBuy/delete', 'Web\BidForBuyWebController@destroy');
 
