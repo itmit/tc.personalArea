@@ -14,11 +14,25 @@ class QuestionWebController extends Controller
      *
      * @return Factory|View
      */
-    public function index()
+    public function assignmentIndex()
     {
         return view('admin.questionsList', [
             'title' => 'Переуступка права пользования помещением',
             'questions' => Question::select('*')->where('type', '=', 'assignment')
+            ->orderBy('created_at', 'desc')->get()
+        ]);
+    }
+
+    /**
+     * Показывает список заявок на бронирование.
+     *
+     * @return Factory|View
+     */
+    public function acquisitionIndex()
+    {
+        return view('admin.questionsList', [
+            'title' => 'Переуступка права пользования помещением',
+            'questions' => Question::select('*')->where('type', '=', 'acquisition')
             ->orderBy('created_at', 'desc')->get()
         ]);
     }
