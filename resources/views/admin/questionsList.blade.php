@@ -40,35 +40,37 @@
 <script>
     $(document).ready(function()
     {
-    //     $('#myTab li').click(function (e) {
-    //     e.preventDefault()
-    //     $(this).tab('show')
-    //     let type = $(this).data('type');
-    //     $.ajax({
-    //         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-    //         dataType: "json",
-    //         data: {type: type},
-    //         url     : 'bidForSale/selectByType',
-    //         method    : 'post',
-    //         success: function (response) {
-    //             let result = '';
-    //                 for(var i = 0; i < response.length; i++) {
-    //                     result += '<tr>';
-    //                     result += '<td><a href="bidForSale/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
-    //                     result += '<td>' + response[i]['floor'] + '</td>';
-    //                     result += '<td>' + response[i]['row'] + '</td>';
-    //                     result += '<td>' + response[i]['place'] + '</td>';
-    //                     result += '<td>' + response[i]['name'] + '</td>';
-    //                     result += '<td>' + response[i]['phone'] + '</td>';
-    //                     result += '</tr>';
-    //                 }
-    //                 $('tbody').html(result);
-    //         },
-    //         error: function (xhr, err) { 
-    //             console.log(err + " " + xhr);
-    //         }
-    //     });
-    // })
+        let pathname = window.location.pathname;
+        pathname = pathname.split('/')[1];
+        $('#myTab li').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+        let type = $(this).data('type');
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            data: {type: type, pathname: pathname},
+            url     : 'questions/selectByType',
+            method    : 'post',
+            success: function (response) {
+                let result = '';
+                    for(var i = 0; i < response.length; i++) {
+                        result += '<tr>';
+                        result += '<td><a href="'++response[i]['path']++'/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
+                        result += '<td>' + response[i]['floor'] + '</td>';
+                        result += '<td>' + response[i]['row'] + '</td>';
+                        result += '<td>' + response[i]['place'] + '</td>';
+                        result += '<td>' + response[i]['name'] + '</td>';
+                        result += '<td>' + response[i]['phone'] + '</td>';
+                        result += '</tr>';
+                    }
+                    $('tbody').html(result);
+            },
+            error: function (xhr, err) { 
+                console.log(err + " " + xhr);
+            }
+        });
+    })
 
     });
 </script>

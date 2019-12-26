@@ -39,33 +39,33 @@ class QuestionWebController extends Controller
         ]);
     }
 
-    /**
-     * Показывает список заявок на бронирование.
-     *
-     * @return Factory|View
-     */
-    public function selectByType(request $request)
-    {
-        $response = [];
+    // /**
+    //  * Показывает список заявок на бронирование.
+    //  *
+    //  * @return Factory|View
+    //  */
+    // public function selectByType(request $request)
+    // {
+    //     $response = [];
 
-        $questions = Question::select('*')->where('type', $request->input('type'))->orderBy('created_at', 'asc')->get();
+    //     $questions = Question::select('*')->where('type', $request->input('type'))->orderBy('created_at', 'asc')->get();
 
-        foreach ($questions as $item) {
-            $place = $item->place()->get()->first();
-            $response[] = [
-                'id' => $item->id,
-                'block' => $place->block,
-                'floor' => $place->floor,
-                'row' => $place->row,
-                'place' => $place->place_number,
-                'name' => $item->name,
-                'phone' => $item->phone_number,
-                'text' => $item->text,
-            ];
-        }
+    //     foreach ($questions as $item) {
+    //         $place = $item->place()->get()->first();
+    //         $response[] = [
+    //             'id' => $item->id,
+    //             'block' => $place->block,
+    //             'floor' => $place->floor,
+    //             'row' => $place->row,
+    //             'place' => $place->place_number,
+    //             'name' => $item->name,
+    //             'phone' => $item->phone_number,
+    //             'text' => $item->text,
+    //         ];
+    //     }
 
-        return response()->json($response);
-    }
+    //     return response()->json($response);
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -105,5 +105,54 @@ class QuestionWebController extends Controller
                 // 'history' => BidForSaleHistory::where('bid', '=', $id)->orderBy('created_at', 'asc')->get()
             ]);
         }
+    }
+
+    /**
+     * Показывает список заявок на бронирование.
+     *
+     * @return Factory|View
+     */
+    public function selectByType(request $request)
+    {
+        if($request->input('type') == 'untreated')
+        {
+            $bids = Question::select('*')->where('status', 'не обработана')->orderBy('created_at', 'desc')->get();
+        }
+        if($request->input('type') == 'in work')
+        {
+            $bids = Question::select('*')->where('status', 'в работе')->orderBy('created_at', 'desc')->get();
+        }
+        if($request->input('type') == 'processed')
+        {
+            $bids = Question::select('*')->where('status', 'отказано')->orWhere('status', 'успешно завершена')->orderBy('created_at', 'desc')->get();
+        };
+
+        $path = null;
+        if($pathname == 'assignment')
+        {
+            $path = 'assignment';
+        };
+        if($pathname == 'acquisition')
+        {
+            $path = 'acquisition';
+        };
+
+        $response = [];
+
+        foreach ($bids as $item) {
+            $place = $item->place()->get()->first();
+            $response[] = [
+                'path' => $path,
+                'id' => $item->id,
+                'block' => $place->block,
+                'floor' => $place->floor,
+                'row' => $place->row,
+                'place' => $place->place_number,
+                'name' => $item->seller_name,
+                'phone' => $item->phone_number,
+            ];
+        }
+
+        return response()->json($response);
     }
 }
