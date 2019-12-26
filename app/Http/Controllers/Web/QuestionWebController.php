@@ -33,7 +33,7 @@ class QuestionWebController extends Controller
     public function acquisitionIndex()
     {
         return view('admin.questionsList', [
-            'title' => 'Переуступка права пользования помещением',
+            'title' => 'Приобретение права пользования помещением',
             'link' => 'acquisition',
             'questions' => Question::select('*')->where('type', '=', 'acquisition')
             ->orderBy('created_at', 'desc')->get()
