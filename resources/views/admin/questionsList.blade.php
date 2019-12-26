@@ -56,7 +56,7 @@
                 let result = '';
                     for(var i = 0; i < response.length; i++) {
                         result += '<tr>';
-                        result += '<td><a href="'++response[i]['path']++'/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
+                        result += '<td><a href="'+response[i]['path']+'/'+response[i]['id']+'">' + response[i]['block'] + '</td>';
                         result += '<td>' + response[i]['floor'] + '</td>';
                         result += '<td>' + response[i]['row'] + '</td>';
                         result += '<td>' + response[i]['place'] + '</td>';
