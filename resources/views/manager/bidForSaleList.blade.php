@@ -42,8 +42,6 @@
 <script>
     $(document).ready(function()
     {
-
-        
         $('#myTab li').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
