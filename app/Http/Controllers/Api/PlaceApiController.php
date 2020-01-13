@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Reservation;
 use App\Models\ReservationHistory;
 use App\Models\Actions;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
