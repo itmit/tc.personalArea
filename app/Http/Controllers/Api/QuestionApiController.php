@@ -22,7 +22,7 @@ class QuestionApiController extends ApiBaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'phone_number' => 'required',
+            'phone_number' => 'required|min:18',
             'text' => 'required',
             'place_number' => 'required|string|max:255',
             'block' => 'required|string|max:255',
