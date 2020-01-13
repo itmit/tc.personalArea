@@ -203,7 +203,12 @@ class PlaceApiController extends ApiBaseController
                 {
                     if ($countOfReservations % 5 == 0)
                     {
-                        $this->SendPush($countOfReservations);
+                        try
+                        {
+                            $this->SendPush($countOfReservations);
+                        }
+                        catch(Exception $e)
+                        { }
                     }
 
                     return $this->sendResponse(
@@ -222,25 +227,36 @@ class PlaceApiController extends ApiBaseController
             'to' => '/topics/AdminNotification',
             "notification" => [
                 "body" => "У вас ".$countOfReservations." необработанных заявок.",
-                "title" => "Внимание"
-            ]
+                "title" => "Внимание",
+                "sound"=> "default",
+                "content_available" => true
+            ],
+            "data" => [
+                "body" => "У вас ".$countOfReservations." необработанных заявок.",
+                "title" => "Внимание",
+                "sound"=> "default"
+            ],
+            "priority" => "high"
         );
         $fields = json_encode ( $fields );
 
         $headers = array (
-                'Authorization: key=' . "AAAAcZkfTDU:APA91bGgoysHhtZfk272579GGadndryldrSN49MEIO3QGrgI1aKTYir62YbtVXHEaICk1-G1NIWq9DsmCwQGmcmnqqlXWltysqQRoXPoXEdkvz-1oiHS-cF54VSNsWOvut-I_0gBQgrx",
-                'Content-Type: application/json'
+            'Authorization: key=' . "AAAAcZkfTDU:APA91bGgoysHhtZfk272579GGadndryldrSN49MEIO3QGrgI1aKTYir62YbtVXHEaICk1-G1NIWq9DsmCwQGmcmnqqlXWltysqQRoXPoXEdkvz-1oiHS-cF54VSNsWOvut-I_0gBQgrx",
+            'Content-Type: application/json'
         );
 
-        $ch = curl_init ();
-        curl_setopt ( $ch, CURLOPT_URL, $url );
-        curl_setopt ( $ch, CURLOPT_POST, true );
-        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
-        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+        $ch = curl_init();
+        curl_setopt ($ch, CURLOPT_URL, $url);
+        curl_setopt ($ch, CURLOPT_POST, true);
+        curl_setopt ($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt ($ch, CURLOPT_POSTFIELDS, $fields);
 
-        curl_exec ( $ch );
+        if(!curl_exec($ch))
+        {
+            trigger_error(curl_error($ch));
+        }
 
-        curl_close ( $ch );
+        curl_close ($ch);
     }
 }
