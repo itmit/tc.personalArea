@@ -20,7 +20,7 @@ class QuestionWebController extends Controller
         return view('admin.questionsList', [
             'title' => 'Переуступка права пользования помещением',
             'link' => 'assignment',
-            'questions' => Question::select('*')->where('type', '=', 'assignment')
+            'questions' => Question::select('*')->where('type', '=', 'assignment')->where('status', 'не обработана')
             ->orderBy('created_at', 'desc')->get()
         ]);
     }
@@ -35,7 +35,7 @@ class QuestionWebController extends Controller
         return view('admin.questionsList', [
             'title' => 'Приобретение права пользования помещением',
             'link' => 'acquisition',
-            'questions' => Question::select('*')->where('type', '=', 'acquisition')
+            'questions' => Question::select('*')->where('type', '=', 'acquisition')->where('status', 'не обработана')
             ->orderBy('created_at', 'desc')->get()
         ]);
     }
