@@ -24,10 +24,19 @@
                                 Имя: {{ $item->first_name }} {{ $item->last_name }}
                             </div>
                             <div>
-                                Место <b>{{ $item->place()->place_number }}</b> ряд <b>{{ $item->place()->row }}</b> этаж <b>{{ $item->place()->floor }}</b> блок <b>{{ $item->place()->block }}</b>
+                                <?php $place = $item->place();?>
+                                Место <b>{{ $place->place_number }}</b> ряд <b>{{ $place->row }}</b> этаж <b>{{ $place->floor }}</b> блок <b>{{ $place->block }}</b>
                             </div>
                             <div>
-                                {{-- Статус заявки: {{ $item->history()->action }} --}}
+                                История заявки:
+                                <ul>
+                                    @foreach ($reservationHistory as $history)
+                                    <li>
+                                        <?php $action = $history->action();?>
+                                        {{$action->action}} (изменение рейтинга: {{ $action->points }}) в {{ $history->created_at->timezone('Europe/Moscow') }}
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </li>

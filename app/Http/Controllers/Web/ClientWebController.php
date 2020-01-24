@@ -20,6 +20,7 @@ class ClientWebController extends Controller
     [
         'client' => Client::where('id', '=', $id)->first(),
         'reservation' => Reservation::where('client', '=', $id)->get(),
+        'reservationHistory' => ReservationHistory::where('bid', '=', $id)->get()
     ]);
     }
 }
