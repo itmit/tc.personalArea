@@ -37,6 +37,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::delete('places/delete', 'Web\PlaceController@destroy');
 
         Route::post('places/import', 'Web\PlaceController@importFromExcel')->name('places.import');
+        Route::post('places/makeAllRent', 'Web\PlaceController@makeAllRent');
 
         Route::resource('news', 'Web\NewsController');
 

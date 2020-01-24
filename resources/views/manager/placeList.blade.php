@@ -55,7 +55,7 @@
     </div>
     </form>
     <div class="col-sm-12">
-        <button type="button" class="btn btn-tc-manager js-make-all-rent-button">Сделать все места арендованными</button>
+        <button type="button" class="btn btn-tc-manager js-make-all-rent-button">Арендовать всё</button>
     </div>
     @endability
 
@@ -70,7 +70,7 @@
     <div class="col-sm-12">
         <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control">
             {{-- <option value="По-умолчанию">По-умолчанию</option> --}}
-            <option disabled selected>Выберите блок</option>
+            <option value="empty" disabled selected>Выберите блок</option>
             <option value="Вещевой">Вещевые ряды</option>
             <option value="ТЦ">ТЦ Садовод</option>
             <option value="Новый ТЦ">Новый ТЦ</option>
@@ -152,6 +152,30 @@
                         }
                     });
                 });
+
+                $(document).on('click', '.js-make-all-rent-button', function() {
+
+                    let block = $('#getPlacesByBlock').val();
+
+                    if(block != 'null')
+                    {
+                        $.ajax({
+                            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                            dataType: "json",
+                            data    : { block: block },
+                            url     : 'places/makeAllRent',
+                            method    : 'post',
+                            success: function (response) {
+                                location.reload();
+                            },
+                            error: function (xhr, err) { 
+                                console.log("Error: " + xhr + " " + err);
+                            }
+                        });
+                    }
+
+                });
+
             });
         </script>
 

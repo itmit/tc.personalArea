@@ -272,4 +272,29 @@ class PlaceController extends Controller
 
         return redirect()->route('auth.manager.place.edit', ['id' => $request->id]);
     }
+
+    /**
+     *
+     * Делает все места в блоке арендованными
+     * 
+     */
+    public function makeAllRent(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'block' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->response()->json(['succses'=>'Ошибка валидации'], 401)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Place::where('block', '=', $request->block)->update([
+            'status' => 'Арендован'
+        ]);
+
+        return response()->json(['succses'=>'Удалено'], 200);
+    }
 }

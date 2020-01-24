@@ -60,62 +60,24 @@ class NewsController extends Controller
             $path = $request->file('picture')->store('public/newsPictures');
             $url = Storage::url($path);
 
-            News::create([
+            $news = News::create([
                 'uuid' => Uuid::generate()->string,
                 'head' => $request->input('head'),
                 'body' => $request->input('body'),
                 'picture' => $url,
             ]);
 
+            try
+            {
+                $this->SendPush($news->head);
+            }
+            catch(Exception $e)
+            { }
+
             return redirect()->route('auth.manager.news.index');
         }
 
         return redirect('/login');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     /**
@@ -129,5 +91,46 @@ class NewsController extends Controller
             'body' => 'required|max:20000',
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
+    }
+
+    private function SendPush(int $title)
+    {
+        $url = 'https://fcm.googleapis.com/fcm/send';
+
+        $fields = array (
+            'to' => '/topics/All',
+            "notification" => [
+                "body" => "".$title."",
+                "title" => "Новая новость",
+                "sound"=> "default",
+                "content_available" => true
+            ],
+            "data" => [
+                "body" => "".$title."",
+                "title" => "Новость",
+                "sound"=> "default"
+            ],
+            "priority" => "high"
+        );
+        $fields = json_encode ( $fields );
+
+        $headers = array (
+            'Authorization: key=' . "AAAAcZkfTDU:APA91bGgoysHhtZfk272579GGadndryldrSN49MEIO3QGrgI1aKTYir62YbtVXHEaICk1-G1NIWq9DsmCwQGmcmnqqlXWltysqQRoXPoXEdkvz-1oiHS-cF54VSNsWOvut-I_0gBQgrx",
+            'Content-Type: application/json'
+        );
+
+        $ch = curl_init();
+        curl_setopt ($ch, CURLOPT_URL, $url);
+        curl_setopt ($ch, CURLOPT_POST, true);
+        curl_setopt ($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt ($ch, CURLOPT_POSTFIELDS, $fields);
+
+        if(!curl_exec($ch))
+        {
+            trigger_error(curl_error($ch));
+        }
+
+        curl_close ($ch);
     }
 }
