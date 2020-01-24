@@ -291,7 +291,7 @@ class PlaceController extends Controller
                 ->withInput();
         }
 
-        Place::where('block', '=', $request->block)->update([
+        Place::where('block', '=', $request->block)->where('status', '<>', 'Забронировано')->update([
             'status' => 'Арендован'
         ]);
 
