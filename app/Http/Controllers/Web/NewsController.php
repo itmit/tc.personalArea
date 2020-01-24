@@ -93,7 +93,7 @@ class NewsController extends Controller
         ]);
     }
 
-    private function SendPush(int $title)
+    private function SendPush(string $title)
     {
         $url = 'https://fcm.googleapis.com/fcm/send';
 
