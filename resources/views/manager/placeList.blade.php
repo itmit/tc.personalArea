@@ -54,11 +54,16 @@
         <button type="submit" class="btn btn-tc-manager">Создать место</button>
     </div>
     </form>
+    <div class="col-sm-12">
+        <button type="button" class="btn btn-tc-manager js-make-all-rent-button">Сделать все места арендованными</button>
+    </div>
     @endability
 
+    @ability('super-admin', 'delete-place')
     <div class="col-sm-12">
         <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченные места</button>
     </div>
+    @endability
 
     <h2>Выберите блок</h2>
 
@@ -80,7 +85,9 @@
     <table class="table table-bordered">
         <thead>
         <tr>
+            @ability('super-admin', 'delete-place')
             <th><input type="checkbox" name="destroy-all-places" class="js-destroy-all"/></th>
+            @endability
             <th><i class="material-icons">edit</i></th>
             <th>Блок</th>
             <th>Этаж</th>

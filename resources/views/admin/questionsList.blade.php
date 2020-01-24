@@ -15,6 +15,7 @@
         <th>Место</th>
         <th>Имя продавца</th>
         <th>Номер телефона</th>
+        <th>Текст</th>
     </tr>
     </thead>
     <tbody>
@@ -32,6 +33,7 @@
             <td>{{ $place->place_number }}</td>
             <td>{{ $bid->name }}</td>
             <td>{{ $bid->phone_number }}</td>
+            <td>{{ $bid->text }}</td>
         </tr>
     @endforeach
     </tbody>

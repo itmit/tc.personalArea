@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         @foreach($places as $place)
-            <tr id="{{ $place->id }}" @if($place->expire == 1) style="background-color: red" @endif>
+            <tr id="{{ $place->id }}" @if($place->expire == 1) style="background-color: LightCoral" @endif>
                 <td><i class="material-icons"><a href="reservation/{{ $place->id }}">slideshow</a></i></td>
                 <td><a href="../client/{{ $place->client()->id }}">{{ $place->first_name }} {{ $place->last_name }}</a></td>
                 <td>{{ $place->client()->rating }}</td>
@@ -55,7 +55,7 @@
                         for(var i = 0; i < response.length; i++) {
                             if(response[i]['expire'] == 1)
                             {
-                                result += '<tr id="' + response[i]['id'] + '" style="background-color: red">';
+                                result += '<tr id="' + response[i]['id'] + '" style="background-color: LightCoral">';
                             }
                             else
                             {

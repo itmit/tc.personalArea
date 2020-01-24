@@ -93,7 +93,7 @@
                     }      
                     else
                     {
-                        $('.reservation-time-left').html('<p style="color:red">Время бронирования вышло!</p>');
+                        $('.reservation-time-left').html('<p style="color:LightCoral">Время бронирования вышло!</p>');
                     } 
                     if(absoluteDifference <= 0)
                     {
@@ -104,7 +104,7 @@
             }      
             else
             {
-                $('.reservation-time-left').html('<p style="color:red">Время бронирования вышло!</p>');
+                $('.reservation-time-left').html('<p style="color:LightCoral">Время бронирования вышло!</p>');
             } 
 
             $(document).on('click', '.changeReservationStatus', function() {
