@@ -34,7 +34,7 @@
         <th>Имя</th>
         <th>Телефон</th>
         @ability('super-admin,manager', 'change-waste-status')
-        <th>Имя</th>
+        <th>Сменить статус</th>
         @endability
     </tr>
     </thead>
