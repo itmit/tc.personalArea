@@ -176,6 +176,91 @@
 
                 });
 
+                $(document).on('change', '#getPlacesByBlock', function() {
+            let block = $('#getPlacesByBlock').val();
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { block: block },
+                url     : 'places/getPlacesByBlock',
+                method    : 'post',
+                success: function (data) {
+                let result = '';
+                if(data[0].length === 0)
+                {
+                    result += '<tr><td colspan="7">В выбранном разделе ничего нет</td></tr>'
+                }
+                else
+                {
+                    for(var i = 0; i < data[0].length; i++) {
+                        
+                        if(data[0][i]['status'] == 'Арендован')
+                        {
+                            result += '<tr style="background-color: #f7ecdd!important;">';
+                        }
+                        if(data[0][i]['status'] == 'Забронировано')
+                        {
+                            result += '<tr style="background-color: #ff8c00!important;">';
+                        }
+                        if(data[0][i]['status'] == 'Свободен')
+                        {
+                            result += '<tr>';
+                        }
+                        result += '<td><input type="checkbox" data-place-id="' + data[0][i]['id'] + '" name="destoy-place-' + data[0][i]['id'] + '" class="js-destroy"/></td>';
+                        result += '<td><i class="material-icons"><a href="place/edit/' + data[0][i]['id'] + '">edit</a></i></td>';
+                        result += '<td>' + data[0][i]['block'] + '</td>';
+                        result += '<td>' + data[0][i]['floor'] + '</td>';
+                        result += '<td>' + data[0][i]['row'] + '</td>';
+                        result += '<td>' + data[0][i]['place_number'] + '</td>';
+                        result += '<td>';
+                        result += '<select name="changePlaceStatus" id="changePlaceStatus" class="form-control" data-placeid="'+data[0][i]['id']+'">';
+                        
+                        if(data[0][i]['status'] == 'Свободен')
+                        {
+                            result += '<option value="Свободен" selected>Свободен</option>';
+                        }
+                        else
+                        {
+                            result += '<option value="Свободен">Свободен</option>';
+                        }
+                        if(data[0][i]['status'] == 'Арендован')
+                        {
+                            result += '<option value="Арендован" selected>Арендован</option>';
+                        }
+                        else
+                        {
+                            result += '<option value="Арендован">Арендован</option>';
+                        }
+                        if(data[0][i]['status'] == 'Забронировано')
+                        {
+                            result += '<option value="Забронировано" selected>Забронировано</option>';
+                        }
+                        else
+                        {
+                            result += '<option value="Забронировано">Забронировано</option>';
+                        }
+                        result += '</select>';
+                        result += '</td>';
+                        if(data[0][i]['price'] == null)
+                        {
+                            result += '<td></td>';
+                        }
+                        else
+                        {
+                            result += '<td>' + data[0][i]['price'] + '</td>';
+                        }
+                        
+                        result += '</tr>';
+                    }
+                }   
+                $('tbody').html(result);
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
+        });
+
             });
         </script>
 
