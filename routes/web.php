@@ -24,13 +24,15 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::resource('managerswaste', 'Web\ManagerWasteWebController');
     });
 
+    Route::group(['as' => 'managerwaste.', 'middleware' => ['role:manager-waste']], function () {
+        Route::resource('wastes', 'Web\WasteWebController');
+    });
+
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
 
         Route::resource('places', 'Web\PlaceController', [
             'only' => ['index', 'create', 'store', 'destroy', 'getPlacesByBlock']
         ]);
-
-        
 
         Route::post('places/getPlacesByBlock', 'Web\PlaceController@getPlacesByBlock');
         Route::post('places/changePlaceStatus', 'Web\PlaceController@changePlaceStatus');
