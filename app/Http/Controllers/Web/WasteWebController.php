@@ -77,7 +77,7 @@ class WasteWebController extends Controller
                 'place' => $this->place->id,
                 'release_date' => $request->input('release_date'),
                 'name' => $request->input('name'),
-                'phone' => $request->input('email'),
+                'phone' => $request->input('phone'),
                 'status' => 'активна'
                 ]);
 
