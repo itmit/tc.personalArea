@@ -21,6 +21,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
         Route::resource('managers', 'Web\ManagerController');
         Route::get('managers/edit/{id}', 'Web\ManagerController@managerEditPage');
+        Route::resource('managerswaste', 'Web\ManagerWasteWebController');
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
@@ -29,7 +30,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
             'only' => ['index', 'create', 'store', 'destroy', 'getPlacesByBlock']
         ]);
 
-        Route::resource('managerswaste', 'Web\ManagerWasteWebController');
+        
 
         Route::post('places/getPlacesByBlock', 'Web\PlaceController@getPlacesByBlock');
         Route::post('places/changePlaceStatus', 'Web\PlaceController@changePlaceStatus');
