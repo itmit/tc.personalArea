@@ -34,15 +34,10 @@ class WasteWebController extends Controller
      * @return Factory|RedirectResponse|Redirector|View
      */
     public function create()
-    {
-        $user = Auth::user();
-        if ($user->ability(['super-admin'], ['create-manager'])) {
-            return view('admin.managerwasteCreate', [
-                'title' => 'Создание менеджера отходных'
-            ]);
-        }
-
-        return redirect('/login');
+    {        
+        return view('waste.wasteCreate', [
+            'title' => 'Создание отходной заявки'
+        ]);
     }
 
     /**
