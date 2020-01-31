@@ -55,7 +55,7 @@ class WasteWebController extends Controller
                 'floor' => 'required',
                 'row' => 'required',
                 'place_number' => 'required',
-                'date_release' => 'required',
+                'release_date' => 'required',
             ]);
 
             $this->place = Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'), $request->input('row'));
@@ -73,13 +73,13 @@ class WasteWebController extends Controller
                     ->withInput();
             }
 
-            return 'suc';
-
-            User::create([
+            Waste::create([
+                'place' => $this->place->id,
+                'release_date' => $request->input('release_date'),
                 'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password')),
-            ])->attachRole(Role::where('name', '=', 'manager-waste')->first());
+                'phone' => $request->input('email'),
+                'status' => 'активна'
+                ]);
 
             return redirect()->route('auth.admin.managerswaste.index');
     }
@@ -96,42 +96,15 @@ class WasteWebController extends Controller
         return response()->json(['succses'=>'Удалено'], 200); 
     }
 
-    /**
-     *
-     * Страница редактирования места
-     * 
-     */
-    public function managerEditPage($id)
+    public function selectByBlock(Request $request)
     {
-        return view("admin.editManager", [
-            'manager' => User::where('id', '=', $id)->first()
-        ]);
-    }
-
-    /**
-     *
-     * Страница редактирования места
-     * 
-     */
-    public function edit($id, Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()
-                ->route('admin.managers.edit.{id}', ['id' => $id])
-                ->withErrors($validator)
-                ->withInput();
+        if($request->input('block') == "empty")
+        {
+            return response()->json([]);
         }
-
-        User::where('id', '=', $id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
-        
-        return redirect()->route('auth.admin.managers.index');
+        else
+        {
+            return response()->json([Place::select('*')->where('block', $request->input('block'))->orderBy('sort', 'asc')->get()]);
+        };
     }
 }

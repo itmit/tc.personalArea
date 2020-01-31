@@ -51,7 +51,7 @@
             <label for="row" class="col-md-4 control-label">Ряд</label>
 
             <div class="col-md-6">
-                <input id="row" type="number" class="form-control" name="row" value="{{ old('row') }}" required>
+                <input id="row" type="text" class="form-control" name="row" value="{{ old('row') }}" required>
 
                 @if ($errors->has('row'))
                     <span class="help-block">
@@ -75,15 +75,15 @@
             </div>
         </div>
 
-        <div class="form-group{{ $errors->has('date_release') ? ' has-error' : '' }}">
-            <label for="date_release" class="col-md-4 control-label">Дата освобождения</label>
+        <div class="form-group{{ $errors->has('release_date') ? ' has-error' : '' }}">
+            <label for="release_date" class="col-md-4 control-label">Дата освобождения</label>
 
             <div class="col-md-6">
-                <input id="date_release" type="date" class="form-control" name="date_release" value="{{ old('date_release') }}">
+                <input id="release_date" type="date" class="form-control" name="release_date" value="{{ old('release_date') }}">
 
-                @if ($errors->has('date_release'))
+                @if ($errors->has('release_date'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('date_release') }}</strong>
+                        <strong>{{ $errors->first('release_date') }}</strong>
                     </span>
                 @endif
             </div>

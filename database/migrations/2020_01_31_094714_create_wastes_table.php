@@ -17,8 +17,8 @@ class CreateWastesTable extends Migration
             $table->increments('id');
             $table->integer('place');
             $table->date('release_date');
-            $table->string('name');
-            $table->string('phone');
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
             $table->enum('status', ['активна', 'неактивна'])->defalut('неактивна');
             $table->timestamps();
         });
