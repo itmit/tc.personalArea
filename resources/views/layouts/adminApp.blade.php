@@ -122,11 +122,11 @@
                     @endability
 
                     @ability('super-admin', 'show-manager-list')
-                    <li name="managers"><a href="{{ route('auth.admin.managerswaste.index') }}">Список менеджеров отходных</a></li>
+                    <li name="managerswaste"><a href="{{ route('auth.admin.managerswaste.index') }}">Список менеджеров отходных</a></li>
                     @endability
 
-                    @ability('super-admin', 'show-manager-list')
-                    <li name="managers"><a href="{{ route('auth.admin.managers.index') }}">Список отходных</a></li>
+                    @ability('super-admin,manager,manager-waste', 'show-manager-list')
+                    <li name="wastes"><a href="{{ route('auth.admin.managers.index') }}">Список отходных</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-place-list')
@@ -207,8 +207,15 @@
         case 'news':
             $( "li[name='news']" ).addClass( "active" );
             break;
+
+        case 'managerswaste':
+            $( "li[name='managerswaste']" ).addClass( "active" );
+            break;
+
+        case 'wastes':
+            $( "li[name='wastes']" ).addClass( "active" );
+            break;
         }
-        
 
         $(document).on('click', '.js-destroy-button', function() {
             let ids = [];

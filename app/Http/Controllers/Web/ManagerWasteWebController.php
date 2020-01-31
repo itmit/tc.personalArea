@@ -37,8 +37,8 @@ class ManagerWasteWebController extends Controller
     {
         $user = Auth::user();
         if ($user->ability(['super-admin'], ['create-manager'])) {
-            return view('admin.createManager', [
-                'title' => 'Создание менеджера'
+            return view('admin.managerwasteCreate', [
+                'title' => 'Создание менеджера отходных'
             ]);
         }
 
