@@ -26,7 +26,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
     Route::group(['as' => 'managerwaste.', 'middleware' => ['role:manager-waste|super-admin']], function () {
         Route::resource('wastes', 'Web\WasteWebController');
-        Route::post('places/selectByBlock', 'Web\WasteWebController@selectByBlock');
+        Route::post('wastes/selectByBlock', 'Web\WasteWebController@selectByBlock');
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
