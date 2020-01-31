@@ -81,7 +81,7 @@ class WasteWebController extends Controller
                 'status' => 'активна'
                 ]);
 
-            return redirect()->route('auth.admin.managerswaste.index');
+            return redirect()->route('auth.managerwaste.wastes.index');
     }
 
     /**
@@ -104,7 +104,25 @@ class WasteWebController extends Controller
         }
         else
         {
-            return response()->json([Place::select('*')->where('block', $request->input('block'))->orderBy('sort', 'asc')->get()]);
+            $wastes = Waste::select('*')->where('status', $request->input('type'))->orderBy('created_at', 'desc')->get();
+
+            $response = [];
+
+            foreach ($wastes as $item) {
+                $place = $item->place()->get()->first();
+                $response[] = [
+                    'id' => $item->id,
+                    'block' => $place->block,
+                    'floor' => $place->floor,
+                    'row' => $place->row,
+                    'place' => $place->place_number,
+                    'name' => $item->name,
+                    'phone' => $item->phone,
+                    'release_date' => $item->release_date
+                ];
+            }
+
+            return response()->json($response);
         };
     }
 }

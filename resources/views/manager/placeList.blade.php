@@ -176,7 +176,7 @@
 
                 });
 
-                $(document).on('change', '#getPlacesByBlock', function() {
+            $(document).on('change', '#getPlacesByBlock', function() {
             let block = $('#getPlacesByBlock').val();
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },

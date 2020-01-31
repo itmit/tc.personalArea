@@ -19,4 +19,9 @@ class Waste extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    public function place()
+    {
+        return $this->belongsTo(Place::class, 'place');
+    }
 }
