@@ -51,17 +51,29 @@ class WasteWebController extends Controller
         $user = Auth::user();
         if ($user->ability(['super-admin'], ['create-manager'])) {
             $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6|confirmed',
+                'block' => 'required',
+                'floor' => 'required',
+                'row' => 'required',
+                'place_number' => 'required',
+                'date_release' => 'required',
             ]);
+
+            $this->place = Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'), $request->input('row'));
+
+            $validator->after(function ($validator) {
+                if ($this->place == null) {
+                    $validator->errors()->add('place', 'В этом блоке нет места с указанным номером.');
+                }
+            });
 
             if ($validator->fails()) {
                 return redirect()
-                    ->route('auth.admin.managerswaste.create')
+                    ->route('auth.managerwaste.wastes.create')
                     ->withErrors($validator)
                     ->withInput();
             }
+
+            return 'suc';
 
             User::create([
                 'name' => $request->input('name'),
