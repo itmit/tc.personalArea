@@ -125,8 +125,8 @@
                     <li name="managerswaste"><a href="{{ route('auth.admin.managerswaste.index') }}">Список менеджеров отходных</a></li>
                     @endability
 
-                    @ability('super-admin,manager,manager-waste', 'show-manager-list')
-                    <li name="wastes"><a href="{{ route('auth.admin.managers.index') }}">Список отходных</a></li>
+                    @ability('super-admin,manager,manager-waste', 'show-waste-list')
+                    <li name="wastes"><a href="{{ route('auth.managerwaste.wastes.index') }}">Список отходных</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-place-list')
