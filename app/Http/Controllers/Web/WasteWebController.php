@@ -49,7 +49,7 @@ class WasteWebController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        if ($user->ability(['super-admin'], ['create-manager'])) {
+
             $validator = Validator::make($request->all(), [
                 'block' => 'required',
                 'floor' => 'required',
@@ -82,9 +82,6 @@ class WasteWebController extends Controller
             ])->attachRole(Role::where('name', '=', 'manager-waste')->first());
 
             return redirect()->route('auth.admin.managerswaste.index');
-        }
-
-        return redirect('/login');
     }
 
     /**
