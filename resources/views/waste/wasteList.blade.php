@@ -46,15 +46,12 @@
 $(document).ready(function()
     {
         let type = $('#myTab li').data('type');
+        let block = $('#getPlacesByBlock').val();
 
         $('#myTab li').click(function (e) {
             e.preventDefault()
             $(this).tab('show')
             type = $(this).data('type');
-        });
-
-        $(document).on('change', '#getPlacesByBlock', function() {
-        let block = $('#getPlacesByBlock').val();
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
@@ -75,7 +72,45 @@ $(document).ready(function()
                         result += '<td>' + data[i]['block'] + '</td>';
                         result += '<td>' + data[i]['floor'] + '</td>';
                         result += '<td>' + data[i]['row'] + '</td>';
-                        result += '<td>' + data[i]['place_number'] + '</td>';
+                        result += '<td>' + data[i]['place'] + '</td>';
+                        result += '<td>' + data[i]['release_date'] + '</td>';
+                        result += '<td>' + data[i]['name'] + '</td>';
+                        result += '<td>' + data[i]['phone'] + '</td>';
+                        result += '</tr>';
+                    }
+                }   
+                $('tbody').html(result);
+                console.log(result);
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
+        });
+
+        $(document).on('change', '#getPlacesByBlock', function() {
+            block = $('#getPlacesByBlock').val();
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { block: block, type: type },
+                url     : 'wastes/selectByBlock',
+                method    : 'post',
+                success: function (data) {
+                let result = '';
+                if(data[0].length === 0)
+                {
+                    result += '<tr><td colspan="7">В выбранном разделе ничего нет</td></tr>'
+                }
+                else
+                {
+                    console.log(data);
+                    for(var i = 0; i < data.length; i++) {
+                        result += '<tr>';
+                        result += '<td>' + data[i]['block'] + '</td>';
+                        result += '<td>' + data[i]['floor'] + '</td>';
+                        result += '<td>' + data[i]['row'] + '</td>';
+                        result += '<td>' + data[i]['place'] + '</td>';
                         result += '<td>' + data[i]['release_date'] + '</td>';
                         result += '<td>' + data[i]['name'] + '</td>';
                         result += '<td>' + data[i]['phone'] + '</td>';

@@ -110,6 +110,7 @@ class WasteWebController extends Controller
 
             foreach ($wastes as $item) {
                 $place = $item->place()->get()->first();
+                if($place->block != $request->input('block')) continue;
                 $response[] = [
                     'id' => $item->id,
                     'block' => $place->block,
