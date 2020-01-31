@@ -60,13 +60,12 @@ $(document).ready(function()
                 method    : 'post',
                 success: function (data) {
                 let result = '';
-                if(data[0].length === 0)
+                if(data.length === 0)
                 {
                     result += '<tr><td colspan="7">В выбранном разделе ничего нет</td></tr>'
                 }
                 else
                 {
-                    console.log(data);
                     for(var i = 0; i < data.length; i++) {
                         result += '<tr>';
                         result += '<td>' + data[i]['block'] + '</td>';
@@ -80,7 +79,6 @@ $(document).ready(function()
                     }
                 }   
                 $('tbody').html(result);
-                console.log(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
@@ -98,13 +96,12 @@ $(document).ready(function()
                 method    : 'post',
                 success: function (data) {
                 let result = '';
-                if(data[0].length === 0)
+                if(data.length === 0)
                 {
                     result += '<tr><td colspan="7">В выбранном разделе ничего нет</td></tr>'
                 }
                 else
                 {
-                    console.log(data);
                     for(var i = 0; i < data.length; i++) {
                         result += '<tr>';
                         result += '<td>' + data[i]['block'] + '</td>';
@@ -118,7 +115,6 @@ $(document).ready(function()
                     }
                 }   
                 $('tbody').html(result);
-                console.log(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);

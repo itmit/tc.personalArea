@@ -100,7 +100,7 @@ class WasteWebController extends Controller
     {
         if($request->input('block') == "empty")
         {
-            return response()->json([]);
+            return response()->json([false]);
         }
         else
         {
