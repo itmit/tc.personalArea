@@ -1,6 +1,13 @@
 @extends('layouts.adminApp')
 
 @section('content')
+@ability('super-admin,manager,manager-waste', 'create-waste')
+    <form class="form-horizontal" method="GET" action="{{ route('auth.managerwaste.wastes.create') }}">
+    <div class="col-sm-12">
+        <button type="submit" class="btn btn-tc-manager">Создать заявку</button>
+    </div>
+    </form>
+@endability
 <h2>Выберите блок</h2>
 
 <div class="col-sm-12">
