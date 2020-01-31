@@ -56,5 +56,17 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Разрешает пользователю принимать заявки, поступающие от клиентов.'
             ])
         );
+
+        Role::create([
+            'name' => 'manager-waste',
+            'display_name' => 'Менеджер отходных',
+            'description' => 'Пользователь, который ответственен за принятие заявок.'
+        ])->attachPermission(
+            Permission::create([
+                'name' => 'create-waste',
+                'display_name' => 'Создавать отходные записи',
+                'description' => 'Разрешает создавать отходные записи'
+            ])
+        );
     }
 }

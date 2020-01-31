@@ -186,12 +186,12 @@ class ReservationWebController extends Controller
     public function changeReservationStatus(Request $request)
     {
         $action = Actions::where('id', '=', $request->new_status)->first();
+        $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
 
         DB::beginTransaction();
         try {
             if($action->type == 'cancelBeforeReservation' || $action->type == 'cancelAfterReservation')
             {
-                $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
                 Reservation::where('id', '=', $request->reservation_id)->update([
                     'accepted' => 2
                 ]);
@@ -209,7 +209,6 @@ class ReservationWebController extends Controller
             }
             if($action->type == 'reservation')
             {
-                $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
                 Reservation::where('id', '=', $request->reservation_id)->update([
                     'accepted' => 1
                 ]);
@@ -228,7 +227,6 @@ class ReservationWebController extends Controller
             }
             if($action->type == 'success')
             {
-                $rating = Client::where('id', '=', $request->client_id)->first(['rating']);
                 Reservation::where('id', '=', $request->reservation_id)->update([
                     'accepted' => 3
                 ]);

@@ -29,6 +29,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
             'only' => ['index', 'create', 'store', 'destroy', 'getPlacesByBlock']
         ]);
 
+        Route::resource('managerswaste', 'Web\ManagerWasteWebController');
+
         Route::post('places/getPlacesByBlock', 'Web\PlaceController@getPlacesByBlock');
         Route::post('places/changePlaceStatus', 'Web\PlaceController@changePlaceStatus');
         Route::get('place/edit/{id}', 'Web\PlaceController@placeEditPage')->name('place.edit');
