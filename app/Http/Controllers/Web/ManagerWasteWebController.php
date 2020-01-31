@@ -63,7 +63,7 @@ class ManagerWasteWebController extends Controller
 
             if ($validator->fails()) {
                 return redirect()
-                    ->route('auth.admin.managers.create')
+                    ->route('auth.admin.managerswaste.create')
                     ->withErrors($validator)
                     ->withInput();
             }
@@ -72,9 +72,9 @@ class ManagerWasteWebController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
-            ])->attachRole(Role::where('name', '=', 'manager')->first());
+            ])->attachRole(Role::where('name', '=', 'manager-waste')->first());
 
-            return redirect()->route('auth.admin.managers.index');
+            return redirect()->route('auth.admin.managerswaste.index');
         }
 
         return redirect('/login');
