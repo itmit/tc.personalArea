@@ -69,7 +69,7 @@ $(document).ready(function()
                 }
                 else
                 {
-                    console.log(resudatalt);
+                    console.log(data);
                     for(var i = 0; i < data[0].length; i++) {
                         result += '<tr>';
                         result += '<td>' + data[0][i]['block'] + '</td>';
