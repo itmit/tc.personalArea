@@ -69,7 +69,7 @@ $(document).ready(function()
                 }
                 else
                 {
-                    console.log(result);
+                    console.log(resudatalt);
                     for(var i = 0; i < data[0].length; i++) {
                         result += '<tr>';
                         result += '<td>' + data[0][i]['block'] + '</td>';
@@ -83,6 +83,7 @@ $(document).ready(function()
                     }
                 }   
                 $('tbody').html(result);
+                console.log(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
