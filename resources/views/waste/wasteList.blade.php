@@ -70,15 +70,15 @@ $(document).ready(function()
                 else
                 {
                     console.log(data);
-                    for(var i = 0; i < data[0].length; i++) {
+                    for(var i = 0; i < data.length; i++) {
                         result += '<tr>';
-                        result += '<td>' + data[0][i]['block'] + '</td>';
-                        result += '<td>' + data[0][i]['floor'] + '</td>';
-                        result += '<td>' + data[0][i]['row'] + '</td>';
-                        result += '<td>' + data[0][i]['place_number'] + '</td>';
-                        result += '<td>' + data[0][i]['release_date'] + '</td>';
-                        result += '<td>' + data[0][i]['name'] + '</td>';
-                        result += '<td>' + data[0][i]['phone'] + '</td>';
+                        result += '<td>' + data[i]['block'] + '</td>';
+                        result += '<td>' + data[i]['floor'] + '</td>';
+                        result += '<td>' + data[i]['row'] + '</td>';
+                        result += '<td>' + data[i]['place_number'] + '</td>';
+                        result += '<td>' + data[i]['release_date'] + '</td>';
+                        result += '<td>' + data[i]['name'] + '</td>';
+                        result += '<td>' + data[i]['phone'] + '</td>';
                         result += '</tr>';
                     }
                 }   
