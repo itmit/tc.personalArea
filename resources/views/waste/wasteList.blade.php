@@ -2,7 +2,7 @@
 
 @section('content')
 @ability('super-admin,manager,manager-waste', 'create-waste')
-<a href="{{ route('auth.admin.wastes.create') }}" class="btn btn-tc-manager">Создать заявку</a>
+<a href="{{ route('auth.managerwaste.wastes.create') }}" class="btn btn-tc-manager">Создать заявку</a>
 @endability
 <h2>Выберите блок</h2>
 
