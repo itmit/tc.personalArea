@@ -3,12 +3,6 @@
 @section('content')
     <form class="form-horizontal" method="POST" action="{{ route('auth.managerwaste.wastes.store') }}">
         {{ csrf_field() }}
-        
-        @if ($errors->has('place'))
-            <span class="help-block">
-                <strong>{{ $errors->first('place') }}</strong>
-            </span>
-        @endif
 
         <div class="form-group{{ $errors->has('block') ? ' has-error' : '' }}">
             <label for="block" class="col-md-4 control-label">Блок</label>
@@ -116,7 +110,11 @@
                 @endif
             </div>
         </div>
-
+        @if ($errors->has('place'))
+        <span class="help-block">
+            <strong>{{ $errors->first('place') }}</strong>
+        </span>
+        @endif
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
                 <button type="submit" class="btn btn-primary">
