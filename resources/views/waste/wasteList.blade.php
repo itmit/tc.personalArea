@@ -132,11 +132,16 @@ $(document).ready(function()
         $(document).on('click', '#create-excel-file', function() {
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                dataType: "xml",
+                dataType: "json",
                 url     : 'wastes/createExcelFile',
                 method    : 'post',
                 success: function (data) {
-                    console.log('suc');
+                    var $a = $("<a>");
+                    $a.attr("href",data);
+                    $("body").append($a);
+                    $a.attr("download","Report.xlsx");
+                    $a[0].click();
+                    $a.remove();
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
