@@ -153,7 +153,7 @@ class WasteWebController extends Controller
             ];
         }
 
-        $spreadsheet = self::createExcelActive($xls, $response);
+        $spreadsheet = self::createExcelActive($spreadsheet, $response);
         // $xls = self::createExcelUnactive($xls, $response);
 
         // Выводим HTTP-заголовки
