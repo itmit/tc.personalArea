@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PHPExcel;
+namespace App;
 
 /** PHPExcel root directory */
 if (!defined('PHPEXCEL_ROOT')) {
