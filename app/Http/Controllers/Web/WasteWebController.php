@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use Asan\PHPExcel\Excel;
-use Asan\PHPExcel\Reader\Xlsx;
+use Asan\PHPExcel\Writer\Xlsx;
 
 class WasteWebController extends Controller
 {
