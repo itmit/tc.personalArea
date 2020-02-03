@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use Asan\PHPExcel\Excel;
 use Asan\PHPExcel\Writer\Xlsx;
+require_once('../App/PHPExcel.php');
+require_once('../App/PHPExcel/Writer/Excel5.php');
 
 class WasteWebController extends Controller
 {
@@ -132,7 +134,7 @@ class WasteWebController extends Controller
     public function createExcelFile()
     {
         // Создаем объект класса PHPExcel
-        $xls = new Excel();
+        $xls = new PHPExcel();
         // Устанавливаем индекс активного листа
 
         $xls = self::createExcelActive($xls);
