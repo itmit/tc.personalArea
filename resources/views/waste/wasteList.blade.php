@@ -7,13 +7,7 @@
 @ability('super-admin,manager,manager-waste', 'create-excel')
 <div class="row">
     <div class="col-md-6">
-        <select name="active-type" id="active-type" class="form-control">
-            <option value="активна">Активные</option>
-            <option value="неактивна">Неактивные</option>
-        </select>
-    </div>
-    <div class="col-md-6">
-        <input type="button" value="Сформировать Excel-файл">
+        <input type="button" id="create-excel-file" value="Сформировать Excel-файл" class="btn btn-tc-manager">
     </div>
 </div>
 @endability
@@ -133,6 +127,10 @@ $(document).ready(function()
                     console.log(err + " " + xhr);
                 }
             });
+        });
+
+        $(document).on('click', '#create-excel-file', function() {
+            console.log('clicked');
         });
     });
 </script>
