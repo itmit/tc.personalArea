@@ -4,6 +4,19 @@
 @ability('super-admin,manager,manager-waste', 'create-waste')
 <a href="{{ route('auth.managerwaste.wastes.create') }}" class="btn btn-tc-manager">Создать заявку</a>
 @endability
+@ability('super-admin,manager,manager-waste', 'create-excel')
+<div class="row">
+    <div class="col-md-6">
+        <select name="active-type" id="active-type" class="form-control">
+            <option value="активна">Активные</option>
+            <option value="неактивна">Неактивные</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <input type="button" value="Сформировать Excel-файл">
+    </div>
+</div>
+@endability
 <h2>Выберите блок</h2>
 
 <div class="col-sm-12">

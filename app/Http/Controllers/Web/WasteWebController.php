@@ -55,7 +55,7 @@ class WasteWebController extends Controller
                 'floor' => 'required',
                 'row' => 'required',
                 'place_number' => 'required',
-                'release_date' => 'required',
+                'release_date' => 'required|date',
             ]);
 
             $this->place = Place::checkValidPlaceNumber($request->input('block'), $request->input('floor'), $request->input('place_number'), $request->input('row'));
