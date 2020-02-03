@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use Asan\PHPExcel\Excel;
 use Asan\PHPExcel\Writer\Xlsx;
-require __DIR__.'/../App/PHPExcel.php';
-require __DIR__.'/../App/Writer/Excel5.php';
+require public_path().'/../App/PHPExcel.php';
+require public_path().'/../App/Writer/Excel5.php';
 
 class WasteWebController extends Controller
 {
