@@ -15,7 +15,8 @@ use Illuminate\View\View;
 use Asan\PHPExcel\Excel;
 use Asan\PHPExcel\Writer\Xlsx;
 require app_path().'/PHPExcel.php';
-// require app_path().'/Writer/Excel5.php';
+use App\PHPExcel;
+require app_path().'/PHPExcel/Writer/Excel5.php';
 
 class WasteWebController extends Controller
 {
