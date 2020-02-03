@@ -12,8 +12,8 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
-use Asan\PHPExcel\Excel;
-use Asan\PHPExcel\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class WasteWebController extends Controller
 {
@@ -132,7 +132,7 @@ class WasteWebController extends Controller
     public function createExcelFile()
     {
         // Создаем объект класса PHPExcel
-        $xls = new PHPExcel();
+        $xls = new Spreadsheet();
         // Устанавливаем индекс активного листа
 
         $xls = self::createExcelActive($xls);
@@ -146,7 +146,7 @@ class WasteWebController extends Controller
         header ( "Content-Disposition: attachment; filename=matrix.xls" );
 
         // Выводим содержимое файла
-        $objWriter = new PHPExcel_Writer_Excel5($xls);
+        $objWriter = new Xlsx($xls);
         $objWriter->save('php://output');
     }
 
@@ -167,6 +167,25 @@ class WasteWebController extends Controller
         $sheet->setCellValue("F1", 'Имя');
         $sheet->setCellValue("G1", 'Телефон');
         $sheet->setCellValue("H1", 'Статус');
+
+        $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
+
+        $response = [];
+
+        foreach ($wastes as $item) {
+            $place = $item->place()->get()->first();
+            if($place->block != $request->input('block')) continue;
+            $response[] = [
+                'id' => $item->id,
+                'block' => $place->block,
+                'floor' => $place->floor,
+                'row' => $place->row,
+                'place' => $place->place_number,
+                'name' => $item->name,
+                'phone' => $item->phone,
+                'release_date' => $item->release_date
+            ];
+        }
 
         // for ($i = 2; $i < 10; $i++) {
         //     for ($j = 2; $j < 10; $j++) {
