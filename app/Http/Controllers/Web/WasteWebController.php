@@ -132,41 +132,37 @@ class WasteWebController extends Controller
     public function createExcelFile()
     {
         // Создаем объект класса PHPExcel
-        $xls = new Spreadsheet();
-        $xls->createSheet();
+        $spreadsheet = new Spreadsheet();
+        // $xls->createSheet();
 
-        $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
+        // $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
 
-        $response = [];
+        // $response = [];
 
-        foreach ($wastes as $item) {
-            $place = $item->place()->get()->first();
-            $response[] = [
-                'id' => $item->id,
-                'block' => $place->block,
-                'floor' => $place->floor,
-                'row' => $place->row,
-                'place' => $place->place_number,
-                'name' => $item->name,
-                'phone' => $item->phone,
-                'release_date' => $item->release_date
-            ];
-        }
+        // foreach ($wastes as $item) {
+        //     $place = $item->place()->get()->first();
+        //     $response[] = [
+        //         'id' => $item->id,
+        //         'block' => $place->block,
+        //         'floor' => $place->floor,
+        //         'row' => $place->row,
+        //         'place' => $place->place_number,
+        //         'name' => $item->name,
+        //         'phone' => $item->phone,
+        //         'release_date' => $item->release_date
+        //     ];
+        // }
 
-        $xls = self::createExcelActive($xls, $response);
-        $xls = self::createExcelUnactive($xls, $response);
+        // $xls = self::createExcelActive($xls, $response);
+        // $xls = self::createExcelUnactive($xls, $response);
 
         // Выводим HTTP-заголовки
-        header ( "Expires: Mon, 1 Apr 1974 05:00:00 GMT" );
-        header ( "Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT" );
-        header ( "Cache-Control: no-cache, must-revalidate" );
-        header ( "Pragma: no-cache" );
-        header ( "Content-type: application/vnd.ms-excel" );
-        header ( "Content-Disposition: attachment; filename=matrix.xls" );
-
-        // Выводим содержимое файла
-        $objWriter = new Xlsx($xls);
-        $objWriter->save('php://output');
+        $writer = new Xlsx($spreadsheet);
+        ob_start();
+        $writer->save('php://output');
+        $xlsData = ob_get_contents();
+        ob_end_clean();
+        echo json_encode('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'.base64_encode($xlsData));
     }
 
     private function createExcelActive($xls, $response)
