@@ -6,7 +6,7 @@
 @endability
 @ability('super-admin,manager,manager-waste', 'create-excel')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <input type="button" id="create-excel-file" value="Сформировать Excel-файл" class="btn btn-tc-manager">
     </div>
 </div>
@@ -130,7 +130,18 @@ $(document).ready(function()
         });
 
         $(document).on('click', '#create-excel-file', function() {
-            console.log('clicked');
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                url     : 'wastes/createExcelFile',
+                method    : 'post',
+                success: function (data) {
+                    console.log('suc');
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
         });
     });
 </script>

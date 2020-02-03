@@ -86,6 +86,9 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
         Route::resource('client', 'Web\ClientWebController');
     });
+    Route::group(['as' => 'all.', 'middleware' => ['role:super-admin|manager|manager-waste']], function () {
+        Route::post('wastes/createExcelFile', 'Web\WasteWebController@createExcelFile');
+    });
 });
 
 // Authentication Routes...
