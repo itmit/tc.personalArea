@@ -134,27 +134,26 @@ class WasteWebController extends Controller
         // Создаем объект класса PHPExcel
         $spreadsheet = new Spreadsheet();
         $spreadsheet->createSheet();
-        // $xls->createSheet();
 
-        // $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
+        $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
 
-        // $response = [];
+        $response = [];
 
-        // foreach ($wastes as $item) {
-        //     $place = $item->place()->get()->first();
-        //     $response[] = [
-        //         'id' => $item->id,
-        //         'block' => $place->block,
-        //         'floor' => $place->floor,
-        //         'row' => $place->row,
-        //         'place' => $place->place_number,
-        //         'name' => $item->name,
-        //         'phone' => $item->phone,
-        //         'release_date' => $item->release_date
-        //     ];
-        // }
+        foreach ($wastes as $item) {
+            $place = $item->place()->get()->first();
+            $response[] = [
+                'id' => $item->id,
+                'block' => $place->block,
+                'floor' => $place->floor,
+                'row' => $place->row,
+                'place' => $place->place_number,
+                'name' => $item->name,
+                'phone' => $item->phone,
+                'release_date' => $item->release_date
+            ];
+        }
 
-        // $xls = self::createExcelActive($xls, $response);
+        $spreadsheet = self::createExcelActive($xls, $response);
         // $xls = self::createExcelUnactive($xls, $response);
 
         // Выводим HTTP-заголовки
@@ -168,7 +167,8 @@ class WasteWebController extends Controller
 
     private function createExcelActive($xls, $response)
     {
-        $xls->setActiveSheetIndex(0);
+        $sheet = $xls->getActiveSheet();
+        $sheet->setActiveSheetIndex(0);
         // Получаем активный лист
         $sheet = $xls->getActiveSheet();
         // Подписываем лист
