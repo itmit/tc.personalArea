@@ -133,6 +133,7 @@ class WasteWebController extends Controller
     {
         // Создаем объект класса PHPExcel
         $spreadsheet = new Spreadsheet();
+        $spreadsheet->createSheet();
         // $xls->createSheet();
 
         // $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
