@@ -15,7 +15,8 @@
         "laravel/passport": "^7.5",
         "laravel/tinker": "~1.0",
         "webpatser/laravel-uuid": "^3.0",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "5.2.x-dev",
+        "phpoffice/phpspreadsheet": "^1.9"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
