@@ -133,7 +133,7 @@ class WasteWebController extends Controller
     {
         // Создаем объект класса PHPExcel
         $xls = new Spreadsheet();
-        // Устанавливаем индекс активного листа
+        $xls->createSheet();
 
         $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
 
@@ -204,7 +204,6 @@ class WasteWebController extends Controller
 
     private function createExcelUnactive($xls, $response)
     {
-        $xls->createSheet();
         $xls->setActiveSheetIndex(1);
         // Получаем активный лист
         $sheet = $xls->getActiveSheet();
