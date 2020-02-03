@@ -168,9 +168,6 @@ class WasteWebController extends Controller
     private function createExcelActive($xls, $response)
     {
         $sheet = $xls->getActiveSheet();
-        $sheet->setActiveSheetIndex(0);
-        // Получаем активный лист
-        $sheet = $xls->getActiveSheet();
         // Подписываем лист
         $sheet->setTitle('Активные');
 
