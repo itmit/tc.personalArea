@@ -132,7 +132,7 @@ class WasteWebController extends Controller
     public function createExcelFile()
     {
         // Создаем объект класса PHPExcel
-        $xls = new PHPExcel();
+        $xls = new Excel();
         // Устанавливаем индекс активного листа
 
         $xls = self::createExcelActive($xls);
