@@ -132,7 +132,7 @@ $(document).ready(function()
         $(document).on('click', '#create-excel-file', function() {
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                dataType: "json",
+                dataType: "xml",
                 url     : 'wastes/createExcelFile',
                 method    : 'post',
                 success: function (data) {

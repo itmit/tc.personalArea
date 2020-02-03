@@ -135,39 +135,6 @@ class WasteWebController extends Controller
         $xls = new Spreadsheet();
         // Устанавливаем индекс активного листа
 
-        $xls = self::createExcelActive($xls);
-
-        // Выводим HTTP-заголовки
-        header ( "Expires: Mon, 1 Apr 1974 05:00:00 GMT" );
-        header ( "Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT" );
-        header ( "Cache-Control: no-cache, must-revalidate" );
-        header ( "Pragma: no-cache" );
-        header ( "Content-type: application/vnd.ms-excel" );
-        header ( "Content-Disposition: attachment; filename=matrix.xls" );
-
-        // Выводим содержимое файла
-        $objWriter = new Xlsx($xls);
-        $objWriter->save('php://output');
-    }
-
-    private function createExcelActive($xls)
-    {
-        $xls->setActiveSheetIndex(0);
-        // Получаем активный лист
-        $sheet = $xls->getActiveSheet();
-        // Подписываем лист
-        $sheet->setTitle('Активные');
-
-        // Вставляем текст в ячейки
-        $sheet->setCellValue("A1", 'Блок');
-        $sheet->setCellValue("B1", 'Этаж');
-        $sheet->setCellValue("C1", 'Ряд');
-        $sheet->setCellValue("D1", 'Место');
-        $sheet->setCellValue("E1", 'Дата освобождения');
-        $sheet->setCellValue("F1", 'Имя');
-        $sheet->setCellValue("G1", 'Телефон');
-        $sheet->setCellValue("H1", 'Статус');
-
         $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
 
         $response = [];
@@ -186,6 +153,40 @@ class WasteWebController extends Controller
             ];
         }
 
+        $xls = self::createExcelActive($xls, $response);
+        $xls = self::createExcelUnactive($xls, $response);
+
+        // Выводим HTTP-заголовки
+        header ( "Expires: Mon, 1 Apr 1974 05:00:00 GMT" );
+        header ( "Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT" );
+        header ( "Cache-Control: no-cache, must-revalidate" );
+        header ( "Pragma: no-cache" );
+        header ( "Content-type: application/vnd.ms-excel" );
+        header ( "Content-Disposition: attachment; filename=matrix.xls" );
+
+        // Выводим содержимое файла
+        $objWriter = new Xlsx($xls);
+        $objWriter->save('php://output');
+    }
+
+    private function createExcelActive($xls, $response)
+    {
+        $xls->setActiveSheetIndex(0);
+        // Получаем активный лист
+        $sheet = $xls->getActiveSheet();
+        // Подписываем лист
+        $sheet->setTitle('Активные');
+
+        // Вставляем текст в ячейки
+        $sheet->setCellValue("A1", 'Блок');
+        $sheet->setCellValue("B1", 'Этаж');
+        $sheet->setCellValue("C1", 'Ряд');
+        $sheet->setCellValue("D1", 'Место');
+        $sheet->setCellValue("E1", 'Дата освобождения');
+        $sheet->setCellValue("F1", 'Имя');
+        $sheet->setCellValue("G1", 'Телефон');
+        $sheet->setCellValue("H1", 'Статус');
+
         // for ($i = 2; $i < 10; $i++) {
         //     for ($j = 2; $j < 10; $j++) {
         //         // Выводим таблицу умножения
@@ -201,7 +202,7 @@ class WasteWebController extends Controller
         return $xls;
     }
 
-    private function createExcelUnactive($xls)
+    private function createExcelUnactive($xls, $response)
     {
         $xls->setActiveSheetIndex(0);
         // Получаем активный лист
