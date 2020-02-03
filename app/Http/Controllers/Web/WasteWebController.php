@@ -154,7 +154,7 @@ class WasteWebController extends Controller
         }
 
         $spreadsheet = self::createExcelActive($spreadsheet, $response);
-        // $xls = self::createExcelUnactive($xls, $response);
+        $spreadsheet = self::createExcelUnactive($spreadsheet, $response);
 
         // Выводим HTTP-заголовки
         $writer = new Xlsx($spreadsheet);
@@ -198,9 +198,7 @@ class WasteWebController extends Controller
 
     private function createExcelUnactive($xls, $response)
     {
-        $xls->setActiveSheetIndex(1);
-        // Получаем активный лист
-        $sheet = $xls->getActiveSheet();
+        $sheet = $xls->getSheet(1);
         // Подписываем лист
         $sheet->setTitle('Неактивные');
 
