@@ -1,5 +1,7 @@
 <?php
 
+namespace App\PHPExcel\Writer;
+
 /**
  * PHPExcel_Writer_Excel5
  *
