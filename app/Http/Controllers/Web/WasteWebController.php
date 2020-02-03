@@ -198,8 +198,7 @@ class WasteWebController extends Controller
 
     private function createExcelUnactive($xls, $response)
     {
-        $xls->getSheet(1);
-        $sheet = $xls->getActiveSheet();
+        $sheet = $xls->getSheet(1);
         // Подписываем лист
         $sheet->setTitle('Неактивные');
 
