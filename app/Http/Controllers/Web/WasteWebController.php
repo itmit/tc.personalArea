@@ -135,13 +135,29 @@ class WasteWebController extends Controller
         $spreadsheet = new Spreadsheet();
         $spreadsheet->createSheet();
 
-        $wastes = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
+        $wastesActive = Waste::select('*')->where('status', 'активна')->orderBy('created_at', 'desc')->get();
+        $wastesUnactive = Waste::select('*')->where('status', 'неактивна')->orderBy('created_at', 'desc')->get();
 
-        $response = [];
+        $responseActive = [];
+        $responseUnactive = [];
 
-        foreach ($wastes as $item) {
+        foreach ($wastesActive as $item) {
             $place = $item->place()->get()->first();
-            $response[] = [
+            $responseActive[] = [
+                'id' => $item->id,
+                'block' => $place->block,
+                'floor' => $place->floor,
+                'row' => $place->row,
+                'place' => $place->place_number,
+                'name' => $item->name,
+                'phone' => $item->phone,
+                'release_date' => $item->release_date,
+                'status' => $item->status
+            ];
+        }
+        foreach ($wastesUnactive as $item) {
+            $place = $item->place()->get()->first();
+            $responseUnactive[] = [
                 'id' => $item->id,
                 'block' => $place->block,
                 'floor' => $place->floor,
@@ -154,8 +170,8 @@ class WasteWebController extends Controller
             ];
         }
 
-        self::createExcelActive($spreadsheet, $response);
-        self::createExcelUnactive($spreadsheet, $response);
+        self::createExcelActive($spreadsheet, $responseActive);
+        self::createExcelUnactive($spreadsheet, $responseUnactive);
 
         // Выводим HTTP-заголовки
         $writer = new Xlsx($spreadsheet);
@@ -213,18 +229,18 @@ class WasteWebController extends Controller
         $sheet->setCellValue("G1", 'Телефон');
         $sheet->setCellValue("H1", 'Статус');
 
-        // for ($i = 2; $i < 10; $i++) {
-        //     for ($j = 2; $j < 10; $j++) {
-        //         // Выводим таблицу умножения
-        //         $sheet->setCellValueByColumnAndRow(
-        //                                         $i - 2,
-        //                                         $j,
-        //                                         $i . "x" .$j . "=" . ($i*$j));
-        //         // Применяем выравнивание
-        //         $sheet->getStyleByColumnAndRow($i - 2, $j)->getAlignment()->
-        //                 setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        //     }
-        // }
+        for ($i = 0; $i < 9; $i++) {
+            for ($j = 2; $j <= count($response) + 1; $j++) {
+                $sheet->setCellValueByColumnAndRow(1, $j, $response[$j-2]['block']);
+                $sheet->setCellValueByColumnAndRow(2, $j, $response[$j-2]['floor']);
+                $sheet->setCellValueByColumnAndRow(3, $j, $response[$j-2]['row']);
+                $sheet->setCellValueByColumnAndRow(4, $j, $response[$j-2]['place']);
+                $sheet->setCellValueByColumnAndRow(5, $j, $response[$j-2]['release_date']);
+                $sheet->setCellValueByColumnAndRow(6, $j, $response[$j-2]['name']);
+                $sheet->setCellValueByColumnAndRow(7, $j, $response[$j-2]['phone']);
+                $sheet->setCellValueByColumnAndRow(8, $j, $response[$j-2]['status']);
+            }
+        }
     }
 
 }
