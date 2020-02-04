@@ -187,7 +187,7 @@ class WasteWebController extends Controller
                 $sheet->setCellValueByColumnAndRow(
                                                 $i,
                                                 $j,
-                                                $response);
+                                                $response['id']);
             }
         }
         return $xls;
