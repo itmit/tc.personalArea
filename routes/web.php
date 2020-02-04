@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
-    Route::view('/', 'wasteList');
+    Route::view('/', 'waste.wasteList');
 
     Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
         Route::resource('managers', 'Web\ManagerController');
