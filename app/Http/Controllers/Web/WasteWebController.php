@@ -172,7 +172,11 @@ class WasteWebController extends Controller
         $sheet->setTitle('Активные');
 
         // Вставляем текст в ячейки
-        $sheet->setCellValue("A1", 'Блок');
+        $sheet->setCellValue("A1", 'Блок')->getStyle('F4')
+        ->getFill()
+        ->setFillType(PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)  
+        ->getStartColor()
+        ->setRGB('ecf9fd');
         $sheet->setCellValue("B1", 'Этаж');
         $sheet->setCellValue("C1", 'Ряд');
         $sheet->setCellValue("D1", 'Место');
