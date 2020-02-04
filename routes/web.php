@@ -19,20 +19,20 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     
 
     Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
-        Route::get('/', 'Web\NewsController@ingex');
+        Route::get('/', 'Web\NewsController@index');
         Route::resource('managers', 'Web\ManagerController');
         Route::get('managers/edit/{id}', 'Web\ManagerController@managerEditPage');
         Route::resource('managerswaste', 'Web\ManagerWasteWebController');
     });
 
     Route::group(['as' => 'managerwaste.', 'middleware' => ['role:manager-waste|super-admin']], function () {
-        Route::get('/', 'Web\WasteWebController@ingex');
+        Route::get('/', 'Web\WasteWebController@index');
         Route::resource('wastes', 'Web\WasteWebController');
         Route::post('wastes/selectByBlock', 'Web\WasteWebController@selectByBlock');
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
-        Route::get('/', 'Web\NewsController@ingex');
+        Route::get('/', 'Web\NewsController@index');
         Route::resource('places', 'Web\PlaceController', [
             'only' => ['index', 'create', 'store', 'destroy', 'getPlacesByBlock']
         ]);
