@@ -149,7 +149,8 @@ class WasteWebController extends Controller
                 'place' => $place->place_number,
                 'name' => $item->name,
                 'phone' => $item->phone,
-                'release_date' => $item->release_date
+                'release_date' => $item->release_date,
+                'status' => $item->status
             ];
         }
 
