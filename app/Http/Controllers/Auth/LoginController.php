@@ -41,4 +41,18 @@ class LoginController extends Controller
     {
         return 'name';
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->ability(['super-admin'], ['create-manager'])) {
+            return redirect()->route('auth.manager.news.index');
+        }
+        if ($user->ability(['manager-waste'], ['create-manager'])) {
+            return redirect()->route('auth.managerwaste.wastes.index');
+        }
+        if ($user->ability(['manager'], ['create-manager'])) {
+            return redirect()->route('auth.manager.news.index');
+        }
+        return redirect('/');
+    }
 }
