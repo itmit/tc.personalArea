@@ -181,24 +181,15 @@ class WasteWebController extends Controller
         $sheet->setCellValue("G1", 'Телефон');
         $sheet->setCellValue("H1", 'Статус');
 
-        $sheet->getStyle('A1')
-        ->getFill()
-        ->setFillType(PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)  
-        ->getStartColor()
-        ->setRGB('ecf9fd');
-
-        // for ($i = 2; $i < 10; $i++) {
-        //     for ($j = 2; $j < 10; $j++) {
-        //         // Выводим таблицу умножения
-        //         $sheet->setCellValueByColumnAndRow(
-        //                                         $i - 2,
-        //                                         $j,
-        //                                         $i . "x" .$j . "=" . ($i*$j));
-        //         // Применяем выравнивание
-        //         $sheet->getStyleByColumnAndRow($i - 2, $j)->getAlignment()->
-        //                 setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        //     }
-        // }
+        for ($i = 0; $i < 9; $i++) {
+            for ($j = 1; $j < count($response); $j++) {
+                // Выводим таблицу умножения
+                $sheet->setCellValueByColumnAndRow(
+                                                $i,
+                                                $j,
+                                                $response['block']);
+            }
+        }
         return $xls;
     }
 
