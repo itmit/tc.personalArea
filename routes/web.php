@@ -16,21 +16,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
-    Route::view('/', 'waste.wasteList');
-
     Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
+        Route::view('/', 'news.news');
         Route::resource('managers', 'Web\ManagerController');
         Route::get('managers/edit/{id}', 'Web\ManagerController@managerEditPage');
         Route::resource('managerswaste', 'Web\ManagerWasteWebController');
     });
 
     Route::group(['as' => 'managerwaste.', 'middleware' => ['role:manager-waste|super-admin']], function () {
+        Route::view('/', 'waste.wasteList');
         Route::resource('wastes', 'Web\WasteWebController');
         Route::post('wastes/selectByBlock', 'Web\WasteWebController@selectByBlock');
     });
 
     Route::group(['as' => 'manager.', 'middleware' => ['role:super-admin|manager']], function () {
-
+        Route::view('/', 'news.news');
         Route::resource('places', 'Web\PlaceController', [
             'only' => ['index', 'create', 'store', 'destroy', 'getPlacesByBlock']
         ]);
