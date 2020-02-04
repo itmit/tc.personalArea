@@ -184,14 +184,14 @@ class WasteWebController extends Controller
 
         for ($i = 0; $i < 9; $i++) {
             for ($j = 2; $j <= count($response) + 1; $j++) {
-                $sheet->setCellValueByColumnAndRow(0, $j, $response[$j-2]['block']);
-                $sheet->setCellValueByColumnAndRow(1, $j, $response[$j-2]['floor']);
-                $sheet->setCellValueByColumnAndRow(2, $j, $response[$j-2]['row']);
-                $sheet->setCellValueByColumnAndRow(3, $j, $response[$j-2]['place']);
-                $sheet->setCellValueByColumnAndRow(4, $j, $response[$j-2]['release_date']);
-                $sheet->setCellValueByColumnAndRow(5, $j, $response[$j-2]['name']);
-                $sheet->setCellValueByColumnAndRow(6, $j, $response[$j-2]['phone']);
-                $sheet->setCellValueByColumnAndRow(7, $j, $response[$j-2]['status']);
+                $sheet->setCellValueByColumnAndRow(1, $j, $response[$j-2]['block']);
+                $sheet->setCellValueByColumnAndRow(2, $j, $response[$j-2]['floor']);
+                $sheet->setCellValueByColumnAndRow(3, $j, $response[$j-2]['row']);
+                $sheet->setCellValueByColumnAndRow(4, $j, $response[$j-2]['place']);
+                $sheet->setCellValueByColumnAndRow(5, $j, $response[$j-2]['release_date']);
+                $sheet->setCellValueByColumnAndRow(6, $j, $response[$j-2]['name']);
+                $sheet->setCellValueByColumnAndRow(7, $j, $response[$j-2]['phone']);
+                $sheet->setCellValueByColumnAndRow(8, $j, $response[$j-2]['status']);
             }
         }
         return $xls;
