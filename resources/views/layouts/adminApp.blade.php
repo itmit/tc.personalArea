@@ -115,7 +115,7 @@
             <div class="col-xs-12 col-sm-3 tc-left-menu">
                 <ul class="nav">
 
-                    <li name="home"><a href="{{ route('auth.home') }}">Главная</a></li>
+                    {{-- <li name="home"><a href="{{ route('auth.home') }}">Главная</a></li> --}}
 
                     @ability('super-admin', 'show-manager-list')
                     <li name="managers"><a href="{{ route('auth.admin.managers.index') }}">Список менеджеров</a></li>
