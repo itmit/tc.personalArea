@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
+    Route::get('/', 'Web\NewsController@index');
+
     Route::group(['as' => 'admin.', 'middleware' => ['role:super-admin']], function () {
         // Route::get('/', 'Web\WasteWebController@index');
         Route::resource('managers', 'Web\ManagerController');
