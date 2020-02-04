@@ -182,7 +182,7 @@ class WasteWebController extends Controller
         $sheet->setCellValue("H1", 'Статус');
 
         for ($i = 0; $i < 9; $i++) {
-            for ($j = 1; $j < count($response); $j++) {
+            for ($j = 2; $j < count($response); $j++) {
                 // Выводим таблицу умножения
                 $sheet->setCellValueByColumnAndRow(
                                                 $i,
