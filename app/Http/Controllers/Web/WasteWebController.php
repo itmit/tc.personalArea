@@ -172,11 +172,7 @@ class WasteWebController extends Controller
         $sheet->setTitle('Активные');
 
         // Вставляем текст в ячейки
-        $sheet->setCellValue("A1", 'Блок')->getStyle('F4')
-        ->getFill()
-        ->setFillType(PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)  
-        ->getStartColor()
-        ->setRGB('ecf9fd');
+        $sheet->setCellValue("A1", 'Блок');
         $sheet->setCellValue("B1", 'Этаж');
         $sheet->setCellValue("C1", 'Ряд');
         $sheet->setCellValue("D1", 'Место');
@@ -184,6 +180,12 @@ class WasteWebController extends Controller
         $sheet->setCellValue("F1", 'Имя');
         $sheet->setCellValue("G1", 'Телефон');
         $sheet->setCellValue("H1", 'Статус');
+
+        $sheet->getStyle('A1')
+        ->getFill()
+        ->setFillType(PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)  
+        ->getStartColor()
+        ->setRGB('ecf9fd');
 
         // for ($i = 2; $i < 10; $i++) {
         //     for ($j = 2; $j < 10; $j++) {
