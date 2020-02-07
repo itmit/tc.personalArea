@@ -30,7 +30,7 @@
                             <div>
                                 История заявки:
                                 <ul>
-                                    @foreach ($reservationHistory as $history)
+                                    @foreach ($reservationHistory->getWholeHistory() as $history)
                                     <li>
                                         <?php $action = $history->action();?>
                                         {{$action->action}} (изменение рейтинга: {{ $action->points }}) в {{ $history->created_at->timezone('Europe/Moscow') }}

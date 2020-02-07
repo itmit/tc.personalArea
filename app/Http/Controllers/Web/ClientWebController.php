@@ -19,8 +19,8 @@ class ClientWebController extends Controller
         return view("manager.clientDetail",
     [
         'client' => Client::where('id', '=', $id)->first(),
-        'reservation' => $r = Reservation::where('client', '=', $id)->get(),
-        'reservationHistory' => ReservationHistory::where('bid', '=', $r->id)->get()
+        'reservation' => Reservation::where('client', '=', $id)->get(),
+        // 'reservationHistory' => ReservationHistory::where('bid', '=', $r->id)->get()
     ]);
     }
 }

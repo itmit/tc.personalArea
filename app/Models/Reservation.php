@@ -41,4 +41,9 @@ class Reservation extends Model
     {
         return $this->hasOne(ReservationHistory::class, 'id')->latest()->first();
     }
+
+    public function getWholeHistory()
+    {
+        return $this->hasMany(ReservationHistory::class, 'bid')->get();
+    }
 }
