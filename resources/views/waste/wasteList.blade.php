@@ -139,7 +139,7 @@ $(document).ready(function()
                     var $a = $("<a>");
                     $a.attr("href",data);
                     $("body").append($a);
-                    $a.attr("download","Report.xlsx");
+                    $a.attr("download","Отходные.xlsx");
                     $a[0].click();
                     $a.remove();
                 },

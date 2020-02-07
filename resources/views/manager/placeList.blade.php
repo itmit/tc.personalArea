@@ -68,7 +68,7 @@
     <h2>Выберите блок</h2>
 
     <div class="col-sm-12">
-        <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control">
+        <select name="getPlacesByBlock" id="getPlacesByBlock" class="form-control" data-a="@ability('super-admin', 'delete-place') 1 @endability @ability('manager', 'delete-place') 0 @endability">
             {{-- <option value="По-умолчанию">По-умолчанию</option> --}}
             <option value="empty" disabled selected>Выберите блок</option>
             <option value="Вещевой">Вещевые ряды</option>
