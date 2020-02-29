@@ -171,6 +171,7 @@
                                     $('tr > option[value=Арендован]').attr('selected','selected');
                                     // console.log($('tr > td > select > option').val('Арендован'));
                                 });
+                                $('tbody > option[value="Арендован"]').attr('selected','selected');
                             },
                             error: function (xhr, err) { 
                                 console.log("Error: " + xhr + " " + err);
