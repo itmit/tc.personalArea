@@ -168,7 +168,7 @@
                             success: function (response) {
                                 $('table > tbody  > tr').each(function(index, tr) { 
                                     $(tr).attr('style', 'background-color: #f7ecdd!important');
-                                    $('tr > td > select').val('Арендован')
+                                    $('tr > td > option[value=Арендован]').attr('selected','selected');
                                     // console.log($('tr > td > select > option').val('Арендован'));
                                 });
                             },
