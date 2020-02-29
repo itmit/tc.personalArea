@@ -166,7 +166,11 @@
                             url     : 'places/makeAllRent',
                             method    : 'post',
                             success: function (response) {
-                                location.reload();
+                                // location.reload();
+                                $('table > tbody  > tr').each(function(index, tr) { 
+                                    console.log(index);
+                                    console.log(tr);
+                                });
                             },
                             error: function (xhr, err) { 
                                 console.log("Error: " + xhr + " " + err);
