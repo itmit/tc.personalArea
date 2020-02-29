@@ -169,7 +169,7 @@
                                 $('table > tbody  > tr').each(function(index, tr) { 
                                     $(tr).attr('style', 'background-color: #f7ecdd!important');
                                     // $('tr > td > select').attr('style', 'background-color: #f7ecdd!important');
-                                    console.log($('tr > td > select').html());
+                                    console.log($('tr > td > select > option').val('Арендован'));
                                 });
                             },
                             error: function (xhr, err) { 
