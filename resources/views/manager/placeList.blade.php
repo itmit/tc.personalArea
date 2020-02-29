@@ -166,10 +166,10 @@
                             url     : 'places/makeAllRent',
                             method    : 'post',
                             success: function (response) {
-                                // location.reload();
                                 $('table > tbody  > tr').each(function(index, tr) { 
                                     $(tr).attr('style', 'background-color: #f7ecdd!important');
-                                    console.log(tr);
+                                    // $('tr > td > select').attr('style', 'background-color: #f7ecdd!important');
+                                    console.log($('tr > td > select').html());
                                 });
                             },
                             error: function (xhr, err) { 
