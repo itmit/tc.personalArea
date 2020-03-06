@@ -36,6 +36,8 @@
 
     $(document).on('click', '.delete-manager', function() {
         let isDelete = confirm("Удалить менеджера? Данное действие невозможно отменить!");
+
+        let tableTr = $(this).closest('tr');
     
         if(isDelete)
         {
@@ -47,7 +49,7 @@
                 url     : 'managers/delete',
                 method    : 'delete',
                 success: function (response) {
-                    $(this).closest('tr').remove();
+                    tableTr.remove();
                     console.log('Удалено!');
                 },
                 error: function (xhr, err) { 
