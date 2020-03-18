@@ -68,7 +68,7 @@ class PlaceController extends Controller
                     ->withInput();
             }
 
-            $sort = Place::where('block', $request->input('block'))->max('sort') + 1;
+            $sort = Place::where('block', $request->input('block'))->max('sort');
 
             return $sort;
 
