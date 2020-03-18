@@ -103,6 +103,7 @@ class BidForSaleController extends Controller
                 'place' => $place->place_number,
                 'name' => $item->seller_name,
                 'phone' => $item->phone_number,
+                'text' => $item->text,
             ];
         }
 
