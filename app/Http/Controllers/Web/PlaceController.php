@@ -68,9 +68,7 @@ class PlaceController extends Controller
                     ->withInput();
             }
 
-            $sort = Place::where('block', $request->input('block'))->max('sort');
-
-            return $sort;
+            $sort = Place::where('block', $request->input('block'))->max('sort') + 1;
 
             Place::create([
                 'block' => $request->input('block'),
@@ -79,6 +77,7 @@ class PlaceController extends Controller
                 'price' => $request->input('price'),
                 'place_number' => $request->input('place_number'),
                 'status' => $request->input('status'),
+                'sort' => $sort,
             ]);
 
             return redirect()->route('auth.manager.places.index');
