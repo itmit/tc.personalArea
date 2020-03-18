@@ -46,7 +46,7 @@
             <label for="row" class="col-md-4 control-label">Ряд</label>
 
             <div class="col-md-6">
-                <input id="row" type="number" class="form-control" name="row" value="{{ old('row') }}" required>
+                <input id="row" type="text" class="form-control" name="row" value="{{ old('row') }}" required>
 
                 @if ($errors->has('row'))
                     <span class="help-block">
