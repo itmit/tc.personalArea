@@ -9,15 +9,15 @@
 
             <div class="col-md-6">
                 <select name="block" id="block" required autofocus>
-                <option value="empty" disabled selected>Выберите блок</option>
-                <option value="Вещевой">Вещевые ряды</option>
-                <option value="ТЦ">ТЦ Садовод</option>
-                <option value="Новый ТЦ">Новый ТЦ</option>
-                <option value="5 павильон">Меха и кожа</option>
-                <option value="ЗСМИ">Пальтовый круг</option>
-                <option value="Салют">Свадебная галерея 'САЛЮТ'</option>
-                <option value="ковры и текстиль">Ковры и текстиль</option>
-                <option value="Дом бижутерии">Дом бижутерии</option>
+                    <option value="" disabled selected>Выберите блок</option>
+                    <option value="Вещевой">Вещевые ряды</option>
+                    <option value="ТЦ">ТЦ Садовод</option>
+                    <option value="Новый ТЦ">Новый ТЦ</option>
+                    <option value="5 павильон">Меха и кожа</option>
+                    <option value="ЗСМИ">Пальтовый круг</option>
+                    <option value="Салют">Свадебная галерея 'САЛЮТ'</option>
+                    <option value="ковры и текстиль">Ковры и текстиль</option>
+                    <option value="Дом бижутерии">Дом бижутерии</option>
                 </select>
 
                 @if ($errors->has('block'))
