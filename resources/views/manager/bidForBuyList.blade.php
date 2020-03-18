@@ -62,6 +62,7 @@ $(document).ready(function()
                         result += '<td>' + response[i]['place'] + '</td>';
                         result += '<td>' + response[i]['name'] + '</td>';
                         result += '<td>' + response[i]['phone'] + '</td>';
+                        result += '<td>' + response[i]['text'] + '</td>';
                         result += '</tr>';
                     }
                     $('tbody').html(result);
