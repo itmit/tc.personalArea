@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx as XlsxWriter;
 
 class PlaceController extends Controller
 {
@@ -312,7 +314,7 @@ class PlaceController extends Controller
         self::createExcelActive($spreadsheet, $places, $request->block);
 
         // Выводим HTTP-заголовки
-        $writer = new Xlsx($spreadsheet);
+        $writer = new XlsxWriter($spreadsheet);
         ob_start();
         $writer->save('php://output');
         $xlsData = ob_get_contents();
