@@ -65,7 +65,6 @@
     </div>
     @endability
 
-    @ability('super-admin', 'delete-place')
     <div class="col-md-12">
         <input type="button" id="create-excel-file" value="Сформировать Excel-файл" class="btn btn-tc-manager">
         <select name="block" id="block" class="form-control">
@@ -80,7 +79,6 @@
             <option value="Дом бижутерии">Дом бижутерии</option>
         </select>
     </div>
-    @endability
 
     <h2>Выберите блок</h2>
 
