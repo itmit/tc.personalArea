@@ -78,6 +78,11 @@
             <option value="ковры и текстиль">Ковры и текстиль</option>
             <option value="Дом бижутерии">Дом бижутерии</option>
         </select>
+        <select name="status" id="status" class="form-control">
+            <option value="Свободен">Свободен</option>
+            <option value="Арендован">Арендован</option>
+            <option value="Забронировано">Забронировано</option>
+        </select>
     </div>
 
     <h2>Выберите блок</h2>
@@ -288,12 +293,13 @@
 
         $(document).on('click', '#create-excel-file', function() {
             let block = $('select[name="block"]').val();
+            let status = $('select[name="status"]').val();
             if(block != null)
             {
                 $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
-                data: {block: block},
+                data: {block: block, status: status},
                 url     : 'places/createExcelFile',
                 method    : 'post',
                 success: function (data) {
