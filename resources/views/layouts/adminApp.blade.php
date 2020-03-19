@@ -122,11 +122,11 @@
                     @endability
 
                     @ability('super-admin', 'show-manager-list')
-                    <li name="managerswaste"><a href="{{ route('auth.admin.managerswaste.index') }}">Список менеджеров отходных</a></li>
+                    <li name="managerswaste"><a href="{{ route('auth.admin.managerswaste.index') }}">Список менеджеров обходных</a></li>
                     @endability
 
                     @ability('super-admin,manager,manager-waste', 'show-waste-list')
-                    <li name="wastes"><a href="{{ route('auth.managerwaste.wastes.index') }}">Список отходных</a></li>
+                    <li name="wastes"><a href="{{ route('auth.managerwaste.wastes.index') }}">Список обходных</a></li>
                     @endability
 
                     @ability('super-admin,manager', 'show-place-list')

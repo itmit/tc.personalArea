@@ -24,7 +24,7 @@ class ManagerWasteWebController extends Controller
     {
         return view('admin.managerwasteList', [
             'managers' => Role::getUsersByRoleName('manager-waste'),
-            'title' => 'Список менеджеров отходных'
+            'title' => 'Список менеджеров обходных'
         ]);
     }
 
@@ -38,7 +38,7 @@ class ManagerWasteWebController extends Controller
         $user = Auth::user();
         if ($user->ability(['super-admin'], ['create-manager'])) {
             return view('admin.managerwasteCreate', [
-                'title' => 'Создание менеджера отходных'
+                'title' => 'Создание менеджера обходных'
             ]);
         }
 

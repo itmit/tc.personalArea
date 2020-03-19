@@ -26,7 +26,7 @@ class WasteWebController extends Controller
     {
         return view('waste.wasteList', [
             // 'wastes' => Waste::('manager-waste'),
-            'title' => 'Список отходных заявок'
+            'title' => 'Список обходных заявок'
         ]);
     }
 
@@ -38,7 +38,7 @@ class WasteWebController extends Controller
     public function create()
     {        
         return view('waste.wasteCreate', [
-            'title' => 'Создание отходной заявки'
+            'title' => 'Создание обходной заявки'
         ]);
     }
 
