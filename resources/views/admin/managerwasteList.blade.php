@@ -4,7 +4,7 @@
 
     @ability('super-admin', 'create-manager')
 
-    <a href="{{ route('auth.admin.managerswaste.create') }}" class="btn btn-tc-manager">Создать менеджера отходных</a>
+    <a href="{{ route('auth.admin.managerswaste.create') }}" class="btn btn-tc-manager">Создать менеджера обходных</a>
     @endability
     <table class="table table-bordered">
         <thead>
