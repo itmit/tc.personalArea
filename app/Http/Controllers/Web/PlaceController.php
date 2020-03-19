@@ -300,4 +300,50 @@ class PlaceController extends Controller
 
         return response()->json(['succses'=>'Удалено'], 200);
     }
+
+    public function createExcelFile(Request $request)
+    {
+        // Создаем объект класса PHPExcel
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->createSheet();
+
+        $places = Place::where('block', $request->block)->get()->toArray();
+
+        self::createExcelActive($spreadsheet, $places, $request->block);
+
+        // Выводим HTTP-заголовки
+        $writer = new Xlsx($spreadsheet);
+        ob_start();
+        $writer->save('php://output');
+        $xlsData = ob_get_contents();
+        ob_end_clean();
+        echo json_encode('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'.base64_encode($xlsData));
+    }
+
+    private function createExcelActive($xls, $response, $block)
+    {
+        $sheet = $xls->getActiveSheet();
+        // Подписываем лист
+        $sheet->setTitle($block);
+
+        // Вставляем текст в ячейки
+        $sheet->setCellValue("A1", 'Блок');
+        $sheet->setCellValue("B1", 'Этаж');
+        $sheet->setCellValue("C1", 'Ряд');
+        $sheet->setCellValue("D1", 'Место');
+        $sheet->setCellValue("E1", 'Статус');
+        $sheet->setCellValue("F1", 'Цена');
+
+        for ($i = 0; $i < 9; $i++) {
+            for ($j = 2; $j <= count($response) + 1; $j++) {
+                $sheet->setCellValueByColumnAndRow(1, $j, $response[$j-2]['block']);
+                $sheet->setCellValueByColumnAndRow(2, $j, $response[$j-2]['floor']);
+                $sheet->setCellValueByColumnAndRow(3, $j, $response[$j-2]['row']);
+                $sheet->setCellValueByColumnAndRow(4, $j, $response[$j-2]['place']);
+                $sheet->setCellValueByColumnAndRow(5, $j, $response[$j-2]['status']);
+                $sheet->setCellValueByColumnAndRow(6, $j, $response[$j-2]['price']);
+            }
+        }
+        return $xls;
+    }
 }

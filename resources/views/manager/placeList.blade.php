@@ -65,6 +65,23 @@
     </div>
     @endability
 
+    @ability('super-admin', 'delete-place')
+    <div class="col-md-12">
+        <input type="button" id="create-excel-file" value="Сформировать Excel-файл" class="btn btn-tc-manager">
+        <select name="block" id="block" class="form-control">
+            <option value="" disabled selected>Выберите блок</option>
+            <option value="Вещевой">Вещевые ряды</option>
+            <option value="ТЦ">ТЦ Садовод</option>
+            <option value="Новый ТЦ">Новый ТЦ</option>
+            <option value="5 павильон">Меха и кожа</option>
+            <option value="ЗСМИ">Пальтовый круг</option>
+            <option value="Салют">Свадебная галерея 'САЛЮТ'</option>
+            <option value="ковры и текстиль">Ковры и текстиль</option>
+            <option value="Дом бижутерии">Дом бижутерии</option>
+        </select>
+    </div>
+    @endability
+
     <h2>Выберите блок</h2>
 
     <div class="col-sm-12">
@@ -271,7 +288,32 @@
             });
         });
 
+        $(document).on('click', '#create-excel-file', function() {
+            let block = $('select[name="block"]').val();
+            if(block != null)
+            {
+                $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data: {block: block},
+                url     : 'places/createExcelFile',
+                method    : 'post',
+                success: function (data) {
+                    var $a = $("<a>");
+                    $a.attr("href",data);
+                    $("body").append($a);
+                    $a.attr("download","Места.xlsx");
+                    $a[0].click();
+                    $a.remove();
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
             });
-        </script>
+            }
+        });
+
+    });
+</script>
 
 @endsection

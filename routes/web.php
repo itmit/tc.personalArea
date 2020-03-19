@@ -47,6 +47,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
         Route::post('places/import', 'Web\PlaceController@importFromExcel')->name('places.import');
         Route::post('places/makeAllRent', 'Web\PlaceController@makeAllRent');
 
+        Route::post('places/createExcelFile', 'Web\PlaceController@createExcelFile');
+
         Route::resource('news', 'Web\NewsController');
 
         Route::resource('bidForSale', 'Web\BidForSaleController');
