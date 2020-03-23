@@ -54,7 +54,7 @@
         <button type="submit" class="btn btn-tc-manager">Создать место</button>
     </div>
     </form>
-    @if(Auth::user()->name == 'manager1')
+    @if(Auth::user()->name == 'manager1' || Auth::user()->name == 'admin')
     <div class="col-sm-12">
         <button type="button" class="btn btn-tc-manager js-make-all-rent-button">Арендовать всё</button>
     </div>
