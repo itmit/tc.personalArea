@@ -54,9 +54,11 @@
         <button type="submit" class="btn btn-tc-manager">Создать место</button>
     </div>
     </form>
+    @if(Auth::user()->name == 'manager1')
     <div class="col-sm-12">
         <button type="button" class="btn btn-tc-manager js-make-all-rent-button">Арендовать всё</button>
     </div>
+    @endif
     @endability
 
     @ability('super-admin', 'delete-place')
