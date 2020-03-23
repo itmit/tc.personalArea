@@ -4,6 +4,8 @@
 <select name="selectByAccept" id="selectByAccept" class="form-control" style="margin-bottom: 10px">
     <option value="all">Все</option>
     <option value="active" selected>Активные</option>
+    <option value="archive">Архив</option>
+    <option value="rent">Арендованные</option>
     <option value="accepted">Обработанные</option>
 </select>
     <table class="table table-bordered">

@@ -70,6 +70,12 @@ class ReservationWebController extends Controller
             case 'accepted':
                 $reservations = Reservation::where('accepted', '<>', '0')->orderBy('created_at', 'desc')->get();
                 break;
+            case 'archive':
+                    $reservations = Reservation::where('accepted', '=', '2')->orderBy('created_at', 'desc')->get();
+                    break;
+            case 'rent':
+                $reservations = Reservation::where('accepted', '=', '3')->orderBy('created_at', 'desc')->get();
+                break;
             default:
                 return response()->json(['Error']);
         }
