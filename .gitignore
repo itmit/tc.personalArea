@@ -12,3 +12,6 @@ yarn-error.log
 .env
 .ftpquota
 /public_html/error_log
+*error_log
+php.ini
+.user.ini
