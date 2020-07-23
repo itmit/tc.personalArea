@@ -11,9 +11,20 @@
     </div>
     <div>
         <?
-            $place = $bid->place()->get()->first();    
+            $place = $bid->place()->get()->first();
+            if (!$place)
+            {
+                $place = new \stdClass();
+                $place->place_number = '';
+                $place->block = $bid->block;
+                $place->floor = $bid->floor;
+                $place->row = $bid->row;
+            }    
         ?>
-        Место <b>{{ $place->place_number }}</b> ряд <b>{{ $place->row }}</b> этаж <b>{{ $place->floor }}</b> блок <b>{{ $place->block }}</b>
+        @if($place->place_number)
+            Место <b>{{ $place->place_number }}</b> 
+        @endif
+        ряд <b>{{ $place->row }}</b> этаж <b>{{ $place->floor }}</b> блок <b>{{ $place->block }}</b>
         <p>
             {{ $bid->text }}
         </p>
