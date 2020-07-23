@@ -95,6 +95,14 @@ class BidForSaleController extends Controller
 
         foreach ($bids as $item) {
             $place = $item->place()->get()->first();
+            if (!$place)
+            {
+                $place = new \stdClass();
+                $place->place_number = '';
+                $place->block = $item->block;
+                $place->floor = $item->floor;
+                $place->row = $item->row;
+            }  
             $response[] = [
                 'id' => $item->id,
                 'block' => $place->block,

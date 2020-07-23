@@ -25,6 +25,14 @@
     @foreach($bids as $bid)
     <?
         $place = $bid->place()->get()->first();
+        if (!$place)
+        {
+            $place = new \stdClass();
+            $place->place_number = '';
+            $place->block = $bid->block;
+            $place->floor = $bid->floor;
+            $place->row = $bid->row;
+        }
     ?>
         <tr>
             <td><a href="bidForSale/{{ $bid->id }}">{{ $place->block }}</a></td>
