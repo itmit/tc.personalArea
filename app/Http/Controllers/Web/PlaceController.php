@@ -309,7 +309,11 @@ class PlaceController extends Controller
         $spreadsheet = new Spreadsheet();
         $spreadsheet->createSheet();
 
-        $places = Place::where('block', $request->block)->where('status', $request->status)->get()->toArray();
+        if ($request->block == "all"){
+            $places = Place::where('status', $request->status)->get()->toArray();
+        } else {
+            $places = Place::where('block', $request->block)->where('status', $request->status)->get()->toArray();
+        }
 
         self::createExcelActive($spreadsheet, $places, $request->block);
 

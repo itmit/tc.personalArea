@@ -72,21 +72,6 @@
                                aria-expanded="false" aria-haspopup="true" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </button>
-
-<!-- Single button -->
-<!--
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Действие <span class="caret"></span></button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Действие</a></li>
-    <li><a href="#">Другое действие</a></li>
-    <li><a href="#">Что-то иное</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Отдельная ссылка</a></li>
-  </ul>
-</div>
--->
-
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="{{ route('logout') }}"
@@ -114,9 +99,6 @@
         <div class="row">
             <div class="col-xs-12 col-sm-3 tc-left-menu">
                 <ul class="nav">
-
-                    {{-- <li name="home"><a href="{{ route('auth.home') }}">Главная</a></li> --}}
-
                     @ability('super-admin', 'show-manager-list')
                     <li name="managers"><a href="{{ route('auth.admin.managers.index') }}">Список менеджеров</a></li>
                     @endability
@@ -241,9 +223,31 @@
                     console.log("Error: " + xhr + " " + err);
                 }
             });
-
         });
 
+        $(document).on("click", ".js-destroy-ones", function (){
+            if (!confirm("Вы точно хотите удалить место?")){
+                return false;
+            }
+
+            let $this = $(this);
+            let id = $this.closest("tr").find("input.js-destroy").first().data('placeId');
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { ids: [ id ] },
+                url     : 'places/delete',
+                method    : 'delete',
+                success: function (response) {
+                    console.log(response);
+                    $this.closest("tr").closest('tr').remove();
+                },
+                error: function (xhr, err) { 
+                    console.log("Error: " + xhr + " " + err);
+                }
+            });
+            return false;
+        });
     });    
 </script>
 </body>

@@ -11,6 +11,14 @@
     border-bottom: 1px solid #a3522d!important;
 }
 
+select#status, select#getPlacesByBlock {
+    margin: 10px 0px;
+}
+
+.place-tools {
+    margin-right: -25px;
+}
+
 .navbar-tc {
     background-color: #f7ecdd!important;
     border-bottom: 1px solid #decfba!important;
